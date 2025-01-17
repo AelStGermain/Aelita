@@ -1,0 +1,24 @@
+<div class="game-container" style="background: url('assets/images/backgroundgato.jpg')">
+    <h2>Juego de Gato</h2>
+  
+    <!-- Mostrar el tablero -->
+    <div *ngIf="winner" class="winner">
+      <p>¡Ganador: {{ winner }}!</p>
+      <button (click)="resetGame()">Jugar de nuevo</button>
+    </div>
+  
+    <div *ngIf="!winner">
+      <p>Turno del jugador: {{ currentPlayer }}</p>
+      <div class="board">
+        <div *ngFor="let row of board; let rowIndex = index">
+          <div *ngFor="let cell of row; let colIndex = index" 
+               class="cell" 
+               [ngClass]="{'x': cell === 'X', 'o': cell === 'O'}"
+               (click)="play(rowIndex, colIndex)">
+            {{ cell }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

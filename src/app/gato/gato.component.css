@@ -1,0 +1,38 @@
+.game-container {
+    text-align: center;
+    padding: 20px;
+    background: rebeccapurple; /* Patrón de fondo en mosaico */
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    border: 1px solid #ddd;
+  }
+  
+  .cell.x {
+    color: red;
+  }
+  
+  .cell.o {
+    color: blue;
+  }
+  
+  .winner {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
