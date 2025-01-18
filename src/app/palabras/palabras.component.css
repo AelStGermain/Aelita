@@ -1,0 +1,57 @@
+.juego-container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    color: #4CAF50;
+  }
+  
+  .palabra-container {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  
+  .letras-container {
+    margin-bottom: 20px;
+  }
+  
+  button {
+    font-size: 18px;
+    margin: 5px;
+    padding: 10px 20px;
+    border: 2px solid #4CAF50;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .intentos {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .oruga {
+    font-size: 18px;
+    font-family: "Courier New", monospace;
+    margin-top: 20px;
+  }
+  
+  .fin-juego {
+    margin-top: 30px;
+    font-size: 24px;
+    color: #FF6347;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

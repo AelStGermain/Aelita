@@ -27,8 +27,10 @@
   }
   
   .cell.o {
-    color: blue;
-  }
+    color: green;
+    font-weight: bold;
+}
+
   
   .winner {
     font-size: 1.5rem;
