@@ -1,9 +1,12 @@
-<div class="game-container" style="background: url('assets/images/backgroundgato.jpg')">
+<div class="game-container"
+style="background: url('assets/images/backgroundgato.jpg') no-repeat center; background-size: cover; padding: 20px;">
     <h2>Juego de Gato</h2>
   
     <!-- Mostrar el tablero -->
     <div *ngIf="winner" class="winner">
-      <p>¡Ganador: {{ winner }}!</p>
+      <div *ngIf="winner">¡El ganador es {{ winner }}!</div>
+      <div *ngIf="isDraw && !winner">¡Es un empate!</div>
+
       <button (click)="resetGame()">Jugar de nuevo</button>
     </div>
   

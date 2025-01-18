@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importar CommonModule
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gato',
   standalone: true,
-  imports: [CommonModule],  // Aquí agregas CommonModule
+  imports: [CommonModule],
   templateUrl: './gato.component.html',
   styleUrls: ['./gato.component.css'],
 })
@@ -14,8 +14,9 @@ export class GatoComponent {
     ['', '', ''],
     ['', '', ''],
   ];
-  currentPlayer: string = 'X';  // 'X' o 'O'
-  winner: string | null = null;  // Puede ser 'X', 'O' o null
+  currentPlayer: string = 'X'; // 'X' o 'O'
+  winner: string | null = null; // Puede ser 'X', 'O' o null
+  isDraw: boolean = false; // Nuevo indicador de empate
 
   constructor() {
     this.resetGame();
@@ -25,19 +26,46 @@ export class GatoComponent {
     this.board = [
       ['', '', ''],
       ['', '', ''],
-      ['', '', '']
+      ['', '', ''],
     ];
     this.currentPlayer = 'X';
     this.winner = null;
+    this.isDraw = false; // Reinicia el indicador de empate
   }
 
   play(row: number, col: number) {
-    if (this.board[row][col] === '' && this.winner === null) {
+    if (this.board[row][col] === '' && this.winner === null && !this.isDraw) {
       this.board[row][col] = this.currentPlayer;
       if (this.checkWinner()) {
         this.winner = this.currentPlayer;
+      } else if (this.isBoardFull()) {
+        this.isDraw = true; // Marca como empate si el tablero está lleno
       } else {
         this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
+        if (this.currentPlayer === 'O') {
+          // Añadimos un retraso para el turno del computador
+          setTimeout(() => {
+            this.computerMove();
+          }, 500); // Retraso de 1/2 segundo (500 ms)
+        }
+      }
+    }
+  }
+
+  computerMove() {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (this.board[i][j] === '') {
+          this.board[i][j] = 'O';
+          if (this.checkWinner()) {
+            this.winner = 'O';
+          } else if (this.isBoardFull()) {
+            this.isDraw = true; // Marca como empate si el tablero está lleno
+          } else {
+            this.currentPlayer = 'X';
+          }
+          return;
+        }
       }
     }
   }
@@ -58,5 +86,15 @@ export class GatoComponent {
       return true;
     }
     return false;
+  }
+
+  isBoardFull(): boolean {
+    // Verifica si todas las celdas están ocupadas
+    for (let row of this.board) {
+      if (row.includes('')) {
+        return false;
+      }
+    }
+    return true;
   }
 }

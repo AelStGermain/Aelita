@@ -1,0 +1,34 @@
+<div class="juego-container"
+style="background: url('assets/images/backgroundpalabras.jpg') no-repeat center; background-size: cover; padding: 20px;">
+    <h1>Adivina la Palabra</h1>
+    <p>Puntos: {{ puntos }}</p>
+  
+    <div class="palabra-container">
+      <p class="palabra">Palabra: 
+        <span *ngFor="let letra of palabraMostrada">
+          {{ letra === '_' ? '_' : letra }}
+        </span>
+      </p>
+    </div>
+  
+    <div class="letras-container">
+      <button *ngFor="let letra of letrasDisponibles" (click)="elegirLetra(letra)">
+        {{ letra }}
+      </button>
+    </div>
+  
+    <div class="intentos">
+      <p>Intentos restantes: {{ intentosRestantes }}</p>
+      <p *ngIf="mensaje">{{ mensaje }}</p>
+    </div>
+  
+    <div class="oruga">
+      <pre>{{ orugaASCII }}</pre>
+    </div>
+  
+    <div *ngIf="juegoTerminado" class="fin-juego">
+      <p>{{ mensajeFinal }}</p>
+      <button (click)="reiniciarJuego()">Jugar otra vez</button>
+    </div>
+  </div>
+  
