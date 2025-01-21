@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Página GeoCities</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
   <h1>Ael's secret corner</h1>
 
   <div class="container">
-    <div class="sidebar">
+    <!-- Sidebar tradicional para pantallas grandes -->
+    <div class="sidebar d-none d-md-block">
       <h2>Navegación</h2>
       <ul>
         <li><a routerLink="/">Inicio</a></li> <!-- Redirige a la página principal -->
@@ -23,6 +25,44 @@
         <li><a href="#">Enlaces favoritos</a></li>
       </ul>
     </div>
+
+    <!-- Menú desplegable solo para pantallas pequeñas -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-block d-md-none">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/gato">Juego Gato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/memorice">Juego Memorice</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/palabras">Juego Palabras</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/voice-recognition">Lector</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sobre mí</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Galería</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contáctame</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Enlaces favoritos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
     <div class="content">
       <!-- Aquí se renderizarán los componentes según la ruta -->
@@ -41,5 +81,8 @@
     <p>En construcción...</p>
     <img src="https://www.gifmania.co.uk/Web-design/Under-construction/Under-construction.gif" alt="En construcción">
   </div>
+
+  <!-- Scripts de Bootstrap deben ir al final del cuerpo -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

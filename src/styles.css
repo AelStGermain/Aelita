@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      flex-basis: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+      border-right: none;
+      border-bottom: 2px solid #000;
+    }
+  
+    .content {
+      flex-basis: 100%; /* También ocupa todo el ancho */
+    }
+  
+    .footer .gif-container img {
+      width: 80px; /* Reducimos los GIFs en pantallas pequeñas */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    body {
+      font-size: 14px; /* Tamaño de fuente reducido */
+    }
+  
+    .sidebar ul li a {
+      font-size: 14px;
+    }
+  
+    .footer .gif-container img {
+      width: 60px;
+    }
+  }
+  
