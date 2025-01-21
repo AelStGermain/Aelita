@@ -5,17 +5,16 @@ import { HomeComponent } from './app/home/home.component';
 import { GatoComponent } from './app/gato/gato.component';
 import { MemoriceComponent } from './app/memorice/memorice.component';
 import { PalabrasComponent } from './app/palabras/palabras.component';
-
+import { VoiceRecognitionComponent } from './app/voice-recognition/voice-recognition.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'gato', component: GatoComponent },
   { path: 'memorice', component: MemoriceComponent },
   { path: 'palabras', component: PalabrasComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirigir al inicio
-  { path: '**', redirectTo: '/home' }, // Manejo de rutas inexistentes
+  { path: 'voice-recognition', component: VoiceRecognitionComponent },
 ];
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)],
+  providers: [provideRouter(routes)],  // Proporcionar las rutas aquí
 });

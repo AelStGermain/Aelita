@@ -1,0 +1,59 @@
+.voice-recognition-container {
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  background-color: rgb(60, 109, 110);
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px #771200;
+}
+
+.transcription {
+  margin-bottom: 20px;
+}
+
+.transcription-box {
+  border: 2px dashed #016c8d;
+  padding: 10px;
+  background-color: #000;
+  color: rgb(121, 0, 115);
+  height: 100px;
+  overflow-y: auto;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #0078d7;
+  text-shadow: 1px 1px #000;
+}
+
+.btn:hover {
+  background-color: #005bb5;
+}
+
+.toggle-btn {
+  background-color: #ff6347;
+}
+
+.toggle-btn:hover {
+  background-color: #e53e3e;
+}

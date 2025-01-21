@@ -1,0 +1,20 @@
+<div class="voice-recognition-container">
+  <h1>🎤 Reconocimiento de Voz 🎶</h1>
+
+  <!-- Área para mostrar el texto transcrito -->
+  <div class="transcription">
+    <h3>📝 Texto Transcrito:</h3>
+    <div class="transcription-box">
+      <p>{{ message || "Presiona el botón para comenzar a hablar..." }}</p>
+    </div>
+  </div>
+
+  <!-- Botón Play/Stop -->
+  <div class="controls">
+    <button 
+      (click)="toggleRecording()" 
+      class="btn toggle-btn">
+      {{ isRecording ? '⏹️ Detener' : '▶️ Escuchar' }}
+    </button>
+  </div>
+</div>
