@@ -1,25 +1,15 @@
-<div 
-  class="game-container" 
-  style="background: url('assets/images/kensugimori.jpg') no-repeat center; background-size: cover; padding: 20px;"
->
+<div class="game-container" style="background: url('assets/images/kensugimori.jpg') no-repeat center; background-size: cover; padding: 10px;">
+  <h1 class="game-title">Juego Memorice Pokémon</h1>
   <div class="cards-grid">
     <div *ngFor="let card of cards; let i = index" class="card" (click)="flipCard(i)">
       <div class="card-inner" [class.flipped]="card.flipped">
-        <!-- Parte trasera de la carta: imagen genérica de respaldo -->
         <div class="card-front"></div>
-        <!-- Parte delantera de la carta: imagen dinámica -->
         <div class="card-back">
-          <img 
-            *ngIf="card.flipped || matchedCards.includes(i)" 
-            [src]="card.image" 
-            alt="Dynamic Card Image" 
-          />
+          <img *ngIf="card.flipped || matchedCards.includes(i)" [src]="card.image" alt="Dynamic Card Image" />
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Mensaje de victoria -->
   <div *ngIf="gameWon" class="game-win-message">
     <h2>¡Felicidades! Has ganado el juego.</h2>
     <button (click)="resetGame()">Reiniciar</button>

@@ -1,5 +1,11 @@
 /* Estilos Personalizados */
-
+#page-container{
+  position: relative;
+  min-height: 100vh;
+}
+#content-wrap {
+  padding-bottom: 2.0rem;    /* Footer height */
+}
 /* Fuente para los títulos principales */
 h1 {
   color: #ff4081;
@@ -63,28 +69,17 @@ html, body {
 }
 
 body {
-  flex: 1 0 auto;
   font-family: 'Comic Neue', cursive; /* Fuente principal */
   background: linear-gradient(135deg, #ffcc00 25%, #ff6699 50%, #33ccff 75%);
   color: #0000FF;
+  flex-grow: 1;
 }
 
 main {
-  flex: 1 0 auto;
+  flex-grow: 1;
 }
 
 /* Ajustes para el footer */
-.footer {
+footer {
   background-color: #343a40; /* Fondo oscuro para el footer */
-  color: #ffffff;           /* Texto en color blanco */
-  padding: 20px 0;          /* Espaciado interno */
-  text-align: center;       /* Centrar el texto */
-  width: 100%;              /* Asegurar que el footer ocupe toda la anchura */
-  flex-shrink: 0;           /* Evitar que el footer se encoja */
-  margin-top: auto;         /* Mantener el footer al final */
-}
-
-/* Ajustes para las imágenes en el footer */
-.footer .gif-container img {
-  width: 80px;              /* Ajustar el tamaño de las imágenes */
 }

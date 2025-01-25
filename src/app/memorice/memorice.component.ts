@@ -14,7 +14,6 @@ export class MemoriceComponent implements OnInit {
   matchedCards: number[] = [];
   gameWon: boolean = false;
 
-  // Rutas de las imágenes
   images: string[] = [
     'assets/images/0001.png',
     'assets/images/0014.png',
@@ -33,7 +32,6 @@ export class MemoriceComponent implements OnInit {
   }
 
   initializeGame() {
-    // Duplicar las imágenes y mezclarlas
     const doubledImages = [...this.images, ...this.images];
     this.cards = doubledImages.map((image, index) => ({
       id: index,
@@ -58,7 +56,7 @@ export class MemoriceComponent implements OnInit {
     const selectedCard = this.cards[index];
 
     if (selectedCard.flipped || this.matchedCards.includes(index)) {
-      return; // No hacer nada si ya está volteada o emparejada
+      return;
     }
 
     selectedCard.flipped = true;
@@ -75,13 +73,11 @@ export class MemoriceComponent implements OnInit {
     const secondCard = this.cards[secondIndex];
 
     if (firstCard.image === secondCard.image) {
-      // Emparejamiento exitoso
       this.matchedCards.push(firstIndex, secondIndex);
       if (this.matchedCards.length === this.cards.length) {
         this.gameWon = true;
       }
     } else {
-      // No hubo emparejamiento, voltear las cartas nuevamente después de 1 segundo
       setTimeout(() => {
         firstCard.flipped = false;
         secondCard.flipped = false;
