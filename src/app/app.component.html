@@ -1,88 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página GeoCities</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
-  <h1>Ael's secret corner</h1>
-
+<!-- app.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
   <div class="container">
-    <!-- Sidebar tradicional para pantallas grandes -->
-    <div class="sidebar d-none d-md-block">
-      <h2>Navegación</h2>
-      <ul>
-        <li><a routerLink="/">Inicio</a></li> <!-- Redirige a la página principal -->
-        <li><a routerLink="/gato">Juego Gato</a></li> <!-- Redirige al juego de Gato -->
-        <li><a routerLink="/memorice">Juego Memorice</a></li> <!-- Redirige al juego Memorice -->
-        <li><a routerLink="/palabras">Juego Palabras</a></li> <!-- Redirige al juego Palabras -->
-        <li><a routerLink="/voice-recognition">Lector</a></li> <!-- Redirige al juego lector -->
-        <li><a href="#">Sobre mí</a></li>
-        <li><a href="#">Galería</a></li>
-        <li><a href="#">Contáctame</a></li>
-        <li><a href="#">Enlaces favoritos</a></li>
+    <a class="navbar-brand" href="#">Ael's Secret Corner</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" routerLink="/gato">Juego Gato</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/memorice">Juego Memorice</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/palabras">Juego Palabras</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/voice-recognition">Lector</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Sobre mí</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Galería</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contáctame</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Enlaces favoritos</a></li>
       </ul>
     </div>
+  </div>
+</nav>
 
-    <!-- Menú desplegable solo para pantallas pequeñas -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light d-block d-md-none">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/gato">Juego Gato</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/memorice">Juego Memorice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/palabras">Juego Palabras</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/voice-recognition">Lector</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sobre mí</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Galería</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contáctame</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Enlaces favoritos</a>
-          </li>
-        </ul>
+<main class="container mt-5">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12 gif-container mb-3">
+        <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="GIF retro">
+        <img src="https://media.giphy.com/media/3o7TKPdUkkbqi8lhmQ/giphy.gif" alt="GIF animado">
+        <img src="https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" alt="GIF de flecha">
       </div>
-    </nav>
-
-    <div class="content">
-      <!-- Aquí se renderizarán los componentes según la ruta -->
-      <router-outlet></router-outlet>
+      <div class="col-12">
+        <p>¡Gracias por visitar mi página! 👾</p>
+        <p>En construcción...</p>
+      </div>
     </div>
   </div>
-
-  <div class="footer">
-    <div class="gif-container">
-      <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="GIF retro">
-      <img src="https://media.giphy.com/media/3o7TKPdUkkbqi8lhmQ/giphy.gif" alt="GIF animado">
-      <img src="https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" alt="GIF de flecha">
-    </div>
-    <p>¡Gracias por visitar mi página! 👾</p>
-
-    <p>En construcción...</p>
-    <img src="https://www.gifmania.co.uk/Web-design/Under-construction/Under-construction.gif" alt="En construcción">
-  </div>
-
-  <!-- Scripts de Bootstrap deben ir al final del cuerpo -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</footer>

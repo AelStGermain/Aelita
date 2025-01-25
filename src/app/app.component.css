@@ -1,69 +1,90 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+/* Estilos Personalizados */
 
-body {
-  background: url('https://www.geocities.ws/aunt_sande/backgrounds/prairiewindbg.jpg'), repeat; /* Patrón de fondo en mosaico */
-  color: #08af5c; /* Texto verde brillante */
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente típica */
-  text-align: center; /* Centrar contenido */
-  display: flex;
-  flex-direction: column;
-}
-
+/* Fuente para los títulos principales */
 h1 {
-  color: #9c0075; /* Naranja llamativo */
-  text-shadow: 2px 2px #000000; /* Sombra al texto */
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #ff4081;
+  text-shadow: 2px 2px #000000;
+  font-family: 'Pacifico', cursive; /* Fuente juvenil y elegante */
   font-style: italic;
   text-align: center;
+  margin-top: 20px;
 }
 
+/* Fuente para enlaces */
 a {
-  color: #FFFF00; /* Amarillo brillante */
-  text-decoration: none; /* Sin subrayado */
+  color: #3b0042;
+  text-decoration: none;
+  font-family: 'Indie Flower', cursive; /* Fuente manuscrita y desenfadada */
 }
 
 a:hover {
-  text-decoration: underline; /* Subrayado al pasar el mouse */
+  text-decoration: underline;
 }
 
+/* Ajustes para el contenedor principal */
 .container {
-  display: flex;
-  flex: 1;
+  flex: 1;  /* Este estilo asegura que el contenedor principal ocupe el espacio disponible */
 }
 
-.sidebar {
-  background-color: #010150; /* Azul vibrante */
-  padding: 10px;
-  border: 3px dashed #FFFFFF; /* Bordes estilo "90s" */
-  width: 20%;
-  text-align: left;
-}
-
-.content {
-  border: 5px solid #FF00FF; /* Marco magenta */
-  padding: 20px;
-  margin: 20px auto;
-  width: 70%;
-  text-align: center;
-}
-
-.footer {
-  margin-top: 20px;
-  font-size: 12px;
-  color: #CCCCCC;
-  text-align: center;
-}
-
+/* Ajustes para imágenes */
 img {
   width: 100px;
   height: auto;
   margin: 5px;
 }
 
+/* Navbar personalizado */
+.navbar-custom {
+  background-color: #80006a; /* Fondo del navbar */
+}
+
+/* Estilos para la sección de GIFs */
 .gif-container {
   margin-top: 20px;
+}
+
+/* Estilos para los enlaces del navbar */
+.navbar-nav .nav-item .nav-link {
+  color: #ffffff;
+  font-family: 'Comic Neue', sans-serif; /* Fuente moderna y divertida */
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #ffeb3b;
+}
+
+/* Fondo colorido y juvenil */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex: 1 0 auto;
+  font-family: 'Comic Neue', cursive; /* Fuente principal */
+  background: linear-gradient(135deg, #ffcc00 25%, #ff6699 50%, #33ccff 75%);
+  color: #0000FF;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Ajustes para el footer */
+.footer {
+  background-color: #343a40; /* Fondo oscuro para el footer */
+  color: #ffffff;           /* Texto en color blanco */
+  padding: 20px 0;          /* Espaciado interno */
+  text-align: center;       /* Centrar el texto */
+  width: 100%;              /* Asegurar que el footer ocupe toda la anchura */
+  flex-shrink: 0;           /* Evitar que el footer se encoja */
+  margin-top: auto;         /* Mantener el footer al final */
+}
+
+/* Ajustes para las imágenes en el footer */
+.footer .gif-container img {
+  width: 80px;              /* Ajustar el tamaño de las imágenes */
 }

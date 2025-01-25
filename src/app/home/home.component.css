@@ -1,39 +1,105 @@
+/* Estilos Globales */
+
+/* Contenedor Principal */
 .home-container {
-    padding: 20px;
-    text-align: center;
-    background: burlywood
-  }
-  
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border: 5px dotted #FF00FF;
+  border-radius: 5%;
+  margin: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Título */
+.home-container h2 {
+  font-size: 36px;
+  text-shadow: 2px 2px #FF0000;
+  margin-bottom: 20px;
+}
+
+/* Párrafo */
+.home-container p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* Enlaces de Juegos */
+.game-link h3 {
+  font-size: 28px;
+  color: #6500AD;
+  text-shadow: 1px 1px #FFFF00;
+  margin-bottom: 20px;
+}
+
+.game-link ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: 20px;
+}
+
+.game-link li {
+  margin: 10px 0;
+}
+
+.game-button {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #FF1493;
+  border: 2px solid #FF4500;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.game-button:hover {
+  background-color: #FF4500;
+  border-color: #FF1493;
+}
+
+/* Diseño Responsivo */
+@media (max-width: 768px) {
   .home-container h2 {
-    color: #3b83cc;
-    background: fixed;
+    font-size: 28px;
   }
-  
+
   .home-container p {
-    font-size: 18px;
-    color: #569700;
+    font-size: 16px;
   }
-  
-  .game-link {
-    margin-top: 20px;
+
+  .game-link h3 {
+    font-size: 24px;
   }
-  
+
   .game-link ul {
-    list-style-type: none;
-    padding: 0;
+    font-size: 18px;
   }
-  
-  .game-link li {
-    margin: 10px 0;
+
+  .game-button {
+    padding: 8px 16px;
   }
-  
-  .game-link a {
-    text-decoration: none;
-    color: #2980b9;
-    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .home-container h2 {
+    font-size: 24px;
   }
-  
-  .game-link a:hover {
-    text-decoration: underline;
+
+  .home-container p {
+    font-size: 14px;
   }
-  
+
+  .game-link h3 {
+    font-size: 20px;
+  }
+
+  .game-link ul {
+    font-size: 16px;
+  }
+
+  .game-button {
+    padding: 6px 12px;
+  }
+}

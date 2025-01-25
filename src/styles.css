@@ -1,34 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-/* Global Styles */
 
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .sidebar {
-      flex-basis: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
-      border-right: none;
-      border-bottom: 2px solid #000;
-    }
-  
-    .content {
-      flex-basis: 100%; /* También ocupa todo el ancho */
-    }
-  
-    .footer .gif-container img {
-      width: 80px; /* Reducimos los GIFs en pantallas pequeñas */
-    }
+/* Estilos Globales */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Estilos Personalizados */
+.navbar-brand {
+  font-weight: bold;
+}
+
+.footer {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 20px 0;
+}
+
+.footer .gif-container img {
+  width: 80px;
+}
+
+@media (max-width: 768px) {
+  .footer .gif-container img {
+    width: 60px;
   }
-  
-  @media screen and (max-width: 480px) {
-    body {
-      font-size: 14px; /* Tamaño de fuente reducido */
-    }
-  
-    .sidebar ul li a {
-      font-size: 14px;
-    }
-  
-    .footer .gif-container img {
-      width: 60px;
-    }
-  }
-  
+}
