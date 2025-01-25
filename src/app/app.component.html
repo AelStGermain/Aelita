@@ -1,33 +1,38 @@
-<body
-style="background: url('assets/images/background.jpg') no-repeat center; background-size: cover; padding: 20px;"> 
-<div id="page-container">
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-  <div class="container">
-    <a class="navbar-brand" href="#">Ael's Secret Corner</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse text-center" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" routerLink="/gato">Juego Gato</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/memorice">Juego Memorice</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/palabras">Juego Palabras</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/voice-recognition">Lector</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Sobre mí</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Galería</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Contáctame</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Enlaces favoritos</a></li>
-      </ul>
-    </div>
+<body style="background: url('assets/images/background.jpg') no-repeat center; background-size: cover;">
+  <div id="page-container">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container">
+        <a class="navbar-brand" href="#">Ael's Secret Corner</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" routerLink="/gato">Juego Gato</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/memorice">Juego Memorice</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/palabras">Juego Palabras</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/voice-recognition">Lector</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Sobre mí</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Galería</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contáctame</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Enlaces favoritos</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main id="content-wrap" class="container mt-5">
+      <router-outlet></router-outlet>
+    </main>
+
+    <footer id="footer" class="bg-body-tertiary text-center text-lg-start">
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        <p>¡Gracias por visitar mi página! 👾</p>
+        <a class="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
   </div>
-</nav>
-
-<main class="container mt-5">
-  <router-outlet></router-outlet>
-</main>
-
-<footer id="footer">
-</footer>
-</div>
 </body>

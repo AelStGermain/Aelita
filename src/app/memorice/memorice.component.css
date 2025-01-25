@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   padding: 10px;
   height: calc(100vh - 4rem); /* Altura completa menos espacio reservado para el footer */
   box-sizing: border-box;
@@ -20,16 +19,15 @@
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Cambiar a 5 columnas */
+  grid-template-columns: repeat(5, 1fr); /* Mantener siempre 5 columnas */
   grid-gap: 15px;
-  width: 70%;
+  width: 50%;
   max-width: 1000px; /* Ajustar el tamaño máximo */
+  height: auto;
 }
 
 .card {
-  width:auto;
-  height: auto;
-  padding-bottom: 100%; /* Mantiene las proporciones cuadradas */
+  aspect-ratio: 1 / 1; /* Mantiene las proporciones cuadradas */
   position: relative;
   perspective: 1000px;
   border: 2px solid black;
@@ -101,8 +99,7 @@ button:hover {
   }
 
   .card {
-    width: 100%;
-    padding-bottom: 100%; /* Mantiene las proporciones cuadradas */
+    aspect-ratio: 1 / 1; /* Mantiene las proporciones cuadradas */
   }
 
   button {
