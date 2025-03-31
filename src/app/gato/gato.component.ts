@@ -17,6 +17,7 @@ export class GatoComponent {
   currentPlayer: string = 'X'; // 'X' o 'O'
   winner: string | null = null; // Puede ser 'X', 'O' o null
   isDraw: boolean = false; // Nuevo indicador de empate
+  isPlayerTurn: boolean = true; // Nuevo indicador para habilitar/deshabilitar turnos del jugador
 
   constructor() {
     this.resetGame();
@@ -30,42 +31,49 @@ export class GatoComponent {
     ];
     this.currentPlayer = 'X';
     this.winner = null;
-    this.isDraw = false; // Reinicia el indicador de empate
+    this.isDraw = false;
+    this.isPlayerTurn = true; // Habilita el turno del jugador al reiniciar el juego
   }
 
   play(row: number, col: number) {
-    if (this.board[row][col] === '' && this.winner === null && !this.isDraw) {
+    if (this.isPlayerTurn && this.board[row][col] === '' && this.winner === null && !this.isDraw) {
       this.board[row][col] = this.currentPlayer;
+      this.isPlayerTurn = false; // Deshabilita turnos adicionales del jugador
+
       if (this.checkWinner()) {
         this.winner = this.currentPlayer;
       } else if (this.isBoardFull()) {
-        this.isDraw = true; // Marca como empate si el tablero está lleno
+        this.isDraw = true;
       } else {
-        this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
-        if (this.currentPlayer === 'O') {
-          // Añadimos un retraso para el turno del computador
-          setTimeout(() => {
-            this.computerMove();
-          }, 500); // Retraso de 1/2 segundo (500 ms)
-        }
+        this.currentPlayer = 'O';
+        setTimeout(() => {
+          this.computerMove();
+        }, 500); // Retraso de 1/2 segundo (500 ms)
       }
     }
   }
 
   computerMove() {
+    const availableMoves: { row: number, col: number }[] = [];
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         if (this.board[i][j] === '') {
-          this.board[i][j] = 'O';
-          if (this.checkWinner()) {
-            this.winner = 'O';
-          } else if (this.isBoardFull()) {
-            this.isDraw = true; // Marca como empate si el tablero está lleno
-          } else {
-            this.currentPlayer = 'X';
-          }
-          return;
+          availableMoves.push({ row: i, col: j });
         }
+      }
+    }
+
+    if (availableMoves.length > 0) {
+      const move = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+      this.board[move.row][move.col] = 'O';
+
+      if (this.checkWinner()) {
+        this.winner = 'O';
+      } else if (this.isBoardFull()) {
+        this.isDraw = true;
+      } else {
+        this.currentPlayer = 'X';
+        this.isPlayerTurn = true; // Habilita el turno del jugador después del turno del computador
       }
     }
   }
@@ -89,7 +97,6 @@ export class GatoComponent {
   }
 
   isBoardFull(): boolean {
-    // Verifica si todas las celdas están ocupadas
     for (let row of this.board) {
       if (row.includes('')) {
         return false;

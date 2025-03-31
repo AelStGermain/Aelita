@@ -28,6 +28,12 @@ export class VoiceRecognitionService {
       this.recognition.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
       };
+
+      this.recognition.onend = () => {
+        if (this.isRecording) {
+          this.recognition.start(); // Reiniciar reconocimiento de voz si está grabando
+        }
+      };
     } else {
       console.error('SpeechRecognition no es compatible con este navegador.');
     }

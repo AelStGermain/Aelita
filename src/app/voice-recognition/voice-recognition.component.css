@@ -1,59 +1,97 @@
 .voice-recognition-container {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-color: rgb(60, 109, 110);
+  background: linear-gradient(to right, #0066cc, #33ccff);
   color: #fff;
   border-radius: 10px;
   padding: 20px;
-  max-width: 400px;
+  max-width: 500px;
   margin: 50px auto;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 32px; /* Aumentar tamaño de fuente */
   margin-bottom: 20px;
-  text-shadow: 2px 2px #771200;
+  text-shadow: 2px 2px #000;
 }
 
-.transcription {
+.word-container {
   margin-bottom: 20px;
 }
 
-.transcription-box {
-  border: 2px dashed #016c8d;
+.word-box {
+  display: inline-block;
   padding: 10px;
-  background-color: #000;
-  color: rgb(121, 0, 115);
-  height: 100px;
-  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  font-size: 28px; /* Aumentar tamaño de fuente */
+}
+
+.correct {
+  background-color: yellow;
+  color: black;
 }
 
 .controls {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .btn {
-  font-size: 18px;
+  font-size: 20px; /* Aumentar tamaño de fuente */
   padding: 10px 20px;
   margin: 0 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
-  background-color: #0078d7;
+  background-color: #ff4081;
   text-shadow: 1px 1px #000;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .btn:hover {
-  background-color: #005bb5;
+  background-color: #e91e63;
+  transform: scale(1.05);
 }
 
 .toggle-btn {
-  background-color: #ff6347;
+  background-color: #00e676;
 }
 
 .toggle-btn:hover {
+  background-color: #00c853;
+}
+
+.restart-btn {
+  background-color: #ff6347;
+}
+
+.restart-btn:hover {
   background-color: #e53e3e;
+}
+
+.real-time {
+  margin-top: 20px;
+}
+
+.real-time-box {
+  border: 2px solid #ffffff;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  height: 100px;
+  overflow-y: auto;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.2);
+  font-size: 24px; /* Aumentar tamaño de fuente */
+}
+
+.error-message {
+  color: #FF6347;
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 24px; /* Aumentar tamaño de fuente */
 }

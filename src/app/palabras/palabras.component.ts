@@ -15,7 +15,7 @@ export class PalabrasComponent {
   letrasDisponibles: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
   letrasIncorrectas: string[] = [];
   intentosRestantes: number = 6;
-  orugaASCII: string = `         ____\n        /    \\\n       |      |\n       |      |\n       |______|\n      (O) (O)\n`; // Oruga inicial
+  estrellas: string[] = [];
   mensaje: string | null = null;
   juegoTerminado: boolean = false;
   puntos: number = 0;
@@ -34,7 +34,7 @@ export class PalabrasComponent {
     this.letrasIncorrectas = [];
     this.palabraSeleccionada = this.palabras[Math.floor(Math.random() * this.palabras.length)];
     this.palabraMostrada = Array(this.palabraSeleccionada.length).fill('_');
-    this.orugaASCII = `         ____\n        /    \\\n       |      |\n       |      |\n       |______|\n      (O) (O)\n`; // Oruga inicial
+    this.estrellas = [];
   }
 
   elegirLetra(letra: string) {
@@ -44,7 +44,7 @@ export class PalabrasComponent {
 
     if (this.palabraSeleccionada.includes(letra)) {
       this.actualizarPalabra(letra);
-      this.actualizarOruga();
+      this.actualizarEstrellas();
     } else {
       this.letrasIncorrectas.push(letra);
       this.intentosRestantes--;
@@ -65,9 +65,9 @@ export class PalabrasComponent {
     }
   }
 
-  actualizarOruga() {
-    // Añadir una nueva parte al cuerpo de la oruga cada vez que se acierta una letra
-    this.orugaASCII += `(O) `;
+  actualizarEstrellas() {
+    // Añadir una nueva estrella por cada letra correcta adivinada
+    this.estrellas.push('⭐');
   }
 
   terminarJuego(gano: boolean) {

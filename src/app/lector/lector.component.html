@@ -1,0 +1,7 @@
+<div class="lector-container">
+  <button (click)="toggleListening()">
+    {{ isListening ? 'Detener' : 'Iniciar' }} Reconocimiento de Voz
+  </button>
+  <textarea readonly>{{ recognizedText }}</textarea>
+  <button (click)="clearText()">Limpiar Texto</button>
+</div>

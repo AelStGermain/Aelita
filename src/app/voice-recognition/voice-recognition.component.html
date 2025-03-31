@@ -1,20 +1,38 @@
 <div class="voice-recognition-container">
-  <h1>🎤 Reconocimiento de Voz 🎶</h1>
+  <h1>🗣️ Ayuda Lectora 🎶</h1>
 
-  <!-- Área para mostrar el texto transcrito -->
-  <div class="transcription">
-    <h3>📝 Texto Transcrito:</h3>
-    <div class="transcription-box">
-      <p>{{ message || "Presiona el botón para comenzar a hablar..." }}</p>
+  <div class="word-container">
+    <h3>📖 Palabra a Leer:</h3>
+    <div class="word-box">
+      <span *ngFor="let letra of palabraMostrada; let i = index" [ngClass]="{ 'correct': correctas[i] }">
+        {{ letra }}
+      </span>
     </div>
   </div>
 
-  <!-- Botón Play/Stop -->
+  <!-- Botones de Control -->
   <div class="controls">
     <button 
-      (click)="toggleRecording()" 
+      (click)="startRecording()" 
       class="btn toggle-btn">
-      {{ isRecording ? '⏹️ Detener' : '▶️ Escuchar' }}
+      ▶️ Escuchar
     </button>
+    <button 
+      (click)="reanudar()" 
+      class="btn restart-btn">
+      🔄 Reanudar
+    </button>
+  </div>
+
+  <!-- Lectura en Tiempo Real -->
+  <div class="real-time">
+    <h3>🎙️ Lectura en Tiempo Real:</h3>
+    <div class="real-time-box">
+      <p>{{ realTimeText || "Esperando entrada de voz..." }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="mensajeError" class="error-message">
+    <p>{{ mensajeError }}</p>
   </div>
 </div>
