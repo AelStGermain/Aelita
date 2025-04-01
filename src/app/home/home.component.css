@@ -9,11 +9,8 @@
   border-radius: 15px;
   margin: 0 auto;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-  max-width: 60%;
+  max-width: 100%;
   box-sizing: border-box;
-  margin-top: 10%; /* Empuja la caja hacia abajo */
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Título */
