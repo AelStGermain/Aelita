@@ -100,3 +100,105 @@ footer {
   bottom: 0;
   width: 100%; /* Asegura que el footer ocupe toda la anchura */
 }
+/* CONTENEDOR PRINCIPAL DEL CHAT */
+.chat-container {
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border: 2px solid #6f42c1;
+  height: 100%;
+  width: 100%;
+}
+
+/* TÍTULO DEL CHAT */
+.chat-title {
+  color: #6f42c1;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* CONTENEDOR DEL IFRAME (Responsive) */
+.chat-iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* Proporción 4:5 (altura/ancho) */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f8f9fa13;
+}
+
+/* IFRAME DEL CHAT (Ocupa todo el contenedor) */
+.chat-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ENLACES DEL CHAT */
+.chat-links {
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(111, 66, 193, 0.1);
+  border-radius: 8px;
+}
+
+.chat-links a {
+  color: #6f42c1;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.chat-links a:hover {
+  color: #4a1d96;
+  text-decoration: underline;
+}
+
+/* VERSIÓN PARA ESCRITORIO (mayor a 992px) */
+@media (min-width: 992px) {
+  .chat-iframe-container {
+    padding-bottom: 110%; /* Proporción más cuadrada */
+  }
+  
+  .chat-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* VERSIÓN PARA TABLETS (768px a 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .chat-iframe-container {
+    padding-bottom: 100%; /* Proporción 1:1 */
+  }
+}
+
+/* VERSIÓN PARA MÓVILES (menos de 768px) */
+@media (max-width: 767px) {
+  .chat-iframe-container {
+    padding-bottom: 140%; /* Proporción más vertical */
+  }
+  
+  .chat-container {
+    padding: 15px;
+  }
+}
+/* Asegurar que el footer quede abajo */
+#page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  flex: 1;
+}

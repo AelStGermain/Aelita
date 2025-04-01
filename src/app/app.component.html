@@ -1,5 +1,4 @@
-<iframe src="https://xat.com/embed/chat.php#id=220531388&gn=dan_jugo" width="650" height="486" frameborder="0" scrolling="no"></iframe><br><small><a target="_BLANK" href="https://xat.com/web_gear/chat/embed.php?id=220531388&GroupName=dan_jugo">Get dan_jugo chat group</a> | <a target="_BLANK" href="https://xat.com/dan_jugo"> Go to dan_jugo website</a></small><br>
-<body style="background: url('assets/images/background.jpg') no-repeat center; background-size: cover;">
+<body>
   <div id="page-container">
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
       <div class="container">
@@ -24,18 +23,44 @@
       </div>
     </nav>
 
-    <main id="content-wrap" class="container mt-5">
-      <router-outlet></router-outlet>
-      
+    <main id="content-wrap" class="container mt-4">
+      <div class="row">
+        <!-- Columna principal -->
+        <div class="col-lg-8 col-md-7 mb-4">
+          <div class="main-content">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        
+        <!-- Columna del chat - Versión grande -->
+        <div class="col-lg-4 col-md-5 mb-4">
+          <div class="chat-container">
+            <h5 class="chat-title">Chat en vivo</h5>
+            <div class="chat-iframe-container">
+              <iframe src="https://xat.com/embed/chat.php#id=220531388&gn=dan_jugo" 
+                      class="chat-iframe"
+                      frameborder="0" scrolling="no"></iframe>
+            </div>
+            <div class="chat-links">
+              <a target="_blank" href="https://xat.com/web_gear/chat/embed.php?id=220531388&GroupName=dan_jugo">
+                <i class="fas fa-users me-1"></i> Grupo de chat
+              </a> | 
+              <a target="_blank" href="https://xat.com/dan_jugo">
+                <i class="fas fa-external-link-alt me-1"></i> Sitio web
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer id="footer" class="bg-body-tertiary text-center text-lg-start">
-      <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      <div class="text-center p-3">
         <p>¡Gracias por visitar mi página! 👾</p>
-        <a class="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a>
       </div>
-      <!-- Copyright -->
     </footer>
   </div>
+
+  <!-- Bootstrap JS y dependencias -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

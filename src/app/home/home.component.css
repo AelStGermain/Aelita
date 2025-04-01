@@ -4,11 +4,16 @@
 .home-container {
   padding: 20px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border: 5px dotted #FF00FF;
-  border-radius: 5%;
-  margin: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  margin: 0 auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  max-width: 60%;
+  box-sizing: border-box;
+  margin-top: 10%; /* Empuja la caja hacia abajo */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Título */
