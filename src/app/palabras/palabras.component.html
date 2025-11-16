@@ -1,0 +1,77 @@
+<div class="juego-container">
+  <h1>🌻 JARDÍN DE PALABRAS 🌻</h1>
+  <p class="puntos">Puntos: {{ puntos }}</p>
+
+  <!-- Jardín Visual -->
+  <div class="jardin">
+    <div class="cielo"></div>
+    <div class="sol" [class.brillante]="letrasCorrectas.length > 0">☀️</div>
+    
+    <!-- Flores que crecen con aciertos -->
+    <div class="flores">
+      <div *ngFor="let flor of flores; let i = index" 
+           class="flor" 
+           [class.crecida]="i < letrasCorrectas.length"
+           [style.animation-delay.ms]="i * 200">
+        <div class="tallo"></div>
+        <div class="petalo">🌸</div>
+      </div>
+    </div>
+    
+    <!-- Nubes que aparecen con errores -->
+    <div class="nubes">
+      <div *ngFor="let nube of nubesError; let i = index" 
+           class="nube"
+           [style.left.%]="20 + (i * 15)">☁️</div>
+    </div>
+    
+    <div class="suelo"></div>
+  </div>
+
+  <!-- Palabra a adivinar -->
+  <div class="palabra-container">
+    <div class="palabra">
+      <span *ngFor="let letra of palabraMostrada; let i = index" 
+            class="letra-box"
+            [class.revelada]="letra !== '_'">
+        {{ letra === '_' ? '' : letra }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Teclado de letras -->
+  <div class="letras-container">
+    <button *ngFor="let letra of letrasDisponibles" 
+            (click)="elegirLetra(letra)"
+            [disabled]="letraUsada(letra)"
+            [class.correcta]="letrasCorrectas.includes(letra)"
+            [class.incorrecta]="letrasIncorrectas.includes(letra)">
+      {{ letra.toUpperCase() }}
+    </button>
+  </div>
+
+  <!-- Estado del juego -->
+  <div class="estado">
+    <div class="vida-container">
+      <span class="label">Vida del jardín:</span>
+      <div class="corazones">
+        <span *ngFor="let corazon of corazones" class="corazon">❤️</span>
+      </div>
+    </div>
+    <p *ngIf="mensaje" class="mensaje">{{ mensaje }}</p>
+  </div>
+
+  <!-- Modal de fin de juego -->
+  <div *ngIf="juegoTerminado" class="game-end-modal">
+    <div class="modal-content">
+      <div class="result-animation">
+        <span class="result-icon">{{ esVictoria ? '🎉' : '😢' }}</span>
+      </div>
+      <h2>{{ esVictoria ? '¡VICTORIA!' : 'FIN DEL JUEGO' }}</h2>
+      <p class="result-message">{{ mensajeFinal }}</p>
+      <button class="btn-restart" (click)="reiniciarJuego()">
+        🌱 NUEVO JARDÍN
+      </button>
+    </div>
+  </div>
+</div>

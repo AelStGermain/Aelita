@@ -1,0 +1,200 @@
+.snake-arena {
+  max-width: 600px;
+  margin: 15px auto;
+  padding: 15px;
+  background: linear-gradient(135deg, #0f3460 0%, #e94560 50%, #f27121 100%);
+  min-height: calc(100vh - 110px);
+  font-family: 'Courier New', monospace;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.game-title {
+  font-size: 2rem;
+  color: #00ff00;
+  text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0 0 10px #00ff00;
+  margin-bottom: 15px;
+  animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+  from { text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0 0 10px #00ff00; }
+  to { text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+}
+
+.score-board {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.score-item {
+  text-align: center;
+}
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  color: #00ff00;
+  margin-bottom: 5px;
+}
+
+.value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffff00;
+  text-shadow: 0 0 10px #ffff00;
+}
+
+.start-btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #00ff00, #32cd32);
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Courier New', monospace;
+}
+
+.start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ff00;
+}
+
+.instructions {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.game-over {
+  margin-bottom: 20px;
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.game-over h2 {
+  color: #ff0000;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.new-record {
+  color: #ffff00;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.game-grid {
+  display: inline-block;
+  background: #000;
+  border: 3px solid #00ff00;
+  border-radius: 5px;
+  padding: 2px;
+  margin-bottom: 20px;
+}
+
+.grid-row {
+  display: flex;
+}
+
+.grid-cell {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #111;
+}
+
+.empty {
+  background: #000;
+}
+
+.snake-head {
+  background: #00ff00;
+  box-shadow: inset 0 0 5px #32cd32;
+  animation: pulse 0.5s infinite alternate;
+}
+
+.snake-body {
+  background: #32cd32;
+  box-shadow: inset 0 0 3px #00ff00;
+}
+
+.food {
+  background: #ff0000;
+  border-radius: 50%;
+  animation: foodGlow 1s infinite alternate;
+}
+
+@keyframes foodGlow {
+  from { box-shadow: 0 0 5px #ff0000; }
+  to { box-shadow: 0 0 15px #ff0000, 0 0 20px #ff0000; }
+}
+
+.mobile-controls {
+  display: none;
+}
+
+.control-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 255, 0, 0.2);
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: rgba(0, 255, 0, 0.4);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .snake-arena {
+    padding: 10px;
+    min-height: calc(100vh - 60px);
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+  
+  .grid-cell {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .mobile-controls {
+    display: block;
+  }
+  
+  .score-board {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

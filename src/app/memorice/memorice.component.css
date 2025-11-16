@@ -1,0 +1,446 @@
+.game-container {
+  max-width: 1200px;
+  margin: 15px auto;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: calc(100vh - 110px);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.game-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.game-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-title {
+  font-size: 2.5rem;
+  color: #ffeb3b;
+  text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
+  font-family: 'Press Start 2P', cursive;
+  margin-bottom: 20px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0 0 10px #ffeb3b; }
+  to { text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0 0 20px #ffeb3b, 0 0 30px #ffeb3b; }
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 2px solid #ff6b9d;
+  text-align: center;
+  min-width: 80px;
+}
+
+.stat-icon {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #c44569;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+/* CONTROLES */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-control {
+  padding: 10px 15px;
+  border: 2px solid #fff;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.btn-control.active {
+  background: #ff6b9d;
+  border-color: #ff6b9d;
+  transform: scale(1.05);
+}
+
+.btn-control:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-new-game {
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #4CAF50, #8BC34A);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-new-game:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* LOADING */
+.loading {
+  text-align: center;
+  padding: 50px;
+  color: white;
+}
+
+.pokeball {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to bottom, #ff0000 50%, #ffffff 50%);
+  border-radius: 50%;
+  border: 3px solid #000;
+  margin: 0 auto 20px;
+  position: relative;
+  animation: spin 2s linear infinite;
+}
+
+.pokeball-button {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 3px solid #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* GRID DE CARTAS */
+.cards-grid {
+  display: grid;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.grid-easy {
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(4, 120px);
+}
+
+.grid-medium {
+  grid-template-columns: repeat(4, 110px);
+  grid-template-rows: repeat(4, 110px);
+}
+
+.grid-hard {
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+
+.card {
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.card-front {
+  background: linear-gradient(45deg, #ff6b9d, #c44569);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokeball-mini {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(to bottom, #ff0000 50%, #ffffff 50%);
+  border-radius: 50%;
+  border: 2px solid #000;
+  position: relative;
+}
+
+.pokeball-mini-button {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 2px solid #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-back {
+  background: linear-gradient(45deg, #ffeb3b, #ffc107);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.card-back img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.pokemon-name {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 5px;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+.card.matched {
+  animation: matchPulse 0.6s ease;
+}
+
+@keyframes matchPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* MODAL DE VICTORIA */
+.victory-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.victory-content {
+  background: linear-gradient(45deg, #4CAF50, #8BC34A);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  max-width: 400px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.victory-animation {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.trophy {
+  font-size: 4rem;
+  display: block;
+  animation: bounce 1s infinite;
+}
+
+.fireworks {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.firework {
+  position: absolute;
+  font-size: 2rem;
+  animation: explode 2s infinite;
+}
+
+.firework:nth-child(1) { animation-delay: 0s; left: -30px; }
+.firework:nth-child(2) { animation-delay: 0.5s; left: 0px; }
+.firework:nth-child(3) { animation-delay: 1s; left: 30px; }
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}
+
+@keyframes explode {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+.victory-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.final-stats {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.final-stats p {
+  margin: 5px 0;
+  font-size: 1.1rem;
+}
+
+.performance {
+  font-size: 1.3rem !important;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.victory-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-play-again, .btn-new-pokemon {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-play-again {
+  background: #ff6b9d;
+  color: white;
+}
+
+.btn-new-pokemon {
+  background: #00d2d3;
+  color: white;
+}
+
+.btn-play-again:hover, .btn-new-pokemon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .game-container {
+    padding: 10px;
+  }
+  
+  .game-title {
+    font-size: 1.8rem;
+  }
+  
+  .stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .grid-easy {
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(4, 90px);
+  }
+  
+  .grid-medium {
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(4, 80px);
+  }
+  
+  .grid-hard {
+    grid-template-columns: repeat(5, 70px);
+    grid-template-rows: repeat(4, 70px);
+  }
+  
+  .victory-content {
+    margin: 20px;
+    padding: 30px;
+  }
+  
+  .victory-buttons {
+    flex-direction: column;
+  }
+}

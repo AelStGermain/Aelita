@@ -1,0 +1,80 @@
+/* Estilos Globales Retro */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+
+/* Variables CSS para colores retro */
+:root {
+  --retro-pink: #ff6b9d;
+  --retro-purple: #c44569;
+  --retro-cyan: #00d2d3;
+  --retro-yellow: #f8b500;
+  --retro-green: #2ecc71;
+  --retro-red: #e74c3c;
+}
+
+/* Estilos base mejorados */
+* {
+  box-sizing: border-box;
+}
+
+/* Botones globales con estilo retro */
+.game-button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 8px;
+  background: linear-gradient(45deg, var(--retro-pink), var(--retro-purple));
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  font-family: 'Orbitron', monospace;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.game-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+  text-decoration: none;
+  color: white;
+}
+
+/* Estilos Personalizados */
+.navbar-brand {
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Mejoras para los enlaces de navegación */
+.navbar-nav .nav-item .nav-link {
+  font-family: 'Times New Roman', serif;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Efectos de brillo para elementos interactivos */
+.glow-effect {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px var(--retro-cyan), 0 0 10px var(--retro-cyan), 0 0 15px var(--retro-cyan);
+  }
+  to {
+    box-shadow: 0 0 10px var(--retro-cyan), 0 0 20px var(--retro-cyan), 0 0 30px var(--retro-cyan);
+  }
+}
+
+
