@@ -5,7 +5,7 @@
   text-align: center;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .home-container h2 {
@@ -27,7 +27,7 @@
   color: #ff4081;
   font-size: 1.5rem;
   margin-bottom: 25px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .banner-grid {
@@ -50,19 +50,26 @@
   animation: bannerShimmer 3s ease-in-out infinite;
   position: relative;
   overflow: hidden;
-  box-shadow: 
+  box-shadow:
     0 0 10px rgba(255, 107, 157, 0.5),
     inset 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes bannerShimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .retro-banner:hover {
   transform: scale(1.02);
-  box-shadow: 
+  box-shadow:
     0 0 20px rgba(255, 107, 157, 0.8),
     inset 0 0 15px rgba(255, 255, 255, 0.3);
 }
@@ -78,13 +85,20 @@
 .banner-icon {
   font-size: 2.5rem;
   margin-right: 15px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   animation: iconBounce 2s ease-in-out infinite;
 }
 
 @keyframes iconBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .banner-text {
@@ -97,7 +111,7 @@
   font-family: 'Press Start 2P', cursive;
   font-size: 0.9rem;
   color: #fff;
-  text-shadow: 
+  text-shadow:
     2px 2px 0px #000,
     -1px -1px 0px #000,
     1px -1px 0px #000,
@@ -110,7 +124,7 @@
   font-family: 'Courier New', monospace;
   font-size: 0.7rem;
   color: #ffff00;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   font-style: italic;
 }
 
@@ -126,12 +140,20 @@
   border: 2px solid #fff;
   border-radius: 3px;
   animation: blink 1s infinite;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0.3; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0.3;
+  }
 }
 
 /* DISEÑOS ÚNICOS POR BANNER */
@@ -140,15 +162,20 @@
 .battle-banner {
   background: linear-gradient(45deg, #000000, #330066, #660099, #9900cc);
   border: 3px solid #00ffff;
-  box-shadow: 
+  box-shadow:
     0 0 15px #00ffff,
     inset 0 0 15px rgba(0, 255, 255, 0.2);
   animation: cyberGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes cyberGlow {
-  from { border-color: #00ffff; }
-  to { border-color: #ff00ff; }
+  from {
+    border-color: #00ffff;
+  }
+
+  to {
+    border-color: #ff00ff;
+  }
 }
 
 .battle-banner .banner-title {
@@ -157,9 +184,19 @@
 }
 
 @keyframes textGlitch {
-  0%, 90% { transform: translateX(0); }
-  95% { transform: translateX(-2px); }
-  100% { transform: translateX(2px); }
+
+  0%,
+  90% {
+    transform: translateX(0);
+  }
+
+  95% {
+    transform: translateX(-2px);
+  }
+
+  100% {
+    transform: translateX(2px);
+  }
 }
 
 /* MEMORICE - Estilo Neón Miami */
@@ -172,8 +209,13 @@
 }
 
 @keyframes neonRainbow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .memorice-banner::before {
@@ -183,20 +225,18 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 2px,
-    rgba(255, 255, 255, 0.1) 2px,
-    rgba(255, 255, 255, 0.1) 4px
-  );
+  background: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.1) 2px,
+      rgba(255, 255, 255, 0.1) 4px);
 }
 
 /* SNAKE - Estilo Terminal Verde */
 .snake-banner {
   background: #000000;
   border: 3px solid #00ff00;
-  box-shadow: 
+  box-shadow:
     0 0 20px #00ff00,
     inset 0 0 20px rgba(0, 255, 0, 0.1);
   font-family: 'Courier New', monospace;
@@ -215,8 +255,16 @@
 }
 
 @keyframes cursor {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .snake-banner .banner-title {
@@ -243,23 +291,26 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
   animation: shine 3s infinite;
 }
 
 @keyframes shine {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 .lector-banner .banner-title {
   color: #ffffff;
-  text-shadow: 
+  text-shadow:
     0 0 5px #ff006e,
     0 0 10px #8338ec,
     0 0 15px #3a86ff;
@@ -267,7 +318,7 @@
 
 /* JARDÍN - Estilo Pixel Art */
 .palabras-banner {
-  background: 
+  background:
     linear-gradient(90deg, #87CEEB 25%, #98FB98 25%, #98FB98 50%, #FFB6C1 50%, #FFB6C1 75%, #DDA0DD 75%);
   background-size: 20px 20px;
   border: 3px solid #228B22;
@@ -277,13 +328,18 @@
 }
 
 @keyframes pixelShift {
-  0% { background-position: 0 0; }
-  100% { background-position: 20px 0; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 20px 0;
+  }
 }
 
 .palabras-banner .banner-title {
   color: #228B22;
-  text-shadow: 
+  text-shadow:
     1px 1px 0px #ffffff,
     2px 2px 0px #000000;
 }
@@ -293,15 +349,149 @@
   text-shadow: 1px 1px 0px #ffffff;
 }
 
+/* CIPHER - Estilo Matrix Code Rain */
+.cipher-banner {
+  background: #000000;
+  border: 3px solid #00ff00;
+  box-shadow:
+    0 0 20px #00ff00,
+    inset 0 0 20px rgba(0, 255, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cipher-banner::before {
+  content: '01010101 10101010 11001100';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: rgba(0, 255, 0, 0.2);
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: matrixRain 2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.cipher-banner .banner-title {
+  color: #00ff00;
+  text-shadow:
+    0 0 10px #00ff00,
+    0 0 20px #00ff00;
+}
+
+.cipher-banner .banner-subtitle {
+  color: #00aa00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+/* CTF - Estilo Cyberpunk Glitch */
+.ctf-banner {
+  background: linear-gradient(45deg, #1a0033, #330066, #660099);
+  border: 3px solid #ff00ff;
+  box-shadow:
+    0 0 20px #ff00ff,
+    inset 0 0 20px rgba(255, 0, 255, 0.1);
+  position: relative;
+  animation: ctfGlitch 3s infinite;
+}
+
+@keyframes ctfGlitch {
+
+  0%,
+  90% {
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.1);
+  }
+
+  92% {
+    border-color: #00ffff;
+    box-shadow: 0 0 20px #00ffff, inset 0 0 20px rgba(0, 255, 255, 0.1);
+  }
+
+  94% {
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.1);
+  }
+
+  96% {
+    border-color: #00ff00;
+    box-shadow: 0 0 20px #00ff00, inset 0 0 20px rgba(0, 255, 0, 0.1);
+  }
+
+  98%,
+  100% {
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.1);
+  }
+}
+
+.ctf-banner .banner-title {
+  color: #ff00ff;
+  text-shadow:
+    0 0 10px #ff00ff,
+    0 0 20px #ff00ff,
+    2px 2px 0px #000,
+    -1px -1px 0px #000;
+  animation: textFlicker 0.5s infinite alternate;
+}
+
+@keyframes textFlicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.ctf-banner .banner-subtitle {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+}
+
 /* EFECTOS ESPECIALES DE HOVER */
 .battle-banner:hover {
   animation: cyberGlitch 0.3s infinite;
 }
 
 @keyframes cyberGlitch {
-  0%, 90% { transform: translateX(0) scale(1.02); }
-  95% { transform: translateX(-1px) scale(1.02); }
-  100% { transform: translateX(1px) scale(1.02); }
+
+  0%,
+  90% {
+    transform: translateX(0) scale(1.02);
+  }
+
+  95% {
+    transform: translateX(-1px) scale(1.02);
+  }
+
+  100% {
+    transform: translateX(1px) scale(1.02);
+  }
 }
 
 .memorice-banner:hover {
@@ -309,12 +499,17 @@
 }
 
 @keyframes neonPulse {
-  from { box-shadow: 0 0 10px #ff0080; }
-  to { box-shadow: 0 0 30px #ff0080, 0 0 40px #ff8000; }
+  from {
+    box-shadow: 0 0 10px #ff0080;
+  }
+
+  to {
+    box-shadow: 0 0 30px #ff0080, 0 0 40px #ff8000;
+  }
 }
 
 .snake-banner:hover {
-  box-shadow: 
+  box-shadow:
     0 0 30px #00ff00,
     inset 0 0 30px rgba(0, 255, 0, 0.2);
 }
@@ -324,14 +519,15 @@
 }
 
 @keyframes vaporGlow {
-  from { 
-    text-shadow: 
+  from {
+    text-shadow:
       0 0 5px #ff006e,
       0 0 10px #8338ec,
       0 0 15px #3a86ff;
   }
-  to { 
-    text-shadow: 
+
+  to {
+    text-shadow:
       0 0 10px #ff006e,
       0 0 20px #8338ec,
       0 0 30px #3a86ff,
@@ -344,8 +540,61 @@
 }
 
 @keyframes pixelBounce {
-  from { transform: scale(1.02) rotate(0deg); }
-  to { transform: scale(1.04) rotate(1deg); }
+  from {
+    transform: scale(1.02) rotate(0deg);
+  }
+
+  to {
+    transform: scale(1.04) rotate(1deg);
+  }
+}
+
+.cipher-banner:hover {
+  box-shadow:
+    0 0 40px #00ff00,
+    inset 0 0 40px rgba(0, 255, 0, 0.3);
+  animation: matrixPulse 0.3s infinite;
+}
+
+@keyframes matrixPulse {
+
+  0%,
+  100% {
+    transform: scale(1.02);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.ctf-banner:hover {
+  animation: ctfGlitchHover 0.2s infinite;
+}
+
+@keyframes ctfGlitchHover {
+
+  0%,
+  90% {
+    transform: translateX(0) scale(1.02);
+  }
+
+  92% {
+    transform: translateX(-2px) scale(1.02);
+  }
+
+  94% {
+    transform: translateX(2px) scale(1.02);
+  }
+
+  96% {
+    transform: translateX(-1px) scale(1.02);
+  }
+
+  98%,
+  100% {
+    transform: translateX(0) scale(1.02);
+  }
 }
 
 /* RESPONSIVE */
@@ -354,29 +603,29 @@
     margin: 10px;
     padding: 15px;
   }
-  
+
   .home-container h2 {
     font-size: 1.5rem;
   }
-  
+
   .retro-banner {
     height: 70px;
     max-width: 100%;
   }
-  
+
   .banner-icon {
     font-size: 2rem;
     margin-right: 10px;
   }
-  
+
   .banner-title {
     font-size: 0.7rem;
   }
-  
+
   .banner-subtitle {
     font-size: 0.6rem;
   }
-  
+
   .banner-blink {
     font-size: 0.5rem;
     padding: 2px 6px;
@@ -397,7 +646,7 @@
   font-size: 2rem;
   text-align: center;
   margin-bottom: 25px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .about-content {
@@ -422,15 +671,22 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .about-card h3 {
   color: #ffeb3b;
   font-size: 1.3rem;
   margin-bottom: 15px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .about-card p {
@@ -457,7 +713,7 @@
   .about-content {
     grid-template-columns: 1fr;
   }
-  
+
   .about-section h2 {
     font-size: 1.5rem;
   }

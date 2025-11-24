@@ -17,13 +17,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 177, 153, 0.3) 0%, transparent 50%);
   z-index: 1;
 }
 
-.game-arena > * {
+.game-arena>* {
   position: relative;
   z-index: 2;
 }
@@ -37,7 +37,7 @@
 .game-title {
   font-size: 2rem;
   color: #ffeb3b;
-  text-shadow: 
+  text-shadow:
     3px 3px 0px #000,
     -2px -2px 0px #000,
     2px -2px 0px #000,
@@ -48,16 +48,17 @@
 }
 
 @keyframes titleGlow {
-  from { 
-    text-shadow: 
+  from {
+    text-shadow:
       3px 3px 0px #000,
       -2px -2px 0px #000,
       2px -2px 0px #000,
       -2px 2px 0px #000,
       0 0 10px #ffeb3b;
   }
-  to { 
-    text-shadow: 
+
+  to {
+    text-shadow:
       3px 3px 0px #000,
       -2px -2px 0px #000,
       2px -2px 0px #000,
@@ -107,8 +108,15 @@
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .score-info {
@@ -133,7 +141,7 @@
   color: #ffeb3b;
   font-size: 1.5rem;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* INDICADOR DE TURNO */
@@ -167,8 +175,17 @@
 }
 
 @keyframes turnPulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 235, 59, 0.5); }
-  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 235, 59, 0.8); }
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+  }
+
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 235, 59, 0.8);
+  }
 }
 
 .turn-icon {
@@ -238,11 +255,14 @@
 }
 
 @keyframes winningGlow {
-  0%, 100% { 
+
+  0%,
+  100% {
     box-shadow: 0 0 15px #ffeb3b;
     transform: scale(1);
   }
-  50% { 
+
+  50% {
     box-shadow: 0 0 30px #ffeb3b, 0 0 40px #ffeb3b;
     transform: scale(1.1);
   }
@@ -262,8 +282,15 @@
 }
 
 @keyframes symbolAppear {
-  0% { transform: scale(0) rotate(180deg); opacity: 0; }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  0% {
+    transform: scale(0) rotate(180deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 .cell-glow {
@@ -318,9 +345,22 @@
 }
 
 @keyframes resultBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-20px); }
-  60% { transform: translateY(-10px); }
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-20px);
+  }
+
+  60% {
+    transform: translateY(-10px);
+  }
 }
 
 .victory-player h2 {
@@ -347,7 +387,8 @@
   justify-content: center;
 }
 
-.btn-rematch, .btn-new-match {
+.btn-rematch,
+.btn-new-match {
   padding: 12px 20px;
   border: none;
   border-radius: 25px;
@@ -367,9 +408,10 @@
   color: white;
 }
 
-.btn-rematch:hover, .btn-new-match:hover {
+.btn-rematch:hover,
+.btn-new-match:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* EFECTOS DE PARTÍCULAS */
@@ -394,6 +436,7 @@
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-100px) scale(0);
     opacity: 0;
@@ -405,30 +448,32 @@
   .game-arena {
     padding: 10px;
   }
-  
+
   .game-title {
     font-size: 1.5rem;
   }
-  
+
   .score-board {
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
-  
+
   .battle-cell {
     width: 80px;
     height: 80px;
   }
-  
+
   .symbol {
     font-size: 2rem;
   }
-  
+
   .result-content {
     margin: 20px;
     padding: 30px;
   }
-  
+
   .result-buttons {
     flex-direction: column;
   }

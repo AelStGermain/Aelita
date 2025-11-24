@@ -1,0 +1,105 @@
+<div class="cipher-container">
+  <div class="terminal-header">
+    <div class="header-bar">
+      <span class="terminal-title">⚡ TERMINAL CIPHER v1.0 ⚡</span>
+      <span class="terminal-blink">EN LÍNEA</span>
+    </div>
+    <div class="scanline"></div>
+  </div>
+
+  <div class="cipher-selector">
+    <div class="selector-title">SELECCIONAR MODO DE CIFRADO:</div>
+    <div class="cipher-buttons">
+      <button *ngFor="let cipher of cipherTypes" [class.active]="selectedCipher === cipher.id"
+        (click)="selectCipher(cipher.id)" class="cipher-btn">
+        <span class="cipher-icon">{{cipher.icon}}</span>
+        <span class="cipher-name">{{cipher.name}}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="cipher-info">
+    <div class="info-box">
+      <span class="info-label">ALGORITMO:</span>
+      <span class="info-value">{{getCurrentCipherName()}}</span>
+    </div>
+    <div class="info-description">{{getCurrentCipherDescription()}}</div>
+  </div>
+
+  <div class="parameters" *ngIf="selectedCipher === 'caesar' || selectedCipher === 'vigenere'">
+    <div class="param-box" *ngIf="selectedCipher === 'caesar'">
+      <label class="param-label">VALOR DE DESPLAZAMIENTO:</label>
+      <input type="number" [(ngModel)]="caesarShift" min="1" max="25" class="param-input">
+      <span class="param-info">Rango: 1-25</span>
+    </div>
+    <div class="param-box" *ngIf="selectedCipher === 'vigenere'">
+      <label class="param-label">CLAVE DE ENCRIPTACIÓN:</label>
+      <input type="text" [(ngModel)]="vigenereKey" class="param-input" placeholder="Ingresar clave...">
+      <span class="param-info">Solo letras</span>
+    </div>
+  </div>
+
+  <div class="terminal-main">
+    <div class="terminal-section">
+      <div class="section-header">
+        <span class="section-title">📥 DATOS DE ENTRADA</span>
+        <span class="char-count">{{inputText.length}} carácteres</span>
+      </div>
+      <textarea [(ngModel)]="inputText" class="terminal-textarea"
+        placeholder="Ingresa texto para encriptar/desencriptar..." rows="6"></textarea>
+    </div>
+
+    <div class="control-panel">
+      <button (click)="encrypt()" class="control-btn encrypt-btn">
+        <span class="btn-icon">🔒</span> ENCRIPTAR
+      </button>
+      <button (click)="decrypt()" class="control-btn decrypt-btn" *ngIf="selectedCipher !== 'sha256'">
+        <span class="btn-icon">🔓</span> DESENCRIPTAR
+      </button>
+      <button (click)="decrypt()" class="control-btn hash-btn" *ngIf="selectedCipher === 'sha256'">
+        <span class="btn-icon">🔐</span> HASH
+      </button>
+      <button (click)="swapTexts()" class="control-btn swap-btn">
+        <span class="btn-icon">🔄</span> INTERCAMBIAR
+      </button>
+      <button (click)="clearAll()" class="control-btn clear-btn">
+        <span class="btn-icon">🗑️</span> LIMPIAR
+      </button>
+    </div>
+
+    <div class="terminal-section">
+      <div class="section-header">
+        <span class="section-title">📤 DATOS DE SALIDA</span>
+        <span class="char-count">{{outputText.length}} carácteres</span>
+        <button (click)="copyToClipboard(outputText)" class="copy-btn" *ngIf="outputText">📋 COPIAR</button>
+      </div>
+      <textarea [(ngModel)]="outputText" class="terminal-textarea output-area"
+        placeholder="El resultado aparecerá aquí..." rows="6" readonly></textarea>
+    </div>
+  </div>
+
+  <div class="steps-container" *ngIf="showSteps && transformSteps.length > 0">
+    <div class="steps-header">
+      <span class="steps-title">🔍 PASOS DE TRANSFORMACIÓN</span>
+      <button (click)="closeSteps()" class="close-steps">✖</button>
+    </div>
+    <div class="steps-content">
+      <div class="step-item" *ngFor="let step of transformSteps">
+        <span class="step-text">{{step}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="educational-panel">
+    <div class="edu-title">💡 ¿SABÍAS QUE?</div>
+    <div class="edu-content" [innerHTML]="getEducationalInfo()"></div>
+  </div>
+
+  <div class="terminal-footer">
+    <div class="footer-text">
+      <span class="footer-blink">●</span> SISTEMA LISTO
+      <span class="footer-separator">|</span>
+      NIVEL DE ENCRIPTACIÓN: <span class="level-indicator">MÁXIMO</span>
+    </div>
+  </div>
+</div>

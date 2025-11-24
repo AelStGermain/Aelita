@@ -19,8 +19,13 @@
 }
 
 @keyframes neonGlow {
-  from { text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0 0 10px #00ff00; }
-  to { text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+  from {
+    text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0 0 10px #00ff00;
+  }
+
+  to {
+    text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0 0 20px #00ff00, 0 0 30px #00ff00;
+  }
 }
 
 .score-board {
@@ -98,8 +103,16 @@
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0.3; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0.3;
+  }
 }
 
 .game-grid {
@@ -143,8 +156,13 @@
 }
 
 @keyframes foodGlow {
-  from { box-shadow: 0 0 5px #ff0000; }
-  to { box-shadow: 0 0 15px #ff0000, 0 0 20px #ff0000; }
+  from {
+    box-shadow: 0 0 5px #ff0000;
+  }
+
+  to {
+    box-shadow: 0 0 15px #ff0000, 0 0 20px #ff0000;
+  }
 }
 
 .mobile-controls {
@@ -179,22 +197,24 @@
     padding: 10px;
     min-height: calc(100vh - 60px);
   }
-  
+
   .game-title {
     font-size: 1.5rem;
   }
-  
+
   .grid-cell {
     width: 12px;
     height: 12px;
   }
-  
+
   .mobile-controls {
     display: block;
   }
-  
+
   .score-board {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
   }
 }

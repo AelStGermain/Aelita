@@ -19,7 +19,7 @@
   z-index: 1;
 }
 
-.game-container > * {
+.game-container>* {
   position: relative;
   z-index: 2;
 }
@@ -40,8 +40,13 @@
 }
 
 @keyframes glow {
-  from { text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0 0 10px #ffeb3b; }
-  to { text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0 0 20px #ffeb3b, 0 0 30px #ffeb3b; }
+  from {
+    text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0 0 10px #ffeb3b;
+  }
+
+  to {
+    text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0 0 20px #ffeb3b, 0 0 30px #ffeb3b;
+  }
 }
 
 .stats {
@@ -125,7 +130,7 @@
 
 .btn-new-game:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* LOADING */
@@ -159,8 +164,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* GRID DE CARTAS */
@@ -206,14 +216,15 @@
   transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   border-radius: 15px;
   border: 3px solid #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card-front {
@@ -258,7 +269,7 @@
   width: 70%;
   height: 70%;
   object-fit: contain;
-  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .pokemon-name {
@@ -267,7 +278,7 @@
   color: #333;
   text-align: center;
   margin-top: 5px;
-  text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .card.matched {
@@ -275,8 +286,15 @@
 }
 
 @keyframes matchPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 /* MODAL DE VICTORIA */
@@ -301,7 +319,7 @@
   color: white;
   max-width: 400px;
   border: 3px solid #fff;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .victory-animation {
@@ -328,26 +346,61 @@
   animation: explode 2s infinite;
 }
 
-.firework:nth-child(1) { animation-delay: 0s; left: -30px; }
-.firework:nth-child(2) { animation-delay: 0.5s; left: 0px; }
-.firework:nth-child(3) { animation-delay: 1s; left: 30px; }
+.firework:nth-child(1) {
+  animation-delay: 0s;
+  left: -30px;
+}
+
+.firework:nth-child(2) {
+  animation-delay: 0.5s;
+  left: 0px;
+}
+
+.firework:nth-child(3) {
+  animation-delay: 1s;
+  left: 30px;
+}
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-20px); }
-  60% { transform: translateY(-10px); }
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-20px);
+  }
+
+  60% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes explode {
-  0% { transform: scale(0) rotate(0deg); opacity: 1; }
-  50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
-  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .victory-content h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .final-stats {
@@ -366,7 +419,7 @@
   font-size: 1.3rem !important;
   font-weight: bold;
   color: #ffeb3b;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .victory-buttons {
@@ -375,7 +428,8 @@
   justify-content: center;
 }
 
-.btn-play-again, .btn-new-pokemon {
+.btn-play-again,
+.btn-new-pokemon {
   padding: 12px 20px;
   border: none;
   border-radius: 25px;
@@ -394,9 +448,10 @@
   color: white;
 }
 
-.btn-play-again:hover, .btn-new-pokemon:hover {
+.btn-play-again:hover,
+.btn-new-pokemon:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* RESPONSIVE */
@@ -404,42 +459,63 @@
   .game-container {
     padding: 10px;
   }
-  
+
   .game-title {
     font-size: 1.8rem;
   }
-  
+
   .stats {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
   }
-  
+
+  .stat-item {
+    padding: 5px 8px;
+    min-width: 60px;
+    border-radius: 10px;
+  }
+
+  .stat-icon {
+    font-size: 1rem;
+    margin-bottom: 2px;
+  }
+
+  .stat-value {
+    font-size: 1rem;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+  }
+
   .controls {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .grid-easy {
     grid-template-columns: repeat(3, 90px);
     grid-template-rows: repeat(4, 90px);
   }
-  
+
   .grid-medium {
     grid-template-columns: repeat(4, 80px);
     grid-template-rows: repeat(4, 80px);
   }
-  
+
   .grid-hard {
     grid-template-columns: repeat(5, 70px);
     grid-template-rows: repeat(4, 70px);
   }
-  
+
   .victory-content {
     margin: 20px;
     padding: 30px;
   }
-  
+
   .victory-buttons {
     flex-direction: column;
   }
