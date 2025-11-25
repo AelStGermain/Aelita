@@ -8,6 +8,7 @@ import { SnakeComponent } from './snake/snake.component';
 import { AboutComponent } from './about/about.component';
 import { CipherComponent } from './cipher/cipher.component';
 import { CtfComponent } from './ctf/ctf.component';
+import { BatallaNavalComponent } from './batalla-naval/batalla-naval.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'lector', component: LectorComponent },
   { path: 'cipher', component: CipherComponent },
   { path: 'ctf', component: CtfComponent },
+  { path: 'batalla-naval', component: BatallaNavalComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', redirectTo: '' }
 ];

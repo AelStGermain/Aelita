@@ -10,6 +10,7 @@
         <div class="collapse navbar-collapse text-center" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" routerLink="/gato">🎮 Batalla</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/batalla-naval">🚢 Naval</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/memorice">🔥 Memorice</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/palabras">🌻 Palabras</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/snake">🐍 Snake</a></li>
@@ -23,7 +24,7 @@
       </div>
     </nav>
 
-    <main id="content-wrap" class="container-fluid px-2 pt-3">
+    <main id="content-wrap" class="container-fluid px-2 pt-3" [class.fixed-layout]="!isAboutPage">
       <div class="row g-2">
         <div class="col-12" [ngClass]="{'col-lg-9': !isAboutPage, 'col-lg-12': isAboutPage}">
           <div class="main-content">

@@ -1,0 +1,142 @@
+.game-container {
+    text-align: center;
+    padding: 20px;
+    font-family: 'VT323', monospace;
+    color: #fff;
+}
+
+.retro-title {
+    font-size: 3rem;
+    color: #00ffff;
+    text-shadow: 3px 3px 0 #000080;
+    margin-bottom: 20px;
+}
+
+.status-bar {
+    background: #000080;
+    border: 2px solid #fff;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.status-message {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #ffff00;
+}
+
+.boards-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.board-wrapper h3 {
+    color: #ff00ff;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.grid {
+    display: inline-block;
+    background: #000;
+    border: 4px solid #fff;
+    padding: 5px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #004444;
+    background: #001111;
+    margin: 1px;
+    transition: all 0.2s;
+}
+
+/* Player Board Styles */
+.player-grid .cell.ship {
+    background: #808080;
+    /* Grey ships */
+    border-color: #fff;
+}
+
+/* Hit/Miss Styles */
+.cell.hit {
+    background: #ff0000 !important;
+    box-shadow: inset 0 0 10px #500000;
+    animation: flash 0.5s;
+}
+
+.cell.miss {
+    background: #0000ff !important;
+    opacity: 0.5;
+}
+
+/* CPU Grid Interaction */
+.cpu-grid:not(.disabled) .cell.clickable:hover {
+    background: #00ffff;
+    cursor: crosshair;
+}
+
+.cpu-grid.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.retro-btn {
+    background: #ff00ff;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 3px 3px 0 #000;
+}
+
+.retro-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #000;
+}
+
+.instructions {
+    margin-top: 30px;
+    color: #00ff00;
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+@keyframes flash {
+    0% {
+        background: #fff;
+    }
+
+    100% {
+        background: #ff0000;
+    }
+}
+
+@media (max-width: 768px) {
+    .boards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cell {
+        width: 25px;
+        height: 25px;
+    }
+}
