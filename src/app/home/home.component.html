@@ -5,7 +5,7 @@
       <section class="web-box nav-box"><h2>.: NAVIGATION :.</h2><nav><a routerLink="/">» Home</a><a routerLink="/about">» About me</a><a href="#projects">» Projects</a><button (click)="openBot()">» AEL_BOT</button><a routerLink="/ctf">» Cyber CTF</a><a routerLink="/cipher">» Cipher</a></nav></section>
       <section class="web-box counter-box"><h2>.: VISITORS :.</h2><p>You are visitor</p><strong>0 3 4 8 2 1</strong><small>since 1999*</small></section>
       <section class="web-box"><h2>.: STATUS :.</h2><p class="status">● ONLINE</p><p>currently building:<br><b>cool_stuff.exe</b></p></section>
-      <section class="web-box now-playing"><h2>.: NOW PLAYING :.</h2><p>♫ internet connection sounds</p><div>◀　▮▮　▶</div></section>
+      <section class="web-box now-playing"><h2>.: AEL_WAVE RADIO :.</h2><p>{{radioOn ? '♫ generative signal online' : 'radio is sleeping...'}}</p><div class="station-tabs"><button [class.active]="station==='dream'" (click)="selectStation('dream')">DREAM</button><button [class.active]="station==='cosmic'" (click)="selectStation('cosmic')">COSMIC</button><button [class.active]="station==='machine'" (click)="selectStation('machine')">MACHINE</button></div><button class="play-radio" (click)="toggleRadio()">{{radioOn?'■ STOP':'▶ PLAY'}}</button><label>VOL <input type="range" min="0.04" max="0.5" step="0.02" [(ngModel)]="volume" (input)="setVolume()"></label><small>original Web Audio signal</small></section>
     </aside>
 
     <div class="center-column">
@@ -32,6 +32,7 @@
       <section class="web-box profile-mini"><h2>.: WEBMISTRESS :.</h2><img src="assets/images/mi foto.jpeg" alt="Retrato de Ael"><b>AEL</b><p>developer<br>educator<br>digital explorer</p></section>
       <section class="web-box"><h2>.: QUICK FACTS :.</h2><dl><dt>LOCATION:</dt><dd>Chile</dd><dt>FOCUS:</dt><dd>Apps + security</dd><dt>OS:</dt><dd>Linux curious</dd><dt>MOOD:</dt><dd>Creating...</dd></dl></section>
       <section class="web-box updates"><h2>.: UPDATES :.</h2><p><b>22.07.26</b><br>Y2K portal is online!</p><p><b>NEW</b><br>AEL_BOT arrived.</p></section>
+      <section class="web-box favorites"><h2>.: MUSIC SHELF :.</h2><a href="https://open.spotify.com/search/Empire%20of%20the%20Sun" target="_blank" rel="noopener">☀ Empire of the Sun</a><a href="https://open.spotify.com/search/Telepath%20vaporwave" target="_blank" rel="noopener">▦ Telepath</a><a href="https://open.spotify.com/search/Kitaro" target="_blank" rel="noopener">☁ Kitaro</a><a href="https://open.spotify.com/search/Kraftwerk" target="_blank" rel="noopener">▣ Kraftwerk</a><a href="https://open.spotify.com/search/Sewerslvt" target="_blank" rel="noopener">✦ Sewerslvt</a><a href="https://open.spotify.com/search/Pet%20Shop%20Boys" target="_blank" rel="noopener">♡ Pet Shop Boys</a></section>
       <section class="web-box links"><h2>.: COOL LINKS :.</h2><a routerLink="/about">♡ Profile</a><a routerLink="/ctf">⌘ Security lab</a><a routerLink="/snake">★ Arcade</a></section>
     </aside>
   </div>

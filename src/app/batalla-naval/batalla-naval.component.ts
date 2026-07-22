@@ -31,6 +31,7 @@ export class BatallaNavalComponent implements OnInit {
   cpuShips: Ship[] = [];
 
   gameStatus: 'setup' | 'playing' | 'won' | 'lost' = 'setup';
+  private cpuTargets: {x: number, y: number}[] = [];
   message: string = '¡Bienvenido a Batalla Naval! Presiona "Iniciar Juego"';
 
   constructor() { }
@@ -40,6 +41,7 @@ export class BatallaNavalComponent implements OnInit {
   }
 
   initializeGame() {
+    this.cpuTargets = [];
     this.playerBoard = this.createBoard();
     this.cpuBoard = this.createBoard();
     this.placeShips(this.playerBoard, this.playerShips);
@@ -137,15 +139,9 @@ export class BatallaNavalComponent implements OnInit {
   cpuTurn() {
     if (this.gameStatus !== 'playing') return;
 
-    let validMove = false;
-    let x, y;
-    while (!validMove) {
-      x = Math.floor(Math.random() * this.boardSize);
-      y = Math.floor(Math.random() * this.boardSize);
-      if (!this.playerBoard[y][x].hit) {
-        validMove = true;
-      }
-    }
+    const move = this.nextCpuMove();
+    const x = move.x;
+    const y = move.y;
 
     const cell = this.playerBoard[y!][x!];
     cell.hit = true;
@@ -154,12 +150,33 @@ export class BatallaNavalComponent implements OnInit {
       cell.status = 'hit'; // Visual update for player board
       this.message = '¡ALERTA! El enemigo ha impactado tu barco.';
       this.checkLossCondition();
+      this.queueAdjacentTargets(x, y);
       // CPU gets another turn on hit? Let's keep it simple: strict turns for now unless requested otherwise
       setTimeout(() => this.cpuTurn(), 1000);
     } else {
       cell.status = 'miss'; // Visual update
       this.message = 'El enemigo ha fallado. Tu turno.';
     }
+  }
+
+  private nextCpuMove(): {x: number, y: number} {
+    while (this.cpuTargets.length) {
+      const target = this.cpuTargets.shift()!;
+      if (!this.playerBoard[target.y][target.x].hit) return target;
+    }
+    const parityMoves: {x:number,y:number}[] = [];
+    const fallback: {x:number,y:number}[] = [];
+    for (let y=0;y<this.boardSize;y++) for(let x=0;x<this.boardSize;x++) {
+      if (!this.playerBoard[y][x].hit) ((x+y)%2===0 ? parityMoves : fallback).push({x,y});
+    }
+    const choices = parityMoves.length ? parityMoves : fallback;
+    return choices[Math.floor(Math.random()*choices.length)];
+  }
+
+  private queueAdjacentTargets(x:number,y:number) {
+    const neighbors=[{x:x+1,y},{x:x-1,y},{x,y:y+1},{x,y:y-1}]
+      .filter(p=>p.x>=0&&p.y>=0&&p.x<this.boardSize&&p.y<this.boardSize&&!this.playerBoard[p.y][p.x].hit);
+    this.cpuTargets = [...neighbors, ...this.cpuTargets.filter(t=>!neighbors.some(n=>n.x===t.x&&n.y===t.y))];
   }
 
   checkWinCondition() {

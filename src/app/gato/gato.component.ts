@@ -83,7 +83,7 @@ export class GatoComponent {
 
   computerMove() {
     // IA mejorada: intenta ganar, luego bloquear, luego movimiento aleatorio
-    let move = this.findWinningMove('O') || this.findWinningMove('X') || this.getRandomMove();
+    const move = this.getBestMove();
     
     if (move) {
       this.board[move.row][move.col] = 'O';
@@ -100,6 +100,49 @@ export class GatoComponent {
         this.isPlayerTurn = true;
       }
     }
+  }
+
+  getBestMove(): {row: number, col: number} | null {
+    let bestScore = -Infinity;
+    let bestMove: {row: number, col: number} | null = null;
+    for (let row = 0; row < 3; row++) for (let col = 0; col < 3; col++) {
+      if (this.board[row][col] !== '') continue;
+      this.board[row][col] = 'O';
+      const score = this.minimax(false, 0);
+      this.board[row][col] = '';
+      if (score > bestScore) { bestScore = score; bestMove = {row, col}; }
+    }
+    return bestMove;
+  }
+
+  minimax(maximizing: boolean, depth: number): number {
+    const result = this.boardWinner();
+    if (result === 'O') return 10 - depth;
+    if (result === 'X') return depth - 10;
+    if (this.isBoardFull()) return 0;
+    let best = maximizing ? -Infinity : Infinity;
+    for (let row = 0; row < 3; row++) for (let col = 0; col < 3; col++) {
+      if (this.board[row][col] !== '') continue;
+      this.board[row][col] = maximizing ? 'O' : 'X';
+      const score = this.minimax(!maximizing, depth + 1);
+      this.board[row][col] = '';
+      best = maximizing ? Math.max(best, score) : Math.min(best, score);
+    }
+    return best;
+  }
+
+  boardWinner(): string | null {
+    const lines = [
+      [[0,0],[0,1],[0,2]], [[1,0],[1,1],[1,2]], [[2,0],[2,1],[2,2]],
+      [[0,0],[1,0],[2,0]], [[0,1],[1,1],[2,1]], [[0,2],[1,2],[2,2]],
+      [[0,0],[1,1],[2,2]], [[0,2],[1,1],[2,0]]
+    ];
+    for (const line of lines) {
+      const [a,b,c] = line;
+      const value = this.board[a[0]][a[1]];
+      if (value && value === this.board[b[0]][b[1]] && value === this.board[c[0]][c[1]]) return value;
+    }
+    return null;
   }
 
   findWinningMove(player: string): {row: number, col: number} | null {

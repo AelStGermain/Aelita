@@ -80,6 +80,52 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   animation: glow 2s ease-in-out infinite alternate;
 }
 
+/* Cute Y2K color pass shared by the portal and mini apps */
+.portal { filter: saturate(1.18); }
+.portal .marquee { background: linear-gradient(90deg,#7d4bdb,#ff52ad,#45dbe0); }
+.portal .web-box { background:#fff7ff; border-color:#b275d6; box-shadow:inset 1px 1px #fff,inset -1px -1px #e1b9ee,2px 2px #5e3b86; }
+.portal .web-box h2 { background:linear-gradient(90deg,#c7f6ff,#ffc5e6,#e8ceff,#c7f6ff); color:#703185; border-color:#c36cac; text-shadow:1px 1px #fff; }
+.portal .spotlight > div { background:linear-gradient(90deg,#fffbd9,#ffe6f5); }
+.portal .project-list a:nth-child(4n+1) { background:#effcff; }
+.portal .project-list a:nth-child(4n+2) { background:#fff0f8; }
+.portal .project-list a:nth-child(4n+3) { background:#f7efff; }
+.station-tabs { display:grid; grid-template-columns:1fr; gap:2px; padding:0 7px; }
+.station-tabs button,.play-radio { border:2px outset #eee; background:#e8d9ff; color:#4d2375; font:bold 8px Verdana,sans-serif; }
+.station-tabs button.active { background:#ff9fd0; color:#5d1643; }
+.play-radio { margin:5px; padding:4px 8px; background:#bdf7ff; }
+.now-playing label,.now-playing small { display:block; margin:4px; font-size:8px; }
+.now-playing input { width:90%; }
+.favorites { display:flex; flex-direction:column; }
+.favorites h2 { margin-bottom:3px; }
+.favorites a { padding:3px 6px; color:#65309a; text-decoration:none; font-size:9px; }
+.favorites a:nth-child(odd) { background:#fff0fa; }
+.favorites a:hover { color:#db1684; text-decoration:underline; }
+
+/* The learning app now reads as a program inside the same portal. */
+app-lector .lector-container { max-width:760px; margin:10px auto; padding:12px; border:4px ridge #fff; border-radius:0; background:linear-gradient(135deg,#ff8fc8,#c7b7ff 52%,#8debf0); box-shadow:7px 7px #42266d; }
+app-lector .lector-container h1 { margin:4px 0 10px; color:#fff; font-family:'Press Start 2P',monospace; font-size:clamp(1.2rem,3vw,2rem); text-shadow:3px 3px #9b2371; }
+app-lector .stats,app-lector .recognition { margin-bottom:8px; padding:7px; border:2px inset #fff; border-radius:0; background:rgba(255,255,255,.35); }
+app-lector .word-display { margin-bottom:8px; padding:12px; border:2px inset #fff; border-radius:0; background:#fff9fe; }
+app-lector .word-display h2 { font-size:clamp(2rem,5vw,3rem); color:#9c3eb7; }
+app-lector .controls { margin-bottom:8px; }
+app-lector .controls button { padding:8px 14px; border:3px outset #eee; border-radius:0; background:#f06caf; color:#fff; }
+
+/* Brighter matching chrome for the persistent Y2K shell. */
+.site-header .masthead { background:linear-gradient(180deg,#fff4ff,#dbf9ff 48%,#f6b9e0 51%,#e7d4ff); }
+.site-header .site-nav { background:linear-gradient(90deg,#c9bfff,#ffc3e6,#bff5fb,#c9bfff); }
+
+.ai-badge { display:inline-block; margin:0 auto 8px; padding:3px 7px; border:2px outset #fff; background:#fff2a8; color:#6a2372; font:bold 9px Verdana,sans-serif; letter-spacing:.5px; }
+app-gato .game-arena { border:4px ridge #f8dbff; border-radius:0; background:linear-gradient(135deg,#8f7bea,#ff8bc9 52%,#79e5e7); box-shadow:7px 7px #2d1755; }
+app-gato .score-board { border-radius:0; background:rgba(55,25,91,.78); border-color:#fff3a0; }
+app-batalla-naval .game-container { width:min(900px,calc(100% - 12px)); margin:8px auto; padding:10px; border:4px ridge #fff; background:linear-gradient(180deg,#806ed4,#54358d); box-shadow:7px 7px #190d35; }
+app-batalla-naval .retro-title { margin:0 0 5px; color:#bffcff; text-shadow:3px 3px #cc2c96; }
+app-batalla-naval .status-bar { margin-bottom:10px; border-radius:0; background:#3c2474; }
+app-batalla-naval .boards-container { gap:clamp(12px,4vw,45px); }
+app-batalla-naval .grid { border-color:#ffc9ed; background:#281949; box-shadow:4px 4px #120828; }
+app-batalla-naval .cell { background:#163a63; border-color:#73d6eb; }
+app-batalla-naval .player-grid .cell.ship { background:#f397c6; border-color:#fff; }
+app-batalla-naval .instructions { margin-top:10px; padding:7px; border:2px inset #fff; border-radius:0; background:#251542; color:#bfffe0; }
+
 @keyframes glow {
   from {
     box-shadow: 0 0 5px var(--retro-cyan), 0 0 10px var(--retro-cyan), 0 0 15px var(--retro-cyan);
