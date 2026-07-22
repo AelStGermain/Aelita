@@ -19,10 +19,10 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  background-color: #f8f4ff !important;
-  background-image: radial-gradient(rgba(123,44,255,.13) 1px, transparent 1px), radial-gradient(rgba(237,39,127,.08) 1px, transparent 1px) !important;
-  background-size: 34px 34px !important;
-  background-position: 0 0, 17px 17px !important;
+  background-color: #090616 !important;
+  background-image: radial-gradient(circle at center,#fff 0 1px,transparent 2px),radial-gradient(circle at center,#cda8ff 0 1px,transparent 2px),radial-gradient(circle at center,#7fffff 0 1px,transparent 2px) !important;
+  background-size: 47px 47px,71px 71px,91px 91px !important;
+  background-position: 0 0,17px 29px,43px 11px !important;
   color: #181224 !important;
 }
 button, input { font: inherit; }
@@ -88,4 +88,3 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
     box-shadow: 0 0 10px var(--retro-cyan), 0 0 20px var(--retro-cyan), 0 0 30px var(--retro-cyan);
   }
 }
-

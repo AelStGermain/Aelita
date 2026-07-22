@@ -1,17 +1,27 @@
-<div id="page-container">
+<div id="page-container" [class.arcade-mode]="!isEditorialPage">
   <a class="skip-link" href="#content-wrap">Saltar al contenido</a>
-  <nav class="site-nav" aria-label="Navegación principal">
-    <a class="brand" routerLink="/" aria-label="Ael, inicio"><span>AEL</span><small>.WEB</small></a>
-    <button class="menu-button" type="button" (click)="toggleSidebar()" [attr.aria-expanded]="isSidebarOpen" aria-controls="main-menu">MENÚ</button>
-    <div id="main-menu" class="nav-links" [class.open]="isSidebarOpen">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="isSidebarOpen=false">Inicio</a>
-      <a routerLink="/ctf" routerLinkActive="active" (click)="isSidebarOpen=false">CTF</a>
-      <a routerLink="/lector" routerLinkActive="active" (click)="isSidebarOpen=false">Voz</a>
-      <a routerLink="/cipher" routerLinkActive="active" (click)="isSidebarOpen=false">Cipher</a>
-      <a routerLink="/about" routerLinkActive="active" (click)="isSidebarOpen=false">Sobre mí</a>
+  <header class="site-header">
+    <div class="header-strip"><span>★ AEL'S SECRET CORNER ★</span><span class="best-viewed">BEST VIEWED WITH CURIOSITY</span></div>
+    <div class="masthead">
+      <a class="brand" routerLink="/"><span>Ael's</span><strong>Secret Corner</strong><small>developer • educator • digital explorer</small></a>
+      <div class="header-orb" aria-hidden="true">🌐</div>
+      <div class="site-clock"><b>STATUS</b><span>● ONLINE</span><small>Chile / WWW</small></div>
     </div>
-    <span class="nav-status"><i></i> ONLINE</span>
-  </nav>
+    <button class="menu-button" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">☰ SITE MENU</button>
+    <nav class="site-nav" [class.open]="isMenuOpen" aria-label="Navegación principal">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">⌂ HOME</a>
+      <a routerLink="/about" routerLinkActive="active">☺ ABOUT ME</a>
+      <a routerLink="/ctf" routerLinkActive="active">⚑ CYBER CTF</a>
+      <a routerLink="/lector" routerLinkActive="active">♫ VOICE LAB</a>
+      <a routerLink="/cipher" routerLinkActive="active">⌨ CIPHER</a>
+      <a routerLink="/snake" routerLinkActive="active">◆ ARCADE</a>
+    </nav>
+  </header>
+
   <main id="content-wrap"><router-outlet></router-outlet></main>
-  <footer><p>© 2026 AEL — diseñado con píxeles, curiosidad y código.</p><p class="footer-note">Optimizado para humanos · No se usan cookies</p></footer>
+
+  <footer *ngIf="isEditorialPage">
+    <div class="button-row"><span>Y2K READY</span><span>CSS FOREVER</span><span>HAND CODED</span><span>I ♥ PIXELS</span></div>
+    <p>© 2026 AEL · hecho a mano en Chile · optimizado para humanos</p>
+  </footer>
 </div>
