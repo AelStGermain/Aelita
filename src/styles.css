@@ -16,6 +16,18 @@
   box-sizing: border-box;
 }
 
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: #f8f4ff !important;
+  background-image: radial-gradient(rgba(123,44,255,.13) 1px, transparent 1px), radial-gradient(rgba(237,39,127,.08) 1px, transparent 1px) !important;
+  background-size: 34px 34px !important;
+  background-position: 0 0, 17px 17px !important;
+  color: #181224 !important;
+}
+button, input { font: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #7b2cff; outline-offset: 3px; }
+
 /* Botones globales con estilo retro */
 .game-button {
   display: inline-block;
@@ -76,5 +88,4 @@
     box-shadow: 0 0 10px var(--retro-cyan), 0 0 20px var(--retro-cyan), 0 0 30px var(--retro-cyan);
   }
 }
-
 

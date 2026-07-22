@@ -1,73 +1,17 @@
-<body>
-  <div id="page-container">
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-      <div class="container">
-        <a class="navbar-brand" href="#">Ael's Secret Corner</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse text-center" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" routerLink="/gato">🎮 Batalla</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/batalla-naval">🚢 Naval</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/memorice">🔥 Memorice</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/palabras">🌻 Palabras</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/snake">🐍 Snake</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/lector">🎤 Lector</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/cipher">🔐 Cipher</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/ctf">🎯 CTF</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/about">Sobre mí</a></li>
-            <li class="nav-item d-none d-lg-block"><a class="nav-link" href="#">Galería</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <main id="content-wrap" class="container-fluid px-2 pt-3" [class.fixed-layout]="!isAboutPage">
-      <div class="row g-2">
-        <div class="col-12" [ngClass]="{'col-lg-9': !isAboutPage, 'col-lg-12': isAboutPage}">
-          <div class="main-content">
-            <router-outlet></router-outlet>
-          </div>
-        </div>
-
-        <!-- Desktop Chat Sidebar -->
-        <div class="col-lg-3 d-none d-lg-block" *ngIf="!isAboutPage">
-          <div class="chat-container">
-            <h5 class="chat-title">💬 Chat en Vivo</h5>
-            <div class="widgetbot-container">
-              <widgetbot server="1439464760885248012" channel="1439464761476513900" width="100%" height="400">
-              </widgetbot>
-            </div>
-            <div class="chat-links">
-              <a target="_blank" href="https://discord.gg/75RUkGft">
-                <i class="fab fa-discord me-1"></i> Abrir Discord
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Chat FAB -->
-      <button class="chat-fab d-lg-none" (click)="toggleMobileChat()" *ngIf="!isAboutPage">
-        💬
-      </button>
-
-      <!-- Mobile Chat Overlay -->
-      <div class="mobile-chat-overlay d-lg-none" *ngIf="isMobileChatOpen">
-        <div class="mobile-chat-container">
-          <div class="mobile-chat-header">
-            <h5>Chat en Vivo</h5>
-            <button class="close-chat-btn" (click)="toggleMobileChat()">✖</button>
-          </div>
-          <div class="widgetbot-container mobile-widget">
-            <iframe src="https://e.widgetbot.io/channels/1439464760885248012/1439464761476513900" width="100%"
-              height="100%" allow="clipboard-write; fullscreen" style="border:none; width:100%; height:100%;">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-</body>
+<div id="page-container">
+  <a class="skip-link" href="#content-wrap">Saltar al contenido</a>
+  <nav class="site-nav" aria-label="Navegación principal">
+    <a class="brand" routerLink="/" aria-label="Ael, inicio"><span>AEL</span><small>.WEB</small></a>
+    <button class="menu-button" type="button" (click)="toggleSidebar()" [attr.aria-expanded]="isSidebarOpen" aria-controls="main-menu">MENÚ</button>
+    <div id="main-menu" class="nav-links" [class.open]="isSidebarOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="isSidebarOpen=false">Inicio</a>
+      <a routerLink="/ctf" routerLinkActive="active" (click)="isSidebarOpen=false">CTF</a>
+      <a routerLink="/lector" routerLinkActive="active" (click)="isSidebarOpen=false">Voz</a>
+      <a routerLink="/cipher" routerLinkActive="active" (click)="isSidebarOpen=false">Cipher</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="isSidebarOpen=false">Sobre mí</a>
+    </div>
+    <span class="nav-status"><i></i> ONLINE</span>
+  </nav>
+  <main id="content-wrap"><router-outlet></router-outlet></main>
+  <footer><p>© 2026 AEL — diseñado con píxeles, curiosidad y código.</p><p class="footer-note">Optimizado para humanos · No se usan cookies</p></footer>
+</div>
