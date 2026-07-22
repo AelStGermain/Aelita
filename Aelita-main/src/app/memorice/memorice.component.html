@@ -1,0 +1,93 @@
+<div class="game-container">
+  <!-- Header con estadísticas -->
+  <div class="header">
+    <h1 class="game-title">🔥 MEMORICE POKÉMON 🔥</h1>
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-icon">⭐</span>
+        <span class="stat-value">{{score}}</span>
+        <span class="stat-label">Puntos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">🔄</span>
+        <span class="stat-value">{{moves}}</span>
+        <span class="stat-label">Movimientos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">⏱️</span>
+        <span class="stat-value">{{formatTime(timeElapsed)}}</span>
+        <span class="stat-label">Tiempo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-control" (click)="changeDifficulty('easy')" [class.active]="difficulty === 'easy'">
+      😊 FÁCIL (3x2)
+    </button>
+    <button class="btn-control" (click)="changeDifficulty('medium')" [class.active]="difficulty === 'medium'">
+      😐 MEDIO (4x3)
+    </button>
+    <button class="btn-control" (click)="changeDifficulty('hard')" [class.active]="difficulty === 'hard'">
+      😤 DIFÍCIL (5x4)
+    </button>
+    <button class="btn-new-game" (click)="newRandomGame()">
+      🎲 NUEVOS POKÉMON
+    </button>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <div class="pokeball">
+      <div class="pokeball-button"></div>
+    </div>
+    <p>Capturando Pokémon...</p>
+  </div>
+
+  <!-- Grid de cartas -->
+  <div class="cards-grid" [class]="'grid-' + difficulty" *ngIf="!loading">
+    <div *ngFor="let card of cards; let i = index" 
+         class="card" 
+         (click)="flipCard(i)"
+         [class.matched]="matchedCards.includes(i)"
+         [class.flipped]="card.flipped">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="pokeball-mini">
+            <div class="pokeball-mini-button"></div>
+          </div>
+        </div>
+        <div class="card-back">
+          <img [src]="card.image" [alt]="card.name" />
+          <div class="pokemon-name">{{card.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje de victoria -->
+  <div *ngIf="gameWon" class="victory-modal">
+    <div class="victory-content">
+      <div class="victory-animation">
+        <span class="trophy">🏆</span>
+        <div class="fireworks">
+          <span class="firework">✨</span>
+          <span class="firework">✨</span>
+          <span class="firework">✨</span>
+        </div>
+      </div>
+      <h2>¡MAESTRO POKÉMON!</h2>
+      <div class="final-stats">
+        <p>🎆 Puntos: <strong>{{score}}</strong></p>
+        <p>🔄 Movimientos: <strong>{{moves}}</strong></p>
+        <p>⏱️ Tiempo: <strong>{{formatTime(timeElapsed)}}</strong></p>
+        <p class="performance">{{getPerformanceMessage()}}</p>
+      </div>
+      <div class="victory-buttons">
+        <button class="btn-play-again" (click)="resetGame()">🔄 JUGAR DE NUEVO</button>
+        <button class="btn-new-pokemon" (click)="newRandomGame()">🎲 NUEVOS POKÉMON</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div id="page-container">
+  <a class="skip-link" href="#content-wrap">Saltar al contenido</a>
+  <nav class="site-nav" aria-label="Navegación principal">
+    <a class="brand" routerLink="/" aria-label="Ael, inicio"><span>AEL</span><small>.WEB</small></a>
+    <button class="menu-button" type="button" (click)="toggleSidebar()" [attr.aria-expanded]="isSidebarOpen" aria-controls="main-menu">MENÚ</button>
+    <div id="main-menu" class="nav-links" [class.open]="isSidebarOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="isSidebarOpen=false">Inicio</a>
+      <a routerLink="/ctf" routerLinkActive="active" (click)="isSidebarOpen=false">CTF</a>
+      <a routerLink="/lector" routerLinkActive="active" (click)="isSidebarOpen=false">Voz</a>
+      <a routerLink="/cipher" routerLinkActive="active" (click)="isSidebarOpen=false">Cipher</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="isSidebarOpen=false">Sobre mí</a>
+    </div>
+    <span class="nav-status"><i></i> ONLINE</span>
+  </nav>
+  <main id="content-wrap"><router-outlet></router-outlet></main>
+  <footer><p>© 2026 AEL — diseñado con píxeles, curiosidad y código.</p><p class="footer-note">Optimizado para humanos · No se usan cookies</p></footer>
+</div>

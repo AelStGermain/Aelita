@@ -1,0 +1,49 @@
+<div class="snake-arena">
+  <h1 class="game-title">🐍 SNAKE RETRO 🐍</h1>
+  
+  <div class="score-board">
+    <div class="score-item">
+      <span class="label">PUNTOS:</span>
+      <span class="value">{{score}}</span>
+    </div>
+    <div class="score-item">
+      <span class="label">RÉCORD:</span>
+      <span class="value">{{highScore}}</span>
+    </div>
+  </div>
+
+  <div class="controls" *ngIf="!gameRunning">
+    <button class="start-btn" (click)="startGame()">
+      🎮 INICIAR JUEGO
+    </button>
+    <p class="instructions">Usa las flechas del teclado para moverte</p>
+  </div>
+
+  <div class="game-over" *ngIf="!gameRunning && score > 0">
+    <h2>😵 GAME OVER</h2>
+    <p>Puntuación: {{score}}</p>
+    <p *ngIf="score === highScore" class="new-record">¡NUEVO RÉCORD! 🏆</p>
+  </div>
+
+  <div class="game-grid">
+    <div *ngFor="let row of getGrid(); let y = index" class="grid-row">
+      <div *ngFor="let cell of row; let x = index" 
+           class="grid-cell"
+           [class]="getCellClass(x, y)">
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-controls" *ngIf="gameRunning">
+    <div class="control-row">
+      <button class="control-btn" (click)="changeDirection({x: 0, y: -1})">⬆️</button>
+    </div>
+    <div class="control-row">
+      <button class="control-btn" (click)="changeDirection({x: -1, y: 0})">⬅️</button>
+      <button class="control-btn" (click)="changeDirection({x: 1, y: 0})">➡️</button>
+    </div>
+    <div class="control-row">
+      <button class="control-btn" (click)="changeDirection({x: 0, y: 1})">⬇️</button>
+    </div>
+  </div>
+</div>

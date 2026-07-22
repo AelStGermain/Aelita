@@ -1,0 +1,48 @@
+<div class="game-container">
+    <h2 class="retro-title">🚢 BATALLA NAVAL 🚢</h2>
+
+    <div class="status-bar">
+        <p class="status-message">{{ message }}</p>
+        <button *ngIf="gameStatus === 'won' || gameStatus === 'lost'" (click)="restartGame()" class="retro-btn">
+            JUGAR DE NUEVO
+        </button>
+    </div>
+
+    <div class="boards-container">
+        <!-- Player Board -->
+        <div class="board-wrapper">
+            <h3>TU FLOTA</h3>
+            <div class="grid player-grid">
+                <div *ngFor="let row of playerBoard" class="row">
+                    <div *ngFor="let cell of row" class="cell" [ngClass]="{
+                 'ship': cell.hasShip, 
+                 'hit': cell.status === 'hit', 
+                 'miss': cell.status === 'miss'
+               }">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CPU Board -->
+        <div class="board-wrapper">
+            <h3>RADAR ENEMIGO</h3>
+            <div class="grid cpu-grid" [class.disabled]="gameStatus !== 'playing'">
+                <div *ngFor="let row of cpuBoard" class="row">
+                    <div *ngFor="let cell of row" class="cell" (click)="playerAttack(cell.x, cell.y)" [ngClass]="{
+                 'hit': cell.status === 'hit', 
+                 'miss': cell.status === 'miss',
+                 'clickable': !cell.hit && gameStatus === 'playing'
+               }">
+                        <!-- Hide ships on CPU board unless hit -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <p>> INSTRUCCIONES: Haz clic en el RADAR ENEMIGO para disparar.</p>
+        <p>> Rojo = Impacto | Azul = Agua</p>
+    </div>
+</div>

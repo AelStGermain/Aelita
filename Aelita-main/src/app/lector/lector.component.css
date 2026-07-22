@@ -1,0 +1,81 @@
+.lector-container {
+  max-width: 600px;
+  margin: 15px auto;
+  padding: 15px;
+  background: linear-gradient(45deg, #ff6b9d, #00d2d3);
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.lector-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  background: rgba(255,255,255,0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.word-display {
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.word-display h2 {
+  font-size: 3rem;
+  margin: 0;
+  color: #c44569;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background: #c44569;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background: #a0325a;
+}
+
+.recognition {
+  background: rgba(255,255,255,0.2);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.success {
+  background: #2ecc71;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.error {
+  background: #e74c3c;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+}

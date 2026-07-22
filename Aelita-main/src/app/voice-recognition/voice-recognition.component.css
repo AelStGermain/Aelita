@@ -1,0 +1,129 @@
+.about-container {
+  max-width: 900px;
+  margin: 15px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  border-radius: 20px;
+  color: white;
+  font-family: 'Comic Sans MS', cursive;
+  min-height: calc(100vh - 110px);
+  box-sizing: border-box;
+}
+
+.retro-title {
+  font-size: 2.5rem;
+  text-shadow: 3px 3px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0 0 15px #ffeb3b;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffeb3b;
+  animation: titlePulse 2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.avatar-pixel {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.about-card h3 {
+  color: #ffeb3b;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.about-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.highlight {
+  background: linear-gradient(45deg, #ff6b9d, #ffeb3b);
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: #000;
+  font-weight: bold;
+}
+
+.goals {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.goal {
+  background: rgba(255, 235, 59, 0.2);
+  padding: 12px;
+  border-radius: 10px;
+  border-left: 4px solid #ffeb3b;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.footer-message {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px dashed #ffeb3b;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.footer-message p {
+  font-size: 1.3rem;
+  color: #ffeb3b;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  animation: messageGlow 3s ease-in-out infinite;
+}
+
+@keyframes messageGlow {
+  0%, 100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+  50% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 15px #ffeb3b; }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .retro-title {
+    font-size: 2rem;
+  }
+  
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-card p {
+    text-align: left;
+  }
+}

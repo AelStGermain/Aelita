@@ -1,0 +1,175 @@
+<div class="ctf-container">
+    <!-- Hacker Terminal Header -->
+    <div class="hacker-header">
+        <div class="header-content">
+            <div class="terminal-prompt">
+                <span class="prompt-user">root&#64;cyberctf</span>
+                <span class="prompt-separator">:</span>
+                <span class="prompt-path">~/desafios</span>
+                <span class="prompt-symbol">#</span>
+                <span class="cursor-blink">_</span>
+            </div>
+            <div class="system-status">
+                <span class="status-item">🎯 MODO CTF</span>
+                <span class="status-separator">|</span>
+                <span class="status-item">⚡ ACTIVO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Completed Screen -->
+    <div class="victory-screen" *ngIf="gameCompleted">
+        <div class="victory-content">
+            <div class="victory-title">🏆 ¡MISIÓN CUMPLIDA! 🏆</div>
+            <div class="victory-ascii">
+                <pre>
+   ██████╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗  █████╗ ████████╗███████╗
+  ██╔════╝██╔═══██╗████╗  ██║██╔════╝ ██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
+  ██║     ██║   ██║██╔██╗ ██║██║  ███╗██████╔╝███████║   ██║   ███████╗
+  ██║     ██║   ██║██║╚██╗██║██║   ██║██╔══██╗██╔══██║   ██║   ╚════██║
+  ╚██████╗╚██████╔╝██║ ╚████║╚██████╔╝██║  ██║██║  ██║   ██║   ███████║
+   ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
+        </pre>
+            </div>
+            <div class="victory-stats">
+                <div class="stat-row">
+                    <span class="stat-label">PUNTUACIÓN FINAL:</span>
+                    <span class="stat-value score-glow">{{score}} / {{totalPoints}}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">RANGO:</span>
+                    <span class="stat-value rank-glow">{{getScoreRank()}}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">TIEMPO:</span>
+                    <span class="stat-value">{{formatTime(elapsedTime)}}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">INTENTOS:</span>
+                    <span class="stat-value">{{attempts}}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">DESAFÍOS:</span>
+                    <span class="stat-value">{{completedChallenges}} / {{challenges.length}}</span>
+                </div>
+            </div>
+            <button (click)="resetGame()" class="victory-btn">
+                🔄 JUGAR DE NUEVO
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Game Interface -->
+    <div class="game-interface" *ngIf="!gameCompleted">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-box">
+                <span class="stat-icon">💯</span>
+                <span class="stat-text">PUNTOS: <strong>{{score}}</strong></span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-icon">⏱️</span>
+                <span class="stat-text">TIEMPO: <strong>{{formatTime(elapsedTime)}}</strong></span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-icon">🎯</span>
+                <span class="stat-text">PROGRESO: <strong>{{completedChallenges}}/{{challenges.length}}</strong></span>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-label">PROGRESO DE LA MISIÓN</div>
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" [style.width.%]="progressPercentage">
+                    <span class="progress-text">{{progressPercentage.toFixed(0)}}%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Challenge Display -->
+        <div class="challenge-box">
+            <div class="challenge-header">
+                <div class="challenge-number">DESAFÍO #{{currentChallenge.id}}</div>
+                <div class="challenge-category">
+                    <span class="category-badge">{{currentChallenge.category}}</span>
+                    <span class="points-badge">{{currentChallenge.points}} PTS</span>
+                </div>
+            </div>
+
+            <div class="challenge-title">{{currentChallenge.title}}</div>
+
+            <div class="challenge-description">
+                <pre>{{currentChallenge.description}}</pre>
+            </div>
+
+            <!-- Hint Section -->
+            <div class="hint-section" *ngIf="showHint">
+                <div class="hint-header">💡 PISTA (-{{hintPenalty}} puntos)</div>
+                <div class="hint-text">{{currentChallenge.hint}}</div>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <div class="input-label">
+                <span class="label-icon">🚩</span>
+                INGRESAR BANDERA:
+            </div>
+            <div class="input-group">
+                <input type="text" [(ngModel)]="userInput" (keyup.enter)="submitFlag()" class="flag-input"
+                    placeholder="flag{...}" [disabled]="currentChallenge.completed">
+                <button (click)="submitFlag()" class="submit-btn" [disabled]="!userInput || currentChallenge.completed">
+                    ⚡ ENVIAR
+                </button>
+            </div>
+        </div>
+
+        <!-- Feedback Message -->
+        <div class="feedback-message" *ngIf="feedbackMessage" [class]="'feedback-' + feedbackType">
+            {{feedbackMessage}}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button (click)="useHint()" class="action-btn hint-btn" [disabled]="showHint || currentChallenge.completed">
+                💡 PISTA (-{{hintPenalty}} pts)
+            </button>
+            <button (click)="skipChallenge()" class="action-btn skip-btn"
+                [disabled]="currentChallengeIndex >= challenges.length - 1">
+                ⏭️ SALTAR
+            </button>
+            <button (click)="resetGame()" class="action-btn reset-btn">
+                🔄 REINICIAR
+            </button>
+        </div>
+
+        <!-- Challenge List -->
+        <div class="challenge-list">
+            <div class="list-title">TODOS LOS DESAFÍOS:</div>
+            <div class="challenges-grid">
+                <div *ngFor="let challenge of challenges; let i = index" class="challenge-item"
+                    [class.completed]="challenge.completed" [class.current]="i === currentChallengeIndex">
+                    <span class="item-number">#{{challenge.id}}</span>
+                    <span class="item-title">{{challenge.title}}</span>
+                    <span class="item-status">
+                        <span *ngIf="challenge.completed" class="status-icon">✅</span>
+                        <span *ngIf="!challenge.completed && i === currentChallengeIndex" class="status-icon">🔴</span>
+                        <span *ngIf="!challenge.completed && i !== currentChallengeIndex" class="status-icon">⚪</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="hacker-footer">
+        <div class="footer-content">
+            <span class="footer-text">
+                <span class="footer-blink">●</span> CONEXIÓN SEGURA ESTABLECIDA
+            </span>
+            <span class="footer-separator">|</span>
+            <span class="footer-text">ENCRIPTACIÓN: <span class="encryption-level">AES-256</span></span>
+        </div>
+    </div>
+</div>
