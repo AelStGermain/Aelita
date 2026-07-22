@@ -24,6 +24,14 @@
 
   <main id="content-wrap"><router-outlet></router-outlet></main>
 
+  <aside class="cursor-palette" aria-label="Selector de cursor">
+    <span>CURSOR</span>
+    <button (click)="setCursor('system')" [class.selected]="cursorChoice==='system'" title="Cursor del sistema">↖</button>
+    <button (click)="setCursor('heart')" [class.selected]="cursorChoice==='heart'" title="Corazón">♡</button>
+    <button (click)="setCursor('star')" [class.selected]="cursorChoice==='star'" title="Estrella">★</button>
+    <button (click)="setCursor('wand')" [class.selected]="cursorChoice==='wand'" title="Varita">✧</button>
+  </aside>
+
   <footer *ngIf="isEditorialPage">
     <div class="button-row"><span>Y2K READY</span><span>CSS FOREVER</span><span>HAND CODED</span><span>I ♥ PIXELS</span></div>
     <p>© 2026 AEL · hecho a mano en Chile · optimizado para humanos</p>

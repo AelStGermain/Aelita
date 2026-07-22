@@ -41,10 +41,10 @@
 
 <div class="bot-backdrop" *ngIf="botOpen" (click)="botOpen=false">
   <section class="bot-window" role="dialog" aria-modal="true" aria-label="AEL Bot" (click)="$event.stopPropagation()">
-    <div class="bot-title"><span>🤖 AEL_BOT.EXE — Digital Guest Assistant</span><button (click)="botOpen=false" aria-label="Cerrar">×</button></div>
-    <div class="bot-disclaimer">OFFLINE MODE · respuestas basadas en información curada · no es Ael real</div>
+    <div class="bot-title"><span>🤖 AEL_BOT 0.2 — LOCAL KNOWLEDGE ASSISTANT</span><button (click)="botOpen=false" aria-label="Cerrar">×</button></div>
+    <div class="bot-disclaimer">OFFLINE · RESPUESTAS CURADAS · SIN IA GENERATIVA · SIN ENVÍO DE DATOS</div>
     <div class="bot-log" aria-live="polite"><p *ngFor="let item of conversation" [class.user-line]="item.who==='you'"><b>{{item.who==='bot'?'AEL_BOT':'VISITOR'}}:</b> {{item.text}}</p></div>
-    <div class="bot-suggestions"><button (click)="ask('¿Qué sabe hacer Ael?')">habilidades</button><button (click)="ask('¿Qué proyecto recomiendas?')">proyectos</button><button (click)="ask('¿Qué le interesa?')">intereses</button></div>
-    <form (ngSubmit)="ask()"><label for="bot-message">MESSAGE:</label><input id="bot-message" class="bot-input" name="message" [(ngModel)]="message" autocomplete="off"><button type="submit">SEND</button></form>
+    <div class="bot-suggestions"><button (click)="ask('perfil')">perfil</button><button (click)="ask('stack')">stack</button><button (click)="ask('experiencia')">experiencia</button><button (click)="ask('roles')">roles</button><button (click)="ask('inglés')">English C1</button><button (click)="ask('proyectos')">proyectos</button></div>
+    <form (ngSubmit)="ask()"><label for="bot-message">COMMAND:</label><input id="bot-message" class="bot-input" name="message" [(ngModel)]="message" autocomplete="off" placeholder="perfil, stack, experiencia..."><button type="submit">RUN</button></form>
   </section>
 </div>

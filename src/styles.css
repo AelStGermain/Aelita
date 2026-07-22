@@ -162,3 +162,13 @@ app-gato button,app-batalla-naval button,app-memorice button,app-palabras button
 
 @media(max-width:650px){.site-header .site-nav{grid-template-columns:repeat(2,1fr) !important}.site-header .site-nav:not(.open){display:none !important}.site-header .site-nav.open{display:grid !important}.site-header .site-nav a{font-size:9px !important;padding:8px 3px !important}}
 @media(max-height:760px) and (min-width:651px){app-gato :is(.game-arena),app-batalla-naval :is(.game-container),app-memorice :is(.game-container),app-palabras :is(.juego-container),app-snake :is(.snake-arena),app-lector :is(.lector-container){zoom:.86}}
+
+/* User-selectable original Y2K cursors. */
+body.cursor-heart,body.cursor-heart :is(a,button,[role="button"]){cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M3 8C3 2 11 1 14 6C17 1 25 2 25 8C25 15 14 24 14 24S3 15 3 8Z' fill='%23ff78bd' stroke='%236b2b83' stroke-width='2'/%3E%3Cpath d='M6 6Q9 3 11 6' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") 4 4,auto!important}
+body.cursor-star,body.cursor-star :is(a,button,[role="button"]){cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cpath d='M15 1L18 11L29 14L19 18L16 29L12 19L1 15L11 11Z' fill='%23fff49a' stroke='%239245ae' stroke-width='2'/%3E%3Ccircle cx='15' cy='14' r='3' fill='white'/%3E%3C/svg%3E") 15 15,auto!important}
+body.cursor-wand,body.cursor-wand :is(a,button,[role="button"]){cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cpath d='M5 27L22 10' stroke='%23853eb0' stroke-width='5'/%3E%3Cpath d='M23 1L25 7L30 9L25 11L23 17L21 11L16 9L21 7Z' fill='%237eeaf3' stroke='white'/%3E%3C/svg%3E") 5 26,auto!important}
+.cursor-palette{position:fixed;right:8px;bottom:8px;z-index:4000;display:flex;align-items:center;gap:2px;padding:3px;border:3px ridge #fff;background:linear-gradient(90deg,#ffc9e6,#caf6ff);box-shadow:3px 3px #75438e;font:7px Verdana,sans-serif}.cursor-palette span{padding:0 3px;color:#68327d;font-weight:bold}.cursor-palette button{width:23px;height:22px;padding:0;border:2px outset #fff;background:#eee4fa;color:#763b91;font-size:12px}.cursor-palette button.selected{border-style:inset;background:#fff6a8;color:#d52388}
+
+/* Keep the dense portal inside common laptop viewports. */
+@media(max-height:820px) and (min-width:701px){app-home .portal{zoom:.86}.site-header .masthead{min-height:65px!important}.site-header .brand strong{font-size:26px!important}footer{padding-block:5px!important}}
+@media(max-width:540px){.cursor-palette{right:4px;bottom:4px}.cursor-palette span{display:none}}

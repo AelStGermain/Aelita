@@ -1,106 +1,52 @@
-<div class="about-container">
-  <div class="star-field"></div>
+<section class="profile-screen">
+  <div class="angel-sticker sticker-left" aria-hidden="true">♡<i>✦</i></div>
+  <div class="angel-sticker sticker-right" aria-hidden="true">☁<i>✧</i></div>
+  <article class="profile-window">
+    <header class="titlebar"><span>📁 C:\USERS\AEL\CAREER_PROFILE.EXE</span><span>_ □ ×</span></header>
+    <div class="profile-layout">
+      <aside class="identity-panel">
+        <div class="photo-frame"><img src="assets/images/mi foto.jpeg" alt="Retrato de Ael"><span>ONLINE</span></div>
+        <h1>AEL</h1>
+        <p class="role">Systems Analyst<br><b>Junior Backend & Data Integration</b></p>
+        <div class="signal"><span>JAVA</span><span>SPRING</span><span>SQL</span><span>REST</span></div>
+        <p class="language">🌐 ENGLISH: C1</p>
+      </aside>
 
-  <!-- Marquee Retro -->
-  <div class="marquee-container">
-    <marquee scrollamount="10" class="retro-marquee">
-      ✨ BIENVENIDOS A MI RINCÓN DIGITAL • CONSTRUYENDO EL FUTURO BIT A BIT • UNDER CONSTRUCTION • ✨
-    </marquee>
-  </div>
-
-  <!-- Main Retro Window -->
-  <div class="retro-window">
-    <div class="window-bar">
-      <span class="window-title">📂 C:\USERS\AEL\PROFILE.EXE</span>
-      <div class="window-controls">
-        <span class="control-btn minimize">_</span>
-        <span class="control-btn maximize">□</span>
-        <span class="control-btn close">X</span>
-      </div>
-    </div>
-
-    <div class="window-content">
-      <div class="about-layout">
-        <!-- Sidebar (Left on Desktop) -->
-        <div class="about-sidebar">
-          <!-- Header con avatar pixel art -->
-          <div class="header-section">
-            <div class="pixel-avatar-frame">
-              <div class="avatar-container">
-                <img src="assets/images/mi foto.jpeg" alt="Ael" class="profile-photo">
-                <div class="scanline-overlay"></div>
-              </div>
-              <div class="status-badge">ONLINE</div>
-            </div>
-
-            <div class="intro-text">
-              <h1 class="retro-title glitch" data-text="SOBRE AEL">SOBRE AEL</h1>
-              <p class="subtitle type-writer">> Desarrolladora | Educadora | Exploradora Digital_</p>
-            </div>
-          </div>
-
-          <div class="visitor-counter">
-            VISITANTE #: <span class="counter">034821</span>
-          </div>
-        </div>
-
-        <!-- Main Content (Right on Desktop) -->
-        <div class="about-main">
-          <hr class="retro-divider">
-
-          <!-- Historia personal -->
-          <div class="story-section">
-            <div class="retro-box">
-              <h2 class="section-header">💾 MI_HISTORIA.TXT</h2>
-              <div class="story-content terminal-font">
-                <p>
-                  <span class="prompt">C:\></span> ¡Hola! Soy <strong class="neon-text">Ael</strong>, una desarrolladora
-                  apasionada por crear
-                  <span class="highlight">herramientas educativas</span> e
-                  <span class="highlight">ideas novedosas</span> que unen a las personas.
-                </p>
-                <p>
-                  <span class="prompt">C:\></span> Desde pequeña trabajaba autónomamente con <strong>Linux</strong> y
-                  deambulaba por todos los archivos de sistema de Windows. La informática siempre me interesó
-                  y ahora es mi pasión convertirla en algo útil para otros.
-                </p>
-                <p>
-                  <span class="prompt">C:\></span> Mi meta actual es enfocarme en <strong>ciberseguridad</strong> y
-                  <strong>desarrollo de aplicaciones</strong> que marquen la diferencia.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Objetivos -->
-          <div class="goals-section">
-            <h2 class="section-header">🎯 OBJETIVOS.DAT</h2>
-            <div class="goals-grid">
-              <div class="goal-card">
-                <div class="card-border">
-                  <div class="goal-icon">🛡️</div>
-                  <h3>CIBERSEGURIDAD</h3>
-                  <p>Protegiendo sistemas y datos en el ciberespacio</p>
-                </div>
-              </div>
-              <div class="goal-card">
-                <div class="card-border">
-                  <div class="goal-icon">📱</div>
-                  <h3>APPS INNOVADORAS</h3>
-                  <p>Soluciones de software para problemas reales</p>
-                </div>
-              </div>
-              <div class="goal-card">
-                <div class="card-border">
-                  <div class="goal-icon">🤝</div>
-                  <h3>CONEXIÓN</h3>
-                  <p>Uniendo comunidades a través de la tecnología</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="profile-content">
+        <nav class="tabs" aria-label="Secciones del perfil">
+          <button (click)="setTab('profile')" [class.active]="activeTab==='profile'">PROFILE.TXT</button>
+          <button (click)="setTab('stack')" [class.active]="activeTab==='stack'">STACK.DAT</button>
+          <button (click)="setTab('experience')" [class.active]="activeTab==='experience'">XP.LOG</button>
+          <button (click)="setTab('target')" [class.active]="activeTab==='target'">TARGET.INI</button>
+        </nav>
+        <div class="tab-panel" [ngSwitch]="activeTab">
+          <section *ngSwitchCase="'profile'">
+            <h2>ABOUT_ME.TXT</h2>
+            <p><span>C:\&gt;</span> Técnico Analista de Sistemas y estudiante de Ingeniería Civil Informática, con experiencia en backend, integración y gestión de datos.</p>
+            <p><span>C:\&gt;</span> He desarrollado aplicaciones con Java/Spring Boot, Node.js, Angular/Ionic, APIs REST, Firebase, PostgreSQL y Spring Security.</p>
+            <p><span>C:\&gt;</span> Mi experiencia previa en educación fortalece mi capacidad para comprender necesidades, documentar procesos, capacitar y colaborar con equipos multidisciplinarios.</p>
+          </section>
+          <section *ngSwitchCase="'stack'">
+            <h2>CORE_SKILLS.SYS</h2>
+            <div class="core-skills"><strong *ngFor="let skill of coreSkills">★ {{skill}}</strong></div>
+            <h3>EXTENDED_MODULES/</h3>
+            <div class="skill-cloud"><span *ngFor="let skill of skills">{{skill}}</span></div>
+          </section>
+          <section *ngSwitchCase="'experience'">
+            <h2>EXPERIENCE.LOG</h2>
+            <div class="log-entry"><time>PRACTICE_01</time><h3>FollowUP Customer Experience</h3><p>Práctica profesional vinculada a sistemas, implementación, procesos e integración de información.</p></div>
+            <div class="log-entry"><time>BACKGROUND</time><h3>Educación</h3><p>Experiencia que aporta comunicación clara, capacitación, documentación y perspectiva centrada en usuarios.</p></div>
+            <div class="log-entry"><time>STATUS</time><h3>Ingeniería Civil Informática</h3><p>Estudiante y Técnico Analista de Sistemas.</p></div>
+          </section>
+          <section *ngSwitchCase="'target'">
+            <h2>CAREER_TARGET.INI</h2>
+            <p class="target-copy">Busco oportunidades junior donde pueda aportar y crecer en:</p>
+            <div class="target-grid"><span>Backend Development</span><span>System Integration</span><span>Software Implementation</span><span>Master Data</span><span>Data Management</span><span>Remote International Teams</span></div>
+            <div class="availability">● AVAILABLE FOR OPPORTUNITIES</div>
+          </section>
         </div>
       </div>
     </div>
-  </div>
-</div>
+    <footer class="statusbar"><span>PROFILE LOADED SUCCESSFULLY</span><span>UTF-8 · EN/ES · CHILE</span></footer>
+  </article>
+</section>
