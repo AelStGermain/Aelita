@@ -109,7 +109,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/",
+            "baseHref": "/Aelita/",
             "dir": "dist",
             "branch": "gh-pages"
           }
