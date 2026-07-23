@@ -54,4 +54,9 @@ export class HomeComponent implements OnDestroy {
   openBot() {
     this.botService.openBot();
   }
+
+  openPortfolio() {
+    const btn = document.querySelector<HTMLButtonElement>('.drawer-toggle-btn');
+    if (btn) btn.click();
+  }
 }

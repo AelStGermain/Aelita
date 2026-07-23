@@ -58,9 +58,9 @@ export class AppComponent implements OnInit {
       techs: ['Spring Boot', 'Java', 'Angular']
     },
     {
-      title: 'KUICHI MOBILE',
+      title: 'KUICHI APP',
       subtitle: 'Servicios para tu mascota en tu móvil',
-      url: 'https://aelstgermain.github.io/kuichiw',
+      url: 'https://aelstgermain.github.io/Kuichiapp',
       icon: '📱',
       tag: 'MOBILE APP',
       description: 'Versión App de Kuichi: ofertas veterinarias y atención de mascotas directamente en tu celular.',
@@ -141,7 +141,6 @@ export class AppComponent implements OnInit {
   }
 
   startLauncherDrag(event: MouseEvent | TouchEvent) {
-    // Only drag on left click or touch
     this.isDraggingLauncher = true;
     const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
     const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;

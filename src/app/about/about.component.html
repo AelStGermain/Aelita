@@ -17,6 +17,7 @@
           <button (click)="setTab('profile')" [class.active]="activeTab==='profile'">PROFILE.TXT</button>
           <button (click)="setTab('stack')" [class.active]="activeTab==='stack'">STACK.DAT</button>
           <button (click)="setTab('experience')" [class.active]="activeTab==='experience'">XP.LOG</button>
+          <button (click)="setTab('portfolio')" [class.active]="activeTab==='portfolio'">PORTFOLIO.EXE</button>
           <button (click)="setTab('target')" [class.active]="activeTab==='target'">TARGET.INI</button>
         </nav>
         <div class="tab-panel" [ngSwitch]="activeTab">
@@ -37,6 +38,27 @@
             <div class="log-entry"><time>PRACTICE_01</time><h3>FollowUP Customer Experience</h3><p>Práctica profesional vinculada a sistemas, implementación, procesos e integración de información.</p></div>
             <div class="log-entry"><time>BACKGROUND</time><h3>Educación</h3><p>Experiencia que aporta comunicación clara, capacitación, documentación y perspectiva centrada en usuarios.</p></div>
             <div class="log-entry"><time>STATUS</time><h3>Ingeniería Civil Informática</h3><p>Estudiante y Técnico Analista de Sistemas.</p></div>
+          </section>
+          <section *ngSwitchCase="'portfolio'">
+            <h2>MY_PORTFOLIO.EXE</h2>
+            <p><span>C:\&gt;</span> Proyectos reales desarrollados y desplegados por Ael:</p>
+            <div class="about-portfolio-grid">
+              <div class="about-proj-card" *ngFor="let p of portfolioProjects">
+                <div class="about-proj-header">
+                  <span class="proj-icon">{{p.icon}}</span>
+                  <div>
+                    <h3>{{p.title}}</h3>
+                    <span class="proj-badge">{{p.badge}}</span>
+                  </div>
+                </div>
+                <p class="proj-sub">{{p.subtitle}}</p>
+                <p class="proj-desc">{{p.desc}}</p>
+                <div class="proj-techs">
+                  <span *ngFor="let t of p.techs" class="tech-pill">{{t}}</span>
+                </div>
+                <a [href]="p.url" target="_blank" rel="noopener" class="about-launch-btn">▶ IR AL PROYECTO 🚀</a>
+              </div>
+            </div>
           </section>
           <section *ngSwitchCase="'target'">
             <h2>CAREER_TARGET.INI</h2>
