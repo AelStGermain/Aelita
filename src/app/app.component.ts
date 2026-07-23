@@ -13,12 +13,12 @@ import { filter } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   isMenuOpen = false;
   isEditorialPage = true;
-  cursorChoice = 'star';
+  cursorChoice = 'cursor1';
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.setCursor(localStorage.getItem('ael-cursor') || 'star');
+    this.setCursor(localStorage.getItem('ael-cursor') || 'cursor1');
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
       const url = (event as NavigationEnd).urlAfterRedirects.split('?')[0];
       this.isEditorialPage = url === '/';
@@ -31,8 +31,8 @@ export class AppComponent implements OnInit {
 
   setCursor(choice: string) {
     this.cursorChoice = choice;
-    document.body.classList.remove('cursor-heart','cursor-star','cursor-wand');
-    if (choice !== 'system') document.body.classList.add(`cursor-${choice}`);
+    document.body.classList.remove('cursor-custom1','cursor-custom2','cursor-wand');
+    if (choice !== 'system') document.body.classList.add(choice === 'cursor1' ? 'cursor-custom1' : choice === 'cursor2' ? 'cursor-custom2' : 'cursor-wand');
     localStorage.setItem('ael-cursor', choice);
   }
 }

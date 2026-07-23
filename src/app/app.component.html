@@ -1,10 +1,10 @@
-<div id="page-container" [class.arcade-mode]="!isEditorialPage">
+<div id="page-container" [class.arcade-mode]="!isEditorialPage" [class.home-mode]="isEditorialPage">
   <a class="skip-link" href="#content-wrap">Saltar al contenido</a>
   <header class="site-header">
     <div class="header-strip"><span>★ AEL'S SECRET CORNER ★</span><span class="best-viewed">BEST VIEWED WITH CURIOSITY</span></div>
     <div class="masthead">
       <a class="brand" routerLink="/"><span>Ael's</span><strong>Secret Corner</strong><small>developer • educator • digital explorer</small></a>
-      <div class="header-orb" aria-hidden="true">🌐</div>
+      <div class="header-orb" aria-hidden="true"><img src="banner.gif" alt=""></div>
       <div class="site-clock"><b>STATUS</b><span>● ONLINE</span><small>Chile / WWW</small></div>
     </div>
     <button class="menu-button" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen">☰ SITE MENU</button>
@@ -27,13 +27,9 @@
   <aside class="cursor-palette" aria-label="Selector de cursor">
     <span>CURSOR</span>
     <button (click)="setCursor('system')" [class.selected]="cursorChoice==='system'" title="Cursor del sistema">↖</button>
-    <button (click)="setCursor('heart')" [class.selected]="cursorChoice==='heart'" title="Corazón">♡</button>
-    <button (click)="setCursor('star')" [class.selected]="cursorChoice==='star'" title="Estrella">★</button>
+    <button (click)="setCursor('cursor1')" [class.selected]="cursorChoice==='cursor1'" title="Gatito"><img src="cursor.gif" alt="Gatito"></button>
+    <button (click)="setCursor('cursor2')" [class.selected]="cursorChoice==='cursor2'" title="Ordenador"><img src="cursor2.gif" alt="Ordenador"></button>
     <button (click)="setCursor('wand')" [class.selected]="cursorChoice==='wand'" title="Varita">✧</button>
   </aside>
 
-  <footer *ngIf="isEditorialPage">
-    <div class="button-row"><span>Y2K READY</span><span>CSS FOREVER</span><span>HAND CODED</span><span>I ♥ PIXELS</span></div>
-    <p>© 2026 AEL · hecho a mano en Chile · optimizado para humanos</p>
-  </footer>
 </div>
