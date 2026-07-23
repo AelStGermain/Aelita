@@ -3,23 +3,61 @@
   <img class="floating-gif gif-heart heart-b" src="heart-gif-1.gif" alt="" aria-hidden="true">
   <img class="floating-gif gif-heart heart-c" src="heart-gif-1.gif" alt="" aria-hidden="true">
   <img class="floating-gif gif-stars" src="pink.gif" alt="" aria-hidden="true">
-  <img class="index-ocean-gif" src="S0W0l3m.gif" alt="Escena oceánica digital animada">
-  <div class="marquee"><span>✦ WELCOME TO MY LITTLE CORNER OF THE WORLD WIDE WEB ✦ ANGULAR + TYPESCRIPT ✦ ALWAYS UNDER CONSTRUCTION ✦</span></div>
+  <div class="marquee"><span>✦ WELCOME TO MY LITTLE CORNER OF THE WORLD WIDE WEB ✦ ALWAYS UNDER
+      CONSTRUCTION ✦</span></div>
   <div class="portal-grid">
     <aside class="left-column">
-      <section class="web-box nav-box"><h2>.: NAVIGATION :.</h2><nav><a routerLink="/">» Home</a><a routerLink="/about">» About me</a><a href="#projects">» Projects</a><button (click)="openBot()">» AEL_BOT</button><a routerLink="/ctf">» Cyber CTF</a><a routerLink="/cipher">» Cipher</a></nav></section>
-      <section class="web-box counter-box"><h2>.: VISITORS :.</h2><p>You are visitor</p><strong>0 3 4 8 2 1</strong><small>since 1999*</small></section>
-      <section class="web-box"><h2>.: STATUS :.</h2><p class="status">● ONLINE</p><p>currently building:<br><b>cool_stuff.exe</b></p></section>
-      <section class="web-box now-playing"><h2>.: AEL_WAVE RADIO :.</h2><p>{{radioOn ? '♫ generative signal online' : 'radio is sleeping...'}}</p><div class="station-tabs"><button [class.active]="station==='dream'" (click)="selectStation('dream')">DREAM</button><button [class.active]="station==='cosmic'" (click)="selectStation('cosmic')">COSMIC</button><button [class.active]="station==='machine'" (click)="selectStation('machine')">MACHINE</button></div><button class="play-radio" (click)="toggleRadio()">{{radioOn?'■ STOP':'▶ PLAY'}}</button><label>VOL <input type="range" min="0.04" max="0.5" step="0.02" [(ngModel)]="volume" (input)="setVolume()"></label><small>original Web Audio signal</small></section>
+      <section class="web-box nav-box">
+        <h2>.: NAVIGATION :.</h2>
+        <nav><a routerLink="/">» Home</a><a routerLink="/about">» About me</a><a href="#projects">» Projects</a><button
+            (click)="openBot()">» AEL_BOT</button><a routerLink="/ctf">» Cyber CTF</a><a routerLink="/cipher">»
+            Cipher</a></nav>
+      </section>
+      <section class="web-box counter-box">
+        <h2>.: VISITORS :.</h2>
+        <p>You are visitor</p><strong>0 3 4 8 2 1</strong><small>since 1999*</small>
+      </section>
+      <section class="web-box">
+        <h2>.: STATUS :.</h2>
+        <p class="status">● ONLINE</p>
+        <p>currently building:<br><b>cool_stuff.exe</b></p>
+      </section>
+      <section class="web-box now-playing">
+        <h2>.: AEL_WAVE RADIO :.</h2>
+        <p>{{radioOn ? '♫ generative signal online' : 'radio is sleeping...'}}</p>
+        <div class="station-tabs"><button [class.active]="station==='dream'"
+            (click)="selectStation('dream')">DREAM</button><button [class.active]="station==='cosmic'"
+            (click)="selectStation('cosmic')">COSMIC</button><button [class.active]="station==='machine'"
+            (click)="selectStation('machine')">MACHINE</button></div><button class="play-radio"
+          (click)="toggleRadio()">{{radioOn?'■ STOP':'▶ PLAY'}}</button><label>VOL <input type="range" min="0.04"
+            max="0.5" step="0.02" [(ngModel)]="volume" (input)="setVolume()"></label><small>original Web Audio
+          signal</small>
+      </section>
     </aside>
 
     <div class="center-column">
       <section class="web-box welcome-box">
         <h2 id="welcome-title">.: WELCOME, WEB TRAVELLER! :.</h2>
-        <div class="welcome-content"><div class="computer" aria-hidden="true">💻</div><div><p><b>¡Hola! Soy Ael.</b></p><p>Desarrolladora, educadora y exploradora digital. Este es mi rincón personal de la web: una colección de juegos, experimentos y herramientas sobre voz, interfaces y ciberseguridad.</p><p><a routerLink="/about">[ leer mi historia ]</a></p></div></div>
+        <div class="welcome-content">
+          <div class="computer" aria-hidden="true">💻</div>
+          <div>
+            <p><b>¡Hola! Soy Ael.</b></p>
+            <p>Desarrolladora, educadora y exploradora digital. Este es mi rincón personal donde vacío mis
+              juegos, experimentos y herramientas.</p>
+            <p><a routerLink="/about">[ leer mi historia ]</a></p>
+          </div>
+        </div>
       </section>
-      <section class="web-box spotlight"><h2>.: NEW! AEL_BOT v0.1 :.</h2><div><span class="bot-face">(◕‿◕)</span><p>Conversa con mi pequeña representante digital. Funciona localmente, no envía tus mensajes a ningún servidor.</p><button class="y2k-button" (click)="openBot()">CHAT NOW!</button><small>o presiona la tecla /</small></div></section>
-      <section class="web-box projects" id="projects"><h2>.: MY PROJECTS :.</h2>
+      <section class="web-box spotlight">
+        <h2>.: NEW! AEL_BOT v0.1 :.</h2>
+        <div><span class="bot-face">(◕‿◕)</span>
+          <p>Conversa con mi pequeña representante digital. Funciona localmente, no envía tus mensajes a ningún
+            servidor.</p><button class="y2k-button" (click)="openBot()">CHAT NOW!</button><small>o presiona la tecla
+            /</small>
+        </div>
+      </section>
+      <section class="web-box projects" id="projects">
+        <h2>.: MY PROJECTS :.</h2>
         <div class="project-list">
           <a routerLink="/ctf"><span>🛡️</span><b>CYBER CTF</b><small>security challenges</small></a>
           <a routerLink="/lector"><span>🎤</span><b>LECTOR MÁGICO</b><small>browser voice API</small></a>
@@ -31,14 +69,46 @@
           <a routerLink="/gato"><span>🎮</span><b>BATALLA RETRO</b><small>three in a row</small></a>
         </div>
       </section>
-      <section class="web-box links center-links"><h2>.: COOL LINKS :.</h2><div><a routerLink="/about">♡ Profile</a><a routerLink="/ctf">⌘ Security lab</a><a routerLink="/snake">★ Arcade</a></div></section>
+      <section class="web-box links center-links">
+        <h2>.: COOL LINKS :.</h2>
+        <div><a routerLink="/about">♡ Profile</a><a routerLink="/ctf">⌘ Security lab</a><a routerLink="/snake">★
+            Arcade</a></div>
+      </section>
     </div>
 
     <aside class="right-column">
-      <section class="web-box profile-mini"><h2>.: WEBMISTRESS :.</h2><img src="assets/images/mi foto.jpeg" alt="Retrato de Ael"><b>AEL</b><p>developer<br>educator<br>digital explorer</p></section>
-      <section class="web-box"><h2>.: QUICK FACTS :.</h2><dl><dt>LOCATION:</dt><dd>Chile</dd><dt>FOCUS:</dt><dd>Apps + security</dd><dt>OS:</dt><dd>Linux curious</dd><dt>MOOD:</dt><dd>Creating...</dd></dl></section>
-      <section class="web-box updates"><h2>.: UPDATES :.</h2><p><b>22.07.26</b><br>Y2K portal is online!</p><p><b>NEW</b><br>AEL_BOT arrived.</p></section>
-      <section class="web-box favorites"><h2>.: MUSIC SHELF :.</h2><a href="https://open.spotify.com/search/Empire%20of%20the%20Sun" target="_blank" rel="noopener">☀ Empire of the Sun</a><a href="https://open.spotify.com/search/Telepath%20vaporwave" target="_blank" rel="noopener">▦ Telepath</a><a href="https://open.spotify.com/search/Kitaro" target="_blank" rel="noopener">☁ Kitaro</a><a href="https://open.spotify.com/search/Kraftwerk" target="_blank" rel="noopener">▣ Kraftwerk</a><a href="https://open.spotify.com/search/Sewerslvt" target="_blank" rel="noopener">✦ Sewerslvt</a><a href="https://open.spotify.com/search/Pet%20Shop%20Boys" target="_blank" rel="noopener">♡ Pet Shop Boys</a></section>
+      <section class="web-box profile-mini">
+        <h2>.: WEBMISTRESS :.</h2>
+        <div class="avatar-cycle small-avatar"><img src="avatar-dark-retro.jpg" alt="Retrato retro de Ael con cabello oscuro"><img src="avatar-light-retro.jpg" alt="Retrato retro de Ael con cabello claro"></div><b>AEL</b>
+        <p>developer<br>educator<br>digital explorer</p>
+      </section>
+      <section class="web-box">
+        <h2>.: QUICK FACTS :.</h2>
+        <dl>
+          <dt>LOCATION:</dt>
+          <dd>Chile</dd>
+          <dt>FOCUS:</dt>
+          <dd>Apps + security</dd>
+          <dt>OS:</dt>
+          <dd>Linux curious</dd>
+          <dt>MOOD:</dt>
+          <dd>Creating...</dd>
+        </dl>
+      </section>
+      <section class="web-box updates">
+        <h2>.: UPDATES :.</h2>
+        <p><b>22.07.26</b><br>Y2K portal is online!</p>
+        <p><b>NEW</b><br>AEL_BOT arrived.</p>
+      </section>
+      <section class="web-box favorites">
+        <h2>.: MUSIC SHELF :.</h2><a href="https://open.spotify.com/search/Empire%20of%20the%20Sun" target="_blank"
+          rel="noopener">☀ Empire of the Sun</a><a href="https://open.spotify.com/search/Telepath%20vaporwave"
+          target="_blank" rel="noopener">▦ Telepath</a><a href="https://open.spotify.com/search/Kitaro" target="_blank"
+          rel="noopener">☁ Kitaro</a><a href="https://open.spotify.com/search/Kraftwerk" target="_blank"
+          rel="noopener">▣ Kraftwerk</a><a href="https://open.spotify.com/search/Sewerslvt" target="_blank"
+          rel="noopener">✦ Sewerslvt</a><a href="https://open.spotify.com/search/Pet%20Shop%20Boys" target="_blank"
+          rel="noopener">♡ Pet Shop Boys</a>
+      </section>
     </aside>
   </div>
   <div class="webring">« PREV　 <b>PERSONAL WEBRING OF CURIOUS PEOPLE</b>　 RANDOM　 NEXT »</div>
@@ -46,10 +116,19 @@
 
 <div class="bot-backdrop" *ngIf="botOpen" (click)="botOpen=false">
   <section class="bot-window" role="dialog" aria-modal="true" aria-label="AEL Bot" (click)="$event.stopPropagation()">
-    <div class="bot-title"><span>🤖 AEL_BOT 0.2 — LOCAL KNOWLEDGE ASSISTANT</span><button (click)="botOpen=false" aria-label="Cerrar">×</button></div>
-    <div class="bot-disclaimer">OFFLINE · RESPUESTAS CURADAS · SIN IA GENERATIVA · SIN ENVÍO DE DATOS</div>
-    <div class="bot-log" aria-live="polite"><p *ngFor="let item of conversation" [class.user-line]="item.who==='you'"><b>{{item.who==='bot'?'AEL_BOT':'VISITOR'}}:</b> {{item.text}}</p></div>
-    <div class="bot-suggestions"><button (click)="ask('perfil')">perfil</button><button (click)="ask('stack')">stack</button><button (click)="ask('experiencia')">experiencia</button><button (click)="ask('roles')">roles</button><button (click)="ask('inglés')">English C1</button><button (click)="ask('proyectos')">proyectos</button></div>
-    <form (ngSubmit)="ask()"><label for="bot-message">COMMAND:</label><input id="bot-message" class="bot-input" name="message" [(ngModel)]="message" autocomplete="off" placeholder="perfil, stack, experiencia..."><button type="submit">RUN</button></form>
+    <div class="bot-title"><span>🤖 AEL_BOT 0.2 — LOCAL KNOWLEDGE ASSISTANT</span><button (click)="botOpen=false"
+        aria-label="Cerrar">×</button></div>
+    <div class="bot-disclaimer">OFFLINE · </div>
+    <div class="bot-log" aria-live="polite">
+      <p *ngFor="let item of conversation" [class.user-line]="item.who==='you'">
+        <b>{{item.who==='bot'?'AEL_BOT':'VISITOR'}}:</b> {{item.text}}
+      </p>
+    </div>
+    <div class="bot-suggestions"><button (click)="ask('perfil')">perfil</button><button
+        (click)="ask('stack')">stack</button><button (click)="ask('experiencia')">experiencia</button><button
+        (click)="ask('roles')">roles</button><button (click)="ask('proyectos')">proyectos</button></div>
+    <form (ngSubmit)="ask()"><label for="bot-message">COMMAND:</label><input id="bot-message" class="bot-input"
+        name="message" [(ngModel)]="message" autocomplete="off" placeholder="perfil, stack, experiencia..."><button
+        type="submit">RUN</button></form>
   </section>
 </div>

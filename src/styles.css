@@ -200,3 +200,13 @@ html:has(body.index-page),body.index-page{height:100dvh;overflow:hidden}
 @media(max-width:1200px){.index-ocean-gif{width:170px;opacity:.35}.heart-a,.heart-b,.heart-c{opacity:.42}}
 @media(max-width:700px){html:has(body.index-page),body.index-page{height:auto;overflow:auto}.index-ocean-gif{display:none}}
 @media(prefers-reduced-motion:reduce){.heart-a,.heart-b,.heart-c{animation:none}}
+
+/* Alternating, pre-dithered 2001 webcam portraits. */
+.avatar-cycle{position:relative;width:100%;height:100%;overflow:hidden;background:#cabce8}
+.avatar-cycle img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;object-fit:cover!important;object-position:center 22%;filter:contrast(1.06) saturate(.82);animation:avatarCrossfade 12s steps(10,end) infinite}
+.avatar-cycle img:nth-child(2){opacity:0;animation-delay:-6s}
+.small-avatar{width:82px;height:82px;margin:6px auto 3px;border:5px ridge #ddd}
+.profile-mini>.small-avatar+ b{display:block}
+.photo-frame>.avatar-cycle{position:absolute;inset:5px;width:auto;height:auto}
+@keyframes avatarCrossfade{0%,44%{opacity:1}50%,94%{opacity:0}100%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.avatar-cycle img{animation:none}.avatar-cycle img:nth-child(2){display:none}}
