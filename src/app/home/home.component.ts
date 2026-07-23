@@ -2,7 +2,7 @@ import { Component, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { processBotQuery } from './bot-engine';
+import { processBotQuery, ChatMessage } from './bot-engine';
 
 @Component({selector:'app-home',standalone:true,imports:[CommonModule,FormsModule,RouterModule],templateUrl:'./home.component.html',styleUrls:['./home.component.css']})
 export class HomeComponent implements OnDestroy {
@@ -11,9 +11,9 @@ export class HomeComponent implements OnDestroy {
   private audioContext?: AudioContext;
   private radioTimer?: number;
   private noteIndex=0;
-  conversation=[
-    {who:'bot',text:'¡Hola! Soy AEL_BOT 0.3, el asistente interactivo de Ael 🤖'},
-    {who:'bot',text:'Pregúntame sobre perfil, stack, experiencia, proyectos, gustos, linux o prueba tu curiosidad.'}
+  conversation: ChatMessage[] = [
+    {who:'bot',text:'¡Hola! Soy AEL_BOT 1.0 (Powered by Gemini AI) 🤖'},
+    {who:'bot',text:'Puedes preguntarme sobre el perfil de Sofía, su stack en Java/Node, proyectos o lo que quieras en lenguaje natural.'}
   ];
   constructor(private router:Router){}
 
@@ -50,11 +50,20 @@ export class HomeComponent implements OnDestroy {
     if(event.key==='Escape')this.botOpen=false;
   }
   openBot(){this.botOpen=true;setTimeout(()=>document.querySelector<HTMLInputElement>('.bot-input')?.focus());}
-  ask(suggestion?:string){
+  async ask(suggestion?:string){
     const raw=(suggestion??this.message).trim(); if(!raw)return;
     this.conversation.push({who:'you',text:raw}); this.message='';
 
-    const result = processBotQuery(raw);
+    this.conversation.push({who:'bot',text:'Pensando...'});
+    this.scrollBotLog();
+
+    const historyForAi = this.conversation.slice(0, -1);
+    const result = await processBotQuery(raw, historyForAi);
+
+    if(this.conversation.length > 0 && this.conversation[this.conversation.length - 1].text === 'Pensando...'){
+      this.conversation.pop();
+    }
+
     if(result.action === 'clear'){
       this.conversation = [];
       return;
@@ -63,8 +72,12 @@ export class HomeComponent implements OnDestroy {
       this.conversation.push({who:'bot',text:result.answer});
     }
     if(result.action === 'navigate_about'){
-      setTimeout(()=>this.router.navigate(['/about']),1000);
+      setTimeout(()=>this.router.navigate(['/about']),1200);
     }
+    this.scrollBotLog();
+  }
+
+  private scrollBotLog(){
     setTimeout(()=>{const box=document.querySelector('.bot-log');if(box)box.scrollTop=box.scrollHeight;});
   }
 }

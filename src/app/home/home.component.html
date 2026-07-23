@@ -116,9 +116,9 @@
 
 <div class="bot-backdrop" *ngIf="botOpen" (click)="botOpen=false">
   <section class="bot-window" role="dialog" aria-modal="true" aria-label="AEL Bot" (click)="$event.stopPropagation()">
-    <div class="bot-title"><span>🤖 AEL_BOT 0.3 — LOCAL KNOWLEDGE ENGINE</span><button (click)="botOpen=false"
+    <div class="bot-title"><span>🤖 AEL_BOT 1.0 — REAL AI ENGINE (GEMINI)</span><button (click)="botOpen=false"
         aria-label="Cerrar">×</button></div>
-    <div class="bot-disclaimer">OFFLINE · 100% LOCAL & PRIVADO</div>
+    <div class="bot-disclaimer">POWERED BY GEMINI 1.5 FLASH · RESPALDO LOCAL ACTIVO</div>
     <div class="bot-log" aria-live="polite">
       <p *ngFor="let item of conversation" [class.user-line]="item.who==='you'">
         <b>{{item.who==='bot'?'AEL_BOT':'VISITOR'}}:</b> {{item.text}}
@@ -129,7 +129,7 @@
         (click)="ask('proyectos')">proyectos</button><button (click)="ask('gustos')">gustos</button><button
         (click)="ask('linux')">linux</button></div>
     <form (ngSubmit)="ask()"><label for="bot-message">COMMAND:</label><input id="bot-message" class="bot-input"
-        name="message" [(ngModel)]="message" autocomplete="off" placeholder="perfil, stack, gustos..."><button
+        name="message" [(ngModel)]="message" autocomplete="off" placeholder="Pregúntale lo que quieras en lenguaje natural..."><button
         type="submit">RUN</button></form>
   </section>
 </div>
