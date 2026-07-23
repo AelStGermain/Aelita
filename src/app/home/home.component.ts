@@ -2,20 +2,27 @@ import { Component, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { processBotQuery, ChatMessage } from './bot-engine';
+import { BotService } from '../service/bot.service';
 
-@Component({ selector: 'app-home', standalone: true, imports: [CommonModule, FormsModule, RouterModule], templateUrl: './home.component.html', styleUrls: ['./home.component.css'] })
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
 export class HomeComponent implements OnDestroy {
-  botOpen = false; message = '';
-  radioOn = false; station = 'dream'; volume = 0.18;
+  radioOn = false;
+  station = 'dream';
+  volume = 0.18;
   private audioContext?: AudioContext;
   private radioTimer?: number;
   private noteIndex = 0;
-  conversation: ChatMessage[] = [
-    { who: 'bot', text: '¡Hola! Soy AEL_BOT 1.0' },
-    { who: 'bot', text: 'Puedes preguntarme sobre el perfil de Sofía. No te garantizo que sean respuestas verídicas; mejor hablar con ella en persona.' }
-  ];
-  constructor(private router: Router) { }
+
+  constructor(
+    private router: Router,
+    public botService: BotService
+  ) {}
 
   toggleRadio() { this.radioOn ? this.stopRadio() : this.startRadio(); }
   selectStation(station: string) { this.station = station; if (this.radioOn) { this.stopRadio(); this.startRadio(); } }
@@ -26,7 +33,7 @@ export class HomeComponent implements OnDestroy {
     this.radioTimer = window.setInterval(() => this.playRadioNote(), 720);
   }
   stopRadio() { if (this.radioTimer) window.clearInterval(this.radioTimer); this.radioTimer = undefined; this.radioOn = false; }
-  setVolume() { /* volume is applied to each new generative note */ }
+  setVolume() { /* volume applied to generative notes */ }
   private playRadioNote() {
     if (!this.audioContext) return;
     const stations: Record<string, { notes: number[], wave: OscillatorType, tempo: number }> = {
@@ -44,40 +51,7 @@ export class HomeComponent implements OnDestroy {
   }
   ngOnDestroy() { this.stopRadio(); this.audioContext?.close(); }
 
-  @HostListener('document:keydown', ['$event']) shortcut(event: KeyboardEvent) {
-    const target = event.target as HTMLElement;
-    if (event.key === '/' && !['INPUT', 'TEXTAREA'].includes(target.tagName)) { event.preventDefault(); this.openBot(); }
-    if (event.key === 'Escape') this.botOpen = false;
-  }
-  openBot() { this.botOpen = true; setTimeout(() => document.querySelector<HTMLInputElement>('.bot-input')?.focus()); }
-  async ask(suggestion?: string) {
-    const raw = (suggestion ?? this.message).trim(); if (!raw) return;
-    this.conversation.push({ who: 'you', text: raw }); this.message = '';
-
-    this.conversation.push({ who: 'bot', text: 'Pensando...' });
-    this.scrollBotLog();
-
-    const historyForAi = this.conversation.slice(0, -1);
-    const result = await processBotQuery(raw, historyForAi);
-
-    if (this.conversation.length > 0 && this.conversation[this.conversation.length - 1].text === 'Pensando...') {
-      this.conversation.pop();
-    }
-
-    if (result.action === 'clear') {
-      this.conversation = [];
-      return;
-    }
-    if (result.answer) {
-      this.conversation.push({ who: 'bot', text: result.answer });
-    }
-    if (result.action === 'navigate_about') {
-      setTimeout(() => this.router.navigate(['/about']), 1200);
-    }
-    this.scrollBotLog();
-  }
-
-  private scrollBotLog() {
-    setTimeout(() => { const box = document.querySelector('.bot-log'); if (box) box.scrollTop = box.scrollHeight; });
+  openBot() {
+    this.botService.openBot();
   }
 }

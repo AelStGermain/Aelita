@@ -11,6 +11,7 @@
     <nav class="site-nav" [class.open]="isMenuOpen" aria-label="Navegación principal">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">⌂ HOME</a>
       <a routerLink="/about" routerLinkActive="active">☺ ABOUT ME</a>
+      <a (click)="botService.openBot()" class="bot-nav-link">🤖 AEL_BOT</a>
       <a routerLink="/gato" routerLinkActive="active">♡ TRES EN RAYA</a>
       <a routerLink="/batalla-naval" routerLinkActive="active">⚓ NAVAL</a>
       <a routerLink="/memorice" routerLinkActive="active">✦ MEMORICE</a>
@@ -21,6 +22,50 @@
       <a routerLink="/ctf" routerLinkActive="active">⚑ CTF</a>
     </nav>
   </header>
+
+  <!-- COLLAPSIBLE LEFT DRAWER: AEL'S REAL PROJECTS SHOWCASE -->
+  <aside class="ael-projects-drawer" [class.open]="isProjectsDrawerOpen" aria-label="Proyectos Reales de Ael">
+    <button class="drawer-toggle-btn" (click)="toggleProjectsDrawer()" aria-label="Alternar proyectos de Ael">
+      <span class="led-blink">●</span> 
+      <span class="drawer-btn-text">PROYECTOS AEL</span> 
+      <span class="arrow">{{isProjectsDrawerOpen ? '◀' : '▶'}}</span>
+    </button>
+
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h2>⚡ REAL APPS SHOWCASE ⚡</h2>
+        <small>by Ael St. Germain</small>
+        <button class="drawer-close" (click)="toggleProjectsDrawer()">×</button>
+      </div>
+
+      <p class="drawer-intro">Explora las aplicaciones web y móviles reales desarrolladas por Sofía (Ael):</p>
+
+      <div class="projects-list">
+        <article class="project-card" *ngFor="let proj of developerProjects">
+          <div class="card-top">
+            <span class="proj-icon">{{proj.icon}}</span>
+            <div class="proj-meta">
+              <h3>{{proj.title}}</h3>
+              <span class="proj-badge">{{proj.tag}}</span>
+            </div>
+          </div>
+          <p class="proj-subtitle">{{proj.subtitle}}</p>
+          <p class="proj-desc">{{proj.description}}</p>
+          <div class="proj-techs">
+            <span *ngFor="let t of proj.techs" class="tech-pill">{{t}}</span>
+          </div>
+          <a [href]="proj.url" target="_blank" rel="noopener" class="launch-btn">
+            ▶ LAUNCH APP .EXE 🚀
+          </a>
+        </article>
+      </div>
+
+      <div class="drawer-footer">
+        <span>WINAMP DOCK v2.0</span>
+        <small>Ael St. Germain © 2026</small>
+      </div>
+    </div>
+  </aside>
 
   <main id="content-wrap"><router-outlet></router-outlet></main>
 
@@ -33,6 +78,79 @@
     <button (click)="setCursor('cursor4')" [class.selected]="cursorChoice==='cursor4'" title="Cursor 4"><img src="cursor4.gif" alt="Cursor 4"></button>
     <button (click)="setCursor('wand')" [class.selected]="cursorChoice==='wand'" title="Varita">✧</button>
   </aside>
+
+  <!-- FLOATING BOT LAUNCHER BUTTON -->
+  <button class="floating-bot-launcher" (click)="botService.toggleBot()" title="Abrir AEL_BOT (Skin Winamp)">
+    <span class="bot-icon">🤖</span>
+    <span class="bot-label">AEL_BOT</span>
+    <span class="bot-key">[/]</span>
+  </button>
+
+  <!-- GLOBAL AEL_BOT MODAL WINDOW WITH WINAMP SKINS -->
+  <div class="winamp-bot-backdrop" *ngIf="botService.isOpen" (click)="botService.closeBot()">
+    <section class="winamp-bot-window skin-{{botService.currentSkin}}" role="dialog" aria-modal="true" aria-label="AEL Bot Winamp Edition" (click)="$event.stopPropagation()">
+      <!-- Winamp Titlebar -->
+      <div class="winamp-titlebar">
+        <div class="title-left">
+          <span class="winamp-logo">⚡</span>
+          <span class="winamp-title">AEL_BOT 1.2 — WINAMP SKINNABLE AI ENGINE</span>
+        </div>
+        <div class="winamp-controls">
+          <button class="winamp-btn minimize" (click)="botService.closeBot()" title="Minimizar">_</button>
+          <button class="winamp-btn close" (click)="botService.closeBot()" title="Cerrar">✕</button>
+        </div>
+      </div>
+
+      <!-- Winamp Display Panel & EQ Visualizer -->
+      <div class="winamp-display-panel">
+        <div class="display-screen">
+          <div class="screen-marquee">
+            <span>● WINAMP Y2K AUDIO-BOT v1.2 — POWERED BY GEMINI AI & LOCAL RESPONSIVE ENGINE — PRESIONA [SKIN] PARA CAMBIAR APARIENCIA</span>
+          </div>
+          <div class="eq-bars">
+            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+          </div>
+        </div>
+
+        <!-- Skin Selector Bar -->
+        <div class="skin-selector-bar">
+          <span class="skin-label">SKINS:</span>
+          <button *ngFor="let s of botService.skins" 
+                  class="skin-btn" 
+                  [class.active]="botService.currentSkin === s.id" 
+                  (click)="botService.setSkin(s.id)">
+            {{s.icon}} {{s.name}}
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Log Container -->
+      <div class="winamp-bot-log" aria-live="polite">
+        <p *ngFor="let item of botService.conversation" [class.user-line]="item.who==='you'">
+          <b>{{item.who==='bot'?'AEL_BOT':'VISITOR'}}:</b> {{item.text}}
+        </p>
+      </div>
+
+      <!-- Quick Suggestions -->
+      <div class="winamp-suggestions">
+        <button (click)="botService.ask('perfil')">perfil</button>
+        <button (click)="botService.ask('stack')">stack</button>
+        <button (click)="botService.ask('experiencia')">experiencia</button>
+        <button (click)="botService.ask('proyectos')">proyectos</button>
+        <button (click)="botService.ask('gustos')">gustos</button>
+        <button (click)="botService.ask('linux')">linux</button>
+      </div>
+
+      <!-- Command Input Form -->
+      <form (ngSubmit)="botService.ask()" class="winamp-form">
+        <label for="winamp-bot-msg">CMD:</label>
+        <input id="winamp-bot-msg" class="winamp-bot-input" name="message" [(ngModel)]="botService.message" autocomplete="off" placeholder="Escribe tu mensaje a Ael...">
+        <button type="submit" class="winamp-submit-btn">RUN ▶</button>
+      </form>
+    </section>
+  </div>
 
   <div class="custom-gif-cursor"
        *ngIf="activeGifCursor"

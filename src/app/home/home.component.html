@@ -49,11 +49,10 @@
         </div>
       </section>
       <section class="web-box spotlight">
-        <h2>.: NEW! AEL_BOT v0.1 :.</h2>
+        <h2>.: NEW! AEL_BOT v1.2 (WINAMP SKINS) :.</h2>
         <div><span class="bot-face">(◕‿◕)</span>
-          <p>Conversa con mi pequeña representante digital. Funciona localmente, no envía tus mensajes a ningún
-            servidor.</p><button class="y2k-button" (click)="openBot()">CHAT NOW!</button><small>o presiona la tecla
-            /</small>
+          <p>Conversa con mi pequeña representante digital en cualquier subpágina. ¡Ahora con skins intercambiables estilo Winamp!</p>
+          <button class="y2k-button" (click)="openBot()">CHAT NOW!</button><small>o presiona la tecla /</small>
         </div>
       </section>
       <section class="web-box projects" id="projects">
@@ -97,8 +96,10 @@
       </section>
       <section class="web-box updates">
         <h2>.: UPDATES :.</h2>
-        <p><b>22.07.26</b><br>Y2K portal is online!</p>
-        <p><b>NEW</b><br>AEL_BOT arrived.</p>
+        <p><b>23.07.26</b><br>⚡ AEL_BOT Winamp Skins Selector live!</p>
+        <p><b>23.07.26</b><br>🐾 Left Drawer: Real Projects (Patota & Kuichi).</p>
+        <p><b>23.07.26</b><br>🎮 Desktop Arcade Horizontal Grid layouts.</p>
+        <p><b>22.07.26</b><br>Y2K portal online.</p>
       </section>
       <section class="web-box favorites">
         <h2>.: MUSIC SHELF :.</h2><a href="https://open.spotify.com/search/Empire%20of%20the%20Sun" target="_blank"
@@ -113,23 +114,3 @@
   </div>
   <div class="webring">« PREV　 <b>PERSONAL WEBRING OF CURIOUS PEOPLE</b>　 RANDOM　 NEXT »</div>
 </section>
-
-<div class="bot-backdrop" *ngIf="botOpen" (click)="botOpen=false">
-  <section class="bot-window" role="dialog" aria-modal="true" aria-label="AEL Bot" (click)="$event.stopPropagation()">
-    <div class="bot-title"><span>🤖 AEL_BOT 1.0 — REAL AI ENGINE (GEMINI)</span><button (click)="botOpen=false"
-        aria-label="Cerrar">×</button></div>
-    <div class="bot-disclaimer">POWERED BY GEMINI 1.5 FLASH · RESPALDO LOCAL ACTIVO</div>
-    <div class="bot-log" aria-live="polite">
-      <p *ngFor="let item of conversation" [class.user-line]="item.who==='you'">
-        <b>{{item.who==='bot'?'AEL_BOT':'VISITOR'}}:</b> {{item.text}}
-      </p>
-    </div>
-    <div class="bot-suggestions"><button (click)="ask('perfil')">perfil</button><button
-        (click)="ask('stack')">stack</button><button (click)="ask('experiencia')">experiencia</button><button
-        (click)="ask('proyectos')">proyectos</button><button (click)="ask('gustos')">gustos</button><button
-        (click)="ask('linux')">linux</button></div>
-    <form (ngSubmit)="ask()"><label for="bot-message">COMMAND:</label><input id="bot-message" class="bot-input"
-        name="message" [(ngModel)]="message" autocomplete="off" placeholder="Pregúntale lo que quieras en lenguaje natural..."><button
-        type="submit">RUN</button></form>
-  </section>
-</div>

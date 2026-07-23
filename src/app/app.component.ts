@@ -1,23 +1,66 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { BotService, WinampSkin } from './service/bot.service';
+
+export interface DeveloperProject {
+  title: string;
+  subtitle: string;
+  url: string;
+  icon: string;
+  tag: string;
+  description: string;
+  techs: string[];
+}
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   isMenuOpen = false;
+  isProjectsDrawerOpen = false;
   isEditorialPage = true;
   cursorChoice = 'cursor1';
   activeGifCursor: string | null = null;
   cursorX = -100;
   cursorY = -100;
   isCursorVisible = false;
+
+  readonly developerProjects: DeveloperProject[] = [
+    {
+      title: 'PATOTA',
+      subtitle: 'Convoca grupos y organiza paseos',
+      url: 'https://aelstgermain.github.io/Patota',
+      icon: '🐾',
+      tag: 'WEB APP',
+      description: 'Aplicación para convocar grupos de personas y coordinar paseos o actividades al aire libre.',
+      techs: ['Web App', 'JavaScript', 'UX/UI']
+    },
+    {
+      title: 'KUICHI WEB',
+      subtitle: 'Cuidado de mascotas & ofertas vet',
+      url: 'https://aelstgermain.github.io/kuichiweb/',
+      icon: '🐶',
+      tag: 'VET PLATFORM',
+      description: 'Plataforma web para cuidar a tus mascotas y encontrar las mejores ofertas y servicios veterinarios.',
+      techs: ['Spring Boot', 'Java', 'Angular']
+    },
+    {
+      title: 'KUICHI MOBILE',
+      subtitle: 'Servicios para tu mascota en tu móvil',
+      url: 'https://aelstgermain.github.io/kuichiw',
+      icon: '📱',
+      tag: 'MOBILE APP',
+      description: 'Versión App de Kuichi: ofertas veterinarias y atención de mascotas directamente en tu celular.',
+      techs: ['Ionic', 'Angular', 'Mobile']
+    }
+  ];
 
   private readonly cursorGifs: Record<string, string> = {
     cursor1: 'cursor.gif',
@@ -26,7 +69,10 @@ export class AppComponent implements OnInit {
     cursor4: 'cursor4.gif'
   };
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public botService: BotService
+  ) {}
 
   ngOnInit() {
     this.setCursor(localStorage.getItem('ael-cursor') || 'cursor1');
@@ -37,6 +83,19 @@ export class AppComponent implements OnInit {
       this.isMenuOpen = false;
       window.scrollTo({ top: 0 });
     });
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onGlobalKeyDown(event: KeyboardEvent) {
+    const target = event.target as HTMLElement;
+    if (event.key === '/' && !['INPUT', 'TEXTAREA'].includes(target.tagName)) {
+      event.preventDefault();
+      this.botService.openBot();
+    }
+    if (event.key === 'Escape') {
+      this.botService.closeBot();
+      this.isProjectsDrawerOpen = false;
+    }
   }
 
   @HostListener('window:mousemove', ['$event'])
@@ -58,7 +117,13 @@ export class AppComponent implements OnInit {
     this.isCursorVisible = true;
   }
 
-  toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleProjectsDrawer() {
+    this.isProjectsDrawerOpen = !this.isProjectsDrawerOpen;
+  }
 
   setCursor(choice: string) {
     this.cursorChoice = choice;
