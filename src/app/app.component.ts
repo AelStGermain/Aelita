@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
       const url = (event as NavigationEnd).urlAfterRedirects.split('?')[0];
       this.isEditorialPage = url === '/';
+      document.body.classList.toggle('index-page', url === '/');
       this.isMenuOpen = false;
       window.scrollTo({ top: 0 });
     });

@@ -180,3 +180,23 @@ body.cursor-custom2,body.cursor-custom2 :is(a,button,[role="button"]){cursor:url
 @media(max-height:820px) and (min-width:701px){app-home .portal{zoom:.86}.site-header .masthead{min-height:65px!important}.site-header .brand strong{font-size:26px!important}footer{padding-block:5px!important}}
 @media(max-width:540px){.cursor-palette{right:4px;bottom:4px}.cursor-palette span{display:none}}
 @media(max-width:700px){.home-mode{height:auto;min-height:100dvh;overflow:visible}.home-mode main,.home-mode app-home{height:auto;overflow:visible}.floating-gif{display:none}.header-orb img{width:76px;height:31px}}
+
+/* Index viewport balancing: center the short links and compact the tall right rail. */
+html:has(body.index-page),body.index-page{height:100dvh;overflow:hidden}
+.center-links>div{display:flex;justify-content:space-around;gap:5px;padding:4px}.center-links a{flex:1;padding:3px!important;text-align:center!important;border-right:1px dotted #c78cbd!important}
+.favorites{display:grid!important;grid-template-columns:1fr 1fr}.favorites h2{grid-column:1/-1}.favorites a{padding:3px!important;font-size:8px!important;white-space:nowrap}
+.profile-mini img{width:82px!important;height:82px!important;margin:6px auto 3px!important}.profile-mini p{margin:3px!important;line-height:1.25!important}
+.right-column{gap:6px!important}.right-column .web-box p{margin:4px 6px!important}
+
+/* Three slow roaming hearts stay in the page margins. */
+.gif-heart{mix-blend-mode:multiply;opacity:.72;object-fit:contain;filter:saturate(1.15);will-change:transform}
+.heart-a{left:1.5vw;top:18%;width:48px;height:48px;animation:heartDriftA 18s steps(9,end) infinite alternate}
+.heart-b{left:auto;right:2vw;top:28%;width:76px;height:76px;animation:heartDriftB 24s steps(12,end) infinite alternate-reverse}
+.heart-c{left:8vw;top:auto;bottom:8%;width:34px;height:34px;animation:heartDriftC 28s steps(14,end) infinite alternate}
+@keyframes heartDriftA{0%{transform:translate(0,0) rotate(-8deg)}40%{transform:translate(9vw,18vh) rotate(7deg)}70%{transform:translate(2vw,42vh) rotate(-4deg)}100%{transform:translate(12vw,60vh) rotate(9deg)}}
+@keyframes heartDriftB{0%{transform:translate(0,0) scale(.85)}35%{transform:translate(-7vw,20vh) scale(1)}70%{transform:translate(1vw,38vh) scale(.78)}100%{transform:translate(-10vw,55vh) scale(.95)}}
+@keyframes heartDriftC{0%{transform:translate(0,0)}50%{transform:translate(35vw,-5vh)}100%{transform:translate(72vw,1vh)}}
+.index-ocean-gif{position:fixed;right:2vw;bottom:0;z-index:0;width:min(300px,18vw);height:auto;max-height:145px;object-fit:cover;border:3px ridge rgba(255,255,255,.8);opacity:.58;filter:saturate(.8) hue-rotate(18deg);pointer-events:none;mix-blend-mode:multiply}
+@media(max-width:1200px){.index-ocean-gif{width:170px;opacity:.35}.heart-a,.heart-b,.heart-c{opacity:.42}}
+@media(max-width:700px){html:has(body.index-page),body.index-page{height:auto;overflow:auto}.index-ocean-gif{display:none}}
+@media(prefers-reduced-motion:reduce){.heart-a,.heart-b,.heart-c{animation:none}}
