@@ -27,18 +27,18 @@
   <aside class="ael-projects-drawer" [class.open]="isProjectsDrawerOpen" aria-label="Proyectos Reales de Ael">
     <button class="drawer-toggle-btn" (click)="toggleProjectsDrawer()" aria-label="Alternar proyectos de Ael">
       <span class="led-blink">●</span> 
-      <span class="drawer-btn-text">PROYECTOS AEL</span> 
+      <span class="drawer-btn-text">PROYECTOS REALES</span> 
       <span class="arrow">{{isProjectsDrawerOpen ? '◀' : '▶'}}</span>
     </button>
 
     <div class="drawer-content">
       <div class="drawer-header">
         <h2>⚡ REAL APPS SHOWCASE ⚡</h2>
-        <small>by Ael St. Germain</small>
-        <button class="drawer-close" (click)="toggleProjectsDrawer()">×</button>
+        <small>por Sofía (Ael)</small>
+        <button class="drawer-close" (click)="toggleProjectsDrawer()" aria-label="Cerrar">✕</button>
       </div>
 
-      <p class="drawer-intro">Explora las aplicaciones web y móviles reales desarrolladas por Sofía (Ael):</p>
+      <p class="drawer-intro">Explora las aplicaciones web y móviles reales desarrolladas por Ael:</p>
 
       <div class="projects-list">
         <article class="project-card" *ngFor="let proj of developerProjects">
@@ -55,14 +55,14 @@
             <span *ngFor="let t of proj.techs" class="tech-pill">{{t}}</span>
           </div>
           <a [href]="proj.url" target="_blank" rel="noopener" class="launch-btn">
-            ▶ LAUNCH APP .EXE 🚀
+            ▶ ABRIR APLICACIÓN 🚀
           </a>
         </article>
       </div>
 
       <div class="drawer-footer">
-        <span>WINAMP DOCK v2.0</span>
-        <small>Ael St. Germain © 2026</small>
+        <span>AEL REAL PROJECTS DOCK</span>
+        <small>© 2026</small>
       </div>
     </div>
   </aside>
@@ -79,62 +79,59 @@
     <button (click)="setCursor('wand')" [class.selected]="cursorChoice==='wand'" title="Varita">✧</button>
   </aside>
 
-  <!-- FLOATING BOT LAUNCHER BUTTON -->
-  <button class="floating-bot-launcher" (click)="botService.toggleBot()" title="Abrir AEL_BOT (Skin Winamp)">
+  <!-- FLOATING & DRAGGABLE BOT LAUNCHER BUTTON -->
+  <button class="floating-bot-launcher" 
+          (click)="botService.toggleBot()" 
+          (mousedown)="startLauncherDrag($event)"
+          (touchstart)="startLauncherDrag($event)"
+          [style.transform]="'translate3d(' + launcherPos.x + 'px, ' + launcherPos.y + 'px, 0)'"
+          title="Abrir AEL_BOT (Arrastra para mover)">
+    <span class="drag-handle">::</span>
     <span class="bot-icon">🤖</span>
     <span class="bot-label">AEL_BOT</span>
     <span class="bot-key">[/]</span>
   </button>
 
-  <!-- GLOBAL AEL_BOT MODAL WINDOW WITH WINAMP SKINS -->
-  <div class="winamp-bot-backdrop" *ngIf="botService.isOpen" (click)="botService.closeBot()">
-    <section class="winamp-bot-window skin-{{botService.currentSkin}}" role="dialog" aria-modal="true" aria-label="AEL Bot Winamp Edition" (click)="$event.stopPropagation()">
-      <!-- Winamp Titlebar -->
-      <div class="winamp-titlebar">
-        <div class="title-left">
-          <span class="winamp-logo">⚡</span>
-          <span class="winamp-title">AEL_BOT 1.2 — WINAMP SKINNABLE AI ENGINE</span>
+  <!-- GLOBAL AEL_BOT MODAL WINDOW WITH SELECTABLE Y2K FRAMES -->
+  <div class="y2k-bot-backdrop" *ngIf="botService.isOpen" (click)="botService.closeBot()">
+    <section class="y2k-bot-window frame-{{botService.currentFrame}}" role="dialog" aria-modal="true" aria-label="AEL Bot" (click)="$event.stopPropagation()">
+      <!-- Y2K Decorative Window Frame Header -->
+      <div class="y2k-frame-header">
+        <div class="header-left">
+          <span class="frame-icon">✧</span>
+          <span class="frame-title">🤖 AEL_BOT v1.2 — INTELIGENCIA VIRTUAL</span>
         </div>
-        <div class="winamp-controls">
-          <button class="winamp-btn minimize" (click)="botService.closeBot()" title="Minimizar">_</button>
-          <button class="winamp-btn close" (click)="botService.closeBot()" title="Cerrar">✕</button>
+        <div class="header-controls">
+          <button class="win-btn min" (click)="botService.closeBot()" title="Minimizar">_</button>
+          <button class="win-btn close" (click)="botService.closeBot()" title="Cerrar">✕</button>
         </div>
       </div>
 
-      <!-- Winamp Display Panel & EQ Visualizer -->
-      <div class="winamp-display-panel">
-        <div class="display-screen">
-          <div class="screen-marquee">
-            <span>● WINAMP Y2K AUDIO-BOT v1.2 — POWERED BY GEMINI AI & LOCAL RESPONSIVE ENGINE — PRESIONA [SKIN] PARA CAMBIAR APARIENCIA</span>
-          </div>
-          <div class="eq-bars">
-            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
-            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
-            <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
-          </div>
-        </div>
+      <!-- Frame Selector Panel -->
+      <div class="y2k-frame-selector-bar">
+        <span class="frame-selector-label">MARCO Y2K:</span>
+        <button *ngFor="let f of botService.frames" 
+                class="frame-btn" 
+                [class.active]="botService.currentFrame === f.id" 
+                (click)="botService.setFrame(f.id)">
+          {{f.icon}} {{f.name}}
+        </button>
+      </div>
 
-        <!-- Skin Selector Bar -->
-        <div class="skin-selector-bar">
-          <span class="skin-label">SKINS:</span>
-          <button *ngFor="let s of botService.skins" 
-                  class="skin-btn" 
-                  [class.active]="botService.currentSkin === s.id" 
-                  (click)="botService.setSkin(s.id)">
-            {{s.icon}} {{s.name}}
-          </button>
-        </div>
+      <!-- Marquee & Status -->
+      <div class="y2k-screen-marquee">
+        <span>● AEL_BOT EN LÍNEA — GEMINI AI + ENGINE LOCAL — SELECCIONA TUS MARCOS RETRO FAVORITOS EN LA BARRA SUPERIOR</span>
       </div>
 
       <!-- Chat Log Container -->
-      <div class="winamp-bot-log" aria-live="polite">
+      <div class="y2k-bot-log" aria-live="polite">
         <p *ngFor="let item of botService.conversation" [class.user-line]="item.who==='you'">
           <b>{{item.who==='bot'?'AEL_BOT':'VISITOR'}}:</b> {{item.text}}
         </p>
       </div>
 
       <!-- Quick Suggestions -->
-      <div class="winamp-suggestions">
+      <div class="y2k-suggestions">
         <button (click)="botService.ask('perfil')">perfil</button>
         <button (click)="botService.ask('stack')">stack</button>
         <button (click)="botService.ask('experiencia')">experiencia</button>
@@ -144,10 +141,10 @@
       </div>
 
       <!-- Command Input Form -->
-      <form (ngSubmit)="botService.ask()" class="winamp-form">
-        <label for="winamp-bot-msg">CMD:</label>
-        <input id="winamp-bot-msg" class="winamp-bot-input" name="message" [(ngModel)]="botService.message" autocomplete="off" placeholder="Escribe tu mensaje a Ael...">
-        <button type="submit" class="winamp-submit-btn">RUN ▶</button>
+      <form (ngSubmit)="botService.ask()" class="y2k-form">
+        <label for="y2k-bot-msg">CMD:</label>
+        <input id="y2k-bot-msg" class="y2k-bot-input" name="message" [(ngModel)]="botService.message" autocomplete="off" placeholder="Pregúntale lo que quieras a Ael...">
+        <button type="submit" class="y2k-submit-btn">ENVIAR ▶</button>
       </form>
     </section>
   </div>

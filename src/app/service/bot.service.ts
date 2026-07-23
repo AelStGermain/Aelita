@@ -2,33 +2,38 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { processBotQuery, ChatMessage } from '../home/bot-engine';
 
-export type WinampSkin = 'classic' | 'basecamp' | 'matrix' | 'gold';
+export type Y2kFrame = 'pink' | 'cyber' | 'gold' | 'sakura';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BotService {
   isOpen = false;
-  currentSkin: WinampSkin = 'classic';
+  currentFrame: Y2kFrame = 'pink';
   message = '';
   conversation: ChatMessage[] = [
-    { who: 'bot', text: '¡Hola! Soy AEL_BOT 1.2 (Winamp Edition) 🤖' },
-    { who: 'bot', text: 'Conversa conmigo sobre la experiencia, stack y proyectos de Sofía (Ael). ¡Prueba mis distintas Winamp Skins!' }
+    { who: 'bot', text: '¡Hola! Soy AEL_BOT 1.2 🤖' },
+    { who: 'bot', text: 'Conversa conmigo sobre los proyectos, stack y trayectoria de Sofía (Ael). ¡Prueba mis marcos Y2K seleccionables!' }
   ];
 
-  readonly skins: { id: WinampSkin; name: string; icon: string }[] = [
-    { id: 'classic', name: 'Winamp Classic', icon: '⚡' },
-    { id: 'basecamp', name: 'Pink Y2K', icon: '💖' },
-    { id: 'matrix', name: 'Cyber Matrix', icon: '📟' },
-    { id: 'gold', name: 'Retro Gold', icon: '👑' }
+  readonly frames: { id: Y2kFrame; name: string; icon: string }[] = [
+    { id: 'pink', name: 'Holo Pink', icon: '💖' },
+    { id: 'cyber', name: 'Cyber Matrix', icon: '📟' },
+    { id: 'gold', name: 'Win 98 Gold', icon: '👑' },
+    { id: 'sakura', name: 'Sakura Retro', icon: '🌸' }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    const savedFrame = localStorage.getItem('ael_bot_frame') as Y2kFrame;
+    if (savedFrame && this.frames.some(f => f.id === savedFrame)) {
+      this.currentFrame = savedFrame;
+    }
+  }
 
   openBot() {
     this.isOpen = true;
     setTimeout(() => {
-      document.querySelector<HTMLInputElement>('.winamp-bot-input')?.focus();
+      document.querySelector<HTMLInputElement>('.y2k-bot-input')?.focus();
     }, 100);
   }
 
@@ -44,9 +49,9 @@ export class BotService {
     }
   }
 
-  setSkin(skin: WinampSkin) {
-    this.currentSkin = skin;
-    localStorage.setItem('ael_bot_skin', skin);
+  setFrame(frame: Y2kFrame) {
+    this.currentFrame = frame;
+    localStorage.setItem('ael_bot_frame', frame);
   }
 
   async ask(suggestion?: string) {
@@ -84,7 +89,7 @@ export class BotService {
 
   private scrollBotLog() {
     setTimeout(() => {
-      const box = document.querySelector('.winamp-bot-log');
+      const box = document.querySelector('.y2k-bot-log');
       if (box) box.scrollTop = box.scrollHeight;
     }, 50);
   }

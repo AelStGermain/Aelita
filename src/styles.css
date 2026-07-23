@@ -220,17 +220,31 @@ html:has(body.index-page),body.index-page{height:100dvh;overflow:hidden}
 @media(prefers-reduced-motion:reduce){.avatar-cycle img{animation:none}.avatar-cycle img:nth-child(2){display:none}}
 
 /* ==========================================================================
-   Y2K DARK NIGHT MODE & ENHANCED GLOBAL STYLING
+   Y2K 20% DARKER PASTEL OCEAN BACKGROUND & UNIFIED PAGE PALETTE
    ========================================================================== */
 body {
-  background-color: #0d081e !important;
+  background-color: #b0e3f5 !important;
   background-image: 
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
-    radial-gradient(circle at center, rgba(175, 110, 255, 0.4) 0 1px, transparent 2px),
-    radial-gradient(circle at center, rgba(0, 229, 255, 0.35) 0 1px, transparent 2px) !important;
-  background-size: 47px 47px, 71px 71px, 91px 91px !important;
-  background-position: 0 0, 17px 29px, 43px 11px !important;
-  color: #f1e9ff !important;
+    radial-gradient(circle at center, #ffffff 0 1.5px, transparent 2.5px),
+    linear-gradient(135deg, rgba(255, 130, 200, 0.32), transparent 40%),
+    linear-gradient(315deg, rgba(100, 210, 255, 0.35), transparent 45%) !important;
+  background-size: 42px 42px, 100% 100%, 100% 100% !important;
+  background-position: 0 0, 0 0, 0 0 !important;
+  color: #1e0e38 !important;
+}
+
+/* Unified background for all game pages & subpages */
+app-gato, app-batalla-naval, app-memorice, app-palabras, app-snake, app-lector, app-cipher, app-ctf {
+  position: relative;
+  display: block;
+  height: 100%;
+  min-height: 0;
+  padding: 6px;
+  overflow: auto;
+  background: 
+    radial-gradient(circle at 8% 12%, rgba(255, 255, 255, 0.92) 0 18px, transparent 20px),
+    radial-gradient(circle at 92% 18%, rgba(255, 255, 255, 0.75) 0 30px, transparent 32px),
+    linear-gradient(135deg, #b8e6f7, #f7d2f9 48%, #e0c8ff) !important;
 }
 
 /* ==========================================================================
@@ -239,7 +253,7 @@ body {
 .ael-projects-drawer {
   position: fixed;
   left: 0;
-  top: 130px;
+  top: 140px;
   z-index: 9500;
   display: flex;
   align-items: flex-start;
@@ -254,32 +268,30 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 14px;
-  background: linear-gradient(180deg, #4d2673, #2a1145 60%, #581d7c);
-  color: #ffe6ff;
-  border: 3px ridge #ff8ed1 !important;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, #ff71c6, #9c27b0 60%, #4a154b);
+  color: #ffffff;
+  border: 3px ridge #ffffff !important;
   border-left: none !important;
-  border-radius: 0 12px 12px 0 !important;
-  font: bold 10px 'Press Start 2P', monospace, sans-serif;
+  border-radius: 0 10px 10px 0 !important;
+  font: bold 9px 'Press Start 2P', monospace, sans-serif;
   cursor: pointer;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 107, 186, 0.4);
-  transform: rotate(0deg);
-  white-space: nowrap;
+  box-shadow: 4px 4px 0 rgba(70, 20, 90, 0.4), 0 0 12px rgba(255, 113, 198, 0.4);
   writing-mode: vertical-rl;
   text-orientation: mixed;
   letter-spacing: 1px;
 }
 .drawer-toggle-btn:hover {
-  background: linear-gradient(180deg, #6c32a3, #3c1961 60%, #7d29ae);
-  color: #72f7ff;
+  background: linear-gradient(180deg, #ff8fd2, #b038c6 60%, #601f62);
+  color: #70f3ff;
 }
 .drawer-toggle-btn .led-blink {
   color: #00ff73;
   animation: ledPulse 1.2s infinite alternate;
 }
 .drawer-toggle-btn .arrow {
-  font-size: 14px;
-  color: #ff9ee2;
+  font-size: 13px;
+  color: #70f3ff;
 }
 
 @keyframes ledPulse {
@@ -292,31 +304,31 @@ body {
   max-height: 80vh;
   overflow-y: auto;
   padding: 12px;
-  background: linear-gradient(145deg, #1c0e36, #2d1454 50%, #15092b);
-  border: 4px ridge #ff94d4 !important;
+  background: linear-gradient(145deg, #fff2fc, #f1dbff 50%, #e2eeff);
+  border: 4px ridge #ff8ad4 !important;
   border-left: none !important;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.6), 0 0 20px rgba(184, 82, 235, 0.5);
-  color: #f7eaff;
+  box-shadow: 6px 6px 0 rgba(66, 28, 97, 0.35), 0 0 18px rgba(184, 82, 235, 0.3);
+  color: #2e104d;
 }
 
 .drawer-header {
   position: relative;
   margin-bottom: 10px;
   padding-bottom: 8px;
-  border-bottom: 2px dashed #a85bc9;
+  border-bottom: 2px dashed #b56cd6;
 }
 .drawer-header h2 {
   margin: 0;
   font-size: 11px;
   font-family: 'Press Start 2P', monospace;
-  color: #70f3ff;
-  text-shadow: 2px 2px #751d8b;
+  color: #8c23ab;
+  text-shadow: 1px 1px #fff;
 }
 .drawer-header small {
   display: block;
   margin-top: 4px;
   font-size: 9px;
-  color: #ff9ee2;
+  color: #d11f8e;
   font-weight: bold;
 }
 .drawer-close {
@@ -335,7 +347,7 @@ body {
   margin: 0 0 12px;
   font-size: 10px;
   line-height: 1.4;
-  color: #d8c2ff;
+  color: #532578;
 }
 
 .projects-list {
@@ -346,15 +358,15 @@ body {
 
 .project-card {
   padding: 10px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 2px outset #b577e3;
-  box-shadow: inset 1px 1px #fff, 3px 3px 0 rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  border: 2px outset #ffb6e6;
+  box-shadow: inset 1px 1px #fff, 3px 3px 0 rgba(86, 38, 122, 0.2);
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 .project-card:hover {
   transform: translateY(-2px);
-  border-color: #70f3ff;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  border-color: #8c23ab;
+  background: #fff8fd;
 }
 
 .card-top {
@@ -369,14 +381,14 @@ body {
   margin: 0;
   font-size: 12px;
   font-family: 'Press Start 2P', monospace;
-  color: #ffe17d;
-  text-shadow: 1px 1px #802e00;
+  color: #8a2be2;
+  text-shadow: 1px 1px #ffebf7;
 }
 .proj-badge {
   display: inline-block;
   margin-top: 2px;
   padding: 1px 5px;
-  background: #8e2baf;
+  background: #ff4797;
   color: #fff;
   font-size: 7px;
   font-weight: bold;
@@ -387,13 +399,13 @@ body {
   margin: 6px 0 4px;
   font-size: 9px;
   font-weight: bold;
-  color: #72f7ff;
+  color: #0077b6;
 }
 .proj-desc {
   margin: 0 0 8px;
   font-size: 9px;
   line-height: 1.3;
-  color: #e5d4ff;
+  color: #3d235a;
 }
 .proj-techs {
   display: flex;
@@ -403,10 +415,11 @@ body {
 }
 .tech-pill {
   padding: 1px 5px;
-  background: #361b5c;
-  border: 1px solid #7d44ab;
-  color: #d1abff;
+  background: #ede2ff;
+  border: 1px solid #b78ee8;
+  color: #551a8b;
   font-size: 7px;
+  font-weight: bold;
 }
 
 .launch-btn {
@@ -419,31 +432,31 @@ body {
   font: bold 9px Verdana, sans-serif;
   text-decoration: none !important;
   border: 2px outset #ffa8dc !important;
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
   transition: filter 0.2s ease;
 }
 .launch-btn:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.15);
 }
 
 .drawer-footer {
   margin-top: 12px;
   padding-top: 6px;
-  border-top: 1px solid #4a2773;
+  border-top: 1px solid #d2a4e8;
   display: flex;
   justify-content: space-between;
   font-size: 8px;
-  color: #9f75cf;
+  color: #7b4aa3;
 }
 
 
 /* ==========================================================================
-   FLOATING BOT LAUNCHER & WINAMP SKINNED AEL_BOT MODAL
+   FLOATING & DRAGGABLE AEL_BOT LAUNCHER & MARCOS Y2K MODAL
    ========================================================================== */
 .floating-bot-launcher {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: 16px;
+  bottom: 52px;
   z-index: 9200;
   display: flex;
   align-items: center;
@@ -453,12 +466,19 @@ body {
   color: #fff;
   border: 3px ridge #fff !important;
   font: bold 10px Verdana, sans-serif;
-  box-shadow: 0 0 15px rgba(255, 94, 180, 0.6), 4px 4px 0 rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  box-shadow: 0 0 15px rgba(255, 94, 180, 0.6), 4px 4px 0 rgba(0, 0, 0, 0.4);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.05s ease-out;
 }
-.floating-bot-launcher:hover {
-  transform: scale(1.06);
+.floating-bot-launcher:active {
+  cursor: grabbing;
+}
+.floating-bot-launcher .drag-handle {
+  font-weight: bold;
+  opacity: 0.75;
+  margin-right: 2px;
 }
 .floating-bot-launcher .bot-key {
   padding: 1px 4px;
@@ -468,155 +488,135 @@ body {
   color: #ffe600;
 }
 
-.winamp-bot-backdrop {
+.y2k-bot-backdrop {
   position: fixed;
   inset: 0;
   z-index: 9900;
-  background: rgba(7, 3, 18, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(14, 8, 30, 0.65);
+  backdrop-filter: blur(3px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
 }
 
-.winamp-bot-window {
-  width: min(580px, 95vw);
-  border: 4px ridge #fff;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 10px 10px 0 rgba(0, 0, 0, 0.6);
+.y2k-bot-window {
+  width: min(560px, 95vw);
+  border: 5px ridge #fff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 8px 8px 0 rgba(40, 15, 60, 0.5);
   font-family: Verdana, sans-serif;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
-/* Winamp Skins Themes */
+/* MARCOS Y2K SELECCIONABLES */
 
-/* 1. Classic Winamp Dark */
-.winamp-bot-window.skin-classic {
-  background: #1e2026;
-  border-color: #7b8396;
-  color: #d1d5db;
-}
-.skin-classic .winamp-titlebar {
-  background: linear-gradient(90deg, #12141a, #333846 50%, #12141a);
-  color: #00ffcc;
-  border-bottom: 2px solid #00ffcc;
-}
-.skin-classic .winamp-display-panel {
-  background: #000;
-  border: 2px inset #444;
-  color: #00ff66;
-}
-.skin-classic .winamp-bot-log {
-  background: #0d0e12;
-  border: 2px inset #2a2d36;
-  color: #e2e8f0;
-}
-.skin-classic .user-line {
-  color: #38bdf8;
-}
-.skin-classic .skin-btn.active {
-  background: #00ffcc !important;
-  color: #000 !important;
-}
-
-/* 2. Basecamp Pink Y2K */
-.winamp-bot-window.skin-basecamp {
-  background: linear-gradient(135deg, #ffeef7, #ffd6eb 50%, #f0c5ff);
+/* 1. Holo Pink Frame */
+.y2k-bot-window.frame-pink {
+  background: linear-gradient(135deg, #fff0f8, #ffd8ee 50%, #f3c7ff);
   border-color: #ff8ad4;
   color: #4a1338;
 }
-.skin-basecamp .winamp-titlebar {
+.frame-pink .y2k-frame-header {
   background: linear-gradient(90deg, #ff4f9e, #c026d3 50%, #7c3aed);
   color: #fff;
   border-bottom: 2px solid #fff;
 }
-.skin-basecamp .winamp-display-panel {
-  background: #3b0764;
-  border: 2px inset #ff8ad4;
-  color: #ff9ee2;
-}
-.skin-basecamp .winamp-bot-log {
-  background: #fff5fa;
-  border: 2px inset #e8b0d5;
+.frame-pink .y2k-bot-log {
+  background: #ffffff;
+  border: 2px inset #ffb8e4;
   color: #3e1236;
 }
-.skin-basecamp .user-line {
+.frame-pink .user-line {
   color: #9333ea;
 }
-.skin-basecamp .skin-btn.active {
+.frame-pink .frame-btn.active {
   background: #ff4f9e !important;
   color: #fff !important;
 }
 
-/* 3. Cyber Matrix */
-.winamp-bot-window.skin-matrix {
-  background: #020b04;
+/* 2. Cyber Matrix Frame */
+.y2k-bot-window.frame-cyber {
+  background: #041006;
   border-color: #00ff41;
   color: #00ff41;
   box-shadow: 0 0 25px rgba(0, 255, 65, 0.4);
 }
-.skin-matrix .winamp-titlebar {
-  background: linear-gradient(90deg, #002208, #004d12 50%, #002208);
+.frame-cyber .y2k-frame-header {
+  background: linear-gradient(90deg, #002e0b, #006619 50%, #002e0b);
   color: #00ff41;
   border-bottom: 2px solid #00ff41;
 }
-.skin-matrix .winamp-display-panel {
-  background: #000;
-  border: 2px solid #00ff41;
-  color: #00ff41;
-}
-.skin-matrix .winamp-bot-log {
-  background: #011105;
+.frame-cyber .y2k-bot-log {
+  background: #011406;
   border: 2px inset #005c18;
   color: #3bf36d;
   font-family: monospace;
 }
-.skin-matrix .user-line {
+.frame-cyber .user-line {
   color: #72f7ff;
 }
-.skin-matrix .skin-btn {
+.frame-cyber .frame-btn {
   background: #002208 !important;
   color: #00ff41 !important;
   border-color: #00ff41 !important;
 }
-.skin-matrix .skin-btn.active {
+.frame-cyber .frame-btn.active {
   background: #00ff41 !important;
   color: #000 !important;
 }
 
-/* 4. Retro Gold & Aqua */
-.winamp-bot-window.skin-gold {
-  background: linear-gradient(135deg, #0f354a, #1a5677 50%, #0d2838);
+/* 3. Win 98 Gold Frame */
+.y2k-bot-window.frame-gold {
+  background: linear-gradient(135deg, #12405a, #1d6188 50%, #0f3044);
   border-color: #ffd700;
   color: #fff;
 }
-.skin-gold .winamp-titlebar {
+.frame-gold .y2k-frame-header {
   background: linear-gradient(90deg, #b8860b, #ffd700 50%, #b8860b);
   color: #2b1d00;
   border-bottom: 2px solid #fff;
   font-weight: bold;
 }
-.skin-gold .winamp-display-panel {
-  background: #081d29;
-  border: 2px inset #ffd700;
-  color: #72f7ff;
-}
-.skin-gold .winamp-bot-log {
-  background: #0b2230;
-  border: 2px inset #1e4d69;
+.frame-gold .y2k-bot-log {
+  background: #0b2535;
+  border: 2px inset #225a7c;
   color: #e2f4ff;
 }
-.skin-gold .user-line {
+.frame-gold .user-line {
   color: #ffd700;
 }
-.skin-gold .skin-btn.active {
+.frame-gold .frame-btn.active {
   background: #ffd700 !important;
   color: #000 !important;
 }
 
-/* Common Winamp Layout Parts */
-.winamp-titlebar {
+/* 4. Sakura Retro Frame */
+.y2k-bot-window.frame-sakura {
+  background: linear-gradient(135deg, #e4fbf8, #d4f8f2 50%, #ffdced);
+  border-color: #70d6c9;
+  color: #1f4e47;
+}
+.frame-sakura .y2k-frame-header {
+  background: linear-gradient(90deg, #38b2a3, #e870a9 50%, #48c5b5);
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.frame-sakura .y2k-bot-log {
+  background: #ffffff;
+  border: 2px inset #92e0d5;
+  color: #1a4d46;
+}
+.frame-sakura .user-line {
+  color: #d81b60;
+}
+.frame-sakura .frame-btn.active {
+  background: #38b2a3 !important;
+  color: #fff !important;
+}
+
+/* Common Frame Header Parts */
+.y2k-frame-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -624,96 +624,63 @@ body {
   font-size: 10px;
   font-family: 'Press Start 2P', monospace;
 }
-.winamp-titlebar .title-left {
+.y2k-frame-header .header-left {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.winamp-controls {
+.header-controls {
   display: flex;
   gap: 3px;
 }
-.winamp-btn {
+.win-btn {
   width: 20px;
   height: 18px;
   padding: 0;
   font-weight: bold;
   font-size: 10px;
   border: 2px outset #fff !important;
-  background: #d4d4d4;
+  background: #e2e2e2;
   color: #000;
   cursor: pointer;
 }
 
-.winamp-display-panel {
-  margin: 8px;
-  padding: 8px;
-}
-.display-screen {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 6px;
-}
-.screen-marquee {
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  font: bold 9px monospace;
-}
-.screen-marquee span {
-  display: inline-block;
-  animation: marqueeScroll 16s linear infinite;
-}
-
-@keyframes marqueeScroll {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-
-.eq-bars {
-  display: flex;
-  gap: 2px;
-  align-items: flex-end;
-  height: 16px;
-}
-.eq-bar {
-  width: 3px;
-  height: 100%;
-  background: #00ff73;
-  animation: eqBounce 0.8s ease-in-out infinite alternate;
-}
-.eq-bar:nth-child(2n) { animation-delay: 0.15s; background: #ff0077; }
-.eq-bar:nth-child(3n) { animation-delay: 0.3s; background: #00ccff; }
-
-@keyframes eqBounce {
-  0% { height: 20%; }
-  100% { height: 100%; }
-}
-
-.skin-selector-bar {
+.y2k-frame-selector-bar {
   display: flex;
   align-items: center;
   gap: 4px;
   flex-wrap: wrap;
-  padding-top: 4px;
-  border-top: 1px dotted rgba(255, 255, 255, 0.3);
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-.skin-label {
+.frame-selector-label {
   font: bold 8px monospace;
   margin-right: 4px;
 }
-.skin-btn {
+.frame-btn {
   padding: 2px 6px;
   font: 8px Verdana, sans-serif;
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
-  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  background: rgba(255, 255, 255, 0.25);
   color: inherit;
   cursor: pointer;
 }
 
-.winamp-bot-log {
+.y2k-screen-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  font: bold 8px monospace;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  color: inherit;
+}
+.y2k-screen-marquee span {
+  display: inline-block;
+  animation: marqueeScroll 18s linear infinite;
+}
+
+.y2k-bot-log {
   height: 220px;
   margin: 8px;
   padding: 10px;
@@ -721,39 +688,39 @@ body {
   font-size: 11px;
   line-height: 1.4;
 }
-.winamp-bot-log p {
+.y2k-bot-log p {
   margin: 0 0 8px;
 }
 
-.winamp-suggestions {
+.y2k-suggestions {
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
   padding: 0 8px 6px;
 }
-.winamp-suggestions button {
+.y2k-suggestions button {
   padding: 3px 7px;
   font-size: 9px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   color: inherit;
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
   cursor: pointer;
 }
-.winamp-suggestions button:hover {
-  background: rgba(255, 255, 255, 0.4);
+.y2k-suggestions button:hover {
+  background: rgba(255, 255, 255, 0.45);
 }
 
-.winamp-form {
+.y2k-form {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 8px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.15);
 }
-.winamp-form label {
+.y2k-form label {
   font: bold 9px monospace;
 }
-.winamp-bot-input {
+.y2k-bot-input {
   flex: 1;
   padding: 6px 8px;
   border: 2px inset #fff;
@@ -761,7 +728,7 @@ body {
   color: #000;
   font-size: 11px;
 }
-.winamp-submit-btn {
+.y2k-submit-btn {
   padding: 6px 12px;
   background: #00cc66 !important;
   color: #fff !important;
@@ -885,4 +852,5 @@ body {
     overflow-y: auto !important;
   }
 }
+
 

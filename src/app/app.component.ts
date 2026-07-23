@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { BotService, WinampSkin } from './service/bot.service';
+import { BotService, Y2kFrame } from './service/bot.service';
 
 export interface DeveloperProject {
   title: string;
@@ -31,6 +31,12 @@ export class AppComponent implements OnInit {
   cursorX = -100;
   cursorY = -100;
   isCursorVisible = false;
+
+  // Draggable AEL_BOT launcher button state
+  launcherPos = { x: 0, y: 0 };
+  private isDraggingLauncher = false;
+  private dragStart = { x: 0, y: 0 };
+  private launcherStart = { x: 0, y: 0 };
 
   readonly developerProjects: DeveloperProject[] = [
     {
@@ -105,16 +111,42 @@ export class AppComponent implements OnInit {
     if (!this.isCursorVisible) {
       this.isCursorVisible = true;
     }
+
+    if (this.isDraggingLauncher) {
+      const deltaX = event.clientX - this.dragStart.x;
+      const deltaY = event.clientY - this.dragStart.y;
+      this.launcherPos = {
+        x: this.launcherStart.x + deltaX,
+        y: this.launcherStart.y + deltaY
+      };
+    }
+  }
+
+  @HostListener('window:mouseup')
+  onMouseUp() {
+    if (this.isDraggingLauncher) {
+      this.isDraggingLauncher = false;
+    }
   }
 
   @HostListener('window:mouseleave')
   onMouseLeave() {
     this.isCursorVisible = false;
+    this.isDraggingLauncher = false;
   }
 
   @HostListener('window:mouseenter')
   onMouseEnter() {
     this.isCursorVisible = true;
+  }
+
+  startLauncherDrag(event: MouseEvent | TouchEvent) {
+    // Only drag on left click or touch
+    this.isDraggingLauncher = true;
+    const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
+    const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
+    this.dragStart = { x: clientX, y: clientY };
+    this.launcherStart = { ...this.launcherPos };
   }
 
   toggleMenu() {
