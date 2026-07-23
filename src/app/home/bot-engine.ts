@@ -58,10 +58,10 @@ Bot: "Puedo contarte sobre mis proyectos en backend, mi experiencia práctica o 
 `;
 
 /**
- * Llama a la API de Google Gemini (modelo gemini-2.0-flash)
+ * Llama a la API de Google Gemini (usando el alias gemini-flash-latest)
  */
 async function queryGeminiAI(userPrompt: string, history: ChatMessage[], apiKey: string): Promise<string> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`;
 
   const contents = history
     .filter(msg => msg.text && msg.text !== 'Pensando...')
