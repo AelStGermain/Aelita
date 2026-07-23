@@ -169,6 +169,14 @@ body.cursor-star,body.cursor-star :is(a,button,[role="button"]){cursor:url("data
 body.cursor-wand,body.cursor-wand :is(a,button,[role="button"]){cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cpath d='M5 27L22 10' stroke='%23853eb0' stroke-width='5'/%3E%3Cpath d='M23 1L25 7L30 9L25 11L23 17L21 11L16 9L21 7Z' fill='%237eeaf3' stroke='white'/%3E%3C/svg%3E") 5 26,auto!important}
 body.cursor-custom1,body.cursor-custom1 :is(a,button,[role="button"]){cursor:url("/Aelita/cursor.gif") 4 3,auto!important}
 body.cursor-custom2,body.cursor-custom2 :is(a,button,[role="button"]){cursor:url("/Aelita/cursor2.gif") 5 4,auto!important}
+body.cursor-custom3,body.cursor-custom3 :is(a,button,[role="button"]){cursor:url("/Aelita/cursor3.gif") 4 3,auto!important}
+body.cursor-custom4,body.cursor-custom4 :is(a,button,[role="button"]){cursor:url("/Aelita/cursor4.gif") 4 3,auto!important}
+
+body.use-custom-gif-cursor,body.use-custom-gif-cursor *{cursor:none!important}
+.custom-gif-cursor{position:fixed;top:0;left:0;z-index:999999;pointer-events:none;user-select:none;will-change:transform;line-height:0}
+.custom-gif-cursor img{display:block;max-width:32px;max-height:32px;object-fit:contain;image-rendering:pixelated}
+@media(pointer:coarse){.custom-gif-cursor{display:none!important}body.use-custom-gif-cursor,body.use-custom-gif-cursor *{cursor:auto!important}}
+
 .cursor-palette{position:fixed;right:8px;bottom:8px;z-index:4000;display:flex;align-items:center;gap:2px;padding:3px;border:3px ridge #fff;background:linear-gradient(90deg,#ffc9e6,#caf6ff);box-shadow:3px 3px #75438e;font:7px Verdana,sans-serif}.cursor-palette span{padding:0 3px;color:#68327d;font-weight:bold}.cursor-palette button{width:23px;height:22px;padding:0;border:2px outset #fff;background:#eee4fa;color:#763b91;font-size:12px}.cursor-palette button.selected{border-style:inset;background:#fff6a8;color:#d52388}
 .cursor-palette button img{display:block;max-width:18px;max-height:18px;margin:auto;image-rendering:pixelated}
 .header-orb img{display:block;width:100px;height:40px;object-fit:contain;image-rendering:pixelated}

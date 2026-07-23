@@ -29,7 +29,17 @@
     <button (click)="setCursor('system')" [class.selected]="cursorChoice==='system'" title="Cursor del sistema">↖</button>
     <button (click)="setCursor('cursor1')" [class.selected]="cursorChoice==='cursor1'" title="Gatito"><img src="cursor.gif" alt="Gatito"></button>
     <button (click)="setCursor('cursor2')" [class.selected]="cursorChoice==='cursor2'" title="Ordenador"><img src="cursor2.gif" alt="Ordenador"></button>
+    <button (click)="setCursor('cursor3')" [class.selected]="cursorChoice==='cursor3'" title="Cursor 3"><img src="cursor3.gif" alt="Cursor 3"></button>
+    <button (click)="setCursor('cursor4')" [class.selected]="cursorChoice==='cursor4'" title="Cursor 4"><img src="cursor4.gif" alt="Cursor 4"></button>
     <button (click)="setCursor('wand')" [class.selected]="cursorChoice==='wand'" title="Varita">✧</button>
   </aside>
+
+  <div class="custom-gif-cursor"
+       *ngIf="activeGifCursor"
+       [style.display]="isCursorVisible ? 'block' : 'none'"
+       [style.transform]="'translate3d(' + cursorX + 'px, ' + cursorY + 'px, 0)'"
+       aria-hidden="true">
+    <img [src]="activeGifCursor" alt="" />
+  </div>
 
 </div>
