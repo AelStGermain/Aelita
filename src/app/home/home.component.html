@@ -7,11 +7,32 @@
       CONSTRUCTION ✦</span></div>
   <div class="portal-grid">
     <aside class="left-column">
-      <section class="web-box nav-box">
-        <h2>.: NAVIGATION :.</h2>
-        <nav><a routerLink="/">» Home</a><a routerLink="/about">» About me</a><a href="#projects">» Projects</a><button
-            (click)="openBot()">» AEL_BOT</button><a routerLink="/ctf">» Cyber CTF</a><a routerLink="/cipher">»
-            Cipher</a></nav>
+      <section class="web-box tamagotchi-box">
+        <h2>.: AELITA_PET v1.0 :.</h2>
+        <div class="tamagotchi-screen">
+          <div class="pet-header">
+            <span class="pet-name">🐱 {{petName}}</span>
+            <span class="pet-lvl">LVL {{ (petExp / 50) | number:'1.0-0' }}</span>
+          </div>
+          <div class="pet-display">
+            <div class="pet-avatar">
+              <span *ngIf="petState==='happy'" class="avatar-emoji animated-bounce">🐱💖</span>
+              <span *ngIf="petState==='eating'" class="avatar-emoji animated-chew">🐱🐟</span>
+              <span *ngIf="petState==='sleeping'" class="avatar-emoji animated-z">🐱💤</span>
+              <span *ngIf="petState==='coding'" class="avatar-emoji animated-hack">🐱💻</span>
+            </div>
+            <p class="pet-msg">{{petStatusMsg}}</p>
+          </div>
+          <div class="pet-meters">
+            <div class="meter"><small>HAPPY</small><div class="bar-outer"><div class="bar-inner" [style.width.%]="petHappiness"></div></div></div>
+            <div class="meter"><small>ENERGY</small><div class="bar-outer"><div class="bar-inner energy-bar" [style.width.%]="petEnergy"></div></div></div>
+          </div>
+          <div class="pet-actions">
+            <button (click)="feedPet()" title="Alimentar con snack">🐟 Snack</button>
+            <button (click)="petPet()" title="Dar mimos">💖 Mimar</button>
+            <button (click)="codePet()" title="Poner a programar">💻 Hack</button>
+          </div>
+        </div>
       </section>
       <section class="web-box counter-box">
         <h2>.: VISITORS :.</h2>

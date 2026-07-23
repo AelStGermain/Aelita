@@ -46,7 +46,7 @@ export class AboutComponent {
     {
       title: 'KUICHI APP',
       subtitle: 'Versión App móvil de Kuichi',
-      url: 'https://aelstgermain.github.io/Kuichiapp',
+      url: 'https://aelstgermain.github.io/kuichiapp',
       icon: '📱',
       badge: 'MOBILE APP',
       desc: 'Aplicación móvil de la plataforma Kuichi. Lleva todas las utilidades, promociones veterinarias y seguimiento de mascotas directamente al smartphone.',

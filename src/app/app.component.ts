@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     {
       title: 'KUICHI APP',
       subtitle: 'Servicios para tu mascota en tu móvil',
-      url: 'https://aelstgermain.github.io/Kuichiapp',
+      url: 'https://aelstgermain.github.io/kuichiapp',
       icon: '📱',
       tag: 'MOBILE APP',
       description: 'Versión App de Kuichi: ofertas veterinarias y atención de mascotas directamente en tu celular.',
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     public botService: BotService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.setCursor(localStorage.getItem('ael-cursor') || 'cursor1');
@@ -158,8 +158,8 @@ export class AppComponent implements OnInit {
 
   setCursor(choice: string) {
     this.cursorChoice = choice;
-    document.body.classList.remove('cursor-custom1','cursor-custom2','cursor-custom3','cursor-custom4','cursor-wand','use-custom-gif-cursor');
-    
+    document.body.classList.remove('cursor-custom1', 'cursor-custom2', 'cursor-custom3', 'cursor-custom4', 'cursor-wand', 'use-custom-gif-cursor');
+
     if (this.cursorGifs[choice]) {
       this.activeGifCursor = this.cursorGifs[choice];
       document.body.classList.add('use-custom-gif-cursor', `cursor-${choice}`);
@@ -169,7 +169,7 @@ export class AppComponent implements OnInit {
         document.body.classList.add('cursor-wand');
       }
     }
-    
+
     localStorage.setItem('ael-cursor', choice);
   }
 }
