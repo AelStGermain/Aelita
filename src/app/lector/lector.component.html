@@ -2,19 +2,19 @@
   <h1>🎤 LECTOR MÁGICO 🎤</h1>
   <p>Puntos: {{score}}</p>
   <h2>{{currentWord}}</h2>
-  
+
   <button (click)="toggleListening()" [style.background]="isListening ? '#e74c3c' : '#27ae60'">
     {{isListening ? '⏹️ DETENER' : '🎤 EMPEZAR'}}
   </button>
-  
+
   <button (click)="nextWord()">⏭️ SIGUIENTE</button>
-  
+
   <div style="margin-top: 20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
     <h3>Escuché: {{recognizedText || 'Esperando...'}}</h3>
   </div>
-  
-  <div *ngIf="showFeedback" [style.background]="isCorrect ? '#2ecc71' : '#e74c3c'" 
-       style="margin-top: 10px; padding: 10px; border-radius: 10px; font-weight: bold;">
+
+  <div *ngIf="showFeedback" [style.background]="isCorrect ? '#2ecc71' : '#e74c3c'"
+    style="margin-top: 10px; padding: 10px; border-radius: 10px; font-weight: bold;">
     {{isCorrect ? '🎉 ¡EXCELENTE!' : '🤔 ¡Inténtalo de nuevo!'}}
   </div>
 </div>

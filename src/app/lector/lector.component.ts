@@ -659,17 +659,17 @@ export class LectorComponent implements OnDestroy {
     }
 
     this.recognition = new RecognitionConstructor();
-    this.recognition.lang = 'es-CL';
-    this.recognition.continuous = true;
-    this.recognition.interimResults = true;
-    this.recognition.maxAlternatives = 1;
+    this.recognition!.lang = 'es-CL';
+    this.recognition!.continuous = true;
+    this.recognition!.interimResults = true;
+    this.recognition!.maxAlternatives = 1;
 
-    this.recognition.onstart = () => {
+    this.recognition!.onstart = () => {
       this.isListening = true;
       this.errorMessage = '';
     };
 
-    this.recognition.onresult = (event: RecognitionEventLike) => {
+    this.recognition!.onresult = (event: RecognitionEventLike) => {
       let finalChunk = '';
       let interimChunk = '';
       let confidence: number | null = null;
@@ -709,7 +709,7 @@ export class LectorComponent implements OnDestroy {
       }
     };
 
-    this.recognition.onerror = (event: RecognitionErrorEventLike) => {
+    this.recognition!.onerror = (event: RecognitionErrorEventLike) => {
       if (event.error === 'aborted' && !this.keepListening) {
         return;
       }
@@ -737,7 +737,7 @@ export class LectorComponent implements OnDestroy {
       }
     };
 
-    this.recognition.onend = () => {
+    this.recognition!.onend = () => {
       this.isListening = false;
 
       if (this.keepListening && !this.sessionFinished) {
