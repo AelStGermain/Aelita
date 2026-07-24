@@ -18,13 +18,13 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   padding: 10px;
   border-radius: 10px;
 }
 
 .word-display {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   color: #333;
   padding: 30px;
   border-radius: 15px;
@@ -60,7 +60,7 @@
 }
 
 .recognition {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 20px;

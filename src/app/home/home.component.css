@@ -1,1 +1,128 @@
-:host{display:block}.portal{width:min(960px,calc(100% - 18px));margin:0 auto;color:#29204f;font:11px Verdana,Arial,sans-serif}.marquee{overflow:hidden;margin-bottom:8px;border:2px ridge #fff;background:#5b429a;color:#fff;white-space:nowrap;font:bold 10px Verdana,sans-serif}.marquee span{display:inline-block;min-width:100%;padding:5px;animation:scroll-text 18s linear infinite}@keyframes scroll-text{from{transform:translateX(100%)}to{transform:translateX(-100%)}}.portal-grid{display:grid;grid-template-columns:160px minmax(0,1fr) 170px;gap:8px;align-items:start}.left-column,.center-column,.right-column{display:grid;gap:8px}.web-box{border:1px solid #8e85bd;background:#f7f5ff;box-shadow:inset 1px 1px #fff,inset -1px -1px #cdc7e9}.web-box h2{margin:0;padding:4px 6px;border-bottom:1px solid #9d94c7;background:linear-gradient(90deg,#c8c0ef,#efecff,#c8c0ef);color:#4b367f;text-align:center;font:bold 10px Verdana,sans-serif;letter-spacing:.5px}.web-box p{margin:7px;line-height:1.45}.nav-box nav{display:flex;flex-direction:column;padding:5px 8px}.nav-box a,.nav-box button,.links a{padding:4px 2px;border:0;background:transparent;color:#38288c;text-align:left;text-decoration:none;font:11px Verdana,Arial,sans-serif;cursor:pointer}.nav-box a:hover,.nav-box button:hover,.links a:hover{text-decoration:underline;color:#c00083}.counter-box{text-align:center}.counter-box p{margin-bottom:3px}.counter-box strong{display:inline-block;padding:2px 4px;border:2px inset #ccc;background:#111;color:#9cffb5;font:14px 'Courier New',monospace;letter-spacing:2px}.counter-box small{display:block;margin:5px}.status{color:#008348;font-weight:bold}.now-playing{text-align:center}.welcome-box{min-height:160px}.welcome-content{display:grid;grid-template-columns:64px 1fr;gap:9px;padding:10px}.welcome-content p{margin:0 0 8px}.computer{font-size:48px;text-align:center}.welcome-content a,.projects a{color:#29209a}.spotlight>div{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;padding:8px;background:#fffde8}.spotlight p{margin:0}.spotlight small{grid-column:3;text-align:center}.bot-face{font:bold 20px 'Courier New',monospace;color:#b00075}.y2k-button{padding:5px 8px;border:3px outset #eee;background:#d8d0ff;color:#281958;font:bold 10px Verdana,sans-serif;cursor:pointer}.y2k-button:active{border-style:inset}.project-list{display:grid;grid-template-columns:1fr 1fr;padding:6px}.project-list a{display:grid;grid-template-columns:30px 1fr;grid-template-rows:auto auto;min-height:52px;padding:7px;border-bottom:1px dotted #aaa;text-decoration:none}.project-list a:hover{background:#fffbd5}.project-list span{grid-row:1/3;font-size:22px}.project-list b{font-size:10px;text-decoration:underline}.project-list small{color:#665d77;font-size:9px}.profile-mini{text-align:center}.profile-mini img{display:block;width:106px;height:106px;margin:9px auto 5px;border:5px ridge #ddd;object-fit:cover}.profile-mini>b{color:#a00070;font:18px Georgia,serif}.profile-mini p{font-size:9px}.web-box dl{display:grid;grid-template-columns:auto 1fr;gap:4px;margin:8px;font-size:9px}.web-box dt{font-weight:bold;color:#6242a0}.web-box dd{margin:0;text-align:right}.updates b{color:#b00075}.links{display:flex;flex-direction:column}.links h2{margin-bottom:4px}.webring{margin-top:8px;padding:6px;border:1px dashed #7755aa;background:#ffffe9;color:#553377;text-align:center;font-size:9px}.bot-backdrop{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;padding:12px;background:rgba(12,5,35,.62)}.bot-window{width:min(650px,100%);border:3px outset #ddd;background:#d4d0c8;box-shadow:8px 8px rgba(0,0,0,.45);font:11px 'MS Sans Serif',Tahoma,sans-serif}.bot-title{display:flex;justify-content:space-between;align-items:center;padding:3px 4px;background:linear-gradient(90deg,#251274,#8768c2);color:#fff;font-weight:bold}.bot-title button{width:20px;height:20px;padding:0;border:2px outset #eee;background:#d4d0c8;font:bold 13px Arial,sans-serif}.bot-disclaimer{padding:5px;border-bottom:1px solid #888;background:#fff7b8;color:#4c3b00;text-align:center;font-size:9px}.bot-log{height:min(330px,48vh);margin:7px;padding:8px;overflow:auto;border:2px inset #ddd;background:#080614;color:#83ffaf;font:12px/1.5 'Courier New',monospace}.bot-log p{margin:0 0 8px}.bot-log b{color:#ff8ad0}.bot-log .user-line{color:#fff}.bot-log .user-line b{color:#80dfff}.bot-suggestions{display:flex;gap:5px;padding:0 7px}.bot-suggestions button,.bot-window form button{border:2px outset #eee;background:#d4d0c8;font:10px Tahoma,sans-serif}.bot-window form{display:flex;align-items:center;gap:6px;padding:7px}.bot-window form label{font-weight:bold}.bot-window input{min-width:0;flex:1;padding:4px;border:2px inset #ddd;background:#fff;font:12px 'Courier New',monospace}@media(max-width:760px){.portal-grid{grid-template-columns:145px minmax(0,1fr)}.right-column{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr)}.profile-mini img{width:70px;height:70px}.profile-mini p{margin:3px}.project-list{grid-template-columns:1fr}}@media(max-width:520px){.portal{width:calc(100% - 10px)}.portal-grid{display:flex;flex-direction:column}.center-column{order:1;width:100%}.left-column{order:2;width:100%;grid-template-columns:1fr 1fr}.right-column{order:3;width:100%;grid-template-columns:1fr 1fr}.nav-box{grid-row:span 2}.welcome-content{grid-template-columns:48px 1fr}.computer{font-size:36px}.spotlight>div{grid-template-columns:auto 1fr}.spotlight .y2k-button{grid-column:1/-1}.spotlight small{grid-column:1/-1}.bot-suggestions{flex-wrap:wrap}}@media(prefers-reduced-motion:reduce){.marquee span{animation:none;white-space:normal}}
+import {
+    ComponentFixture,
+    TestBed
+}
+
+from '@angular/core/testing';
+
+import {
+    LectorComponent,
+    evaluateReading,
+    normalizeForComparison,
+    syllabifySpanish
+}
+
+from './lector.component';
+
+describe('LectorComponent', ()=> {
+        let component: LectorComponent;
+        let fixture: ComponentFixture<LectorComponent>;
+
+        beforeEach(async ()=> {
+                await TestBed.configureTestingModule({
+                    imports: [LectorComponent]
+                }).compileComponents();
+
+            fixture=TestBed.createComponent(LectorComponent);
+            component=fixture.componentInstance;
+            fixture.detectChanges();
+        });
+
+    afterEach(()=> {
+            component.ngOnDestroy();
+        });
+
+    it('should create', ()=> {
+            expect(component).toBeTruthy();
+        });
+
+    it('should begin with the first practice text', ()=> {
+            expect(component.currentText).toBe('CASA');
+            expect(component.wordViews.length).toBe(1);
+            expect(component.wordViews[0].status).toBe('pending');
+        });
+
+    it('should move to the next text and reset the transcript', ()=> {
+            component.finalTranscript='casa';
+
+            component.nextText();
+
+            expect(component.currentText).toBe('EL PERRO CORRE');
+            expect(component.finalTranscript).toBe('');
+            expect(component.showSummary).toBeFalse();
+        });
+});
+
+describe('reading comparison', ()=> {
+        it('normalizes case, punctuation and accents without losing ñ', ()=> {
+                expect(normalizeForComparison('¡LA GATA SALTÓ!')).toBe('la gata salto');
+                expect(normalizeForComparison('NIÑO')).toBe('niño');
+            });
+
+        it('separates common Spanish words into syllables', ()=> {
+                expect(syllabifySpanish('techo')).toEqual(['te', 'cho']);
+                expect(syllabifySpanish('gata')).toEqual(['ga', 'ta']);
+                expect(syllabifySpanish('saltó')).toEqual(['sal', 'tó']);
+                expect(syllabifySpanish('perro')).toEqual(['pe', 'rro']);
+            });
+
+        it('marks an exact final reading as correct', ()=> {
+                const result=evaluateReading('LA GATA SALTÓ AL TECHO',
+                    'la gata saltó al techo'
+                );
+
+                expect(result.words.every((word)=> word.status==='correct')).toBeTrue();
+            });
+
+        it('does not mark provisional recognition as an error', ()=> {
+                const result=evaluateReading('LA GATA SALTÓ AL TECHO',
+                    'la gata saltó al',
+                    'lecho'
+                );
+
+                expect(result.words[4].status).toBe('current');
+            });
+
+        it('marks only the differing syllable in techo/lecho', ()=> {
+                const result=evaluateReading('LA GATA SALTÓ AL TECHO',
+                    'la gata saltó al lecho'
+                );
+                const techo=result.words[4];
+
+                expect(techo.status).toBe('incorrect');
+                expect(techo.heard).toBe('lecho');
+                expect(techo.syllables.map((syllable)=> syllable.status)).toEqual([ 'incorrect',
+                    'correct'
+                    ]);
+            });
+
+        it('detects a skipped word when a later word was recognized', ()=> {
+                const result=evaluateReading('LA GATA SALTÓ AL TECHO',
+                    'la gata saltó techo'
+                );
+
+                expect(result.words[3].text).toBe('AL');
+                expect(result.words[3].status).toBe('skipped');
+                expect(result.words[4].status).toBe('correct');
+            });
+
+        it('keeps trailing words pending while the person is still reading', ()=> {
+                const result=evaluateReading('LA GATA SALTÓ AL TECHO',
+                    'la gata',
+                    '',
+                    false);
+
+                expect(result.words[2].status).toBe('pending');
+                expect(result.words[4].status).toBe('pending');
+            });
+
+        it('marks trailing words as skipped only after finishing', ()=> {
+                const result=evaluateReading('LA GATA SALTÓ AL TECHO',
+                    'la gata',
+                    '',
+                    true);
+
+                expect(result.words[2].status).toBe('skipped');
+                expect(result.words[4].status).toBe('skipped');
+            });
+    });
