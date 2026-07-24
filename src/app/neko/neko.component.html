@@ -1,0 +1,29 @@
+<div class="neko-container" 
+     [style.left.px]="nekoX" 
+     [style.top.px]="nekoY"
+     [class.facing-left]="!facingRight"
+     [class.sleeping]="state === 'sleeping'"
+     [class.running]="state === 'running'"
+     [attr.data-level]="nekoService.getLevel()"
+     (click)="onNekoClick()">
+  
+  <div class="neko-sprite">
+    <!-- Marcador temporal CSS para el gato mitad blanco/negro -->
+    <div class="neko-ear left"></div>
+    <div class="neko-ear right"></div>
+    <div class="neko-body">
+      <div class="neko-half black"></div>
+      <div class="neko-half white"></div>
+      
+      <div class="neko-face">
+        <div class="neko-eye left"></div>
+        <div class="neko-eye right"></div>
+        <div class="neko-nose"></div>
+      </div>
+    </div>
+    <div class="neko-tail"></div>
+
+    <!-- Zzz para dormir -->
+    <div class="zzz" *ngIf="state === 'sleeping'">zZz</div>
+  </div>
+</div>

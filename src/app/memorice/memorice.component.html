@@ -1,66 +1,75 @@
 <div class="game-container">
-  <!-- Header con estadísticas -->
+  <!-- Header -->
   <div class="header">
     <h1 class="game-title">🔥 MEMORICE POKÉMON 🔥</h1>
-    <div class="stats">
-      <div class="stat-item">
-        <span class="stat-icon">⭐</span>
-        <span class="stat-value">{{score}}</span>
-        <span class="stat-label">Puntos</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-icon">🔄</span>
-        <span class="stat-value">{{moves}}</span>
-        <span class="stat-label">Movimientos</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-icon">⏱️</span>
-        <span class="stat-value">{{formatTime(timeElapsed)}}</span>
-        <span class="stat-label">Tiempo</span>
-      </div>
-    </div>
   </div>
 
-  <!-- Controles -->
-  <div class="controls">
-    <button class="btn-control" (click)="changeDifficulty('easy')" [class.active]="difficulty === 'easy'">
-      😊 FÁCIL (3x2)
-    </button>
-    <button class="btn-control" (click)="changeDifficulty('medium')" [class.active]="difficulty === 'medium'">
-      😐 MEDIO (4x3)
-    </button>
-    <button class="btn-control" (click)="changeDifficulty('hard')" [class.active]="difficulty === 'hard'">
-      😤 DIFÍCIL (5x4)
-    </button>
-    <button class="btn-new-game" (click)="newRandomGame()">
-      🎲 NUEVOS POKÉMON
-    </button>
-  </div>
-
-  <!-- Loading -->
-  <div *ngIf="loading" class="loading">
-    <div class="pokeball">
-      <div class="pokeball-button"></div>
-    </div>
-    <p>Capturando Pokémon...</p>
-  </div>
-
-  <!-- Grid de cartas -->
-  <div class="cards-grid" [class]="'grid-' + difficulty" *ngIf="!loading">
-    <div *ngFor="let card of cards; let i = index" 
-         class="card" 
-         (click)="flipCard(i)"
-         [class.matched]="matchedCards.includes(i)"
-         [class.flipped]="card.flipped">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="pokeball-mini">
-            <div class="pokeball-mini-button"></div>
-          </div>
+  <div class="game-content">
+    <!-- Panel Lateral: Estadísticas y Controles -->
+    <div class="sidebar">
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-icon">⭐</span>
+          <span class="stat-value">{{score}}</span>
+          <span class="stat-label">Puntos</span>
         </div>
-        <div class="card-back">
-          <img [src]="card.image" [alt]="card.name" />
-          <div class="pokemon-name">{{card.name}}</div>
+        <div class="stat-item">
+          <span class="stat-icon">🔄</span>
+          <span class="stat-value">{{moves}}</span>
+          <span class="stat-label">Movimientos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">⏱️</span>
+          <span class="stat-value">{{formatTime(timeElapsed)}}</span>
+          <span class="stat-label">Tiempo</span>
+        </div>
+      </div>
+
+      <!-- Controles -->
+      <div class="controls">
+        <button class="btn-control" (click)="changeDifficulty('easy')" [class.active]="difficulty === 'easy'">
+          😊 FÁCIL (3x2)
+        </button>
+        <button class="btn-control" (click)="changeDifficulty('medium')" [class.active]="difficulty === 'medium'">
+          😐 MEDIO (4x3)
+        </button>
+        <button class="btn-control" (click)="changeDifficulty('hard')" [class.active]="difficulty === 'hard'">
+          😤 DIFÍCIL (5x4)
+        </button>
+        <button class="btn-new-game" (click)="newRandomGame()">
+          🎲 NUEVOS POKÉMON
+        </button>
+      </div>
+    </div>
+
+    <!-- Tablero de Cartas -->
+    <div class="board-container">
+      <!-- Loading -->
+      <div *ngIf="loading" class="loading">
+        <div class="pokeball">
+          <div class="pokeball-button"></div>
+        </div>
+        <p>Capturando Pokémon...</p>
+      </div>
+
+      <!-- Grid de cartas -->
+      <div class="cards-grid" [class]="'grid-' + difficulty" *ngIf="!loading">
+        <div *ngFor="let card of cards; let i = index" 
+             class="card" 
+             (click)="flipCard(i)"
+             [class.matched]="matchedCards.includes(i)"
+             [class.flipped]="card.flipped">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="pokeball-mini">
+                <div class="pokeball-mini-button"></div>
+              </div>
+            </div>
+            <div class="card-back">
+              <img [src]="card.image" [alt]="card.name" />
+              <div class="pokemon-name">{{card.name}}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

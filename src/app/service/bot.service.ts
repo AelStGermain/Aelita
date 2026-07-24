@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { processBotQuery, ChatMessage } from '../home/bot-engine';
+import { NekoService } from '../neko/neko.service';
 
 export type Y2kFrame = 'pink' | 'cyber' | 'gold' | 'sakura';
 
@@ -23,7 +24,7 @@ export class BotService {
     { id: 'sakura', name: 'Sakura Retro', icon: '🌸' }
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private nekoService: NekoService) {
     const savedFrame = localStorage.getItem('ael_bot_frame') as Y2kFrame;
     if (savedFrame && this.frames.some(f => f.id === savedFrame)) {
       this.currentFrame = savedFrame;
@@ -60,6 +61,30 @@ export class BotService {
     
     this.conversation.push({ who: 'you', text: raw });
     this.message = '';
+
+    // AEL_NEKO Commands Interception
+    const lower = raw.toLowerCase();
+    if (lower.startsWith('> pet aelita')) {
+      this.conversation.push({ who: 'bot', text: this.nekoService.pet() });
+      this.scrollBotLog();
+      return;
+    }
+    if (lower.startsWith('> give tuna')) {
+      this.conversation.push({ who: 'bot', text: this.nekoService.giveTuna() });
+      this.scrollBotLog();
+      return;
+    }
+    if (lower.startsWith('> inspect project')) {
+      const currentTab = this.router.url.replace('/', '');
+      this.conversation.push({ who: 'bot', text: this.nekoService.inspectProject(currentTab) });
+      this.scrollBotLog();
+      return;
+    }
+    if (lower.startsWith('> ask skill')) {
+      this.conversation.push({ who: 'bot', text: this.nekoService.askSkill() });
+      this.scrollBotLog();
+      return;
+    }
 
     this.conversation.push({ who: 'bot', text: 'Pensando...' });
     this.scrollBotLog();

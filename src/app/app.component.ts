@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { BotService, Y2kFrame } from './service/bot.service';
+import { NekoComponent } from './neko/neko.component';
 
 export interface DeveloperProject {
   title: string;
@@ -18,7 +19,7 @@ export interface DeveloperProject {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NekoComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
