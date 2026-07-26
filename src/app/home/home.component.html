@@ -2,7 +2,7 @@
   <!-- Mode Toggle Floating Bar -->
   <div class="mode-toggle-banner">
     <div class="banner-info">
-      <span>MODO ACTUAL: <strong>{{ isRecruiterMode ? '💼 RECRUITER / PORTAFOLIO EJECUTIVO' : '👾 VISTA PERSONAL Y2K' }}</strong></span>
+      <span>MODO ACTUAL: <strong>{{ isRecruiterMode ? '💼 PORTAFOLIO EJECUTIVO / RECRUITER VIEW' : '👾 VISTA PERSONAL Y2K' }}</strong></span>
     </div>
     <button type="button" class="mode-switch-btn" (click)="toggleRecruiterMode()">
       {{ isRecruiterMode ? '👾 CAMBIAR A VISTA PERSONAL Y2K' : '💼 CAMBIAR A RECRUITER VIEW' }}
@@ -14,54 +14,205 @@
   <img *ngIf="!isRecruiterMode" class="floating-gif gif-heart heart-c" src="heart-gif-1.gif" alt="" aria-hidden="true">
   <img *ngIf="!isRecruiterMode" class="floating-gif gif-stars" src="pink.gif" alt="" aria-hidden="true">
   
-  <div class="marquee">
-    <span>✦ {{ isRecruiterMode ? 'SOFÍA GÓMEZ (AEL) — SOFTWARE DEVELOPER & SYSTEMS ANALYST — FEATURED PORTFOLIO' : 'WELCOME TO MY LITTLE CORNER OF THE WORLD WIDE WEB ✦ ALWAYS UNDER CONSTRUCTION' }} ✦</span>
+  <div class="marquee" *ngIf="!isRecruiterMode">
+    <span>✦ WELCOME TO MY LITTLE CORNER OF THE WORLD WIDE WEB ✦ ALWAYS UNDER CONSTRUCTION ✦</span>
   </div>
 
-  <!-- RECRUITER VIEW BANNER -->
-  <section *ngIf="isRecruiterMode" class="web-box recruiter-hero">
-    <div class="recruiter-hero-grid">
-      <div class="recruiter-avatar">
-        <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez (Ael)">
-        <span class="status-chip">🟢 OPEN TO OPPORTUNITIES</span>
-      </div>
-      <div class="recruiter-details">
-        <h2>SOFÍA GÓMEZ ORELLANA (AEL)</h2>
-        <p class="recruiter-title">Técnico Analista de Sistemas &amp; Estudiante de Ingeniería Civil Informática</p>
-        <p class="recruiter-summary">
-          Especializada en desarrollo backend en Java (Spring Boot) y arquitectura de integración de sistemas, combinando sólidas prácticas de desarrollo web/móvil moderno (Angular, Ionic, TypeScript) con análisis de requerimientos y metodologías ágiles.
-        </p>
-        <div class="recruiter-tags">
-          <span class="tag">Java</span>
-          <span class="tag">Spring Boot</span>
-          <span class="tag">REST APIs</span>
-          <span class="tag">SQL</span>
-          <span class="tag">Integration</span>
-          <span class="tag">Angular</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Git</span>
-          <span class="tag">Scrum</span>
+  <!-- RECRUITER VIEW HIGH-END EXECUTIVE SHOWCASE -->
+  <div *ngIf="isRecruiterMode" class="recruiter-container">
+    <!-- Hero Card -->
+    <section class="web-box recruiter-hero">
+      <div class="recruiter-hero-grid">
+        <div class="recruiter-avatar">
+          <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez (Ael)">
+          <span class="status-chip">🟢 OPEN TO OPPORTUNITIES</span>
         </div>
-        <div class="recruiter-actions">
-          <a routerLink="/about" class="recruiter-btn primary">📄 VER CURRÍCULUM &amp; STACK COMPLETO</a>
-          <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="recruiter-btn secondary">🐙 GITHUB REPOS</a>
+        <div class="recruiter-details">
+          <div class="name-badge-row">
+            <h2>SOFÍA GÓMEZ ORELLANA (AEL)</h2>
+            <span class="location-tag">📍 Chile (Remote / On-site)</span>
+          </div>
+          <p class="recruiter-title">Técnico Analista de Sistemas &amp; Estudiante de Ingeniería Civil Informática</p>
+          <p class="recruiter-summary">
+            Especializada en desarrollo backend en Java (Spring Boot) y arquitectura de integración de sistemas, combinando sólidas prácticas de desarrollo web y móvil moderno (Angular, Ionic, TypeScript) con análisis de requerimientos y metodologías ágiles.
+          </p>
+          <div class="recruiter-tags">
+            <span class="tag">Java</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Systems Integration</span>
+            <span class="tag">Angular</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Git &amp; Docker</span>
+            <span class="tag">Scrum</span>
+          </div>
+          <div class="recruiter-actions">
+            <a routerLink="/about" class="recruiter-btn primary">📄 VER CV &amp; STACK COMPLETO</a>
+            <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="recruiter-btn secondary">🐙 GITHUB REPOS</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="recruiter-btn outline">💼 LINKEDIN</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="portal-grid">
+    <!-- Recruiter Navigation Tabs -->
+    <nav class="recruiter-nav-tabs">
+      <button [class.active]="activeRecruiterTab==='projects'" (click)="setRecruiterTab('projects')">
+        🚀 PROYECTOS DESTACADOS
+      </button>
+      <button [class.active]="activeRecruiterTab==='stack'" (click)="setRecruiterTab('stack')">
+        ⚡ CORE STACK &amp; ARQUITECTURA
+      </button>
+      <button [class.active]="activeRecruiterTab==='experience'" (click)="setRecruiterTab('experience')">
+        💼 TRAYECTORIA &amp; EDUCACIÓN
+      </button>
+      <button [class.active]="activeRecruiterTab==='contact'" (click)="setRecruiterTab('contact')">
+        📫 CONTACTO DIRECTO
+      </button>
+    </nav>
+
+    <!-- Tab 1: Proyectos Destacados -->
+    <section *ngIf="activeRecruiterTab==='projects'" class="web-box recruiter-tab-content">
+      <h2>.: PROYECTOS DESTACADOS Y CÓDIGO FUENTE :.</h2>
+      <p class="tab-intro">Proyectos de software reales desarrollados por Ael con arquitectura moderna:</p>
+      <div class="recruiter-projects-grid">
+        <article class="recruiter-proj-card" *ngFor="let proj of developerProjects">
+          <div class="card-top">
+            <span class="proj-icon">{{proj.icon}}</span>
+            <div>
+              <h3>{{proj.title}}</h3>
+              <span class="badge">{{proj.badge}}</span>
+            </div>
+          </div>
+          <p class="card-sub">{{proj.subtitle}}</p>
+          <p class="card-desc">{{proj.desc}}</p>
+          <div class="card-techs">
+            <span *ngFor="let t of proj.techs" class="tech-pill">{{t}}</span>
+          </div>
+          <div class="card-links">
+            <a [href]="proj.url" target="_blank" rel="noopener" class="app-link">▶ ABRIR APLICACIÓN 🚀</a>
+            <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="code-link">🐙 VER CÓDIGO</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tab 2: Core Stack & Arquitectura -->
+    <section *ngIf="activeRecruiterTab==='stack'" class="web-box recruiter-tab-content">
+      <h2>.: MATRIZ DE COMPETENCIAS &amp; STACK TÉCNICO :.</h2>
+      <div class="recruiter-stack-grid">
+        <div class="stack-block">
+          <h3>☕ BACKEND &amp; INTEGRACIÓN</h3>
+          <ul>
+            <li><b>Core:</b> Java, Spring Boot, REST APIs</li>
+            <li><b>Frameworks:</b> Spring MVC, Spring Security, JPA / Hibernate</li>
+            <li><b>Node &amp; Scripting:</b> Node.js, Express.js, PHP</li>
+          </ul>
+        </div>
+        <div class="stack-block">
+          <h3>🌐 WEB &amp; MÓVIL</h3>
+          <ul>
+            <li><b>Lenguajes:</b> JavaScript (ES6+), TypeScript</li>
+            <li><b>Frameworks:</b> Angular, Ionic Framework</li>
+            <li><b>Frontend Base:</b> HTML5, CSS3 / Modern Styling</li>
+          </ul>
+        </div>
+        <div class="stack-block">
+          <h3>🗄️ BASE DE DATOS &amp; GESTIÓN DE DATOS</h3>
+          <ul>
+            <li><b>Relacionales:</b> PostgreSQL, MySQL, H2 Database</li>
+            <li><b>BaaS / NoSQL:</b> Supabase, Firebase (Cloud Firestore)</li>
+            <li><b>Data Mgmt:</b> Master Data Management, Data Validation &amp; Enrichment</li>
+          </ul>
+        </div>
+        <div class="stack-block">
+          <h3>🛠️ HERRAMIENTAS, CI/CD &amp; METODOLOGÍAS</h3>
+          <ul>
+            <li><b>Control de Versiones:</b> Git, GitHub, GitHub Actions</li>
+            <li><b>DevOps &amp; OS:</b> Docker, Linux, Maven</li>
+            <li><b>Gestión Ágil:</b> Agile / Scrum, Análisis de Requerimientos, Documentación Técnica</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Trayectoria & Educación -->
+    <section *ngIf="activeRecruiterTab==='experience'" class="web-box recruiter-tab-content">
+      <h2>.: TRAYECTORIA PROFESIONAL &amp; FORMACIÓN ACADÉMICA :.</h2>
+      <div class="recruiter-xp-grid">
+        <div class="xp-column">
+          <h3>💼 PRÁCTICA &amp; EXPERIENCIA</h3>
+          <div class="xp-item">
+            <span class="xp-date">2026 — PRESENTE</span>
+            <h4>Práctica Profesional — FollowUP Customer Experience</h4>
+            <p>Análisis de requerimientos, documentación de requerimientos técnicos, validación de grandes volúmenes de datos y colaboración interfuncional en metodologías ágiles (Scrum).</p>
+          </div>
+        </div>
+        <div class="xp-column">
+          <h3>🎓 FORMACIÓN ACADÉMICA &amp; IDIOMAS</h3>
+          <div class="xp-item">
+            <span class="xp-badge progress">EN CURSO</span>
+            <h4>Ingeniería Civil Informática</h4>
+            <p>Formación avanzada en ingeniería de software, arquitectura de sistemas y ciencia de la computación.</p>
+          </div>
+          <div class="xp-item">
+            <span class="xp-badge complete">TITULADA</span>
+            <h4>Técnico Analista de Sistemas</h4>
+            <p>Título técnico en análisis, diseño y desarrollo de sistemas de información.</p>
+          </div>
+          <div class="xp-item">
+            <span class="xp-badge verified">VERIFICADO</span>
+            <h4>Inglés C1 Avanzado</h4>
+            <p>Dominio fluido para colaboración y documentación en entornos técnicos internacionales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Contacto Directo -->
+    <section *ngIf="activeRecruiterTab==='contact'" class="web-box recruiter-tab-content">
+      <h2>.: CANALES DE CONTACTO DIRECTO :.</h2>
+      <div class="recruiter-contact-grid">
+        <div class="contact-card">
+          <span class="icon">✉️</span>
+          <h3>CORREO ELECTRÓNICO</h3>
+          <p>Disponible para consultas de ofertas laborales, proyectos o colaboraciones.</p>
+          <a href="mailto:sofia.gomez.orellana@gmail.com" class="contact-btn">ENVIAR EMAIL ✉️</a>
+        </div>
+        <div class="contact-card">
+          <span class="icon">💼</span>
+          <h3>LINKEDIN</h3>
+          <p>Revisa mi red profesional y conectemos directamente.</p>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-btn">VER LINKEDIN 🔗</a>
+        </div>
+        <div class="contact-card">
+          <span class="icon">🐙</span>
+          <h3>GITHUB</h3>
+          <p>Explora todos mis repositorios públicos y proyectos de código abierto.</p>
+          <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="contact-btn">VER GITHUB 🐙</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PERSONAL Y2K PORTAL VIEW -->
+  <div *ngIf="!isRecruiterMode" class="portal-grid">
+    <!-- Left Column: STATUS, UPDATES, RADIO -->
     <aside class="left-column">
-
-      <section class="web-box counter-box">
-        <h2>.: VISITORS :.</h2>
-        <p>You are visitor</p><strong>0 3 4 8 2 1</strong><small>since 1999*</small>
-      </section>
 
       <section class="web-box">
         <h2>.: STATUS :.</h2>
         <p class="status">● ONLINE</p>
         <p>currently building:<br><b>cool_stuff.exe</b></p>
+      </section>
+
+      <section class="web-box updates">
+        <h2>.: UPDATES :.</h2>
+        <p><b>26.07.26</b><br>💼 Executive Recruiter Mode live!</p>
+        <p><b>26.07.26</b><br>🐱 AEL_PET pixel companion live!</p>
+        <p><b>23.07.26</b><br>🐾 Left Drawer: Real Projects (Patota &amp; Kuichi).</p>
+        <p><b>22.07.26</b><br>Y2K portal online.</p>
       </section>
 
       <!-- RADIO & CANVAS VISUALIZER -->
@@ -91,6 +242,7 @@
 
     </aside>
 
+    <!-- Center Column: WELCOME, BOT, MY PROJECTS, COOL LINKS -->
     <div class="center-column">
 
       <section class="web-box welcome-box">
@@ -154,7 +306,18 @@
 
     </div>
 
+    <!-- Right Column: WEBMISTRESS, GITHUB_LIVE_ACTIVITY -->
     <aside class="right-column">
+
+      <section class="web-box profile-mini">
+        <h2>.: WEBMISTRESS :.</h2>
+        <div class="avatar-cycle small-avatar">
+          <img src="avatar-dark-retro.jpg" alt="Retrato retro de Ael con cabello oscuro">
+          <img src="avatar-light-retro.jpg" alt="Retrato retro de Ael con cabello claro">
+        </div>
+        <b>AEL</b>
+        <p>developer<br>educator<br>digital explorer</p>
+      </section>
 
       <!-- GITHUB LIVE ACTIVITY WIDGET -->
       <section class="web-box github-widget">
@@ -185,50 +348,8 @@
         </div>
       </section>
 
-      <section class="web-box profile-mini">
-        <h2>.: WEBMISTRESS :.</h2>
-        <div class="avatar-cycle small-avatar">
-          <img src="avatar-dark-retro.jpg" alt="Retrato retro de Ael con cabello oscuro">
-          <img src="avatar-light-retro.jpg" alt="Retrato retro de Ael con cabello claro">
-        </div>
-        <b>AEL</b>
-        <p>developer<br>educator<br>digital explorer</p>
-      </section>
-
-      <section class="web-box">
-        <h2>.: QUICK FACTS :.</h2>
-        <dl>
-          <dt>LOCATION:</dt>
-          <dd>Chile</dd>
-          <dt>FOCUS:</dt>
-          <dd>Apps + security</dd>
-          <dt>OS:</dt>
-          <dd>Linux curious</dd>
-          <dt>MOOD:</dt>
-          <dd>Creating...</dd>
-        </dl>
-      </section>
-
-      <section class="web-box updates">
-        <h2>.: UPDATES :.</h2>
-        <p><b>26.07.26</b><br>💼 Recruiter Mode &amp; GitHub Live Activity live!</p>
-        <p><b>26.07.26</b><br>🐱 AEL_PET pixel companion live!</p>
-        <p><b>23.07.26</b><br>🐾 Left Drawer: Real Projects (Patota &amp; Kuichi).</p>
-        <p><b>22.07.26</b><br>Y2K portal online.</p>
-      </section>
-
-      <section class="web-box favorites">
-        <h2>.: MUSIC SHELF :.</h2>
-        <a href="https://open.spotify.com/search/Empire%20of%20the%20Sun" target="_blank" rel="noopener">☀ Empire of the Sun</a>
-        <a href="https://open.spotify.com/search/Telepath%20vaporwave" target="_blank" rel="noopener">▦ Telepath</a>
-        <a href="https://open.spotify.com/search/Kitaro" target="_blank" rel="noopener">☁ Kitaro</a>
-        <a href="https://open.spotify.com/search/Kraftwerk" target="_blank" rel="noopener">▣ Kraftwerk</a>
-        <a href="https://open.spotify.com/search/Sewerslvt" target="_blank" rel="noopener">✦ Sewerslvt</a>
-        <a href="https://open.spotify.com/search/Pet%20Shop%20Boys" target="_blank" rel="noopener">♡ Pet Shop Boys</a>
-      </section>
-
     </aside>
   </div>
 
-  <div class="webring">« PREV　 <b>PERSONAL WEBRING OF CURIOUS PEOPLE</b>　 RANDOM　 NEXT »</div>
+  <div class="webring" *ngIf="!isRecruiterMode">« PREV　 <b>PERSONAL WEBRING OF CURIOUS PEOPLE</b>　 RANDOM　 NEXT »</div>
 </section>

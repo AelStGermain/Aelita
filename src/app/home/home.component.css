@@ -337,6 +337,274 @@
     text-decoration: underline;
 }
 
+/* Recruiter Navigation Tabs & Content */
+.recruiter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.recruiter-nav-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.recruiter-nav-tabs button {
+    flex: 1;
+    min-width: 140px;
+    padding: 8px 10px;
+    background: #e7dbf7;
+    color: #4a2862;
+    border: 2px solid #b586e8;
+    border-radius: 4px;
+    font: bold 9.5px Verdana, sans-serif;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.recruiter-nav-tabs button:hover,
+.recruiter-nav-tabs button.active {
+    background: linear-gradient(180deg, #7c2696, #48145a);
+    color: #ffffff;
+    border-color: #ff8ad4;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.recruiter-tab-content {
+    padding: 12px;
+    background: #ffffff !important;
+    border: 2px solid #8025e0 !important;
+}
+
+.recruiter-tab-content h2 {
+    margin: 0 0 4px !important;
+    font-size: 11px !important;
+    color: #5b219e !important;
+}
+
+.tab-intro {
+    margin: 0 0 10px;
+    font-size: 10px;
+    color: #554477;
+}
+
+/* Projects Grid in Recruiter Tab */
+.recruiter-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.recruiter-proj-card {
+    padding: 10px;
+    background: linear-gradient(135deg, #ffffff, #fdf8ff);
+    border: 2px ridge #ffb8e4;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 2px 0 rgba(80, 30, 100, 0.1);
+}
+
+.recruiter-proj-card .card-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.recruiter-proj-card .proj-icon {
+    font-size: 22px;
+}
+
+.recruiter-proj-card h3 {
+    margin: 0 !important;
+    font-size: 11px;
+    color: #7b2cbf;
+}
+
+.recruiter-proj-card .badge {
+    display: inline-block;
+    padding: 1px 4px;
+    background: #eedeff;
+    color: #5b219e;
+    font-size: 7.5px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.recruiter-proj-card .card-sub {
+    margin: 2px 0 4px;
+    font-size: 9.5px;
+    font-weight: bold;
+    color: #0077b6;
+}
+
+.recruiter-proj-card .card-desc {
+    margin: 0 0 8px;
+    font-size: 9px;
+    line-height: 1.35;
+    color: #3b2354;
+}
+
+.recruiter-proj-card .card-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-bottom: 8px;
+}
+
+.recruiter-proj-card .card-links {
+    display: flex;
+    gap: 6px;
+}
+
+.recruiter-proj-card .app-link {
+    flex: 1;
+    padding: 5px 0;
+    text-align: center;
+    background: linear-gradient(90deg, #ff4196, #8025e0);
+    color: #fff !important;
+    font: bold 8.5px Verdana, sans-serif;
+    text-decoration: none !important;
+    border-radius: 3px;
+}
+
+.recruiter-proj-card .code-link {
+    padding: 5px 8px;
+    background: #f0e6ff;
+    color: #4a1e78 !important;
+    border: 1px solid #b586e8;
+    font: bold 8.5px Verdana, sans-serif;
+    text-decoration: none !important;
+    border-radius: 3px;
+}
+
+/* Stack Grid in Recruiter Tab */
+.recruiter-stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.stack-block {
+    padding: 10px;
+    background: #fbf8ff;
+    border: 1px solid #dcd0ee;
+    border-radius: 4px;
+}
+
+.stack-block h3 {
+    margin: 0 0 6px !important;
+    font-size: 10px !important;
+    color: #6a1b9a !important;
+}
+
+.stack-block ul {
+    margin: 0;
+    padding-left: 14px;
+    font-size: 9px;
+    line-height: 1.5;
+    color: #382452;
+}
+
+/* XP Grid in Recruiter Tab */
+.recruiter-xp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.xp-column h3 {
+    margin: 0 0 8px !important;
+    font-size: 10px !important;
+    color: #6a1b9a !important;
+}
+
+.xp-item {
+    padding: 8px;
+    background: #f9f5ff;
+    border-left: 3px solid #8025e0;
+    margin-bottom: 8px;
+    border-radius: 0 4px 4px 0;
+}
+
+.xp-date {
+    font-size: 8px;
+    font-weight: bold;
+    color: #8877a0;
+}
+
+.xp-badge {
+    display: inline-block;
+    padding: 1px 5px;
+    font-size: 7.5px;
+    font-weight: bold;
+    border-radius: 3px;
+    margin-bottom: 4px;
+}
+
+.xp-badge.progress { background: #fff3cd; color: #856404; }
+.xp-badge.complete { background: #d4edda; color: #155724; }
+.xp-badge.verified { background: #cce5ff; color: #004085; }
+
+.xp-item h4 {
+    margin: 2px 0 4px !important;
+    font-size: 10px;
+    color: #4a1e78;
+}
+
+.xp-item p {
+    margin: 0;
+    font-size: 9px;
+    line-height: 1.35;
+    color: #3b2354;
+}
+
+/* Contact Grid in Recruiter Tab */
+.recruiter-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.contact-card {
+    padding: 12px;
+    text-align: center;
+    background: #fbf8ff;
+    border: 1px solid #dcd0ee;
+    border-radius: 6px;
+}
+
+.contact-card .icon {
+    font-size: 24px;
+}
+
+.contact-card h3 {
+    margin: 6px 0 4px !important;
+    font-size: 10px;
+    color: #6a1b9a;
+}
+
+.contact-card p {
+    margin: 0 0 10px;
+    font-size: 8.5px;
+    color: #554477;
+    line-height: 1.3;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: linear-gradient(90deg, #7c2696, #48145a);
+    color: #fff !important;
+    font: bold 8.5px Verdana, sans-serif;
+    text-decoration: none !important;
+    border-radius: 4px;
+}
+
 @media (max-width: 650px) {
     .home-portfolio-grid {
         grid-template-columns: 1fr;

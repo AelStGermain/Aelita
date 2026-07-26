@@ -47,8 +47,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     { repo: 'AelStGermain/kuichiweb', type: 'PushEvent', message: 'feat: add vet service booking API integration', date: '2026-07-22' }
   ];
 
-  // Recruiter View Toggle State
+  // Recruiter View Toggle & Tab State
   isRecruiterMode = false;
+  activeRecruiterTab: 'projects' | 'stack' | 'experience' | 'contact' = 'projects';
+
+  setRecruiterTab(tab: 'projects' | 'stack' | 'experience' | 'contact'): void {
+    this.activeRecruiterTab = tab;
+  }
 
   constructor(
     private router: Router,

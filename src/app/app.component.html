@@ -59,7 +59,7 @@
 
   <main id="content-wrap"><router-outlet></router-outlet></main>
 
-  <aside class="cursor-palette" aria-label="Selector de cursor">
+  <aside class="cursor-palette" *ngIf="!isRecruiterMode" aria-label="Selector de cursor">
     <span>CURSOR</span>
     <button (click)="setCursor('system')" [class.selected]="cursorChoice==='system'" title="Cursor del sistema">↖</button>
     <button (click)="setCursor('cursor1')" [class.selected]="cursorChoice==='cursor1'" title="Gatito"><img src="cursor.gif" alt="Gatito"></button>
@@ -140,14 +140,47 @@
   </div>
 
   <div class="custom-gif-cursor"
-       *ngIf="activeGifCursor"
+       *ngIf="activeGifCursor && !isRecruiterMode"
        [style.display]="isCursorVisible ? 'block' : 'none'"
        [style.transform]="'translate3d(' + cursorX + 'px, ' + cursorY + 'px, 0)'"
        aria-hidden="true">
     <img [src]="activeGifCursor" alt="" />
   </div>
 
-  <!-- AEL_NEKO Companion -->
-  <app-neko [mouseX]="cursorX" [mouseY]="cursorY"></app-neko>
+  <!-- AEL_PET Companion -->
+  <app-neko *ngIf="!isRecruiterMode" [mouseX]="cursorX" [mouseY]="cursorY"></app-neko>
+
+  <!-- ENTRY VIEW MODE PROMPT MODAL -->
+  <div class="view-prompt-backdrop" *ngIf="showViewPromptModal">
+    <div class="view-prompt-modal" role="dialog" aria-modal="true" aria-label="Selección de experiencia">
+      <div class="modal-top-bar">
+        <span class="top-title">✨ WELCOME / BIENVENIDO</span>
+      </div>
+      <div class="modal-body">
+        <h2>¿CÓMO DESEAS EXPLORAR EL PORTAFOLIO?</h2>
+        <p class="modal-subtitle">Selecciona el enfoque de navegación que mejor se adapte a tu objetivo:</p>
+        
+        <div class="modal-options">
+          <button type="button" class="opt-card recruiter" (click)="chooseViewMode('recruiter')">
+            <div class="card-icon">💼</div>
+            <div class="card-text">
+              <h3>PORTAFOLIO EJECUTIVO / RECRUITER VIEW</h3>
+              <p>Diseño limpio, profesional y enfocado. Muestra directamente mis proyectos reales, stack técnico, arquitectura y trayectoria académica.</p>
+              <span class="card-tag">RECOMENDADO PARA RECLUTADORES &amp; LÍDERES TÉCNICOS</span>
+            </div>
+          </button>
+
+          <button type="button" class="opt-card personal" (click)="chooseViewMode('personal')">
+            <div class="card-icon">👾</div>
+            <div class="card-text">
+              <h3>VISTA PERSONAL Y2K / RETRO EXPERIENCE</h3>
+              <p>Experiencia interactiva nostálgica Web 2.0 con AEL_PET, AEL_BOT, radio generativa y mini-juegos arcade.</p>
+              <span class="card-tag">RECOMENDADO PARA EXPLORACIÓN LIBRE Y CURIOSIDAD</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

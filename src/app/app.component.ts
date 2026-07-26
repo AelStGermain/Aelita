@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   cursorY = -100;
   isCursorVisible = false;
   isRecruiterMode = false;
+  showViewPromptModal = false;
 
   // Draggable AEL_BOT launcher button state
   launcherPos = { x: 0, y: 0 };
@@ -97,6 +98,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (typeof localStorage !== 'undefined') {
       this.isRecruiterMode = localStorage.getItem('ael_recruiter_mode') === 'true';
+      const prompted = localStorage.getItem('ael_view_prompted');
+      if (!prompted) {
+        this.showViewPromptModal = true;
+      }
     }
     this.setCursor(localStorage.getItem('ael-cursor') || 'cursor1');
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
@@ -113,6 +118,15 @@ export class AppComponent implements OnInit {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('ael_recruiter_mode', this.isRecruiterMode ? 'true' : 'false');
     }
+  }
+
+  chooseViewMode(mode: 'recruiter' | 'personal') {
+    this.isRecruiterMode = mode === 'recruiter';
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('ael_recruiter_mode', this.isRecruiterMode ? 'true' : 'false');
+      localStorage.setItem('ael_view_prompted', 'true');
+    }
+    this.showViewPromptModal = false;
   }
 
   @HostListener('document:keydown', ['$event'])

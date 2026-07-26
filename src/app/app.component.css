@@ -19,3 +19,140 @@
   color: #70f3ff !important;
   text-decoration: underline;
 }
+
+/* Entry View Prompt Modal */
+.view-prompt-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(12, 5, 30, 0.78);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.25s ease;
+}
+
+.view-prompt-modal {
+  width: min(580px, 100%);
+  background: linear-gradient(145deg, #1e1130, #2c1445 60%, #160b26);
+  border: 3px ridge #ff8ad4;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 119, 214, 0.4);
+  color: #fff;
+  font-family: Verdana, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.modal-top-bar {
+  padding: 8px 12px;
+  background: linear-gradient(90deg, #3d1466, #7a2399);
+  border-bottom: 1px dashed #c069d6;
+}
+
+.top-title {
+  font: bold 10px 'Press Start 2P', monospace;
+  color: #ff9ee2;
+  letter-spacing: 1px;
+}
+
+.modal-body {
+  padding: 18px;
+  text-align: center;
+}
+
+.modal-body h2 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-family: 'Press Start 2P', monospace;
+  color: #70f3ff;
+}
+
+.modal-subtitle {
+  margin: 0 0 16px;
+  font-size: 10.5px;
+  color: #eed6ff;
+}
+
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.opt-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.opt-card.recruiter {
+  background: linear-gradient(135deg, #2b1147, #451b70);
+  border: 2px solid #a855f7;
+  color: #ffffff;
+}
+
+.opt-card.personal {
+  background: linear-gradient(135deg, #1b1030, #311652);
+  border: 2px solid #e879f9;
+  color: #ffffff;
+}
+
+.opt-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(168, 85, 247, 0.35);
+}
+
+.opt-card.recruiter:hover {
+  border-color: #70f3ff;
+}
+
+.opt-card.personal:hover {
+  border-color: #ff77d6;
+}
+
+.opt-card .card-icon {
+  font-size: 32px;
+  flex: 0 0 auto;
+}
+
+.opt-card .card-text h3 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-family: 'Press Start 2P', monospace;
+  color: #ffffff;
+}
+
+.opt-card.recruiter .card-text h3 {
+  color: #70f3ff;
+}
+
+.opt-card.personal .card-text h3 {
+  color: #ff77d6;
+}
+
+.opt-card .card-text p {
+  margin: 0 0 6px;
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: #eed6ff;
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  font: bold 8px Verdana, sans-serif;
+  color: #ffb8e4;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
