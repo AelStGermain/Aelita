@@ -1,7 +1,7 @@
 .tamagotchi-widget {
   position: fixed;
-  bottom: 12px;
-  right: 12px;
+  bottom: 15px;
+  left: 15px;
   z-index: 9200;
   width: 250px;
   background: linear-gradient(145deg, #1e122d, #2e1542 60%, #170d24);
@@ -253,7 +253,7 @@
 @media (max-width: 500px) {
   .tamagotchi-widget {
     bottom: 8px;
-    right: 8px;
+    left: 8px;
     width: 220px;
   }
 }

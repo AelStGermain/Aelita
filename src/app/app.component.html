@@ -68,7 +68,7 @@
 
   <!-- FLOATING & DRAGGABLE BOT LAUNCHER BUTTON -->
   <button class="floating-bot-launcher" 
-          (click)="botService.toggleBot()" 
+          (click)="onLauncherClick($event)" 
           (mousedown)="startLauncherDrag($event)"
           (touchstart)="startLauncherDrag($event)"
           [style.transform]="'translate3d(' + launcherPos.x + 'px, ' + launcherPos.y + 'px, 0)'"

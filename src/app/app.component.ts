@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
   // Draggable AEL_BOT launcher button state
   launcherPos = { x: 0, y: 0 };
   private isDraggingLauncher = false;
+  private hasMovedLauncher = false;
   private dragStart = { x: 0, y: 0 };
   private launcherStart = { x: 0, y: 0 };
 
@@ -127,6 +128,9 @@ export class AppComponent implements OnInit {
     if (this.isDraggingLauncher) {
       const deltaX = event.clientX - this.dragStart.x;
       const deltaY = event.clientY - this.dragStart.y;
+      if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) {
+        this.hasMovedLauncher = true;
+      }
       this.launcherPos = {
         x: this.launcherStart.x + deltaX,
         y: this.launcherStart.y + deltaY
@@ -154,10 +158,21 @@ export class AppComponent implements OnInit {
 
   startLauncherDrag(event: MouseEvent | TouchEvent) {
     this.isDraggingLauncher = true;
+    this.hasMovedLauncher = false;
     const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
     const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
     this.dragStart = { x: clientX, y: clientY };
     this.launcherStart = { ...this.launcherPos };
+  }
+
+  onLauncherClick(event: MouseEvent) {
+    if (this.hasMovedLauncher) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.hasMovedLauncher = false;
+      return;
+    }
+    this.botService.toggleBot();
   }
 
   toggleMenu() {

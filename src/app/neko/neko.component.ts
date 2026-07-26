@@ -20,7 +20,7 @@ export class NekoComponent implements OnInit, OnDestroy {
   @Input() mouseX = 0;
   @Input() mouseY = 0;
 
-  petName = 'Aelita';
+  petName = 'AEL_PET';
   petState: PetState = 'idle';
   petHappiness = 90;
   petEnergy = 85;
@@ -231,7 +231,7 @@ export class NekoComponent implements OnInit, OnDestroy {
       this.petHappiness = 90;
       this.petEnergy = 85;
       this.petExp = 0;
-      this.petName = 'Aelita';
+      this.petName = 'AEL_PET';
     }
   }
 
