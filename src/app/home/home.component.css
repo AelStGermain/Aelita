@@ -108,8 +108,247 @@
     filter: brightness(1.18);
 }
 
+/* Mode Toggle Banner */
+.mode-toggle-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #2b1747, #4e226e);
+    border: 2px ridge #ff8ad4;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 10px;
+}
+
+.mode-switch-btn {
+    padding: 4px 10px;
+    background: linear-gradient(180deg, #ff4196, #8025e0);
+    color: #fff !important;
+    border: 2px outset #ffa8dc;
+    border-radius: 4px;
+    font: bold 9px Verdana, sans-serif;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.mode-switch-btn:hover {
+    filter: brightness(1.2);
+    transform: scale(1.02);
+}
+
+/* Recruiter Hero Section */
+.recruiter-hero {
+    margin-bottom: 10px;
+    border: 2px solid #8025e0 !important;
+    background: linear-gradient(135deg, #ffffff, #f7efff) !important;
+}
+
+.recruiter-hero-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 12px;
+    padding: 12px;
+    align-items: center;
+}
+
+.recruiter-avatar {
+    text-align: center;
+}
+
+.recruiter-avatar img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #8025e0;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.status-chip {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 6px;
+    background: #e6f9ed;
+    color: #007a33;
+    border: 1px solid #00b34a;
+    border-radius: 10px;
+    font: bold 8px Verdana, sans-serif;
+}
+
+.recruiter-details h2 {
+    margin: 0 0 2px !important;
+    font: bold 13px 'Press Start 2P', monospace !important;
+    color: #5b219e !important;
+    background: none !important;
+    border: none !important;
+    text-align: left !important;
+}
+
+.recruiter-title {
+    margin: 0 0 8px;
+    font-size: 10.5px;
+    font-weight: bold;
+    color: #0077b6;
+}
+
+.recruiter-summary {
+    margin: 0 0 10px;
+    font-size: 9.5px;
+    line-height: 1.45;
+    color: #3b2354;
+}
+
+.recruiter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.recruiter-tags .tag {
+    padding: 2px 6px;
+    background: #eedeff;
+    border: 1px solid #b586e8;
+    color: #4a1e78;
+    font: bold 8.5px Verdana, sans-serif;
+    border-radius: 3px;
+}
+
+.recruiter-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.recruiter-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font: bold 9px Verdana, sans-serif;
+    text-decoration: none !important;
+    transition: filter 0.15s ease;
+}
+
+.recruiter-btn.primary {
+    background: linear-gradient(90deg, #7c2696, #48145a);
+    color: #fff !important;
+    border: 2px outset #d877e6;
+}
+
+.recruiter-btn.secondary {
+    background: #f0e6ff;
+    color: #4a1e78 !important;
+    border: 1px solid #b586e8;
+}
+
+.recruiter-btn:hover {
+    filter: brightness(1.15);
+}
+
+/* Radio Visualizer Canvas */
+.visualizer-container {
+    margin: 4px auto;
+    text-align: center;
+    background: #0d061a;
+    border: 1px inset #52347a;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.radio-canvas {
+    display: block;
+    margin: 0 auto;
+    width: 144px;
+    height: 28px;
+}
+
+/* GitHub Live Activity Widget */
+.github-widget {
+    background: #f8f5ff;
+}
+
+.github-content {
+    padding: 6px;
+}
+
+.github-stats-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 4px;
+    background: #ebdcf9;
+    border: 1px solid #c2a6e0;
+    border-radius: 3px;
+    font-size: 9px;
+    color: #452466;
+    margin-bottom: 6px;
+}
+
+.github-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 6px;
+}
+
+.gh-feed-item {
+    padding: 5px;
+    background: #ffffff;
+    border: 1px solid #dcd0ee;
+    border-radius: 3px;
+}
+
+.gh-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.gh-repo {
+    font-weight: bold;
+    font-size: 8.5px;
+    color: #6a1b9a;
+}
+
+.gh-date {
+    font-size: 7.5px;
+    color: #8877a0;
+}
+
+.gh-msg {
+    margin: 0 !important;
+    font-size: 8.5px;
+    line-height: 1.25;
+    color: #2c1b42;
+}
+
+.gh-loading {
+    font-size: 8.5px;
+    color: #776699;
+    text-align: center;
+    padding: 8px 0;
+}
+
+.gh-profile-link {
+    display: block;
+    text-align: center;
+    font-size: 8.5px;
+    color: #6a1b9a !important;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 @media (max-width: 650px) {
     .home-portfolio-grid {
         grid-template-columns: 1fr;
+    }
+    .recruiter-hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .recruiter-details h2 {
+        text-align: center !important;
+    }
+    .recruiter-tags, .recruiter-actions {
+        justify-content: center;
     }
 }

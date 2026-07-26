@@ -1,10 +1,55 @@
-<section class="portal" aria-labelledby="welcome-title">
-  <img class="floating-gif gif-heart heart-a" src="heart-gif-1.gif" alt="" aria-hidden="true">
-  <img class="floating-gif gif-heart heart-b" src="heart-gif-1.gif" alt="" aria-hidden="true">
-  <img class="floating-gif gif-heart heart-c" src="heart-gif-1.gif" alt="" aria-hidden="true">
-  <img class="floating-gif gif-stars" src="pink.gif" alt="" aria-hidden="true">
-  <div class="marquee"><span>✦ WELCOME TO MY LITTLE CORNER OF THE WORLD WIDE WEB ✦ ALWAYS UNDER
-      CONSTRUCTION ✦</span></div>
+<section class="portal" [class.recruiter-mode]="isRecruiterMode" aria-labelledby="welcome-title">
+  <!-- Mode Toggle Floating Bar -->
+  <div class="mode-toggle-banner">
+    <div class="banner-info">
+      <span>MODO ACTUAL: <strong>{{ isRecruiterMode ? '💼 RECRUITER / PORTAFOLIO EJECUTIVO' : '👾 VISTA PERSONAL Y2K' }}</strong></span>
+    </div>
+    <button type="button" class="mode-switch-btn" (click)="toggleRecruiterMode()">
+      {{ isRecruiterMode ? '👾 CAMBIAR A VISTA PERSONAL Y2K' : '💼 CAMBIAR A RECRUITER VIEW' }}
+    </button>
+  </div>
+
+  <img *ngIf="!isRecruiterMode" class="floating-gif gif-heart heart-a" src="heart-gif-1.gif" alt="" aria-hidden="true">
+  <img *ngIf="!isRecruiterMode" class="floating-gif gif-heart heart-b" src="heart-gif-1.gif" alt="" aria-hidden="true">
+  <img *ngIf="!isRecruiterMode" class="floating-gif gif-heart heart-c" src="heart-gif-1.gif" alt="" aria-hidden="true">
+  <img *ngIf="!isRecruiterMode" class="floating-gif gif-stars" src="pink.gif" alt="" aria-hidden="true">
+  
+  <div class="marquee">
+    <span>✦ {{ isRecruiterMode ? 'SOFÍA GÓMEZ (AEL) — SOFTWARE DEVELOPER & SYSTEMS ANALYST — FEATURED PORTFOLIO' : 'WELCOME TO MY LITTLE CORNER OF THE WORLD WIDE WEB ✦ ALWAYS UNDER CONSTRUCTION' }} ✦</span>
+  </div>
+
+  <!-- RECRUITER VIEW BANNER -->
+  <section *ngIf="isRecruiterMode" class="web-box recruiter-hero">
+    <div class="recruiter-hero-grid">
+      <div class="recruiter-avatar">
+        <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez (Ael)">
+        <span class="status-chip">🟢 OPEN TO OPPORTUNITIES</span>
+      </div>
+      <div class="recruiter-details">
+        <h2>SOFÍA GÓMEZ ORELLANA (AEL)</h2>
+        <p class="recruiter-title">Técnico Analista de Sistemas &amp; Estudiante de Ingeniería Civil Informática</p>
+        <p class="recruiter-summary">
+          Especializada en desarrollo backend en Java (Spring Boot) y arquitectura de integración de sistemas, combinando sólidas prácticas de desarrollo web/móvil moderno (Angular, Ionic, TypeScript) con análisis de requerimientos y metodologías ágiles.
+        </p>
+        <div class="recruiter-tags">
+          <span class="tag">Java</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Integration</span>
+          <span class="tag">Angular</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Git</span>
+          <span class="tag">Scrum</span>
+        </div>
+        <div class="recruiter-actions">
+          <a routerLink="/about" class="recruiter-btn primary">📄 VER CURRÍCULUM &amp; STACK COMPLETO</a>
+          <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="recruiter-btn secondary">🐙 GITHUB REPOS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="portal-grid">
     <aside class="left-column">
 
@@ -12,33 +57,49 @@
         <h2>.: VISITORS :.</h2>
         <p>You are visitor</p><strong>0 3 4 8 2 1</strong><small>since 1999*</small>
       </section>
+
       <section class="web-box">
         <h2>.: STATUS :.</h2>
         <p class="status">● ONLINE</p>
         <p>currently building:<br><b>cool_stuff.exe</b></p>
       </section>
+
+      <!-- RADIO & CANVAS VISUALIZER -->
       <section class="web-box now-playing">
         <h2>.: AEL_WAVE RADIO :.</h2>
-        <p>{{radioOn ? '♫ generative signal online' : 'radio is sleeping...'}}</p>
-        <div class="station-tabs"><button [class.active]="station==='dream'"
-            (click)="selectStation('dream')">DREAM</button><button [class.active]="station==='cosmic'"
-            (click)="selectStation('cosmic')">COSMIC</button><button [class.active]="station==='machine'"
-            (click)="selectStation('machine')">MACHINE</button></div><button class="play-radio"
-          (click)="toggleRadio()">{{radioOn?'■ STOP':'▶ PLAY'}}</button><label>VOL <input type="range" min="0.04"
-            max="0.5" step="0.02" [(ngModel)]="volume" (input)="setVolume()"></label><small>original Web Audio
-          signal</small>
+        <p class="radio-status-text">{{radioOn ? '♫ ' + station.toUpperCase() + ' signal online' : 'radio is sleeping...'}}</p>
+        
+        <!-- Canvas Frequency Equalizer -->
+        <div class="visualizer-container">
+          <canvas #radioCanvas class="radio-canvas" width="144" height="28"></canvas>
+        </div>
+
+        <div class="station-tabs">
+          <button [class.active]="station==='dream'" (click)="selectStation('dream')">DREAM</button>
+          <button [class.active]="station==='cosmic'" (click)="selectStation('cosmic')">COSMIC</button>
+          <button [class.active]="station==='lofi'" (click)="selectStation('lofi')">LOFI LIVE</button>
+          <button [class.active]="station==='synth'" (click)="selectStation('synth')">SYNTH</button>
+        </div>
+
+        <button class="play-radio" (click)="toggleRadio()">{{radioOn ? '■ STOP' : '▶ PLAY'}}</button>
+        
+        <label class="vol-label">
+          VOL <input type="range" min="0.04" max="0.5" step="0.02" [(ngModel)]="volume" (input)="setVolume()">
+        </label>
+        <small>generative &amp; live streams</small>
       </section>
+
     </aside>
 
     <div class="center-column">
+
       <section class="web-box welcome-box">
         <h2 id="welcome-title">.: WELCOME, WEB TRAVELLER! :.</h2>
         <div class="welcome-content">
           <div class="computer" aria-hidden="true">💻</div>
           <div>
             <p><b>¡Hola! Soy Ael.</b></p>
-            <p>Desarrolladora, educadora y exploradora digital. Este es mi rincón personal donde vacío mis
-              juegos, experimentos y herramientas.</p>
+            <p>Desarrolladora, educadora y exploradora digital. Este es mi rincón personal donde vacío mis proyectos, experimentos y herramientas.</p>
             <p>
               <a routerLink="/about">[ leer mi historia ]</a>
               <button (click)="openPortfolio()" class="portfolio-link-btn">[ ver mi portafolio ]</button>
@@ -46,13 +107,18 @@
           </div>
         </div>
       </section>
+
       <section class="web-box spotlight">
         <h2>.: AEL_BOT :.</h2>
-        <div><span class="bot-face">(◕‿◕)</span>
+        <div>
+          <span class="bot-face">(◕‿◕)</span>
           <p>Conversa con mi pequeña representante digital en cualquier subpágina. ¡Ahora con marcos Y2K seleccionables!</p>
-          <button class="y2k-button" (click)="openBot()">CHAT NOW!</button><small>o presiona la tecla /</small>
+          <button class="y2k-button" (click)="openBot()">CHAT NOW!</button>
+          <small>o presiona la tecla /</small>
         </div>
       </section>
+
+      <!-- PORTFOLIO PROJECTS -->
       <section class="web-box projects" id="projects">
         <h2>.: MY PROJECTS :.</h2>
         <p class="projects-intro">Proyectos de software web y móvil desarrollados por Ael:</p>
@@ -76,19 +142,59 @@
           </article>
         </div>
       </section>
+
       <section class="web-box links center-links">
         <h2>.: COOL LINKS :.</h2>
-        <div><a routerLink="/about">♡ Profile</a><a routerLink="/ctf">⌘ Security lab</a><a routerLink="/snake">★
-            Arcade</a></div>
+        <div>
+          <a routerLink="/about">♡ Profile</a>
+          <a routerLink="/ctf">⌘ Security lab</a>
+          <a routerLink="/snake">★ Arcade</a>
+        </div>
       </section>
+
     </div>
 
     <aside class="right-column">
+
+      <!-- GITHUB LIVE ACTIVITY WIDGET -->
+      <section class="web-box github-widget">
+        <h2>.: GITHUB_LIVE_ACTIVITY :.</h2>
+        <div class="github-content">
+          <div class="github-stats-bar">
+            <span><b>{{githubStats.publicRepos}}</b> repos</span>
+            <span><b>{{githubStats.followers}}</b> seguidores</span>
+          </div>
+
+          <div class="github-feed" *ngIf="!githubLoading; else ghLoading">
+            <div *ngFor="let ev of githubEvents" class="gh-feed-item">
+              <div class="gh-item-header">
+                <span class="gh-repo">🐙 {{ev.repo}}</span>
+                <span class="gh-date">{{ev.date}}</span>
+              </div>
+              <p class="gh-msg">{{ev.message}}</p>
+            </div>
+          </div>
+
+          <ng-template #ghLoading>
+            <div class="gh-loading">Cargando actividad de GitHub...</div>
+          </ng-template>
+
+          <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="gh-profile-link">
+            [ ver github.com/AelStGermain ]
+          </a>
+        </div>
+      </section>
+
       <section class="web-box profile-mini">
         <h2>.: WEBMISTRESS :.</h2>
-        <div class="avatar-cycle small-avatar"><img src="avatar-dark-retro.jpg" alt="Retrato retro de Ael con cabello oscuro"><img src="avatar-light-retro.jpg" alt="Retrato retro de Ael con cabello claro"></div><b>AEL</b>
+        <div class="avatar-cycle small-avatar">
+          <img src="avatar-dark-retro.jpg" alt="Retrato retro de Ael con cabello oscuro">
+          <img src="avatar-light-retro.jpg" alt="Retrato retro de Ael con cabello claro">
+        </div>
+        <b>AEL</b>
         <p>developer<br>educator<br>digital explorer</p>
       </section>
+
       <section class="web-box">
         <h2>.: QUICK FACTS :.</h2>
         <dl>
@@ -102,23 +208,27 @@
           <dd>Creating...</dd>
         </dl>
       </section>
+
       <section class="web-box updates">
         <h2>.: UPDATES :.</h2>
+        <p><b>26.07.26</b><br>💼 Recruiter Mode &amp; GitHub Live Activity live!</p>
         <p><b>26.07.26</b><br>🐱 AEL_PET pixel companion live!</p>
-        <p><b>23.07.26</b><br>🐾 Left Drawer: Real Projects (Patota & Kuichi).</p>
-        <p><b>23.07.26</b><br>🎮 Desktop Arcade Horizontal Grid layouts.</p>
+        <p><b>23.07.26</b><br>🐾 Left Drawer: Real Projects (Patota &amp; Kuichi).</p>
         <p><b>22.07.26</b><br>Y2K portal online.</p>
       </section>
+
       <section class="web-box favorites">
-        <h2>.: MUSIC SHELF :.</h2><a href="https://open.spotify.com/search/Empire%20of%20the%20Sun" target="_blank"
-          rel="noopener">☀ Empire of the Sun</a><a href="https://open.spotify.com/search/Telepath%20vaporwave"
-          target="_blank" rel="noopener">▦ Telepath</a><a href="https://open.spotify.com/search/Kitaro" target="_blank"
-          rel="noopener">☁ Kitaro</a><a href="https://open.spotify.com/search/Kraftwerk" target="_blank"
-          rel="noopener">▣ Kraftwerk</a><a href="https://open.spotify.com/search/Sewerslvt" target="_blank"
-          rel="noopener">✦ Sewerslvt</a><a href="https://open.spotify.com/search/Pet%20Shop%20Boys" target="_blank"
-          rel="noopener">♡ Pet Shop Boys</a>
+        <h2>.: MUSIC SHELF :.</h2>
+        <a href="https://open.spotify.com/search/Empire%20of%20the%20Sun" target="_blank" rel="noopener">☀ Empire of the Sun</a>
+        <a href="https://open.spotify.com/search/Telepath%20vaporwave" target="_blank" rel="noopener">▦ Telepath</a>
+        <a href="https://open.spotify.com/search/Kitaro" target="_blank" rel="noopener">☁ Kitaro</a>
+        <a href="https://open.spotify.com/search/Kraftwerk" target="_blank" rel="noopener">▣ Kraftwerk</a>
+        <a href="https://open.spotify.com/search/Sewerslvt" target="_blank" rel="noopener">✦ Sewerslvt</a>
+        <a href="https://open.spotify.com/search/Pet%20Shop%20Boys" target="_blank" rel="noopener">♡ Pet Shop Boys</a>
       </section>
+
     </aside>
   </div>
+
   <div class="webring">« PREV　 <b>PERSONAL WEBRING OF CURIOUS PEOPLE</b>　 RANDOM　 NEXT »</div>
 </section>

@@ -13,6 +13,9 @@
       <a routerLink="/about" routerLinkActive="active">☺ ABOUT ME</a>
       <a href="#projects" (click)="scrollToProjects($event)">🚀 MY PROJECTS</a>
       <button type="button" class="nav-games-btn" (click)="toggleProjectsDrawer()">🎮 JUEGOS DOCK</button>
+      <button type="button" class="nav-recruiter-btn" [class.active]="isRecruiterMode" (click)="toggleRecruiterMode()">
+        {{ isRecruiterMode ? '👾 VISTA PERSONAL' : '💼 RECRUITER VIEW' }}
+      </button>
     </nav>
   </header>
 
