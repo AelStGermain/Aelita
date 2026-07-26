@@ -51,6 +51,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   isRecruiterMode = false;
   activeRecruiterTab: 'projects' | 'stack' | 'experience' | 'contact' = 'projects';
 
+  // AEL_AI Recruiter Assistant State
+  aiResponse = '¡Hola! Soy AEL_AI Executive Assistant 🤖 Haz clic en cualquier botón de abajo para obtener información sintetizada para tu proceso de selección.';
+
+  askAiRecruiter(topic: 'hire' | 'spring' | 'education' | 'projects'): void {
+    const responses: Record<string, string> = {
+      hire: 'Sofía destaca por su combinación única de perfil técnico backend (Java/Spring Boot/SQL) con visión de integración de sistemas, agilidad en metodologías Scrum y excelente comunicación (Inglés C1). Entrega soluciones escalables y documentadas.',
+      spring: 'Cuenta con sólidas competencias en desarrollo backend usando Java, Spring Boot, Spring MVC, Spring Security y JPA/Hibernate para la creación de APIs REST estructuradas y base de datos relacionales.',
+      education: 'Es Titulada como Técnico Analista de Sistemas y actualmente cursa Ingeniería Civil Informática. Además cuenta con certificación/dominio de Inglés C1 Avanzado.',
+      projects: 'Ha liderado y construido sistemas completos como KUICHI WEB (Java/Spring Boot + Angular), KUICHI APP (Ionic + TypeScript) y PATOTA (Web App). Revisa sus demos en vivo y repositorios en GitHub.'
+    };
+    this.aiResponse = responses[topic] || responses['hire'];
+  }
+
   setRecruiterTab(tab: 'projects' | 'stack' | 'experience' | 'contact'): void {
     this.activeRecruiterTab = tab;
   }

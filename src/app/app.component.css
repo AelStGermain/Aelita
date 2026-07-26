@@ -156,3 +156,107 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* Recruiter Fullscreen & Glass Header Dock */
+#page-container.recruiter-fullscreen {
+  background: #090514;
+}
+
+.recruiter-glass-dock {
+  position: sticky;
+  top: 0;
+  z-index: 9000;
+  width: 100%;
+  background: rgba(22, 11, 38, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.glass-dock-inner {
+  width: min(1140px, calc(100% - 32px));
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.dock-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none !important;
+}
+
+.brand-spark {
+  color: #70f3ff;
+  font-size: 16px;
+}
+
+.brand-name {
+  font: bold 16px 'Press Start 2P', monospace;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  font-size: 9.5px;
+  color: #c4b5fd;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 8px;
+}
+
+.dock-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dock-nav a {
+  color: #eed6ff !important;
+  text-decoration: none !important;
+  font: bold 10px Verdana, sans-serif;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.dock-nav a:hover {
+  color: #70f3ff !important;
+  background: rgba(112, 243, 255, 0.1);
+}
+
+.dock-nav .cv-link {
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: #ffb8e4 !important;
+}
+
+.dock-switch-btn {
+  padding: 6px 12px;
+  background: linear-gradient(90deg, #ff4196, #8025e0);
+  color: #ffffff !important;
+  border: 1.5px solid #ff9ee2;
+  border-radius: 6px;
+  font: bold 9px Verdana, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 65, 150, 0.3);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.dock-switch-btn:hover {
+  filter: brightness(1.2);
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .glass-dock-inner {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 0;
+  }
+  .brand-sub {
+    display: none;
+  }
+}

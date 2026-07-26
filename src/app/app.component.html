@@ -1,6 +1,30 @@
-<div id="page-container" [class.arcade-mode]="!isEditorialPage" [class.home-mode]="isEditorialPage">
+<div id="page-container" [class.arcade-mode]="!isEditorialPage" [class.home-mode]="isEditorialPage" [class.recruiter-fullscreen]="isRecruiterMode">
   <a class="skip-link" href="#content-wrap">Saltar al contenido</a>
-  <header class="site-header">
+
+  <!-- RECRUITER MODE GLASS HEADER DOCK -->
+  <header *ngIf="isRecruiterMode" class="recruiter-glass-dock" aria-label="Navegación Ejecutiva">
+    <div class="glass-dock-inner">
+      <a routerLink="/" class="dock-brand">
+        <span class="brand-spark">✧</span>
+        <strong class="brand-name">AEL</strong>
+        <span class="brand-sub">Software Developer &amp; Systems Analyst</span>
+      </a>
+
+      <nav class="dock-nav">
+        <a href="#bento-projects" (click)="scrollToProjects($event)">🚀 PROYECTOS</a>
+        <a href="#bento-stack" (click)="scrollToProjects($event)">⚡ STACK TÉCNICO</a>
+        <a href="#bento-xp" (click)="scrollToProjects($event)">💼 TRAYECTORIA</a>
+        <a routerLink="/about" class="cv-link">📄 CV COMPLETO</a>
+      </nav>
+
+      <button type="button" class="dock-switch-btn" (click)="toggleRecruiterMode()">
+        👾 VISTA PERSONAL Y2K
+      </button>
+    </div>
+  </header>
+
+  <!-- Y2K PERSONAL SITE HEADER -->
+  <header *ngIf="!isRecruiterMode" class="site-header">
     <div class="header-strip"><span>★ AEL'S SECRET CORNER ★</span><span class="best-viewed">BEST VIEWED WITH CURIOSITY</span></div>
     <div class="masthead">
       <a class="brand" routerLink="/"><span>Ael's</span><strong>Secret Corner</strong><small>developer • educator • digital explorer</small></a>
@@ -20,7 +44,7 @@
   </header>
 
   <!-- COLLAPSIBLE LEFT DRAWER: AEL'S GAMES & MINI-APPS DOCK -->
-  <aside class="ael-projects-drawer" [class.open]="isProjectsDrawerOpen" aria-label="Juegos de Ael">
+  <aside *ngIf="!isRecruiterMode" class="ael-projects-drawer" [class.open]="isProjectsDrawerOpen" aria-label="Juegos de Ael">
     <button class="drawer-toggle-btn" (click)="toggleProjectsDrawer()" aria-label="Alternar juegos de Ael">
       <span class="led-blink">●</span> 
       <span class="drawer-btn-text">🎮 ARCADE DOCK</span> 
