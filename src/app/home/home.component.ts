@@ -1,8 +1,10 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { BotService } from '../service/bot.service';
+
+declare var bootstrap: any;
 
 export interface GitHubEventItem {
   repo: string;
@@ -18,7 +20,7 @@ export interface GitHubEventItem {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('radioCanvas', { static: false }) radioCanvas?: ElementRef<HTMLCanvasElement>;
 
   // Radio & Web Audio State
@@ -112,6 +114,19 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.startHeroTypewriter();
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+      try {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map((tooltipTriggerEl: any) => {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      } catch (e) {
+        console.warn('Bootstrap tooltips not initialized', e);
+      }
+    }
   }
 
   toggleRecruiterMode(): void {

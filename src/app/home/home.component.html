@@ -43,14 +43,14 @@
               </p>
 
               <div class="hero-tech-chips">
-                <span class="tech-tag">Java</span>
-                <span class="tech-tag">Spring Boot</span>
-                <span class="tech-tag">REST APIs</span>
-                <span class="tech-tag">SQL / PostgreSQL</span>
-                <span class="tech-tag">Angular</span>
-                <span class="tech-tag">TypeScript</span>
-                <span class="tech-tag">Docker</span>
-                <span class="tech-tag">Scrum</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Desarrollo orientado a objetos avanzado">Java</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Creación de microservicios y REST APIs">Spring Boot</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Diseño de servicios JSON robustos">REST APIs</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Modelado y optimización de bases de datos">SQL / PostgreSQL</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Framework SPA estructurado y reactivo">Angular</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Tipado estático seguro para desarrollo web/móvil">TypeScript</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Contenerización de aplicaciones e infraestructura">Docker</span>
+                <span class="tech-tag" data-bs-toggle="tooltip" title="Metodología ágil para equipos de desarrollo">Scrum</span>
               </div>
 
               <div class="hero-actions">
@@ -112,27 +112,105 @@
           
           <!-- TAB 1: PROJECTS -->
           <div *ngIf="activeRecruiterTab === 'projects'" class="tab-fade-panel">
-            <div class="projects-list-vertical">
-              <article class="bento-card project-bento anim-delay-1" *ngFor="let proj of developerProjects">
-                <div class="proj-bento-header">
-                  <span class="proj-emoji">{{proj.icon}}</span>
-                  <div>
-                    <h3>{{proj.title}}</h3>
-                    <span class="proj-tag">{{proj.badge}}</span>
-                  </div>
-                </div>
-                <p class="proj-bento-sub">{{proj.subtitle}}</p>
-                <p class="proj-bento-desc">{{proj.desc}}</p>
+            <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+              
+              <!-- Carousel Indicators -->
+              <div class="carousel-indicators custom-indicators">
+                <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Patota"></button>
+                <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="1" aria-label="Kuichi Web"></button>
+                <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="2" aria-label="Kuichi App"></button>
+              </div>
 
-                <div class="proj-bento-techs">
-                  <span *ngFor="let t of proj.techs" class="bento-pill">{{t}}</span>
+              <div class="carousel-inner">
+                <!-- Slide 1: PATOTA -->
+                <div class="carousel-item active">
+                  <article class="bento-card project-bento">
+                    <div class="proj-bento-header">
+                      <span class="proj-emoji">🐾</span>
+                      <div>
+                        <h3>PATOTA</h3>
+                        <span class="proj-tag">WEB APP</span>
+                      </div>
+                    </div>
+                    <p class="proj-bento-sub">Organización de paseos y salidas grupales</p>
+                    <p class="proj-bento-desc">Plataforma interactiva construida para la coordinación de rutas recreativas y actividades al aire libre, optimizando la comunicación grupal.</p>
+                    <div class="proj-bento-techs">
+                      <span class="bento-pill">JavaScript</span>
+                      <span class="bento-pill">HTML5</span>
+                      <span class="bento-pill">CSS3</span>
+                      <span class="bento-pill">UX/UI</span>
+                    </div>
+                    <div class="proj-bento-actions">
+                      <a href="https://aelstgermain.github.io/Patota" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
+                      <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#patotaModal">Ver Arquitectura</button>
+                      <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                    </div>
+                  </article>
                 </div>
 
-                <div class="proj-bento-actions">
-                  <a [href]="proj.url" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-                  <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                <!-- Slide 2: KUICHI WEB -->
+                <div class="carousel-item">
+                  <article class="bento-card project-bento">
+                    <div class="proj-bento-header">
+                      <span class="proj-emoji">🐶</span>
+                      <div>
+                        <h3>KUICHI WEB</h3>
+                        <span class="proj-tag">VET PLATFORM</span>
+                      </div>
+                    </div>
+                    <p class="proj-bento-sub">Plataforma de bienestar animal y servicios veterinarios</p>
+                    <p class="proj-bento-desc">Sistema integral para la reserva de citas médicas, seguimiento del historial de mascotas y geolocalización de ofertas de atención.</p>
+                    <div class="proj-bento-techs">
+                      <span class="bento-pill">Java</span>
+                      <span class="bento-pill">Spring Boot</span>
+                      <span class="bento-pill">Angular</span>
+                      <span class="bento-pill">REST APIs</span>
+                    </div>
+                    <div class="proj-bento-actions">
+                      <a href="https://aelstgermain.github.io/kuichiweb/" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
+                      <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiWebModal">Ver Arquitectura</button>
+                      <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                    </div>
+                  </article>
                 </div>
-              </article>
+
+                <!-- Slide 3: KUICHI APP -->
+                <div class="carousel-item">
+                  <article class="bento-card project-bento">
+                    <div class="proj-bento-header">
+                      <span class="proj-emoji">📱</span>
+                      <div>
+                        <h3>KUICHI APP</h3>
+                        <span class="proj-tag">MOBILE APP</span>
+                      </div>
+                    </div>
+                    <p class="proj-bento-sub">Versión móvil híbrida para smartphones</p>
+                    <p class="proj-bento-desc">Aplicación móvil multiplataforma que acerca los servicios y alertas de vacunas de mascotas directamente al celular del dueño.</p>
+                    <div class="proj-bento-techs">
+                      <span class="bento-pill">Ionic</span>
+                      <span class="bento-pill">Angular</span>
+                      <span class="bento-pill">TypeScript</span>
+                      <span class="bento-pill">Capacitor</span>
+                    </div>
+                    <div class="proj-bento-actions">
+                      <a href="https://aelstgermain.github.io/kuichiapp" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
+                      <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiAppModal">Ver Arquitectura</button>
+                      <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <!-- Carousel Controls -->
+              <button class="carousel-control-prev custom-ctrl" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next custom-ctrl" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+
             </div>
           </div>
 
@@ -143,19 +221,19 @@
                 <h2>Competencias Técnicas</h2>
               </div>
               <div class="stack-matrix-grid">
-                <div class="matrix-cell">
+                <div class="matrix-cell" data-bs-toggle="tooltip" title="Desarrollo de servicios robustos y seguros">
                   <h3>Backend &amp; Arquitectura</h3>
                   <p>Java, Spring Boot, Spring MVC, REST APIs, Spring Security, JPA / Hibernate, Node.js, Express.js, PHP</p>
                 </div>
-                <div class="matrix-cell">
+                <div class="matrix-cell" data-bs-toggle="tooltip" title="Interfaces interactivas y responsivas">
                   <h3>Frontend Web &amp; Móvil</h3>
                   <p>JavaScript, TypeScript, Angular, Ionic, HTML5, CSS3, Single Page Applications</p>
                 </div>
-                <div class="matrix-cell">
+                <div class="matrix-cell" data-bs-toggle="tooltip" title="Modelado y consistencia de datos relacionales">
                   <h3>Datos &amp; Bases de Datos</h3>
                   <p>PostgreSQL, MySQL, H2, Supabase, Firebase Firestore, Master Data Management</p>
                 </div>
-                <div class="matrix-cell">
+                <div class="matrix-cell" data-bs-toggle="tooltip" title="Prácticas modernas de infraestructura y gestión">
                   <h3>DevOps &amp; Metodologías</h3>
                   <p>Git, GitHub Actions, Docker, Linux, Maven, Scrum, Documentación Técnica</p>
                 </div>
@@ -170,34 +248,142 @@
                 <h2>Trayectoria &amp; Formación</h2>
               </div>
               
-              <div class="trajectory-timeline">
-                <div class="timeline-entry">
-                  <span class="time-badge">2026 — PRESENTE</span>
-                  <h4>Práctica Profesional — FollowUP Customer Experience</h4>
-                  <p>Análisis y documentación de requerimientos técnicos, validación de datos y metodologías ágiles (Scrum).</p>
+              <div class="accordion accordion-flush custom-accordion" id="trajectoryAccordion">
+                
+                <!-- Item 1: Práctica -->
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <span class="time-badge me-2">2026 — PRESENTE</span>
+                      Práctica Profesional · FollowUP
+                    </button>
+                  </h3>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#trajectoryAccordion">
+                    <div class="accordion-body">
+                      <h5>Junior Backend &amp; Data Integration</h5>
+                      <p>Análisis y levantamiento de requerimientos técnicos junto al cliente, validación masiva y estructuración de datos operacionales, optimización de consultas SQL y automatizaciones. Desarrollo ágil bajo marco Scrum.</p>
+                      <div class="timeline-skills mt-2">
+                        <span class="bento-pill">Scrum</span>
+                        <span class="bento-pill">SQL</span>
+                        <span class="bento-pill">Documentación</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="timeline-entry">
-                  <span class="degree-badge in-progress">EN CURSO</span>
-                  <h4>Ingeniería Civil Informática</h4>
-                  <p>Formación avanzada en ingeniería de software, arquitectura de sistemas y ciencias de la computación.</p>
+                <!-- Item 2: Ingeniería -->
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <span class="degree-badge in-progress me-2">EN CURSO</span>
+                      Ingeniería Civil Informática
+                    </button>
+                  </h3>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#trajectoryAccordion">
+                    <div class="accordion-body">
+                      <p>Formación académica avanzada en ciencias de la computación, diseño de algoritmos complejos, bases de datos y arquitectura de sistemas distribuidos.</p>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="timeline-entry">
-                  <span class="degree-badge completed">TITULADA</span>
-                  <h4>Técnico Analista de Sistemas</h4>
-                  <p>Título profesional en análisis, diseño y construcción de sistemas informáticos.</p>
+                <!-- Item 3: Analista -->
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <span class="degree-badge completed me-2">TITULADA</span>
+                      Técnico Analista de Sistemas
+                    </button>
+                  </h3>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#trajectoryAccordion">
+                    <div class="accordion-body">
+                      <p>Formación técnica centrada en el ciclo de vida del software, programación orientada a objetos (Java), desarrollo de bases de datos relacionales y diseño de aplicaciones web/móviles.</p>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="timeline-entry">
-                  <span class="degree-badge c1">VERIFICADO</span>
-                  <h4>Inglés C1 Avanzado</h4>
-                  <p>Dominio técnico y fluido para colaboración internacional y documentación.</p>
+                <!-- Item 4: Inglés -->
+                <div class="accordion-item">
+                  <h3 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      <span class="degree-badge c1 me-2">VERIFICADO</span>
+                      Inglés C1 Avanzado
+                    </button>
+                  </h3>
+                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#trajectoryAccordion">
+                    <div class="accordion-body">
+                      <p>Dominio técnico avanzado para la lectura de especificaciones de hardware/software, redacción de documentación técnica y comunicación fluida en equipos de desarrollo internacionales.</p>
+                    </div>
+                  </div>
                 </div>
+
               </div>
             </article>
           </div>
 
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap Modals for Project Architecture Details -->
+    <div class="modal fade custom-modal" id="patotaModal" tabindex="-1" aria-labelledby="patotaModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="patotaModalLabel">Patota · Arquitectura &amp; Flujos</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Arquitectura del Sistema</h6>
+            <p>Aplicación web modular construida con HTML5 semántico, CSS3 Vanilla y lógica reactiva en JavaScript. Enfocada en ofrecer baja latencia y alta fluidez de carga en redes móviles inestables durante actividades al aire libre.</p>
+            <h6>Flujo de Datos</h6>
+            <p>La información de rutas y paseos se consume desde servicios de geolocalización locales y almacenamiento local (LocalStorage) en el navegador del usuario para asegurar el funcionamiento sin conexión en zonas remotas.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="bento-btn secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade custom-modal" id="kuichiWebModal" tabindex="-1" aria-labelledby="kuichiWebModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="kuichiWebModalLabel">Kuichi Web · Ingeniería &amp; Integración</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Arquitectura de Capas</h6>
+            <p>Diseño basado en una arquitectura cliente-servidor de tres capas:</p>
+            <ul>
+              <li><strong>Presentación:</strong> Single Page Application construida en Angular, estructurando componentes reactivos y vistas reutilizables.</li>
+              <li><strong>Negocio (API):</strong> REST Controller desarrollado en Java con Spring Boot, gestionando autenticación mediante Spring Security y mapeo de datos con JPA/Hibernate.</li>
+              <li><strong>Datos:</strong> Base de datos relacional PostgreSQL con modelado de datos para dueños, mascotas e historiales de citas.</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="bento-btn secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade custom-modal" id="kuichiAppModal" tabindex="-1" aria-labelledby="kuichiAppModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-modal">
+          <div class="modal-header">
+            <h5 class="modal-title" id="kuichiAppModalLabel">Kuichi App · Arquitectura Híbrida</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Estructura Híbrida Móvil</h6>
+            <p>Aplicación construida usando Ionic Framework combinada con Angular. Capacitor actúa como puente nativo permitiendo el acceso directo a componentes del dispositivo como notificaciones y almacenamiento persistente.</p>
+            <h6>Integración</h6>
+            <p>Se comunica mediante HTTPS seguro con la API REST de Spring Boot para sincronizar en tiempo real el historial médico de las mascotas.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="bento-btn secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
         </div>
       </div>
     </div>

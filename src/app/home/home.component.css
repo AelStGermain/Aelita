@@ -1207,3 +1207,146 @@
     }
 }
 
+/* --- Custom Bootstrap Carousel Styling --- */
+#projectsCarousel {
+    position: relative;
+    padding-bottom: 24px;
+}
+
+.custom-indicators {
+    bottom: -15px !important;
+    margin-bottom: 0 !important;
+}
+
+.custom-indicators button {
+    background-color: #6366f1 !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    opacity: 0.3 !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+.custom-indicators button.active {
+    opacity: 1 !important;
+    transform: scale(1.2);
+}
+
+.custom-ctrl {
+    width: 36px !important;
+    height: 36px !important;
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-radius: 50% !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    border: 1px solid rgba(99, 102, 241, 0.25) !important;
+    transition: all 0.25s ease !important;
+}
+
+.custom-ctrl:hover {
+    background: #6366f1 !important;
+    border-color: #6366f1 !important;
+}
+
+.carousel-control-prev.custom-ctrl {
+    left: -18px !important;
+}
+
+.carousel-control-next.custom-ctrl {
+    right: -18px !important;
+}
+
+.btn-details {
+    padding: 8px 14px;
+    background: rgba(99, 102, 241, 0.08);
+    color: #4f46e5 !important;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    font: 600 10px 'Inter', sans-serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-details:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: #6366f1;
+}
+
+/* --- Frosted Glass Modals --- */
+.custom-modal .modal-content {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(31, 38, 135, 0.1);
+    color: #2b1b54;
+}
+
+.custom-modal .modal-header {
+    border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+}
+
+.custom-modal .modal-title {
+    font: 700 14px 'Inter', sans-serif;
+    color: #2b1b54;
+}
+
+.custom-modal .modal-body {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.custom-modal .modal-body h6 {
+    font-weight: 700;
+    color: #4f46e5;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.custom-modal .modal-body ul {
+    padding-left: 18px;
+    margin-bottom: 12px;
+}
+
+.custom-modal .modal-footer {
+    border-top: 1px solid rgba(99, 102, 241, 0.12);
+}
+
+/* --- Bootstrap Accordion (Custom overrides for glass style) --- */
+.custom-accordion .accordion-item {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.12) !important;
+    margin-bottom: 4px;
+}
+
+.custom-accordion .accordion-button {
+    background: transparent !important;
+    color: #2b1b54 !important;
+    font: 600 12px 'Inter', sans-serif !important;
+    padding: 14px 8px !important;
+    box-shadow: none !important;
+}
+
+.custom-accordion .accordion-button:not(.collapsed) {
+    color: #4f46e5 !important;
+}
+
+.custom-accordion .accordion-button::after {
+    filter: sepia(1) saturate(5) hue-rotate(200deg) !important;
+}
+
+.custom-accordion .accordion-body {
+    padding: 8px 8px 16px !important;
+    font-size: 12px;
+    line-height: 1.55;
+    color: #453768;
+}
+
+.custom-accordion h5 {
+    font: 600 12px 'Inter', sans-serif;
+    color: #2b1b54;
+    margin-bottom: 6px;
+}
+
