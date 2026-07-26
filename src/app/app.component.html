@@ -5,20 +5,13 @@
   <header *ngIf="isRecruiterMode" class="recruiter-glass-dock" aria-label="Navegación Ejecutiva">
     <div class="glass-dock-inner">
       <a routerLink="/" class="dock-brand">
-        <span class="brand-spark">✧</span>
+        <span class="brand-spark">✦</span>
         <strong class="brand-name">AEL</strong>
         <span class="brand-sub">Software Developer &amp; Systems Analyst</span>
       </a>
 
-      <nav class="dock-nav">
-        <a href="#bento-projects" (click)="scrollToProjects($event)">🚀 PROYECTOS</a>
-        <a href="#bento-stack" (click)="scrollToProjects($event)">⚡ STACK TÉCNICO</a>
-        <a href="#bento-xp" (click)="scrollToProjects($event)">💼 TRAYECTORIA</a>
-        <a routerLink="/about" class="cv-link">📄 CV COMPLETO</a>
-      </nav>
-
       <button type="button" class="dock-switch-btn" (click)="toggleRecruiterMode()">
-        👾 VISTA PERSONAL Y2K
+        VISTA PERSONAL Y2K
       </button>
     </div>
   </header>

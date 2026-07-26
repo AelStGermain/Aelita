@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.botService.toggleRecruiterMode();
     }
   }
-  activeRecruiterTab: 'projects' | 'stack' | 'experience' | 'contact' = 'projects';
+  activeRecruiterTab: 'projects' | 'skills' | 'timeline' = 'projects';
 
   // AEL_AI Recruiter Assistant State
   aiResponse = 'Hola, soy AEL_AI. Haz clic en cualquier pregunta para obtener información sintetizada para tu proceso de selección.';
@@ -95,7 +95,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, 18);
   }
 
-  setRecruiterTab(tab: 'projects' | 'stack' | 'experience' | 'contact'): void {
+  setRecruiterTab(tab: 'projects' | 'skills' | 'timeline'): void {
     this.activeRecruiterTab = tab;
   }
 

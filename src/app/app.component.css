@@ -157,9 +157,16 @@
   to { opacity: 1; }
 }
 
-/* Recruiter Fullscreen & Glass Header Dock */
+@keyframes gradientMesh {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 #page-container.recruiter-fullscreen {
-  background: linear-gradient(180deg, #0c0a15 0%, #14101f 100%);
+  background: linear-gradient(-45deg, #f0f3ff, #f5f0ff, #faf0ff, #e2f4ff);
+  background-size: 400% 400%;
+  animation: gradientMesh 12s ease infinite;
   min-height: 100dvh;
 }
 
@@ -173,10 +180,10 @@
   top: 0;
   z-index: 9000;
   width: 100%;
-  background: rgba(12, 10, 21, 0.92);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(167, 139, 250, 0.15);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+  box-shadow: 0 2px 12px rgba(31, 38, 135, 0.04);
 }
 
 .glass-dock-inner {
@@ -186,7 +193,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
+  padding: 10px 16px;
   box-sizing: border-box;
 }
 
@@ -199,66 +206,38 @@
 }
 
 .brand-spark {
-  color: #a78bfa;
+  color: #6366f1;
   font-size: 14px;
 }
 
 .brand-name {
   font: bold 13px 'Press Start 2P', monospace;
-  color: #f1f0f5;
+  color: #2b1b54;
   letter-spacing: 0.5px;
 }
 
 .brand-sub {
   font: 500 10px 'Inter', sans-serif;
-  color: #9b95b0;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  color: #574b76;
+  border-left: 1px solid rgba(99, 102, 241, 0.25);
   padding-left: 8px;
 }
 
-.dock-nav {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.dock-nav a {
-  color: #c4b5fd !important;
-  text-decoration: none !important;
-  font: 600 10px 'Inter', sans-serif;
-  padding: 5px 10px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-
-.dock-nav a:hover {
-  color: #f1f0f5 !important;
-  background: rgba(167, 139, 250, 0.12);
-}
-
-.dock-nav .cv-link {
-  background: rgba(167, 139, 250, 0.15);
-  border: 1px solid rgba(167, 139, 250, 0.3);
-  color: #e9d5ff !important;
-}
-
 .dock-switch-btn {
-  padding: 5px 12px;
-  background: rgba(167, 139, 250, 0.15);
-  color: #c4b5fd !important;
-  border: 1px solid rgba(167, 139, 250, 0.3);
-  border-radius: 6px;
-  font: 600 9px 'Inter', sans-serif;
+  padding: 6px 14px;
+  background: rgba(99, 102, 241, 0.08);
+  color: #4f46e5 !important;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 8px;
+  font: 600 10px 'Inter', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
 }
 
 .dock-switch-btn:hover {
-  background: rgba(167, 139, 250, 0.25);
-  color: #f1f0f5 !important;
+  background: #6366f1;
+  color: #ffffff !important;
 }
 
 @media (max-width: 768px) {

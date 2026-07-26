@@ -21,167 +21,189 @@
   <!-- BENTO GRID — CREATIVE PROFESSIONAL PORTFOLIO (RECRUITER MODE) -->
   <div *ngIf="isRecruiterMode" class="bento-dashboard-container">
     
-    <!-- Top Row: Hero & AI Assistant -->
-    <div class="bento-row bento-hero-row">
-      
-      <!-- 1. Hero Bento Box (Large) -->
-      <article class="bento-card hero-bento anim-delay-1">
-        <div class="hero-bento-content">
-          <div class="hero-avatar-wrapper">
-            <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez (Ael)" class="bento-avatar">
-            <span class="pulse-chip">🟢 OPEN TO WORK</span>
-          </div>
-          <div class="hero-text-wrapper">
-            <div class="bento-header-tag">
-              <span class="location">📍 Chile · Remote / On-site</span>
-              <span class="role-chip">JUNIOR / MID READY</span>
+    <div class="recruiter-split-layout">
+      <!-- Left Column: Identity & Assistant -->
+      <div class="split-col split-left">
+        <!-- 1. Hero Bento Box (Large) -->
+        <article class="bento-card hero-bento anim-delay-1">
+          <div class="hero-bento-content">
+            <div class="hero-avatar-wrapper">
+              <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez" class="bento-avatar">
+              <span class="pulse-chip">OPEN TO WORK</span>
             </div>
-            <h1 class="hero-name"><span class="typewriter-text">{{heroDisplayName}}</span></h1>
-            <p class="hero-subtitle">Técnico Analista de Sistemas · Ing. Civil Informática (en curso)</p>
-            <p class="hero-bio">
-              Desarrollo backend en <b>Java / Spring Boot</b> y arquitectura de integración de sistemas, combinando prácticas de desarrollo web/móvil moderno (<b>Angular, Ionic, TypeScript</b>) con análisis de requerimientos y metodologías ágiles.
-            </p>
+            <div class="hero-text-wrapper">
+              <div class="bento-header-tag">
+                <span class="location">Chile · Remote / On-site</span>
+                <span class="role-chip">JUNIOR / MID READY</span>
+              </div>
+              <h1 class="hero-name"><span class="typewriter-text">{{heroDisplayName}}</span></h1>
+              <p class="hero-subtitle">Técnico Analista de Sistemas · Ing. Civil Informática (en curso)</p>
+              <p class="hero-bio">
+                Desarrollo backend en <b>Java / Spring Boot</b> y arquitectura de integración de sistemas, combinando prácticas de desarrollo web/móvil moderno (<b>Angular, Ionic, TypeScript</b>) con análisis de requerimientos y metodologías ágiles.
+              </p>
 
-            <div class="hero-tech-chips">
-              <span class="tech-tag">Java</span>
-              <span class="tech-tag">Spring Boot</span>
-              <span class="tech-tag">REST APIs</span>
-              <span class="tech-tag">SQL / PostgreSQL</span>
-              <span class="tech-tag">Angular</span>
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">Docker</span>
-              <span class="tech-tag">Scrum</span>
+              <div class="hero-tech-chips">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">REST APIs</span>
+                <span class="tech-tag">SQL / PostgreSQL</span>
+                <span class="tech-tag">Angular</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Scrum</span>
+              </div>
+
+              <div class="hero-actions">
+                <a routerLink="/about" class="bento-btn primary">Ver CV &amp; Stack</a>
+                <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="bento-btn secondary">GitHub</a>
+                <a href="mailto:sofia.gomez.orellana@gmail.com" class="bento-btn outline">Contacto</a>
+              </div>
             </div>
+          </div>
+        </article>
 
-            <div class="hero-actions">
-              <a routerLink="/about" class="bento-btn primary">Ver CV &amp; Stack</a>
-              <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="bento-btn secondary">GitHub</a>
-              <a href="mailto:sofia.gomez.orellana@gmail.com" class="bento-btn outline">Contacto</a>
+        <!-- 2. AEL_AI Assistant Bento Box -->
+        <article class="bento-card ai-assistant-bento anim-delay-2">
+          <div class="bento-card-header">
+            <span class="bento-icon">✦</span>
+            <h2>AEL_AI ASSISTANT</h2>
+          </div>
+          <p class="ai-subtitle">Respuestas sintetizadas para tu evaluación de candidato:</p>
+          
+          <div class="ai-response-box">
+            <p>{{aiResponse}}<span *ngIf="aiTyping" class="typing-cursor"></span></p>
+          </div>
+
+          <div class="ai-prompt-chips">
+            <button (click)="askAiRecruiter('hire')" class="ai-chip">¿Por qué contratar a Sofía?</button>
+            <button (click)="askAiRecruiter('spring')" class="ai-chip">Experiencia Java &amp; Spring</button>
+            <button (click)="askAiRecruiter('education')" class="ai-chip">Formación &amp; Inglés C1</button>
+            <button (click)="askAiRecruiter('projects')" class="ai-chip">Proyectos en producción</button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Right Column: Interactive Content Switcher -->
+      <div class="split-col split-right">
+        <!-- Interactive Tabs Control -->
+        <div class="dashboard-tabs anim-delay-3">
+          <button type="button" 
+                  class="dash-tab-btn" 
+                  [class.active]="activeRecruiterTab === 'projects'" 
+                  (click)="setRecruiterTab('projects')">
+            Proyectos
+          </button>
+          <button type="button" 
+                  class="dash-tab-btn" 
+                  [class.active]="activeRecruiterTab === 'skills'" 
+                  (click)="setRecruiterTab('skills')">
+            Competencias
+          </button>
+          <button type="button" 
+                  class="dash-tab-btn" 
+                  [class.active]="activeRecruiterTab === 'timeline'" 
+                  (click)="setRecruiterTab('timeline')">
+            Trayectoria
+          </button>
+        </div>
+
+        <!-- Panel Body: Switchable content with fade-in animation -->
+        <div class="dashboard-panel-body">
+          
+          <!-- TAB 1: PROJECTS -->
+          <div *ngIf="activeRecruiterTab === 'projects'" class="tab-fade-panel">
+            <div class="projects-list-vertical">
+              <article class="bento-card project-bento anim-delay-1" *ngFor="let proj of developerProjects">
+                <div class="proj-bento-header">
+                  <span class="proj-emoji">{{proj.icon}}</span>
+                  <div>
+                    <h3>{{proj.title}}</h3>
+                    <span class="proj-tag">{{proj.badge}}</span>
+                  </div>
+                </div>
+                <p class="proj-bento-sub">{{proj.subtitle}}</p>
+                <p class="proj-bento-desc">{{proj.desc}}</p>
+
+                <div class="proj-bento-techs">
+                  <span *ngFor="let t of proj.techs" class="bento-pill">{{t}}</span>
+                </div>
+
+                <div class="proj-bento-actions">
+                  <a [href]="proj.url" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
+                  <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                </div>
+              </article>
             </div>
           </div>
-        </div>
-      </article>
 
-      <!-- 2. AEL_AI Assistant Bento Box -->
-      <article class="bento-card ai-assistant-bento anim-delay-2">
-        <div class="bento-card-header">
-          <span class="bento-icon">✦</span>
-          <h2>AEL_AI ASSISTANT</h2>
-        </div>
-        <p class="ai-subtitle">Respuestas sintetizadas para tu evaluación de candidato:</p>
-        
-        <div class="ai-response-box">
-          <p>{{aiResponse}}<span *ngIf="aiTyping" class="typing-cursor"></span></p>
-        </div>
-
-        <div class="ai-prompt-chips">
-          <button (click)="askAiRecruiter('hire')" class="ai-chip">¿Por qué contratar a Sofía?</button>
-          <button (click)="askAiRecruiter('spring')" class="ai-chip">Experiencia Java &amp; Spring</button>
-          <button (click)="askAiRecruiter('education')" class="ai-chip">Formación &amp; Inglés C1</button>
-          <button (click)="askAiRecruiter('projects')" class="ai-chip">Proyectos en producción</button>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- Section Divider: Projects -->
-    <div class="bento-section-title anim-delay-3" id="bento-projects">
-      <span>Proyectos Destacados</span>
-    </div>
-
-    <div class="bento-row bento-projects-row">
-      <article class="bento-card project-bento anim-delay-4" *ngFor="let proj of developerProjects; let i = index">
-        <div class="proj-bento-header">
-          <span class="proj-emoji">{{proj.icon}}</span>
-          <div>
-            <h3>{{proj.title}}</h3>
-            <span class="proj-tag">{{proj.badge}}</span>
-          </div>
-        </div>
-        <p class="proj-bento-sub">{{proj.subtitle}}</p>
-        <p class="proj-bento-desc">{{proj.desc}}</p>
-
-        <div class="proj-bento-techs">
-          <span *ngFor="let t of proj.techs" class="bento-pill">{{t}}</span>
-        </div>
-
-        <div class="proj-bento-actions">
-          <a [href]="proj.url" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-          <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
-        </div>
-      </article>
-    </div>
-
-    <!-- Section Divider: Stack & Trajectory -->
-    <div class="bento-section-title anim-delay-5" id="bento-stack">
-      <span>Competencias &amp; Trayectoria</span>
-    </div>
-
-    <div class="bento-row bento-two-columns">
-      
-      <!-- 3. Tech Stack Matrix Bento Box -->
-      <article class="bento-card stack-matrix-bento anim-delay-6">
-        <div class="bento-card-header">
-          <span class="bento-icon">⚡</span>
-          <h2>COMPETENCIAS TÉCNICAS</h2>
-        </div>
-        <div class="stack-matrix-grid">
-          <div class="matrix-cell">
-            <h3>Backend &amp; Arquitectura</h3>
-            <p>Java, Spring Boot, Spring MVC, REST APIs, Spring Security, JPA / Hibernate, Node.js, Express.js, PHP</p>
-          </div>
-          <div class="matrix-cell">
-            <h3>Frontend Web &amp; Móvil</h3>
-            <p>JavaScript (ES6+), TypeScript, Angular, Ionic, HTML5, CSS3, Single Page Applications</p>
-          </div>
-          <div class="matrix-cell">
-            <h3>Datos &amp; Bases de Datos</h3>
-            <p>PostgreSQL, MySQL, H2, Supabase, Firebase Firestore, Master Data Management</p>
-          </div>
-          <div class="matrix-cell">
-            <h3>DevOps &amp; Metodologías</h3>
-            <p>Git, GitHub Actions, Docker, Linux, Maven, Scrum, Documentación Técnica</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4. Trajectory & Education Bento Box -->
-      <article class="bento-card trajectory-bento anim-delay-7" id="bento-xp">
-        <div class="bento-card-header">
-          <span class="bento-icon">◆</span>
-          <h2>TRAYECTORIA &amp; FORMACIÓN</h2>
-        </div>
-        
-        <div class="trajectory-timeline">
-          <div class="timeline-entry">
-            <span class="time-badge">2026 — PRESENTE</span>
-            <h4>Práctica Profesional — FollowUP Customer Experience</h4>
-            <p>Análisis y documentación de requerimientos técnicos, validación de datos y metodologías ágiles (Scrum).</p>
+          <!-- TAB 2: TECHNICAL SKILLS -->
+          <div *ngIf="activeRecruiterTab === 'skills'" class="tab-fade-panel">
+            <article class="bento-card stack-matrix-bento anim-delay-1">
+              <div class="bento-card-header">
+                <h2>Competencias Técnicas</h2>
+              </div>
+              <div class="stack-matrix-grid">
+                <div class="matrix-cell">
+                  <h3>Backend &amp; Arquitectura</h3>
+                  <p>Java, Spring Boot, Spring MVC, REST APIs, Spring Security, JPA / Hibernate, Node.js, Express.js, PHP</p>
+                </div>
+                <div class="matrix-cell">
+                  <h3>Frontend Web &amp; Móvil</h3>
+                  <p>JavaScript, TypeScript, Angular, Ionic, HTML5, CSS3, Single Page Applications</p>
+                </div>
+                <div class="matrix-cell">
+                  <h3>Datos &amp; Bases de Datos</h3>
+                  <p>PostgreSQL, MySQL, H2, Supabase, Firebase Firestore, Master Data Management</p>
+                </div>
+                <div class="matrix-cell">
+                  <h3>DevOps &amp; Metodologías</h3>
+                  <p>Git, GitHub Actions, Docker, Linux, Maven, Scrum, Documentación Técnica</p>
+                </div>
+              </div>
+            </article>
           </div>
 
-          <div class="timeline-entry">
-            <span class="degree-badge in-progress">EN CURSO</span>
-            <h4>Ingeniería Civil Informática</h4>
-            <p>Formación avanzada en ingeniería de software, arquitectura de sistemas y ciencias de la computación.</p>
+          <!-- TAB 3: TRAJECTORY & TIMELINE -->
+          <div *ngIf="activeRecruiterTab === 'timeline'" class="tab-fade-panel">
+            <article class="bento-card trajectory-bento anim-delay-1">
+              <div class="bento-card-header">
+                <h2>Trayectoria &amp; Formación</h2>
+              </div>
+              
+              <div class="trajectory-timeline">
+                <div class="timeline-entry">
+                  <span class="time-badge">2026 — PRESENTE</span>
+                  <h4>Práctica Profesional — FollowUP Customer Experience</h4>
+                  <p>Análisis y documentación de requerimientos técnicos, validación de datos y metodologías ágiles (Scrum).</p>
+                </div>
+
+                <div class="timeline-entry">
+                  <span class="degree-badge in-progress">EN CURSO</span>
+                  <h4>Ingeniería Civil Informática</h4>
+                  <p>Formación avanzada en ingeniería de software, arquitectura de sistemas y ciencias de la computación.</p>
+                </div>
+
+                <div class="timeline-entry">
+                  <span class="degree-badge completed">TITULADA</span>
+                  <h4>Técnico Analista de Sistemas</h4>
+                  <p>Título profesional en análisis, diseño y construcción de sistemas informáticos.</p>
+                </div>
+
+                <div class="timeline-entry">
+                  <span class="degree-badge c1">VERIFICADO</span>
+                  <h4>Inglés C1 Avanzado</h4>
+                  <p>Dominio técnico y fluido para colaboración internacional y documentación.</p>
+                </div>
+              </div>
+            </article>
           </div>
 
-          <div class="timeline-entry">
-            <span class="degree-badge completed">TITULADA</span>
-            <h4>Técnico Analista de Sistemas</h4>
-            <p>Título profesional en análisis, diseño y construcción de sistemas informáticos.</p>
-          </div>
-
-          <div class="timeline-entry">
-            <span class="degree-badge c1">VERIFICADO</span>
-            <h4>Inglés C1 Avanzado</h4>
-            <p>Dominio técnico y fluido para colaboración internacional y documentación.</p>
-          </div>
         </div>
-      </article>
-
+      </div>
     </div>
 
   </div>
+
 
   <!-- PERSONAL Y2K PORTAL VIEW -->
   <div *ngIf="!isRecruiterMode" class="portal-grid">
