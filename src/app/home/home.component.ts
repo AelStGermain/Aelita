@@ -52,6 +52,36 @@ export class HomeComponent implements OnDestroy {
   }
 
 
+  readonly developerProjects = [
+    {
+      title: 'PATOTA',
+      subtitle: 'App para convocar grupos y organizar paseos',
+      url: 'https://aelstgermain.github.io/Patota',
+      icon: '🐾',
+      badge: 'WEB APP',
+      desc: 'Plataforma interactiva para convocar grupos de personas, coordinar rutas al aire libre y organizar salidas recreativas en comunidad.',
+      techs: ['JavaScript', 'HTML5/CSS3', 'Web App', 'UX/UI']
+    },
+    {
+      title: 'KUICHI WEB',
+      subtitle: 'Web para cuidar tus mascotas & mejores ofertas vet',
+      url: 'https://aelstgermain.github.io/kuichiweb/',
+      icon: '🐶',
+      badge: 'VET PLATFORM',
+      desc: 'Sistema web enfocado en la salud y bienestar animal. Conecta dueños de mascotas con servicios veterinarios, registros médicos y ofertas.',
+      techs: ['Java', 'Spring Boot', 'Angular', 'REST API']
+    },
+    {
+      title: 'KUICHI APP',
+      subtitle: 'Versión App móvil de Kuichi',
+      url: 'https://aelstgermain.github.io/kuichiapp',
+      icon: '📱',
+      badge: 'MOBILE APP',
+      desc: 'Aplicación móvil de la plataforma Kuichi. Lleva todas las utilidades, promociones veterinarias y seguimiento de mascotas directamente al smartphone.',
+      techs: ['Ionic', 'Angular', 'TypeScript', 'Mobile']
+    }
+  ];
+
   ngOnDestroy() { this.stopRadio(); this.audioContext?.close(); }
 
   openBot() {
@@ -59,7 +89,9 @@ export class HomeComponent implements OnDestroy {
   }
 
   openPortfolio() {
-    const btn = document.querySelector<HTMLButtonElement>('.drawer-toggle-btn');
-    if (btn) btn.click();
+    const el = document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

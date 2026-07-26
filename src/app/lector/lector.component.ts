@@ -499,6 +499,26 @@ export class LectorComponent implements OnDestroy {
       : 0;
   }
 
+  get score(): number {
+    return this.accuracy;
+  }
+
+  get currentWord(): string {
+    return this.currentText;
+  }
+
+  get showFeedback(): boolean {
+    return this.showSummary || Boolean(this.errorMessage);
+  }
+
+  get isCorrect(): boolean {
+    return this.accuracy >= 80;
+  }
+
+  nextWord(): void {
+    this.nextText();
+  }
+
   get feedbackWords(): ReadingWordView[] {
     return this.wordViews.filter((word) =>
       ['incorrect', 'skipped'].includes(word.status)

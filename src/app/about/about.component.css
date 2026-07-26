@@ -11,3 +11,37 @@
 .about-launch-btn:hover { filter: brightness(1.18); }
 .portfolio-link-btn { display: inline-block; padding: 2px 6px; background: none; border: none; color: #d0238a; font: bold 11px Verdana, sans-serif; cursor: pointer; text-decoration: underline; }
 .portfolio-link-btn:hover { color: #8025e0; }
+
+/* Visual Groups for STACK.DAT */
+.modules-header { margin-top: 14px; margin-bottom: 8px; color: #8d3e98; font-size: 11px; }
+.stack-groups-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 8px; }
+.stack-group-card { padding: 8px 10px; background: #faf5ff; border: 1.5px solid #d4bce6; border-radius: 4px; box-shadow: 2px 2px 0 rgba(140, 80, 180, 0.08); transition: transform 0.15s ease, border-color 0.15s ease; }
+.stack-group-card:hover { border-color: #b87ed6; transform: translateY(-1px); }
+.stack-group-header { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; border-bottom: 1px dashed #dcb8eb; padding-bottom: 3px; }
+.stack-group-header .group-icon { font-size: 11px; }
+.stack-group-header h4 { margin: 0; color: #722c8a; font: bold 10px 'Courier New', monospace; letter-spacing: 0.5px; }
+
+/* Timeline & Cards for XP.LOG */
+.xp-timeline { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.xp-card { padding: 10px 12px; background: #fffcfd; border: 2px ridge #f0c3eb; border-left: 4px solid #b34fb3; box-shadow: 3px 3px 0 rgba(130, 50, 160, 0.08); }
+.xp-card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; border-bottom: 1px dotted #e5afd7; padding-bottom: 4px; margin-bottom: 6px; }
+.xp-title-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.xp-tag-code { color: #d0238a; font: bold 10px 'Courier New', monospace; background: #fbe6f5; padding: 2px 5px; border: 1px solid #eba4dc; border-radius: 2px; }
+.xp-card-header h3 { margin: 0; color: #5a2777; font: bold 11px Verdana, sans-serif; }
+.xp-company { font: bold 9px Verdana, sans-serif; color: #0077b6; background: #e8f7ff; padding: 2px 6px; border-radius: 3px; border: 1px solid #b1e3ff; }
+.xp-summary { margin: 4px 0 6px; font-size: 10.5px; color: #432b57; line-height: 1.45; }
+.xp-bullets { margin: 0 0 8px 0; padding-left: 16px; font-size: 10px; color: #3c2751; line-height: 1.5; list-style-type: square; }
+.xp-bullets li { margin-bottom: 3px; }
+.xp-bullets strong { color: #6b2685; }
+.xp-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.xp-tag { padding: 2px 7px; background: #f0e6ff; color: #572e8c; font: bold 8.5px Verdana, sans-serif; border: 1px solid #caafeb; border-radius: 10px; }
+.cert-tag { background: #e4fbf0; color: #0b6939; border-color: #9ee6c1; }
+
+.education-grid { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+.edu-item { flex: 1; min-width: 200px; display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #f8f2ff; border: 1px solid #dcb5f2; border-radius: 3px; }
+.edu-title { font: bold 10px Verdana, sans-serif; color: #4a2862; }
+.status-badge { font: bold 9px 'Courier New', monospace; padding: 3px 7px; border-radius: 3px; }
+.status-in-progress { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.status-completed { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.certifications-block { margin-top: 8px; padding-top: 6px; border-top: 1px dashed #e3bde7; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cert-label { font: bold 9px Verdana, sans-serif; color: #763b8c; }

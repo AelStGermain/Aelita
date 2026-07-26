@@ -39,6 +39,17 @@ export class AppComponent implements OnInit {
   private dragStart = { x: 0, y: 0 };
   private launcherStart = { x: 0, y: 0 };
 
+  readonly internalGames = [
+    { title: 'CYBER CTF', path: '/ctf', icon: '🛡️', badge: 'SECURITY', desc: 'Desafíos de seguridad' },
+    { title: 'LECTOR MÁGICO', path: '/lector', icon: '🎤', badge: 'VOICE API', desc: 'Reconocimiento de voz' },
+    { title: 'CIPHER TERMINAL', path: '/cipher', icon: '🔐', badge: 'CRYPTO', desc: 'Codifica secretos' },
+    { title: 'BATALLA NAVAL', path: '/batalla-naval', icon: '🚢', badge: 'STRATEGY', desc: 'Estrategia y estado' },
+    { title: 'SNAKE RETRO', path: '/snake', icon: '🐍', badge: 'ARCADE', desc: 'Arcade clásico' },
+    { title: 'MEMORICE', path: '/memorice', icon: '⚡', badge: 'MEMORY', desc: 'Encuentra parejas' },
+    { title: 'PALABRAS', path: '/palabras', icon: '🌻', badge: 'LEARNING', desc: 'Aprende jugando' },
+    { title: 'TRES EN RAYA', path: '/gato', icon: '🎮', badge: 'RETRO', desc: 'Tic-Tac-Toe retro' }
+  ];
+
   readonly developerProjects: DeveloperProject[] = [
     {
       title: 'PATOTA',
@@ -155,6 +166,32 @@ export class AppComponent implements OnInit {
 
   toggleProjectsDrawer() {
     this.isProjectsDrawerOpen = !this.isProjectsDrawerOpen;
+  }
+
+  closeProjectsDrawerOnNav() {
+    this.isProjectsDrawerOpen = false;
+  }
+
+  scrollToProjects(event?: Event) {
+    if (event) {
+      event.preventDefault();
+    }
+    this.isMenuOpen = false;
+    if (this.isEditorialPage) {
+      const el = document.getElementById('projects');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      this.router.navigate(['/']).then(() => {
+        setTimeout(() => {
+          const el = document.getElementById('projects');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      });
+    }
   }
 
   setCursor(choice: string) {

@@ -262,11 +262,11 @@ app-gato, app-batalla-naval, app-memorice, app-palabras, app-snake, app-lector, 
 .ael-projects-drawer {
   position: fixed;
   left: 0;
-  top: 140px;
+  top: 120px;
   z-index: 9500;
-  width: 310px;
+  width: 290px;
   transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform: translateX(-310px);
+  transform: translateX(-290px);
 }
 .ael-projects-drawer.open {
   transform: translateX(0);
@@ -313,35 +313,36 @@ app-gato, app-batalla-naval, app-memorice, app-palabras, app-snake, app-lector, 
 }
 
 .drawer-content {
-  width: 310px;
-  max-height: 80vh;
-  overflow-y: auto;
+  width: 290px;
+  max-height: none;
+  overflow: visible;
   padding: 12px;
-  background: linear-gradient(145deg, #fff2fc, #f1dbff 50%, #e2eeff);
-  border: 4px ridge #ff8ad4 !important;
+  background: linear-gradient(145deg, #1f122e, #2d133d 50%, #150d24);
+  border: 4px ridge #d86ee6 !important;
   border-left: none !important;
-  box-shadow: 6px 6px 0 rgba(66, 28, 97, 0.35), 0 0 18px rgba(184, 82, 235, 0.3);
-  color: #2e104d;
+  box-shadow: 6px 6px 0 rgba(20, 10, 30, 0.6), 0 0 20px rgba(184, 82, 235, 0.4);
+  color: #f3e6ff;
+  border-radius: 0 10px 10px 0;
 }
 
 .drawer-header {
   position: relative;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 2px dashed #b56cd6;
 }
 .drawer-header h2 {
   margin: 0;
-  font-size: 11px;
+  font-size: 10px;
   font-family: 'Press Start 2P', monospace;
-  color: #8c23ab;
-  text-shadow: 1px 1px #fff;
+  color: #ff77d6;
+  text-shadow: 1px 1px #000;
 }
 .drawer-header small {
   display: block;
-  margin-top: 4px;
-  font-size: 9px;
-  color: #d11f8e;
+  margin-top: 3px;
+  font-size: 8.5px;
+  color: #70f3ff;
   font-weight: bold;
 }
 .drawer-close {
@@ -357,10 +358,68 @@ app-gato, app-batalla-naval, app-memorice, app-palabras, app-snake, app-lector, 
 }
 
 .drawer-intro {
-  margin: 0 0 12px;
-  font-size: 10px;
-  line-height: 1.4;
-  color: #532578;
+  margin: 0 0 8px;
+  font-size: 9.5px;
+  line-height: 1.3;
+  color: #d8b6ff;
+}
+
+/* Compact No-Scroll Grid for Arcade Dock */
+.games-dock-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.game-dock-tile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid #6b3e85;
+  border-radius: 5px;
+  text-decoration: none !important;
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+}
+.game-dock-tile:hover {
+  background: linear-gradient(90deg, #74259e, #b83da3);
+  border-color: #ff8ad4;
+  transform: translateY(-1px);
+  box-shadow: 0 0 8px rgba(255, 119, 214, 0.4);
+}
+.game-dock-tile.active {
+  background: linear-gradient(90deg, #ff3388, #8822bb);
+  border-color: #70f3ff;
+  box-shadow: 0 0 10px rgba(112, 243, 255, 0.6);
+}
+.game-dock-tile .tile-icon {
+  font-size: 15px;
+  flex: 0 0 auto;
+}
+.game-dock-tile .tile-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.game-dock-tile h4 {
+  margin: 0;
+  font-size: 8.5px;
+  font-family: Verdana, sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.game-dock-tile .tile-badge {
+  font-size: 7px;
+  font-family: 'Courier New', monospace;
+  color: #70f3ff;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 .projects-list {

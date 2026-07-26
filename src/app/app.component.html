@@ -11,57 +11,45 @@
     <nav class="site-nav" [class.open]="isMenuOpen" aria-label="Navegación principal">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">⌂ HOME</a>
       <a routerLink="/about" routerLinkActive="active">☺ ABOUT ME</a>
-      <a routerLink="/gato" routerLinkActive="active">♡ TRES EN RAYA</a>
-      <a routerLink="/batalla-naval" routerLinkActive="active">⚓ NAVAL</a>
-      <a routerLink="/memorice" routerLinkActive="active">✦ MEMORICE</a>
-      <a routerLink="/palabras" routerLinkActive="active">❀ PALABRAS</a>
-      <a routerLink="/snake" routerLinkActive="active">◆ SNAKE</a>
-      <a routerLink="/lector" routerLinkActive="active">♫ VOZ</a>
-      <a routerLink="/cipher" routerLinkActive="active">⌨ CIPHER</a>
-      <a routerLink="/ctf" routerLinkActive="active">⚑ CTF</a>
+      <a href="#projects" (click)="scrollToProjects($event)">🚀 MY PROJECTS</a>
+      <button type="button" class="nav-games-btn" (click)="toggleProjectsDrawer()">🎮 JUEGOS DOCK</button>
     </nav>
   </header>
 
-  <!-- COLLAPSIBLE LEFT DRAWER: AEL'S PORTFOLIO SHOWCASE -->
-  <aside class="ael-projects-drawer" [class.open]="isProjectsDrawerOpen" aria-label="Portafolio de Ael">
-    <button class="drawer-toggle-btn" (click)="toggleProjectsDrawer()" aria-label="Alternar portafolio de Ael">
+  <!-- COLLAPSIBLE LEFT DRAWER: AEL'S GAMES & MINI-APPS DOCK -->
+  <aside class="ael-projects-drawer" [class.open]="isProjectsDrawerOpen" aria-label="Juegos de Ael">
+    <button class="drawer-toggle-btn" (click)="toggleProjectsDrawer()" aria-label="Alternar juegos de Ael">
       <span class="led-blink">●</span> 
-      <span class="drawer-btn-text">MI PORTAFOLIO</span> 
+      <span class="drawer-btn-text">🎮 ARCADE DOCK</span> 
       <span class="arrow">{{isProjectsDrawerOpen ? '◀' : '▶'}}</span>
     </button>
 
     <div class="drawer-content">
       <div class="drawer-header">
-        <h2>⚡ MI PORTAFOLIO ⚡</h2>
-        <small>por Sofía (Ael)</small>
+        <h2>🎮 ARCADE DOCK 🎮</h2>
+        <small>juegos &amp; mini-apps retro</small>
         <button class="drawer-close" (click)="toggleProjectsDrawer()" aria-label="Cerrar">✕</button>
       </div>
 
-      <p class="drawer-intro">Explora las aplicaciones web y móviles desarrolladas por Ael:</p>
+      <p class="drawer-intro">Selecciona cualquiera de las mini-apps retro del sitio:</p>
 
-      <div class="projects-list">
-        <article class="project-card" *ngFor="let proj of developerProjects">
-          <div class="card-top">
-            <span class="proj-icon">{{proj.icon}}</span>
-            <div class="proj-meta">
-              <h3>{{proj.title}}</h3>
-              <span class="proj-badge">{{proj.tag}}</span>
-            </div>
+      <div class="games-dock-grid">
+        <a *ngFor="let game of internalGames" 
+           [routerLink]="game.path" 
+           routerLinkActive="active" 
+           class="game-dock-tile" 
+           (click)="closeProjectsDrawerOnNav()">
+          <span class="tile-icon">{{game.icon}}</span>
+          <div class="tile-info">
+            <h4>{{game.title}}</h4>
+            <span class="tile-badge">{{game.badge}}</span>
           </div>
-          <p class="proj-subtitle">{{proj.subtitle}}</p>
-          <p class="proj-desc">{{proj.description}}</p>
-          <div class="proj-techs">
-            <span *ngFor="let t of proj.techs" class="tech-pill">{{t}}</span>
-          </div>
-          <a [href]="proj.url" target="_blank" rel="noopener" class="launch-btn">
-            ▶ ABRIR APLICACIÓN 🚀
-          </a>
-        </article>
+        </a>
       </div>
 
       <div class="drawer-footer">
-        <span>AEL PORTFOLIO DOCK</span>
-        <small>© 2026</small>
+        <span>AEL ARCADE DOCK</span>
+        <small>8 MINI-APPS</small>
       </div>
     </div>
   </aside>

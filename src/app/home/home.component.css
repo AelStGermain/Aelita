@@ -530,3 +530,111 @@ button:disabled {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Home Portfolio Grid Styles */
+.projects-intro {
+    margin: 0 0 10px;
+    font-size: 10.5px;
+    color: #4a2862;
+}
+
+.home-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.home-proj-card {
+    padding: 10px;
+    background: linear-gradient(135deg, #ffffff, #fff5fb);
+    border: 2px ridge #ffb8e4;
+    box-shadow: 2px 2px 0 rgba(80, 30, 100, 0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 4px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.home-proj-card:hover {
+    transform: translateY(-2px);
+    border-color: #d0238a;
+}
+
+.home-proj-card .proj-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.home-proj-card .proj-icon {
+    font-size: 22px;
+}
+
+.home-proj-card h3 {
+    margin: 0 !important;
+    font-size: 11px;
+    font-family: 'Press Start 2P', monospace, sans-serif;
+    color: #7b2cbf;
+}
+
+.home-proj-card .proj-badge {
+    display: inline-block;
+    padding: 1px 5px;
+    background: #f0d6ff;
+    color: #6a1b9a;
+    font-size: 8px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.home-proj-card .proj-sub {
+    margin: 4px 0;
+    font-size: 9.5px;
+    font-weight: bold;
+    color: #0077b6;
+}
+
+.home-proj-card .proj-desc {
+    margin: 4px 0 8px;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: #4a2862;
+}
+
+.home-proj-card .proj-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.home-proj-card .tech-pill {
+    padding: 2px 5px;
+    background: #eefcff;
+    border: 1px solid #b594cf;
+    color: #4a3970;
+    font-size: 8px;
+    border-radius: 3px;
+}
+
+.home-proj-card .launch-btn {
+    display: block;
+    width: 100%;
+    padding: 6px 0;
+    text-align: center;
+    background: linear-gradient(90deg, #ff4196, #8025e0);
+    color: #ffffff !important;
+    font: bold 9px Verdana, sans-serif;
+    text-decoration: none !important;
+    border: 2px outset #ffa8dc !important;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    transition: filter 0.2s ease;
+}
+
+.home-proj-card .launch-btn:hover {
+    filter: brightness(1.18);
+}

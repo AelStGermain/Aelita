@@ -55,15 +55,25 @@
       </section>
       <section class="web-box projects" id="projects">
         <h2>.: MY PROJECTS :.</h2>
-        <div class="project-list">
-          <a routerLink="/ctf"><span>🛡️</span><b>CYBER CTF</b><small>security challenges</small></a>
-          <a routerLink="/lector"><span>🎤</span><b>LECTOR MÁGICO</b><small>browser voice API</small></a>
-          <a routerLink="/cipher"><span>🔐</span><b>CIPHER TERMINAL</b><small>encode your secrets</small></a>
-          <a routerLink="/batalla-naval"><span>🚢</span><b>BATALLA NAVAL</b><small>strategy & state</small></a>
-          <a routerLink="/snake"><span>🐍</span><b>SNAKE RETRO</b><small>classic arcade loop</small></a>
-          <a routerLink="/memorice"><span>⚡</span><b>MEMORICE</b><small>catch every pair</small></a>
-          <a routerLink="/palabras"><span>🌻</span><b>PALABRAS</b><small>learning through play</small></a>
-          <a routerLink="/gato"><span>🎮</span><b>BATALLA RETRO</b><small>three in a row</small></a>
+        <p class="projects-intro">Proyectos de software web y móvil desarrollados por Ael:</p>
+        <div class="home-portfolio-grid">
+          <article class="home-proj-card" *ngFor="let proj of developerProjects">
+            <div class="proj-header">
+              <span class="proj-icon">{{proj.icon}}</span>
+              <div>
+                <h3>{{proj.title}}</h3>
+                <span class="proj-badge">{{proj.badge}}</span>
+              </div>
+            </div>
+            <p class="proj-sub">{{proj.subtitle}}</p>
+            <p class="proj-desc">{{proj.desc}}</p>
+            <div class="proj-techs">
+              <span *ngFor="let t of proj.techs" class="tech-pill">{{t}}</span>
+            </div>
+            <a [href]="proj.url" target="_blank" rel="noopener" class="launch-btn">
+              ▶ ABRIR APLICACIÓN 🚀
+            </a>
+          </article>
         </div>
       </section>
       <section class="web-box links center-links">

@@ -12,16 +12,40 @@ type AboutTab = 'profile' | 'stack' | 'experience' | 'portfolio' | 'target';
 })
 export class AboutComponent {
   activeTab: AboutTab = 'profile';
-  coreSkills = ['Java', 'Spring Boot', 'REST APIs', 'SQL', 'Data Integration'];
-  skills = [
-    'Spring MVC', 'Spring Security', 'JPA', 'Hibernate', 'Maven', 'Node.js', 'Express.js',
-    'JavaScript', 'TypeScript', 'Angular', 'Ionic', 'PHP', 'Laravel', 'PostgreSQL',
-    'Supabase', 'MySQL', 'Firebase', 'Cloud Firestore', 'H2 Database', 'Data Management',
-    'Master Data Management', 'Data Validation', 'Data Enrichment', 'CSV', 'Microsoft Excel',
-    'API Integration', 'CRUD', 'MVC Architecture', 'Layered Architecture', 'Authentication',
-    'Authorization', 'Git', 'GitHub', 'GitHub Actions', 'Docker', 'Linux', 'Jest', 'Jasmine',
-    'Software Testing', 'Agile', 'Scrum', 'Technical Documentation', 'Requirements Analysis',
-    'Problem Solving', 'User-Centered Design', 'Training', 'Cross-functional Collaboration', 'English C1'
+  
+  readonly coreSkills = [
+    'Java',
+    'Spring Boot',
+    'REST APIs',
+    'SQL',
+    'Systems & Data Integration'
+  ];
+
+  readonly stackGroups = [
+    {
+      category: 'BACKEND',
+      skills: ['Spring MVC', 'Spring Security', 'JPA / Hibernate', 'Node.js', 'Express.js', 'PHP', 'Laravel', 'Maven']
+    },
+    {
+      category: 'WEB_AND_MOBILE',
+      skills: ['JavaScript', 'TypeScript', 'Angular', 'Ionic', 'HTML5 / CSS3']
+    },
+    {
+      category: 'DATA',
+      skills: ['PostgreSQL', 'MySQL', 'Supabase', 'Firebase (Cloud Firestore)', 'H2 Database', 'Master Data Management', 'Data Validation', 'Data Enrichment', 'CSV', 'Microsoft Excel']
+    },
+    {
+      category: 'ARCHITECTURE_AND_INTEGRATION',
+      skills: ['MVC Architecture', 'Layered Architecture', 'Authentication & Authorization', 'CRUD Operations']
+    },
+    {
+      category: 'TOOLS_AND_DELIVERY',
+      skills: ['Git', 'GitHub', 'GitHub Actions', 'Docker', 'Linux', 'Jest', 'Jasmine', 'Software Testing']
+    },
+    {
+      category: 'PROFESSIONAL_SKILLS',
+      skills: ['Agile / Scrum', 'Requirements Analysis', 'Technical Documentation', 'User Training', 'Problem Solving', 'User-Centered Design', 'Cross-functional Collaboration']
+    }
   ];
 
   readonly portfolioProjects = [

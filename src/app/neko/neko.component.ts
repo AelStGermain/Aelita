@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NekoService } from '../neko.service';
+import { NekoService } from './neko.service';
 
 @Component({
   selector: 'app-neko',
@@ -56,7 +56,7 @@ export class NekoComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.animationFrameId = requestAnimationFrame(this.updateLoop);
+  this.animationFrameId = requestAnimationFrame(this.updateLoop);
   }
 
   public onNekoClick() {

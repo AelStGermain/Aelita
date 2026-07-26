@@ -30,14 +30,96 @@
           <section *ngSwitchCase="'stack'">
             <h2>CORE_SKILLS.SYS</h2>
             <div class="core-skills"><strong *ngFor="let skill of coreSkills">★ {{skill}}</strong></div>
-            <h3>EXTENDED_MODULES/</h3>
-            <div class="skill-cloud"><span *ngFor="let skill of skills">{{skill}}</span></div>
+            <h3 class="modules-header">EXTENDED_MODULES/</h3>
+            <div class="stack-groups-grid">
+              <div class="stack-group-card" *ngFor="let group of stackGroups">
+                <div class="stack-group-header">
+                  <span class="group-icon">📂</span>
+                  <h4>{{group.category}}</h4>
+                </div>
+                <div class="skill-cloud">
+                  <span *ngFor="let skill of group.skills">{{skill}}</span>
+                </div>
+              </div>
+            </div>
           </section>
           <section *ngSwitchCase="'experience'">
             <h2>EXPERIENCE.LOG</h2>
-            <div class="log-entry"><time>PRACTICE_01</time><h3>FollowUP Customer Experience</h3><p>Práctica profesional vinculada a sistemas, implementación, procesos e integración de información.</p></div>
-            <div class="log-entry"><time>BACKGROUND</time><h3>Educación</h3><p>Experiencia que aporta comunicación clara, capacitación, documentación y perspectiva centrada en usuarios.</p></div>
-            <div class="log-entry"><time>STATUS</time><h3>Ingeniería Civil Informática</h3><p>Estudiante y Técnico Analista de Sistemas.</p></div>
+            <div class="xp-timeline">
+              <!-- TECH_PRACTICE -->
+              <article class="xp-card">
+                <header class="xp-card-header">
+                  <div class="xp-title-group">
+                    <time class="xp-tag-code">[TECH_PRACTICE]</time>
+                    <h3>Junior Backend &amp; Data Integration — Práctica Profesional</h3>
+                  </div>
+                  <span class="xp-company">FollowUP Customer Experience</span>
+                </header>
+                <p class="xp-summary">
+                  Desarrollo backend, integración de sistemas e implementación de soluciones de gestión y calidad de datos operacionales.
+                </p>
+                <ul class="xp-bullets">
+                  <li>Desarrollo e integración de servicios e interfaces para consumo y sincronización de datos.</li>
+                  <li>Modelado y consultas SQL orientadas a la optimización de procesos de datos.</li>
+                  <li>Validación, saneamiento y estructuración masiva de datos (Master Data / CSV / Excel).</li>
+                  <li>Levantamiento de requerimientos técnicos y documentación de procesos de integración.</li>
+                </ul>
+                <div class="xp-tags">
+                  <span class="xp-tag">Scrum</span>
+                  <span class="xp-tag">Requirements</span>
+                  <span class="xp-tag">Documentation</span>
+                  <span class="xp-tag">Data Validation</span>
+                  <span class="xp-tag">Cross-functional</span>
+                </div>
+              </article>
+
+              <!-- PROFESSIONAL_BACKGROUND -->
+              <article class="xp-card">
+                <header class="xp-card-header">
+                  <div class="xp-title-group">
+                    <time class="xp-tag-code">[PROFESSIONAL_BACKGROUND]</time>
+                    <h3>Experiencia Profesional Previa &amp; Habilidades Transferibles</h3>
+                  </div>
+                  <span class="xp-company">Sector Educativo / Formación</span>
+                </header>
+                <p class="xp-summary">
+                  Trayectoria previa que fortalece competencias fundamentales para la ingeniería de software y la colaboración en equipo.
+                </p>
+                <ul class="xp-bullets">
+                  <li><strong>Análisis de necesidades:</strong> Levantamiento y priorización de requerimientos enfocados en el usuario.</li>
+                  <li><strong>Documentación &amp; Capacitación:</strong> Elaboración de guías explicativas, manuales y formación directa.</li>
+                  <li><strong>Resolución de problemas:</strong> Diagnóstico analítico de incidencias y diseño de soluciones efectivas.</li>
+                  <li><strong>Colaboración multidisciplinaria:</strong> Comunicación transparente y alineación continua entre equipos.</li>
+                </ul>
+              </article>
+
+              <!-- EDUCATION_STATUS -->
+              <article class="xp-card">
+                <header class="xp-card-header">
+                  <div class="xp-title-group">
+                    <time class="xp-tag-code">[EDUCATION_STATUS]</time>
+                    <h3>Estado Académico &amp; Certificaciones</h3>
+                  </div>
+                  <span class="xp-company">Educación Superior</span>
+                </header>
+                <div class="education-grid">
+                  <div class="edu-item">
+                    <span class="edu-title">Ingeniería Civil Informática</span>
+                    <span class="status-badge status-in-progress">● IN PROGRESS</span>
+                  </div>
+                  <div class="edu-item">
+                    <span class="edu-title">Técnico Analista de Sistemas</span>
+                    <span class="status-badge status-completed">✓ COMPLETED</span>
+                  </div>
+                </div>
+                <div class="certifications-block">
+                  <span class="cert-label">Certificaciones Verificadas:</span>
+                  <div class="xp-tags">
+                    <span class="xp-tag cert-tag">🌐 English C1 (Advanced)</span>
+                  </div>
+                </div>
+              </article>
+            </div>
           </section>
           <section *ngSwitchCase="'portfolio'">
             <h2>MY_PORTFOLIO.EXE</h2>
