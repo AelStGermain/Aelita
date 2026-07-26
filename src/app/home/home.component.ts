@@ -48,20 +48,51 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   // Recruiter View Toggle & Tab State
-  isRecruiterMode = false;
+  get isRecruiterMode(): boolean {
+    return this.botService.isRecruiterMode;
+  }
+  set isRecruiterMode(val: boolean) {
+    if (this.botService.isRecruiterMode !== val) {
+      this.botService.toggleRecruiterMode();
+    }
+  }
   activeRecruiterTab: 'projects' | 'stack' | 'experience' | 'contact' = 'projects';
 
   // AEL_AI Recruiter Assistant State
-  aiResponse = '¡Hola! Soy AEL_AI Executive Assistant 🤖 Haz clic en cualquier botón de abajo para obtener información sintetizada para tu proceso de selección.';
+  aiResponse = 'Hola, soy AEL_AI. Haz clic en cualquier pregunta para obtener información sintetizada para tu proceso de selección.';
+  aiTyping = false;
+  private aiTypeTimer?: ReturnType<typeof setInterval>;
+
+  // Hero Typewriter State
+  heroDisplayName = '';
+  private heroFullName = 'SOFÍA GÓMEZ ORELLANA (AEL)';
+  private heroTypeTimer?: ReturnType<typeof setInterval>;
 
   askAiRecruiter(topic: 'hire' | 'spring' | 'education' | 'projects'): void {
     const responses: Record<string, string> = {
-      hire: 'Sofía destaca por su combinación única de perfil técnico backend (Java/Spring Boot/SQL) con visión de integración de sistemas, agilidad en metodologías Scrum y excelente comunicación (Inglés C1). Entrega soluciones escalables y documentadas.',
-      spring: 'Cuenta con sólidas competencias en desarrollo backend usando Java, Spring Boot, Spring MVC, Spring Security y JPA/Hibernate para la creación de APIs REST estructuradas y base de datos relacionales.',
-      education: 'Es Titulada como Técnico Analista de Sistemas y actualmente cursa Ingeniería Civil Informática. Además cuenta con certificación/dominio de Inglés C1 Avanzado.',
-      projects: 'Ha liderado y construido sistemas completos como KUICHI WEB (Java/Spring Boot + Angular), KUICHI APP (Ionic + TypeScript) y PATOTA (Web App). Revisa sus demos en vivo y repositorios en GitHub.'
+      hire: 'Sofía combina un perfil técnico backend sólido (Java / Spring Boot / SQL) con visión de integración de sistemas, metodologías ágiles (Scrum) y comunicación fluida (Inglés C1). Entrega soluciones escalables y documentadas.',
+      spring: 'Competencias avanzadas en Java, Spring Boot, Spring MVC, Spring Security y JPA/Hibernate. Diseño y construcción de APIs REST estructuradas con bases de datos relacionales (PostgreSQL, MySQL).',
+      education: 'Titulada como Técnico Analista de Sistemas. Actualmente cursa Ingeniería Civil Informática. Inglés C1 Avanzado verificado.',
+      projects: 'Ha construido sistemas completos: KUICHI WEB (Java/Spring Boot + Angular), KUICHI APP (Ionic + TypeScript) y PATOTA (Web App). Todos con demos en vivo y código abierto en GitHub.'
     };
-    this.aiResponse = responses[topic] || responses['hire'];
+    const fullText = responses[topic] || responses['hire'];
+    this.typeAiResponse(fullText);
+  }
+
+  private typeAiResponse(text: string): void {
+    if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
+    this.aiResponse = '';
+    this.aiTyping = true;
+    let i = 0;
+    this.aiTypeTimer = setInterval(() => {
+      if (i < text.length) {
+        this.aiResponse += text.charAt(i);
+        i++;
+      } else {
+        this.aiTyping = false;
+        if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
+      }
+    }, 18);
   }
 
   setRecruiterTab(tab: 'projects' | 'stack' | 'experience' | 'contact'): void {
@@ -74,21 +105,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.checkRecruiterMode();
     this.fetchGitHubActivity();
+    this.startHeroTypewriter();
+    this.botService.recruiterModeChanged.subscribe(isRecruiter => {
+      if (isRecruiter) {
+        this.startHeroTypewriter();
+      }
+    });
   }
 
   toggleRecruiterMode(): void {
-    this.isRecruiterMode = !this.isRecruiterMode;
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('ael_recruiter_mode', this.isRecruiterMode ? 'true' : 'false');
-    }
-  }
-
-  private checkRecruiterMode(): void {
-    if (typeof localStorage !== 'undefined') {
-      this.isRecruiterMode = localStorage.getItem('ael_recruiter_mode') === 'true';
-    }
+    this.botService.toggleRecruiterMode();
   }
 
   fetchGitHubActivity(): void {
@@ -351,6 +378,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.stopRadio();
     this.audioContext?.close();
+    if (this.heroTypeTimer) { clearInterval(this.heroTypeTimer); }
+    if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
+  }
+
+  private startHeroTypewriter(): void {
+    if (!this.isRecruiterMode) {
+      this.heroDisplayName = this.heroFullName;
+      return;
+    }
+    this.heroDisplayName = '';
+    let i = 0;
+    this.heroTypeTimer = setInterval(() => {
+      if (i < this.heroFullName.length) {
+        this.heroDisplayName += this.heroFullName.charAt(i);
+        i++;
+      } else {
+        if (this.heroTypeTimer) { clearInterval(this.heroTypeTimer); }
+      }
+    }, 60);
   }
 
   openBot(): void {

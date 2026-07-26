@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { processBotQuery, ChatMessage } from '../home/bot-engine';
 import { NekoService } from '../neko/neko.service';
@@ -17,6 +17,9 @@ export class BotService {
     { who: 'bot', text: 'Conversa conmigo sobre los proyectos, stack y trayectoria de Sofía (Ael). ¡Prueba mis marcos Y2K seleccionables!' }
   ];
 
+  isRecruiterMode = false;
+  recruiterModeChanged = new EventEmitter<boolean>();
+
   readonly frames: { id: Y2kFrame; name: string; icon: string }[] = [
     { id: 'pink', name: 'Holo Pink', icon: '💖' },
     { id: 'cyber', name: 'Cyber Matrix', icon: '📟' },
@@ -29,6 +32,17 @@ export class BotService {
     if (savedFrame && this.frames.some(f => f.id === savedFrame)) {
       this.currentFrame = savedFrame;
     }
+    if (typeof localStorage !== 'undefined') {
+      this.isRecruiterMode = localStorage.getItem('ael_recruiter_mode') === 'true';
+    }
+  }
+
+  toggleRecruiterMode() {
+    this.isRecruiterMode = !this.isRecruiterMode;
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('ael_recruiter_mode', this.isRecruiterMode ? 'true' : 'false');
+    }
+    this.recruiterModeChanged.emit(this.isRecruiterMode);
   }
 
   openBot() {

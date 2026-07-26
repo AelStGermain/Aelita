@@ -159,7 +159,13 @@
 
 /* Recruiter Fullscreen & Glass Header Dock */
 #page-container.recruiter-fullscreen {
-  background: #090514;
+  background: linear-gradient(180deg, #0c0a15 0%, #14101f 100%);
+  min-height: 100dvh;
+}
+
+#page-container.recruiter-fullscreen main {
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .recruiter-glass-dock {
@@ -167,19 +173,21 @@
   top: 0;
   z-index: 9000;
   width: 100%;
-  background: rgba(22, 11, 38, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  background: rgba(12, 10, 21, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
 .glass-dock-inner {
-  width: min(1140px, calc(100% - 32px));
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 8px 16px;
+  box-sizing: border-box;
 }
 
 .dock-brand {
@@ -187,76 +195,80 @@
   align-items: center;
   gap: 8px;
   text-decoration: none !important;
+  flex-shrink: 0;
 }
 
 .brand-spark {
-  color: #70f3ff;
-  font-size: 16px;
+  color: #a78bfa;
+  font-size: 14px;
 }
 
 .brand-name {
-  font: bold 16px 'Press Start 2P', monospace;
-  color: #ffffff;
-  letter-spacing: 1px;
+  font: bold 13px 'Press Start 2P', monospace;
+  color: #f1f0f5;
+  letter-spacing: 0.5px;
 }
 
 .brand-sub {
-  font-size: 9.5px;
-  color: #c4b5fd;
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  font: 500 10px 'Inter', sans-serif;
+  color: #9b95b0;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
   padding-left: 8px;
 }
 
 .dock-nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .dock-nav a {
-  color: #eed6ff !important;
+  color: #c4b5fd !important;
   text-decoration: none !important;
-  font: bold 10px Verdana, sans-serif;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: all 0.15s ease;
+  font: 600 10px 'Inter', sans-serif;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .dock-nav a:hover {
-  color: #70f3ff !important;
-  background: rgba(112, 243, 255, 0.1);
+  color: #f1f0f5 !important;
+  background: rgba(167, 139, 250, 0.12);
 }
 
 .dock-nav .cv-link {
-  background: rgba(168, 85, 247, 0.2);
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  color: #ffb8e4 !important;
+  background: rgba(167, 139, 250, 0.15);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  color: #e9d5ff !important;
 }
 
 .dock-switch-btn {
-  padding: 6px 12px;
-  background: linear-gradient(90deg, #ff4196, #8025e0);
-  color: #ffffff !important;
-  border: 1.5px solid #ff9ee2;
+  padding: 5px 12px;
+  background: rgba(167, 139, 250, 0.15);
+  color: #c4b5fd !important;
+  border: 1px solid rgba(167, 139, 250, 0.3);
   border-radius: 6px;
-  font: bold 9px Verdana, sans-serif;
+  font: 600 9px 'Inter', sans-serif;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(255, 65, 150, 0.3);
-  transition: transform 0.15s ease, filter 0.15s ease;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .dock-switch-btn:hover {
-  filter: brightness(1.2);
-  transform: scale(1.03);
+  background: rgba(167, 139, 250, 0.25);
+  color: #f1f0f5 !important;
 }
 
 @media (max-width: 768px) {
   .glass-dock-inner {
     flex-direction: column;
-    gap: 8px;
-    padding: 8px 0;
+    gap: 6px;
+    padding: 8px 12px;
   }
-  .brand-sub {
-    display: none;
-  }
+  .brand-sub { display: none; }
+  .dock-nav { gap: 4px; }
+  .dock-nav a { font-size: 9px; padding: 4px 7px; }
 }
+

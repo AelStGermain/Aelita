@@ -32,7 +32,15 @@ export class AppComponent implements OnInit {
   cursorX = -100;
   cursorY = -100;
   isCursorVisible = false;
-  isRecruiterMode = false;
+  get isRecruiterMode(): boolean {
+    return this.botService.isRecruiterMode;
+  }
+  set isRecruiterMode(val: boolean) {
+    if (this.botService.isRecruiterMode !== val) {
+      this.botService.toggleRecruiterMode();
+    }
+  }
+
   showViewPromptModal = false;
 
   // Draggable AEL_BOT launcher button state
@@ -97,7 +105,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (typeof localStorage !== 'undefined') {
-      this.isRecruiterMode = localStorage.getItem('ael_recruiter_mode') === 'true';
       const prompted = localStorage.getItem('ael_view_prompted');
       if (!prompted) {
         this.showViewPromptModal = true;
@@ -114,16 +121,15 @@ export class AppComponent implements OnInit {
   }
 
   toggleRecruiterMode() {
-    this.isRecruiterMode = !this.isRecruiterMode;
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('ael_recruiter_mode', this.isRecruiterMode ? 'true' : 'false');
-    }
+    this.botService.toggleRecruiterMode();
   }
 
   chooseViewMode(mode: 'recruiter' | 'personal') {
-    this.isRecruiterMode = mode === 'recruiter';
+    const targetVal = mode === 'recruiter';
+    if (this.botService.isRecruiterMode !== targetVal) {
+      this.botService.toggleRecruiterMode();
+    }
     if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('ael_recruiter_mode', this.isRecruiterMode ? 'true' : 'false');
       localStorage.setItem('ael_view_prompted', 'true');
     }
     this.showViewPromptModal = false;
