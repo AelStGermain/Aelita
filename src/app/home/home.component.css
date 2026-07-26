@@ -9,13 +9,13 @@
 
 .home-portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
     padding: 6px;
 }
 
 .home-proj-card {
-    padding: 8px;
+    padding: 6px 8px;
     background: linear-gradient(135deg, #ffffff, #fff5fb);
     border: 2px ridge #ffb8e4;
     box-shadow: 2px 2px 0 rgba(80, 30, 100, 0.12);
@@ -106,4 +106,10 @@
 
 .home-proj-card .launch-btn:hover {
     filter: brightness(1.18);
+}
+
+@media (max-width: 650px) {
+    .home-portfolio-grid {
+        grid-template-columns: 1fr;
+    }
 }
