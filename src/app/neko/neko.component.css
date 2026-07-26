@@ -1,154 +1,259 @@
-.neko-container {
+.tamagotchi-widget {
   position: fixed;
-  z-index: 9999;
-  width: 32px;
-  height: 32px;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  pointer-events: auto;
-  transition: transform 0.1s;
-}
-
-/* Orientación */
-.neko-container.facing-left .neko-sprite {
-  transform: scaleX(-1);
-}
-
-/* Animación de Correr */
-.neko-container.running .neko-sprite {
-  animation: run-bob 0.2s infinite alternate;
-}
-@keyframes run-bob {
-  from { transform: translateY(0); }
-  to { transform: translateY(-4px); }
-}
-.neko-container.facing-left.running .neko-sprite {
-  animation: run-bob-left 0.2s infinite alternate;
-}
-@keyframes run-bob-left {
-  from { transform: scaleX(-1) translateY(0); }
-  to { transform: scaleX(-1) translateY(-4px); }
-}
-
-/* CSS Sprite Art (Placeholder) */
-.neko-sprite {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.neko-body {
-  position: absolute;
-  bottom: 0;
-  width: 32px;
-  height: 24px;
-  border-radius: 8px 8px 4px 4px;
-  overflow: hidden;
-  display: flex;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.neko-half {
-  flex: 1;
-  height: 100%;
-}
-.neko-half.black { background: #1a1a1a; }
-.neko-half.white { background: #fdfdfd; }
-
-.neko-ear {
-  position: absolute;
-  top: -6px;
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
-}
-.neko-ear.left {
-  left: 2px;
-  background: #1a1a1a;
-  transform: rotate(-15deg);
-}
-.neko-ear.right {
-  right: 2px;
-  background: #fdfdfd;
-  transform: rotate(15deg);
-}
-
-.neko-face {
-  position: absolute;
-  top: 5px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding: 0 4px;
+  bottom: 12px;
+  right: 12px;
+  z-index: 9200;
+  width: 250px;
+  background: linear-gradient(145deg, #1e122d, #2e1542 60%, #170d24);
+  border: 3px ridge #ff8ad4 !important;
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 4px 4px 0 rgba(20, 10, 30, 0.5), 0 0 16px rgba(255, 119, 214, 0.35);
+  color: #f3e6ff;
+  font-family: Verdana, Arial, sans-serif;
   box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.neko-eye {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-}
-.neko-eye.left { background: #fdfdfd; }
-.neko-eye.right { background: #1a1a1a; }
-
-.neko-nose {
-  position: absolute;
-  top: 6px;
-  left: 14px;
-  width: 4px;
-  height: 2px;
-  background: #ff6b9d;
-  border-radius: 2px;
+.tamagotchi-widget.is-minimized {
+  width: 170px;
+  padding: 6px 8px;
 }
 
-.neko-tail {
-  position: absolute;
-  bottom: 4px;
-  left: -8px;
-  width: 10px;
-  height: 4px;
-  background: #1a1a1a;
-  border-radius: 4px;
-  animation: wag 1s infinite alternate;
-}
-@keyframes wag {
-  from { transform: rotate(0deg); transform-origin: right center; }
-  to { transform: rotate(-20deg); transform-origin: right center; }
+.pet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #b85cc9;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
 }
 
-/* Nivel: Gafas / Code Cat */
-.neko-container[data-level="CODE_CAT"] .neko-face::after,
-.neko-container[data-level="CYBER_NEKO"] .neko-face::after,
-.neko-container[data-level="ROOT_AELITA"] .neko-face::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: 2px;
-  width: 28px;
-  height: 6px;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 2px;
-  box-shadow: 0 0 4px #00d2d3;
+.pet-title-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-/* Dormir */
-.zzz {
-  position: absolute;
-  top: -20px;
-  right: -10px;
-  font-family: monospace;
-  font-weight: bold;
+.pet-name {
+  font: bold 10px 'Press Start 2P', monospace;
+  color: #ff77d6;
+}
+
+.pet-lvl {
+  font: bold 9px 'Courier New', monospace;
+  color: #70f3ff;
+  background: rgba(112, 243, 255, 0.12);
+  padding: 1px 4px;
+  border-radius: 3px;
+  border: 1px solid rgba(112, 243, 255, 0.3);
+}
+
+.pet-toggle-min {
+  background: #aa2bb8;
   color: #fff;
-  text-shadow: 1px 1px 2px #000;
-  animation: zzz-float 2s infinite;
+  border: 1px solid #ff77d6;
+  border-radius: 3px;
+  font-size: 8px;
+  cursor: pointer;
+  padding: 1px 5px;
+  line-height: 1;
 }
-@keyframes zzz-float {
-  0% { transform: translateY(0) scale(0.8); opacity: 0; }
-  50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
-  100% { transform: translateY(-20px) scale(0.8); opacity: 0; }
+
+.pet-avatar {
+  display: grid;
+  place-items: center;
+  min-height: 170px;
+  overflow: hidden;
+  margin: 4px 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
+  border-radius: 8px;
 }
-.neko-container.sleeping .neko-eye {
-  height: 1px;
-  margin-top: 1px;
+
+.pet-sprite {
+  width: 160px;
+  height: 160px;
+
+  /*
+   * La spritesheet original tiene 4 columnas y 6 filas.
+   * Al mostrar cada frame a 160 px, el fondo completo mide:
+   * 4 × 160 = 640 px
+   * 6 × 160 = 960 px
+   */
+  background-size: 640px 960px;
+  background-repeat: no-repeat;
+
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+
+  animation-name: aelita-sprite-frames;
+  animation-duration: 800ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  user-select: none;
+  pointer-events: none;
+
+  filter: drop-shadow(0 7px 0 rgba(34, 20, 45, 0.16));
+}
+
+.pet-busy .pet-sprite {
+  filter:
+    drop-shadow(0 7px 0 rgba(34, 20, 45, 0.16))
+    drop-shadow(0 0 9px rgba(0, 184, 184, 0.25));
+}
+
+/* Fila 0 */
+.pet-idle {
+  background-position-y: 0;
+  animation-duration: 880ms;
+}
+
+/* Fila 1 */
+.pet-walking {
+  background-position-y: -160px;
+  animation-duration: 520ms;
+}
+
+/* Fila 2 */
+.pet-happy {
+  background-position-y: -320px;
+  animation-duration: 800ms;
+}
+
+/* Fila 3 */
+.pet-eating {
+  background-position-y: -480px;
+  animation-duration: 680ms;
+}
+
+/* Fila 4 */
+.pet-sleeping {
+  background-position-y: -640px;
+  animation-duration: 1200ms;
+}
+
+/* Fila 5 */
+.pet-coding {
+  background-position-y: -800px;
+  animation-duration: 720ms;
+}
+
+@keyframes aelita-sprite-frames {
+  0%,
+  24.99% {
+    background-position-x: 0;
+  }
+
+  25%,
+  49.99% {
+    background-position-x: -160px;
+  }
+
+  50%,
+  74.99% {
+    background-position-x: -320px;
+  }
+
+  75%,
+  100% {
+    background-position-x: -480px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pet-sprite {
+    animation: none;
+    background-position-x: 0;
+  }
+}
+
+.pet-status {
+  text-align: center;
+  margin: 4px 0 6px;
+  min-height: 28px;
+}
+
+.pet-msg {
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.3;
+  color: #eed6ff;
+  font-style: italic;
+}
+
+.pet-meters {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.meter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meter small {
+  font: bold 7.5px 'Courier New', monospace;
+  color: #ff9ee2;
+  width: 70px;
+  flex: 0 0 auto;
+}
+
+.bar-outer {
+  flex: 1;
+  height: 7px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #794392;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-inner {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4196, #ff8fe4);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.energy-bar {
+  background: linear-gradient(90deg, #00d2d3, #70f3ff);
+}
+
+.pet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+}
+
+.pet-actions button {
+  padding: 3px 6px;
+  background: linear-gradient(180deg, #7c2696, #48145a);
+  color: #fff;
+  border: 1.5px outset #d877e6;
+  border-radius: 4px;
+  font: bold 8px Verdana, sans-serif;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.pet-actions button:hover:not(:disabled) {
+  filter: brightness(1.2);
+  background: linear-gradient(180deg, #9933b8, #5c1b73);
+}
+
+.pet-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+  .tamagotchi-widget {
+    bottom: 8px;
+    right: 8px;
+    width: 220px;
+  }
 }

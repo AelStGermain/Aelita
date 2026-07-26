@@ -1,29 +1,90 @@
-<div class="neko-container" 
-     [style.left.px]="nekoX" 
-     [style.top.px]="nekoY"
-     [class.facing-left]="!facingRight"
-     [class.sleeping]="state === 'sleeping'"
-     [class.running]="state === 'running'"
-     [attr.data-level]="nekoService.getLevel()"
-     (click)="onNekoClick()">
-  
-  <div class="neko-sprite">
-    <!-- Marcador temporal CSS para el gato mitad blanco/negro -->
-    <div class="neko-ear left"></div>
-    <div class="neko-ear right"></div>
-    <div class="neko-body">
-      <div class="neko-half black"></div>
-      <div class="neko-half white"></div>
-      
-      <div class="neko-face">
-        <div class="neko-eye left"></div>
-        <div class="neko-eye right"></div>
-        <div class="neko-nose"></div>
+<aside class="tamagotchi-widget" [class.is-minimized]="isMinimized" aria-label="Aelita Pet Tamagotchi">
+  <div class="pet-header">
+    <div class="pet-title-group">
+      <span class="pet-icon">🐱</span>
+      <strong class="pet-name">{{ petName }}</strong>
+      <span class="pet-lvl">LVL {{ petLevel }}</span>
+    </div>
+    <button type="button" class="pet-toggle-min" (click)="toggleMinimize()" [title]="isMinimized ? 'Expandir pet' : 'Minimizar pet'">
+      {{ isMinimized ? '▲' : '▼' }}
+    </button>
+  </div>
+
+  <div class="pet-body-content" *ngIf="!isMinimized">
+    <div class="pet-avatar" [class.pet-busy]="isPetBusy">
+      <div
+        class="pet-sprite"
+        [ngClass]="petSpriteClass"
+        [style.backgroundImage]="'url(' + petSpriteSheet + ')'"
+        role="img"
+        [attr.aria-label]="currentPetAltText"
+      ></div>
+    </div>
+
+    <div class="pet-status">
+      <p class="pet-msg">{{ petStatusMsg }}</p>
+    </div>
+
+    <div class="pet-meters">
+      <div class="meter">
+        <small>HAPPY {{ petHappiness }}%</small>
+        <div class="bar-outer">
+          <div class="bar-inner" [style.width.%]="petHappiness"></div>
+        </div>
+      </div>
+      <div class="meter">
+        <small>ENERGY {{ petEnergy }}%</small>
+        <div class="bar-outer">
+          <div class="bar-inner energy-bar" [style.width.%]="petEnergy"></div>
+        </div>
       </div>
     </div>
-    <div class="neko-tail"></div>
 
-    <!-- Zzz para dormir -->
-    <div class="zzz" *ngIf="state === 'sleeping'">zZz</div>
+    <div class="pet-actions">
+      <button
+        type="button"
+        (click)="feedPet()"
+        [disabled]="isPetBusy"
+        title="Alimentar con snack"
+      >
+        🐟 Snack
+      </button>
+
+      <button
+        type="button"
+        (click)="petPet()"
+        [disabled]="isPetBusy"
+        title="Dar mimos"
+      >
+        💖 Mimar
+      </button>
+
+      <button
+        type="button"
+        (click)="walkPet()"
+        [disabled]="isPetBusy"
+        title="Salir a caminar"
+      >
+        🐾 Pasear
+      </button>
+
+      <button
+        type="button"
+        (click)="codePet()"
+        [disabled]="isPetBusy"
+        title="Poner a programar"
+      >
+        💻 Hack
+      </button>
+
+      <button
+        type="button"
+        (click)="sleepPet()"
+        [disabled]="isPetBusy"
+        title="Recuperar energía"
+      >
+        💤 Dormir
+      </button>
+    </div>
   </div>
-</div>
+</aside>
