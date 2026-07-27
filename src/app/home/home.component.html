@@ -19,19 +19,21 @@
   </div>
 
   <!-- BENTO GRID — CREATIVE PROFESSIONAL PORTFOLIO (RECRUITER MODE) -->
-  <div *ngIf="isRecruiterMode" class="bento-dashboard-container">
+  <!-- BENTO GRID — CREATIVE PROFESSIONAL PORTFOLIO (RECRUITER MODE) -->
+  <div *ngIf="isRecruiterMode" class="bento-dashboard-container container-xl py-4">
     
-    <div class="recruiter-split-layout">
+    <div class="row g-4 align-items-stretch">
       <!-- Left Column: Identity & Assistant -->
-      <div class="split-col split-left">
+      <div class="col-lg-5 col-xl-4 d-flex flex-column gap-4">
+        
         <!-- 1. Hero Bento Box (Large) -->
-        <article class="bento-card hero-bento anim-delay-1">
+        <article class="bento-card hero-bento anim-delay-1 h-100 d-flex flex-column justify-content-between">
           <div class="hero-bento-content">
             <div class="hero-avatar-wrapper">
               <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez" class="bento-avatar">
               <span class="pulse-chip">OPEN TO WORK</span>
             </div>
-            <div class="hero-text-wrapper">
+            <div class="hero-text-wrapper mt-3">
               <div class="bento-header-tag">
                 <span class="location">Chile · Remote / On-site</span>
                 <span class="role-chip">JUNIOR / MID READY</span>
@@ -52,39 +54,64 @@
                 <span class="tech-tag" data-bs-toggle="tooltip" title="Contenerización de aplicaciones e infraestructura">Docker</span>
                 <span class="tech-tag" data-bs-toggle="tooltip" title="Metodología ágil para equipos de desarrollo">Scrum</span>
               </div>
+            </div>
+          </div>
 
-              <div class="hero-actions">
-                <a routerLink="/about" class="bento-btn primary">Ver CV &amp; Stack</a>
-                <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="bento-btn secondary">GitHub</a>
-                <a href="mailto:sofia.gomez.orellana@gmail.com" class="bento-btn outline">Contacto</a>
+          <div class="hero-actions mt-3">
+            <div class="row g-2">
+              <div class="col-sm-6">
+                <a routerLink="/about" class="btn-premium primary w-100 text-center">Ver CV &amp; Stack</a>
+              </div>
+              <div class="col-sm-6">
+                <a href="mailto:sofia.gomez.orellana@gmail.com" class="btn-premium outline w-100 text-center">Contacto</a>
+              </div>
+              <div class="col-12">
+                <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-premium secondary w-100 text-center">
+                  GitHub
+                </a>
               </div>
             </div>
           </div>
         </article>
 
         <!-- 2. AEL_AI Assistant Bento Box -->
-        <article class="bento-card ai-assistant-bento anim-delay-2">
-          <div class="bento-card-header">
-            <span class="bento-icon">✦</span>
-            <h2>AEL_AI ASSISTANT</h2>
-          </div>
-          <p class="ai-subtitle">Respuestas sintetizadas para tu evaluación de candidato:</p>
-          
-          <div class="ai-response-box">
-            <p>{{aiResponse}}<span *ngIf="aiTyping" class="typing-cursor"></span></p>
+        <article class="bento-card ai-assistant-bento anim-delay-2 d-flex flex-column justify-content-between">
+          <div>
+            <div class="bento-card-header">
+              <span class="bento-icon">✦</span>
+              <h2>AEL_AI ASSISTANT</h2>
+            </div>
+            <p class="ai-subtitle">Respuestas sintetizadas para tu evaluación de candidato:</p>
+            
+            <div class="ai-chat-container">
+              <div class="ai-chat-body">
+                <div *ngFor="let msg of aiMessages" class="chat-bubble-row" [ngClass]="msg.sender">
+                  <div class="chat-avatar" *ngIf="msg.sender === 'bot'">🤖</div>
+                  <div class="chat-bubble">
+                    <p>{{msg.text}}</p>
+                  </div>
+                </div>
+                <div *ngIf="aiTyping && aiMessages[aiMessages.length - 1]?.text === ''" class="chat-bubble-row bot">
+                  <div class="chat-avatar">🤖</div>
+                  <div class="chat-bubble typing">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="ai-prompt-chips">
-            <button (click)="askAiRecruiter('hire')" class="ai-chip">¿Por qué contratar a Sofía?</button>
-            <button (click)="askAiRecruiter('spring')" class="ai-chip">Experiencia Java &amp; Spring</button>
-            <button (click)="askAiRecruiter('education')" class="ai-chip">Formación &amp; Inglés C1</button>
-            <button (click)="askAiRecruiter('projects')" class="ai-chip">Proyectos en producción</button>
+          <div class="ai-prompt-chips mt-3">
+            <button (click)="askAiRecruiter('hire')" class="ai-chip" [disabled]="aiTyping">¿Por qué contratar a Sofía?</button>
+            <button (click)="askAiRecruiter('spring')" class="ai-chip" [disabled]="aiTyping">Experiencia Java &amp; Spring</button>
+            <button (click)="askAiRecruiter('education')" class="ai-chip" [disabled]="aiTyping">Formación &amp; Inglés C1</button>
+            <button (click)="askAiRecruiter('projects')" class="ai-chip" [disabled]="aiTyping">Proyectos en producción</button>
           </div>
         </article>
       </div>
 
       <!-- Right Column: Interactive Content Switcher -->
-      <div class="split-col split-right">
+      <div class="col-lg-7 col-xl-8 d-flex flex-column gap-4">
         <!-- Interactive Tabs Control -->
         <div class="dashboard-tabs anim-delay-3">
           <button type="button" 
@@ -110,21 +137,14 @@
         <!-- Panel Body: Switchable content with fade-in animation -->
         <div class="dashboard-panel-body">
           
-          <!-- TAB 1: PROJECTS -->
+          <!-- TAB 1: PROJECTS (GRID VIEW - Point 2) -->
           <div *ngIf="activeRecruiterTab === 'projects'" class="tab-fade-panel">
-            <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+            <div class="row g-4 row-cols-1 row-cols-xxl-2">
               
-              <!-- Carousel Indicators -->
-              <div class="carousel-indicators custom-indicators">
-                <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Patota"></button>
-                <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="1" aria-label="Kuichi Web"></button>
-                <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="2" aria-label="Kuichi App"></button>
-              </div>
-
-              <div class="carousel-inner">
-                <!-- Slide 1: PATOTA -->
-                <div class="carousel-item active">
-                  <article class="bento-card project-bento">
+              <!-- Project 1: PATOTA -->
+              <div class="col">
+                <article class="bento-card project-bento h-100 d-flex flex-column justify-content-between">
+                  <div>
                     <div class="proj-bento-header">
                       <span class="proj-emoji">🐾</span>
                       <div>
@@ -140,17 +160,19 @@
                       <span class="bento-pill">CSS3</span>
                       <span class="bento-pill">UX/UI</span>
                     </div>
-                    <div class="proj-bento-actions">
-                      <a href="https://aelstgermain.github.io/Patota" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-                      <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#patotaModal">Ver Arquitectura</button>
-                      <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
-                    </div>
-                  </article>
-                </div>
+                  </div>
+                  <div class="proj-bento-actions mt-auto pt-3">
+                    <a href="https://aelstgermain.github.io/Patota" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
+                    <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#patotaModal">Ver Arquitectura</button>
+                    <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                  </div>
+                </article>
+              </div>
 
-                <!-- Slide 2: KUICHI WEB -->
-                <div class="carousel-item">
-                  <article class="bento-card project-bento">
+              <!-- Project 2: KUICHI WEB -->
+              <div class="col">
+                <article class="bento-card project-bento h-100 d-flex flex-column justify-content-between">
+                  <div>
                     <div class="proj-bento-header">
                       <span class="proj-emoji">🐶</span>
                       <div>
@@ -158,7 +180,7 @@
                         <span class="proj-tag">VET PLATFORM</span>
                       </div>
                     </div>
-                    <p class="proj-bento-sub">Plataforma de bienestar animal y servicios veterinarios</p>
+                    <p class="proj-bento-sub">Plataforma de bienestar animal y servicios de salud</p>
                     <p class="proj-bento-desc">Sistema integral para la reserva de citas médicas, seguimiento del historial de mascotas y geolocalización de ofertas de atención.</p>
                     <div class="proj-bento-techs">
                       <span class="bento-pill">Java</span>
@@ -166,17 +188,19 @@
                       <span class="bento-pill">Angular</span>
                       <span class="bento-pill">REST APIs</span>
                     </div>
-                    <div class="proj-bento-actions">
-                      <a href="https://aelstgermain.github.io/kuichiweb/" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-                      <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiWebModal">Ver Arquitectura</button>
-                      <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
-                    </div>
-                  </article>
-                </div>
+                  </div>
+                  <div class="proj-bento-actions mt-auto pt-3">
+                    <a href="https://aelstgermain.github.io/kuichiweb/" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
+                    <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiWebModal">Ver Arquitectura</button>
+                    <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                  </div>
+                </article>
+              </div>
 
-                <!-- Slide 3: KUICHI APP -->
-                <div class="carousel-item">
-                  <article class="bento-card project-bento">
+              <!-- Project 3: KUICHI APP -->
+              <div class="col">
+                <article class="bento-card project-bento h-100 d-flex flex-column justify-content-between">
+                  <div>
                     <div class="proj-bento-header">
                       <span class="proj-emoji">📱</span>
                       <div>
@@ -192,50 +216,81 @@
                       <span class="bento-pill">TypeScript</span>
                       <span class="bento-pill">Capacitor</span>
                     </div>
-                    <div class="proj-bento-actions">
-                      <a href="https://aelstgermain.github.io/kuichiapp" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-                      <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiAppModal">Ver Arquitectura</button>
-                      <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
-                    </div>
-                  </article>
-                </div>
+                  </div>
+                  <div class="proj-bento-actions mt-auto pt-3">
+                    <a href="https://aelstgermain.github.io/kuichiapp" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
+                    <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiAppModal">Ver Arquitectura</button>
+                    <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
+                  </div>
+                </article>
               </div>
-
-              <!-- Carousel Controls -->
-              <button class="carousel-control-prev custom-ctrl" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-              </button>
-              <button class="carousel-control-next custom-ctrl" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-              </button>
 
             </div>
           </div>
 
-          <!-- TAB 2: TECHNICAL SKILLS -->
+          <!-- TAB 2: TECHNICAL SKILLS (Point 5) -->
           <div *ngIf="activeRecruiterTab === 'skills'" class="tab-fade-panel">
             <article class="bento-card stack-matrix-bento anim-delay-1">
-              <div class="bento-card-header">
+              <div class="bento-card-header mb-3">
                 <h2>Competencias Técnicas</h2>
               </div>
-              <div class="stack-matrix-grid">
-                <div class="matrix-cell" data-bs-toggle="tooltip" title="Desarrollo de servicios robustos y seguros">
-                  <h3>Backend &amp; Arquitectura</h3>
-                  <p>Java, Spring Boot, Spring MVC, REST APIs, Spring Security, JPA / Hibernate, Node.js, Express.js, PHP</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Desarrollo de servicios robustos y seguros">
+                    <h3>Backend &amp; Arquitectura</h3>
+                    <div class="skills-badge-group mt-2">
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Lenguaje de programación principal">Java</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework de servicios empresariales">Spring Boot</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Arquitectura web MVC de Spring">Spring MVC</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Protocolos RESTful seguros">REST APIs</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Control de accesos y seguridad">Spring Security</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Persistencia y mapeo ORM">JPA / Hibernate</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Runtime de JS del lado del servidor">Node.js</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework de Node.js para APIs">Express.js</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Scripting de servidor">PHP</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="matrix-cell" data-bs-toggle="tooltip" title="Interfaces interactivas y responsivas">
-                  <h3>Frontend Web &amp; Móvil</h3>
-                  <p>JavaScript, TypeScript, Angular, Ionic, HTML5, CSS3, Single Page Applications</p>
+                <div class="col-md-6">
+                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Interfaces interactivas y responsivas">
+                    <h3>Frontend Web &amp; Móvil</h3>
+                    <div class="skills-badge-group mt-2">
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Interactividad y lógica de cliente">JavaScript</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Tipado estático sobre JS">TypeScript</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework SPA reactivo">Angular</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework móvil híbrido nativo">Ionic</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Estructura semántica de páginas">HTML5</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Estilos y responsive design">CSS3</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Aplicaciones de página única">Single Page Apps</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="matrix-cell" data-bs-toggle="tooltip" title="Modelado y consistencia de datos relacionales">
-                  <h3>Datos &amp; Bases de Datos</h3>
-                  <p>PostgreSQL, MySQL, H2, Supabase, Firebase Firestore, Master Data Management</p>
+                <div class="col-md-6">
+                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Modelado y consistencia de datos relacionales">
+                    <h3>Datos &amp; Bases de Datos</h3>
+                    <div class="skills-badge-group mt-2">
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos relacional potente">PostgreSQL</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos relacional estándar">MySQL</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos SQL ligera en memoria">H2</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Plataforma backend as a service">Supabase</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos NoSQL en tiempo real">Firebase Firestore</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Gestión de datos maestros">Master Data Management</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="matrix-cell" data-bs-toggle="tooltip" title="Prácticas modernas de infraestructura y gestión">
-                  <h3>DevOps &amp; Metodologías</h3>
-                  <p>Git, GitHub Actions, Docker, Linux, Maven, Scrum, Documentación Técnica</p>
+                <div class="col-md-6">
+                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Prácticas modernas de infraestructura y gestión">
+                    <h3>DevOps &amp; Metodologías</h3>
+                    <div class="skills-badge-group mt-2">
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Control de versiones descentralizado">Git</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Automatización e integración CI/CD">GitHub Actions</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Contenedores aislados y portables">Docker</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Sistemas operativos Linux/Unix">Linux</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Gestor de dependencias Java">Maven</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Metodología de trabajo ágil">Scrum</span>
+                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Documentación de arquitectura e integraciones">Doc. Técnica</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
@@ -324,7 +379,7 @@
       </div>
     </div>
 
-    <!-- Bootstrap Modals for Project Architecture Details -->
+    <!-- Bootstrap Modals for Project Architecture Details (Point 9) -->
     <div class="modal fade custom-modal" id="patotaModal" tabindex="-1" aria-labelledby="patotaModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content glass-modal">
@@ -333,13 +388,38 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">
-            <h6>Arquitectura del Sistema</h6>
-            <p>Aplicación web modular construida con HTML5 semántico, CSS3 Vanilla y lógica reactiva en JavaScript. Enfocada en ofrecer baja latencia y alta fluidez de carga en redes móviles inestables durante actividades al aire libre.</p>
-            <h6>Flujo de Datos</h6>
-            <p>La información de rutas y paseos se consume desde servicios de geolocalización locales y almacenamiento local (LocalStorage) en el navegador del usuario para asegurar el funcionamiento sin conexión en zonas remotas.</p>
+            <ul class="nav nav-pills mb-3 modal-nav-pills" id="patotaTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="patota-arch-tab" data-bs-toggle="pill" data-bs-target="#patota-arch" type="button" role="tab" aria-controls="patota-arch" aria-selected="true">Arquitectura</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="patota-flow-tab" data-bs-toggle="pill" data-bs-target="#patota-flow" type="button" role="tab" aria-controls="patota-flow" aria-selected="false">Flujo de Datos</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="patota-tech-tab" data-bs-toggle="pill" data-bs-target="#patota-tech" type="button" role="tab" aria-controls="patota-tech" aria-selected="false">Detalles Clave</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="patotaTabContent">
+              <div class="tab-pane fade show active" id="patota-arch" role="tabpanel" aria-labelledby="patota-arch-tab">
+                <h6>Arquitectura del Sistema</h6>
+                <p>Aplicación web modular construida con HTML5 semántico, CSS3 Vanilla y lógica reactiva en JavaScript. Enfocada en ofrecer baja latencia y alta fluidez de carga en redes móviles inestables durante actividades al aire libre.</p>
+              </div>
+              <div class="tab-pane fade" id="patota-flow" role="tabpanel" aria-labelledby="patota-flow-tab">
+                <h6>Flujo de Datos</h6>
+                <p>La información de rutas y paseos se consume desde servicios de geolocalización locales y almacenamiento local (LocalStorage) en el navegador del usuario para asegurar el funcionamiento sin conexión en zonas remotas.</p>
+              </div>
+              <div class="tab-pane fade" id="patota-tech" role="tabpanel" aria-labelledby="patota-tech-tab">
+                <h6>Aspectos Clave</h6>
+                <ul>
+                  <li><strong>Enfoque Offline:</strong> Resiliencia mediante caché y localStorage.</li>
+                  <li><strong>Ligero:</strong> Cero frameworks pesados en el frontend para una carga ultrarrápida.</li>
+                  <li><strong>Diseño Mobile-First:</strong> Optimizado para pantallas táctiles y navegación en terreno.</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="bento-btn secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn-premium secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
@@ -353,16 +433,43 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">
-            <h6>Arquitectura de Capas</h6>
-            <p>Diseño basado en una arquitectura cliente-servidor de tres capas:</p>
-            <ul>
-              <li><strong>Presentación:</strong> Single Page Application construida en Angular, estructurando componentes reactivos y vistas reutilizables.</li>
-              <li><strong>Negocio (API):</strong> REST Controller desarrollado en Java con Spring Boot, gestionando autenticación mediante Spring Security y mapeo de datos con JPA/Hibernate.</li>
-              <li><strong>Datos:</strong> Base de datos relacional PostgreSQL con modelado de datos para dueños, mascotas e historiales de citas.</li>
+            <ul class="nav nav-pills mb-3 modal-nav-pills" id="kuichiWebTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="kuichiweb-arch-tab" data-bs-toggle="pill" data-bs-target="#kuichiweb-arch" type="button" role="tab" aria-controls="kuichiweb-arch" aria-selected="true">Arquitectura</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="kuichiweb-integration-tab" data-bs-toggle="pill" data-bs-target="#kuichiweb-integration" type="button" role="tab" aria-controls="kuichiweb-integration" aria-selected="false">Integración</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="kuichiweb-tech-tab" data-bs-toggle="pill" data-bs-target="#kuichiweb-tech" type="button" role="tab" aria-controls="kuichiweb-tech" aria-selected="false">Stack &amp; Datos</button>
+              </li>
             </ul>
+            <div class="tab-content" id="kuichiWebTabContent">
+              <div class="tab-pane fade show active" id="kuichiweb-arch" role="tabpanel" aria-labelledby="kuichiweb-arch-tab">
+                <h6>Arquitectura de Capas</h6>
+                <p>Diseño basado en una arquitectura cliente-servidor de tres capas:</p>
+                <ul>
+                  <li><strong>Presentación:</strong> Single Page Application construida en Angular, estructurando componentes reactivos y vistas reutilizables.</li>
+                  <li><strong>Negocio (API):</strong> REST Controller desarrollado en Java con Spring Boot, gestionando autenticación mediante Spring Security y mapeo de datos con JPA/Hibernate.</li>
+                  <li><strong>Datos:</strong> Base de datos relacional PostgreSQL con modelado de datos para dueños, mascotas e historiales de citas.</li>
+                </ul>
+              </div>
+              <div class="tab-pane fade" id="kuichiweb-integration" role="tabpanel" aria-labelledby="kuichiweb-integration-tab">
+                <h6>Integración &amp; Servicios</h6>
+                <p>Implementación de servicios REST seguros para el intercambio de datos en formato JSON, integrando validadores de entrada y manejo global de excepciones en Spring Boot.</p>
+              </div>
+              <div class="tab-pane fade" id="kuichiweb-tech" role="tabpanel" aria-labelledby="kuichiweb-tech-tab">
+                <h6>Tecnologías Utilizadas</h6>
+                <ul>
+                  <li><strong>Backend:</strong> Java, Spring Boot, Spring Security, JPA, Hibernate.</li>
+                  <li><strong>Frontend:</strong> Angular, TypeScript, RxJS, Bootstrap.</li>
+                  <li><strong>Base de Datos:</strong> PostgreSQL, H2 (para entornos de pruebas).</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="bento-btn secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn-premium secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
@@ -376,13 +483,38 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
           </div>
           <div class="modal-body">
-            <h6>Estructura Híbrida Móvil</h6>
-            <p>Aplicación construida usando Ionic Framework combinada con Angular. Capacitor actúa como puente nativo permitiendo el acceso directo a componentes del dispositivo como notificaciones y almacenamiento persistente.</p>
-            <h6>Integración</h6>
-            <p>Se comunica mediante HTTPS seguro con la API REST de Spring Boot para sincronizar en tiempo real el historial médico de las mascotas.</p>
+            <ul class="nav nav-pills mb-3 modal-nav-pills" id="kuichiAppTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="kuichiapp-arch-tab" data-bs-toggle="pill" data-bs-target="#kuichiapp-arch" type="button" role="tab" aria-controls="kuichiapp-arch" aria-selected="true">Arquitectura</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="kuichiapp-nativos-tab" data-bs-toggle="pill" data-bs-target="#kuichiapp-nativos" type="button" role="tab" aria-controls="kuichiapp-nativos" aria-selected="false">Funciones Nativas</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="kuichiapp-tech-tab" data-bs-toggle="pill" data-bs-target="#kuichiapp-tech" type="button" role="tab" aria-controls="kuichiapp-tech" aria-selected="false">Detalles Híbridos</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="kuichiAppTabContent">
+              <div class="tab-pane fade show active" id="kuichiapp-arch" role="tabpanel" aria-labelledby="kuichiapp-arch-tab">
+                <h6>Estructura Híbrida Móvil</h6>
+                <p>Aplicación construida usando Ionic Framework combinada con Angular. Capacitor actúa como puente nativo permitiendo el acceso directo a componentes del dispositivo como notificaciones y almacenamiento persistente.</p>
+              </div>
+              <div class="tab-pane fade" id="kuichiapp-nativos" role="tabpanel" aria-labelledby="kuichiapp-nativos-tab">
+                <h6>Integración y Acceso a API</h6>
+                <p>Se comunica mediante HTTPS seguro con la API REST de Spring Boot para sincronizar en tiempo real el historial médico de las mascotas. Almacena las credenciales de sesión localmente de forma cifrada.</p>
+              </div>
+              <div class="tab-pane fade" id="kuichiapp-tech" role="tabpanel" aria-labelledby="kuichiapp-tech-tab">
+                <h6>Características Clave</h6>
+                <ul>
+                  <li><strong>Multiplataforma:</strong> Compilación única para Android e iOS mediante Capacitor.</li>
+                  <li><strong>UI de Componentes:</strong> Uso extensivo de Web Components nativos de Ionic optimizados para tacto.</li>
+                  <li><strong>Notificaciones:</strong> Configuración para alertas push locales de vacunas y citas.</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="bento-btn secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn-premium secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

@@ -61,7 +61,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   activeRecruiterTab: 'projects' | 'skills' | 'timeline' = 'projects';
 
   // AEL_AI Recruiter Assistant State
-  aiResponse = 'Hola, soy AEL_AI. Haz clic en cualquier pregunta para obtener información sintetizada para tu proceso de selección.';
+  aiMessages: Array<{ sender: 'user' | 'bot'; text: string }> = [
+    { sender: 'bot', text: '¡Hola! Soy AEL_AI, el asistente virtual de Sofía. Selecciona alguna de las preguntas de abajo para conocer más sobre su perfil.' }
+  ];
+  aiResponse = '';
   aiTyping = false;
   private aiTypeTimer?: ReturnType<typeof setInterval>;
 
@@ -71,30 +74,57 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private heroTypeTimer?: ReturnType<typeof setInterval>;
 
   askAiRecruiter(topic: 'hire' | 'spring' | 'education' | 'projects'): void {
+    if (this.aiTyping) return;
+
+    const questions: Record<string, string> = {
+      hire: '¿Por qué contratar a Sofía?',
+      spring: 'Experiencia Java & Spring Boot',
+      education: 'Formación & Inglés C1',
+      projects: 'Proyectos en producción'
+    };
+
     const responses: Record<string, string> = {
       hire: 'Sofía combina un perfil técnico backend sólido (Java / Spring Boot / SQL) con visión de integración de sistemas, metodologías ágiles (Scrum) y comunicación fluida (Inglés C1). Entrega soluciones escalables y documentadas.',
       spring: 'Competencias avanzadas en Java, Spring Boot, Spring MVC, Spring Security y JPA/Hibernate. Diseño y construcción de APIs REST estructuradas con bases de datos relacionales (PostgreSQL, MySQL).',
       education: 'Titulada como Técnico Analista de Sistemas. Actualmente cursa Ingeniería Civil Informática. Inglés C1 Avanzado verificado.',
       projects: 'Ha construido sistemas completos: KUICHI WEB (Java/Spring Boot + Angular), KUICHI APP (Ionic + TypeScript) y PATOTA (Web App). Todos con demos en vivo y código abierto en GitHub.'
     };
-    const fullText = responses[topic] || responses['hire'];
-    this.typeAiResponse(fullText);
+
+    const questionText = questions[topic] || 'Consulta sobre perfil';
+    const answerText = responses[topic] || responses['hire'];
+
+    this.aiMessages.push({ sender: 'user', text: questionText });
+    this.scrollChatToBottom();
+
+    this.aiTyping = true;
+    setTimeout(() => {
+      const botMsgIndex = this.aiMessages.push({ sender: 'bot', text: '' }) - 1;
+      this.typeAiResponse(answerText, botMsgIndex);
+    }, 400);
   }
 
-  private typeAiResponse(text: string): void {
+  private typeAiResponse(text: string, msgIndex: number): void {
     if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
-    this.aiResponse = '';
-    this.aiTyping = true;
     let i = 0;
     this.aiTypeTimer = setInterval(() => {
       if (i < text.length) {
-        this.aiResponse += text.charAt(i);
+        this.aiMessages[msgIndex].text += text.charAt(i);
         i++;
+        this.scrollChatToBottom();
       } else {
         this.aiTyping = false;
         if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
       }
-    }, 18);
+    }, 12);
+  }
+
+  private scrollChatToBottom(): void {
+    setTimeout(() => {
+      const chatBody = document.querySelector('.ai-chat-body');
+      if (chatBody) {
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    }, 50);
   }
 
   setRecruiterTab(tab: 'projects' | 'skills' | 'timeline'): void {
