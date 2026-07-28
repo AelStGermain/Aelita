@@ -104,7 +104,13 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (typeof localStorage !== 'undefined') {
+    const requestedView = typeof window !== 'undefined'
+      ? new URLSearchParams(window.location.search).get('view')
+      : null;
+
+    if (requestedView === 'recruiter' || requestedView === 'personal') {
+      this.chooseViewMode(requestedView);
+    } else if (typeof localStorage !== 'undefined') {
       const prompted = localStorage.getItem('ael_view_prompted');
       if (!prompted) {
         this.showViewPromptModal = true;

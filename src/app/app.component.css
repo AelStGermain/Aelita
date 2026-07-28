@@ -164,9 +164,7 @@
 }
 
 #page-container.recruiter-fullscreen {
-  background: linear-gradient(-45deg, #f0f3ff, #f5f0ff, #faf0ff, #e2f4ff);
-  background-size: 400% 400%;
-  animation: gradientMesh 12s ease infinite;
+  background: #f4efe7;
   min-height: 100dvh;
 }
 
@@ -180,20 +178,20 @@
   top: 0;
   z-index: 9000;
   width: 100%;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.15);
-  box-shadow: 0 2px 12px rgba(31, 38, 135, 0.04);
+  background: rgba(248, 243, 232, .9);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #1d1932;
+  box-shadow: 0 3px 0 rgba(29, 25, 50, .08);
 }
 
 .glass-dock-inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1380px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
+  padding: 11px 24px;
   box-sizing: border-box;
 }
 
@@ -206,38 +204,50 @@
 }
 
 .brand-spark {
-  color: #6366f1;
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #1d1932;
+  background: #a8dfce;
+  color: #1d1932;
   font-size: 14px;
+  box-shadow: 2px 2px 0 #1d1932;
 }
 
 .brand-name {
-  font: bold 13px 'Press Start 2P', monospace;
-  color: #2b1b54;
+  font: bold 12px 'Press Start 2P', monospace;
+  color: #1d1932;
   letter-spacing: 0.5px;
 }
 
 .brand-sub {
-  font: 500 10px 'Inter', sans-serif;
-  color: #574b76;
-  border-left: 1px solid rgba(99, 102, 241, 0.25);
+  font: 700 9px 'Inter', sans-serif;
+  color: #625a70;
+  border-left: 1px solid rgba(29, 25, 50, .3);
   padding-left: 8px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
 }
 
 .dock-switch-btn {
-  padding: 6px 14px;
-  background: rgba(99, 102, 241, 0.08);
-  color: #4f46e5 !important;
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  border-radius: 8px;
-  font: 600 10px 'Inter', sans-serif;
+  padding: 8px 13px;
+  background: #fffaf0;
+  color: #1d1932 !important;
+  border: 1px solid #1d1932;
+  border-radius: 0;
+  font: 700 8px 'Press Start 2P', monospace;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  box-shadow: 3px 3px 0 #7967e8;
 }
 
 .dock-switch-btn:hover {
-  background: #6366f1;
+  background: #1d1932;
   color: #ffffff !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #ef705d;
 }
 
 @media (max-width: 768px) {
@@ -250,4 +260,3 @@
   .dock-nav { gap: 4px; }
   .dock-nav a { font-size: 9px; padding: 4px 7px; }
 }
-

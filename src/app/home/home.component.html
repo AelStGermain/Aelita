@@ -18,365 +18,313 @@
     <span>✦ WELCOME TO MY LITTLE CORNER OF THE WORLD WIDE WEB ✦ ALWAYS UNDER CONSTRUCTION ✦</span>
   </div>
 
-  <!-- BENTO GRID — CREATIVE PROFESSIONAL PORTFOLIO (RECRUITER MODE) -->
-  <!-- BENTO GRID — CREATIVE PROFESSIONAL PORTFOLIO (RECRUITER MODE) -->
-  <div *ngIf="isRecruiterMode" class="bento-dashboard-container container-xl py-4">
-    
-    <div class="row g-4 align-items-stretch">
-      <!-- Left Column: Identity & Assistant -->
-      <div class="col-lg-5 col-xl-4 d-flex flex-column gap-4">
-        
-        <!-- 1. Hero Bento Box (Large) -->
-        <article class="bento-card hero-bento anim-delay-1 h-100 d-flex flex-column justify-content-between">
-          <div class="hero-bento-content">
-            <div class="hero-avatar-wrapper">
-              <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez" class="bento-avatar">
-              <span class="pulse-chip">OPEN TO WORK</span>
-            </div>
-            <div class="hero-text-wrapper mt-3">
-              <div class="bento-header-tag">
-                <span class="location">Chile · Remote / On-site</span>
-                <span class="role-chip">JUNIOR / MID READY</span>
-              </div>
-              <h1 class="hero-name"><span class="typewriter-text">{{heroDisplayName}}</span></h1>
-              <p class="hero-subtitle">Técnico Analista de Sistemas · Ing. Civil Informática (en curso)</p>
-              <p class="hero-bio">
-                Desarrollo backend en <b>Java / Spring Boot</b> y arquitectura de integración de sistemas, combinando prácticas de desarrollo web/móvil moderno (<b>Angular, Ionic, TypeScript</b>) con análisis de requerimientos y metodologías ágiles.
-              </p>
+  <!-- RECRUITER DOSSIER — editorial, professional and unmistakably AEL -->
+  <div *ngIf="isRecruiterMode" class="recruiter-dossier">
+    <section class="recruiter-hero" aria-labelledby="recruiter-name">
+      <div class="hero-copy">
+        <div class="eyebrow-row">
+          <span class="open-signal"><i aria-hidden="true"></i> Disponible para nuevas oportunidades</span>
+          <span class="folio">PORTFOLIO / 2026</span>
+        </div>
 
-              <div class="hero-tech-chips">
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Desarrollo orientado a objetos avanzado">Java</span>
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Creación de microservicios y REST APIs">Spring Boot</span>
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Diseño de servicios JSON robustos">REST APIs</span>
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Modelado y optimización de bases de datos">SQL / PostgreSQL</span>
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Framework SPA estructurado y reactivo">Angular</span>
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Tipado estático seguro para desarrollo web/móvil">TypeScript</span>
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Contenerización de aplicaciones e infraestructura">Docker</span>
-                <span class="tech-tag" data-bs-toggle="tooltip" title="Metodología ágil para equipos de desarrollo">Scrum</span>
-              </div>
-            </div>
-          </div>
+        <p class="hero-kicker">Backend developer · Systems analyst</p>
+        <h1 id="recruiter-name" class="recruiter-name">
+          Sofía Gómez
+          <span>Orellana.</span>
+        </h1>
+        <p class="hero-declaration">
+          Construyo sistemas <em>claros, conectados</em> y pensados para resolver problemas reales.
+        </p>
+        <p class="hero-summary">
+          Especializada en <strong>Java y Spring Boot</strong>, con experiencia integrando datos,
+          APIs y productos web/móvil. Combino criterio técnico, documentación y una mirada de producto.
+        </p>
 
-          <div class="hero-actions mt-3">
-            <div class="row g-2">
-              <div class="col-sm-6">
-                <a routerLink="/about" class="btn-premium primary w-100 text-center">Ver CV &amp; Stack</a>
-              </div>
-              <div class="col-sm-6">
-                <a href="mailto:sofia.gomez.orellana@gmail.com" class="btn-premium outline w-100 text-center">Contacto</a>
-              </div>
-              <div class="col-12">
-                <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-premium secondary w-100 text-center">
-                  GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 2. AEL_AI Assistant Bento Box -->
-        <article class="bento-card ai-assistant-bento anim-delay-2 d-flex flex-column justify-content-between">
-          <div>
-            <div class="bento-card-header">
-              <span class="bento-icon">✦</span>
-              <h2>AEL_AI ASSISTANT</h2>
-            </div>
-            <p class="ai-subtitle">Respuestas sintetizadas para tu evaluación de candidato:</p>
-            
-            <div class="ai-chat-container">
-              <div class="ai-chat-body">
-                <div *ngFor="let msg of aiMessages" class="chat-bubble-row" [ngClass]="msg.sender">
-                  <div class="chat-avatar" *ngIf="msg.sender === 'bot'">🤖</div>
-                  <div class="chat-bubble">
-                    <p>{{msg.text}}</p>
-                  </div>
-                </div>
-                <div *ngIf="aiTyping && aiMessages[aiMessages.length - 1]?.text === ''" class="chat-bubble-row bot">
-                  <div class="chat-avatar">🤖</div>
-                  <div class="chat-bubble typing">
-                    <span></span><span></span><span></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="ai-prompt-chips mt-3">
-            <button (click)="askAiRecruiter('hire')" class="ai-chip" [disabled]="aiTyping">¿Por qué contratar a Sofía?</button>
-            <button (click)="askAiRecruiter('spring')" class="ai-chip" [disabled]="aiTyping">Experiencia Java &amp; Spring</button>
-            <button (click)="askAiRecruiter('education')" class="ai-chip" [disabled]="aiTyping">Formación &amp; Inglés C1</button>
-            <button (click)="askAiRecruiter('projects')" class="ai-chip" [disabled]="aiTyping">Proyectos en producción</button>
-          </div>
-        </article>
+        <div class="hero-actions">
+          <a href="mailto:sofia.gomez.orellana@gmail.com" class="recruiter-btn primary">
+            Hablemos <span aria-hidden="true">↗</span>
+          </a>
+          <a routerLink="/about" class="recruiter-btn secondary">Ver perfil completo</a>
+          <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="text-link">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Right Column: Interactive Content Switcher -->
-      <div class="col-lg-7 col-xl-8 d-flex flex-column gap-4">
-        <!-- Interactive Tabs Control -->
-        <div class="dashboard-tabs anim-delay-3">
-          <button type="button" 
-                  class="dash-tab-btn" 
-                  [class.active]="activeRecruiterTab === 'projects'" 
+      <aside class="hero-portrait" aria-label="Ficha rápida de Sofía">
+        <div class="portrait-window">
+          <div class="window-bar">
+            <span>candidate_profile.exe</span>
+            <span aria-hidden="true">— □ ×</span>
+          </div>
+          <div class="portrait-frame">
+            <img src="avatar-dark-retro.jpg" alt="Retrato de Sofía Gómez Orellana">
+            <span class="portrait-sticker">AEL_01</span>
+          </div>
+          <dl class="portrait-meta">
+            <div><dt>Base</dt><dd>Chile</dd></div>
+            <div><dt>Modalidad</dt><dd>Remoto / Presencial</dd></div>
+            <div><dt>Foco</dt><dd>Backend + Integraciones</dd></div>
+            <div><dt>Idiomas</dt><dd>ES · EN C1</dd></div>
+          </dl>
+        </div>
+        <span class="orbit-note" aria-hidden="true">✦ GOOD CODE / GOOD SYSTEMS /</span>
+      </aside>
+    </section>
+
+    <section class="proof-strip" aria-label="Resumen profesional">
+      <div class="proof-intro">
+        <span class="proof-mark">✦</span>
+        <p><strong>En breve</strong><br>Lo que aporto al equipo</p>
+      </div>
+      <div class="proof-item">
+        <strong>03</strong>
+        <span>productos propios<br>publicados</span>
+      </div>
+      <div class="proof-item">
+        <strong>Java</strong>
+        <span>Spring Boot<br>REST &amp; SQL</span>
+      </div>
+      <div class="proof-item">
+        <strong>360°</strong>
+        <span>backend, datos<br>y experiencia web</span>
+      </div>
+      <div class="proof-item accent">
+        <strong>C1</strong>
+        <span>inglés técnico<br>avanzado</span>
+      </div>
+    </section>
+
+    <div class="recruiter-workbench">
+      <main class="workbench-main">
+        <nav class="dashboard-tabs" role="tablist" aria-label="Contenido del portafolio">
+          <button type="button" role="tab"
+                  [attr.aria-selected]="activeRecruiterTab === 'projects'"
+                  [class.active]="activeRecruiterTab === 'projects'"
                   (click)="setRecruiterTab('projects')">
-            Proyectos
+            <span>01</span> Proyectos
           </button>
-          <button type="button" 
-                  class="dash-tab-btn" 
-                  [class.active]="activeRecruiterTab === 'skills'" 
+          <button type="button" role="tab"
+                  [attr.aria-selected]="activeRecruiterTab === 'skills'"
+                  [class.active]="activeRecruiterTab === 'skills'"
                   (click)="setRecruiterTab('skills')">
-            Competencias
+            <span>02</span> Stack
           </button>
-          <button type="button" 
-                  class="dash-tab-btn" 
-                  [class.active]="activeRecruiterTab === 'timeline'" 
+          <button type="button" role="tab"
+                  [attr.aria-selected]="activeRecruiterTab === 'timeline'"
+                  [class.active]="activeRecruiterTab === 'timeline'"
                   (click)="setRecruiterTab('timeline')">
-            Trayectoria
+            <span>03</span> Trayectoria
           </button>
-        </div>
+        </nav>
 
-        <!-- Panel Body: Switchable content with fade-in animation -->
-        <div class="dashboard-panel-body">
-          
-          <!-- TAB 1: PROJECTS (GRID VIEW - Point 2) -->
-          <div *ngIf="activeRecruiterTab === 'projects'" class="tab-fade-panel">
-            <div class="row g-4 row-cols-1 row-cols-xxl-2">
-              
-              <!-- Project 1: PATOTA -->
-              <div class="col">
-                <article class="bento-card project-bento h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div class="proj-bento-header">
-                      <span class="proj-emoji">🐾</span>
-                      <div>
-                        <h3>PATOTA</h3>
-                        <span class="proj-tag">WEB APP</span>
-                      </div>
-                    </div>
-                    <p class="proj-bento-sub">Organización de paseos y salidas grupales</p>
-                    <p class="proj-bento-desc">Plataforma interactiva construida para la coordinación de rutas recreativas y actividades al aire libre, optimizando la comunicación grupal.</p>
-                    <div class="proj-bento-techs">
-                      <span class="bento-pill">JavaScript</span>
-                      <span class="bento-pill">HTML5</span>
-                      <span class="bento-pill">CSS3</span>
-                      <span class="bento-pill">UX/UI</span>
-                    </div>
-                  </div>
-                  <div class="proj-bento-actions mt-auto pt-3">
-                    <a href="https://aelstgermain.github.io/Patota" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-                    <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#patotaModal">Ver Arquitectura</button>
-                    <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
-                  </div>
-                </article>
+        <section *ngIf="activeRecruiterTab === 'projects'" class="tab-fade-panel projects-panel" role="tabpanel">
+          <header class="section-heading">
+            <div>
+              <span class="section-index">01 / SELECTED WORK</span>
+              <h2>Productos con intención.</h2>
+            </div>
+            <p>De la necesidad al producto: arquitectura, interfaz y una experiencia que sí puede probarse.</p>
+          </header>
+
+          <div class="projects-editorial-grid">
+            <article class="project-card project-featured">
+              <div class="project-topline">
+                <span class="project-number">01</span>
+                <span class="project-status">FULL-STACK · VET TECH</span>
               </div>
-
-              <!-- Project 2: KUICHI WEB -->
-              <div class="col">
-                <article class="bento-card project-bento h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div class="proj-bento-header">
-                      <span class="proj-emoji">🐶</span>
-                      <div>
-                        <h3>KUICHI WEB</h3>
-                        <span class="proj-tag">VET PLATFORM</span>
-                      </div>
-                    </div>
-                    <p class="proj-bento-sub">Plataforma de bienestar animal y servicios de salud</p>
-                    <p class="proj-bento-desc">Sistema integral para la reserva de citas médicas, seguimiento del historial de mascotas y geolocalización de ofertas de atención.</p>
-                    <div class="proj-bento-techs">
-                      <span class="bento-pill">Java</span>
-                      <span class="bento-pill">Spring Boot</span>
-                      <span class="bento-pill">Angular</span>
-                      <span class="bento-pill">REST APIs</span>
-                    </div>
-                  </div>
-                  <div class="proj-bento-actions mt-auto pt-3">
-                    <a href="https://aelstgermain.github.io/kuichiweb/" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-                    <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiWebModal">Ver Arquitectura</button>
-                    <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
-                  </div>
-                </article>
+              <div class="project-symbol" aria-hidden="true">K</div>
+              <div class="project-content">
+                <p class="project-overline">Plataforma web integral</p>
+                <h3>Kuichi Web</h3>
+                <p class="project-lead">Salud y bienestar animal en un ecosistema de servicios conectado.</p>
+                <p class="project-description">
+                  Reserva de citas, historial de mascotas y acceso a ofertas veterinarias mediante
+                  una arquitectura cliente-servidor con API REST.
+                </p>
+                <div class="project-techs" aria-label="Tecnologías">
+                  <span>Java</span><span>Spring Boot</span><span>Angular</span><span>PostgreSQL</span>
+                </div>
               </div>
-
-              <!-- Project 3: KUICHI APP -->
-              <div class="col">
-                <article class="bento-card project-bento h-100 d-flex flex-column justify-content-between">
-                  <div>
-                    <div class="proj-bento-header">
-                      <span class="proj-emoji">📱</span>
-                      <div>
-                        <h3>KUICHI APP</h3>
-                        <span class="proj-tag">MOBILE APP</span>
-                      </div>
-                    </div>
-                    <p class="proj-bento-sub">Versión móvil híbrida para smartphones</p>
-                    <p class="proj-bento-desc">Aplicación móvil multiplataforma que acerca los servicios y alertas de vacunas de mascotas directamente al celular del dueño.</p>
-                    <div class="proj-bento-techs">
-                      <span class="bento-pill">Ionic</span>
-                      <span class="bento-pill">Angular</span>
-                      <span class="bento-pill">TypeScript</span>
-                      <span class="bento-pill">Capacitor</span>
-                    </div>
-                  </div>
-                  <div class="proj-bento-actions mt-auto pt-3">
-                    <a href="https://aelstgermain.github.io/kuichiapp" target="_blank" rel="noopener" class="btn-app">Abrir App →</a>
-                    <button type="button" class="btn-details" data-bs-toggle="modal" data-bs-target="#kuichiAppModal">Ver Arquitectura</button>
-                    <a href="https://github.com/AelStGermain" target="_blank" rel="noopener" class="btn-code">Código</a>
-                  </div>
-                </article>
+              <div class="project-actions">
+                <a href="https://aelstgermain.github.io/kuichiweb/" target="_blank" rel="noopener">Visitar producto ↗</a>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#kuichiWebModal">Ver arquitectura</button>
               </div>
+            </article>
 
+            <article class="project-card project-patota">
+              <div class="project-topline">
+                <span class="project-number">02</span>
+                <span class="project-status">COMMUNITY WEB APP</span>
+              </div>
+              <div class="project-content">
+                <p class="project-overline">Coordinación de grupos</p>
+                <h3>Patota</h3>
+                <p class="project-lead">Convoca, organiza y sal a explorar.</p>
+                <p class="project-description">Una experiencia ligera para coordinar rutas y actividades recreativas en comunidad.</p>
+                <div class="project-techs"><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>UX/UI</span></div>
+              </div>
+              <div class="project-actions">
+                <a href="https://aelstgermain.github.io/Patota" target="_blank" rel="noopener">Abrir app ↗</a>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#patotaModal">Detalles</button>
+              </div>
+            </article>
+
+            <article class="project-card project-mobile">
+              <div class="project-topline">
+                <span class="project-number">03</span>
+                <span class="project-status">HYBRID MOBILE</span>
+              </div>
+              <div class="phone-mark" aria-hidden="true"><span>K</span></div>
+              <div class="project-content">
+                <p class="project-overline">Experiencia móvil Kuichi</p>
+                <h3>Kuichi App</h3>
+                <p class="project-lead">El cuidado de cada mascota, en el bolsillo.</p>
+                <p class="project-description">Aplicación híbrida multiplataforma con alertas, servicios y seguimiento desde el smartphone.</p>
+                <div class="project-techs"><span>Ionic</span><span>Angular</span><span>TypeScript</span><span>Capacitor</span></div>
+              </div>
+              <div class="project-actions">
+                <a href="https://aelstgermain.github.io/kuichiapp" target="_blank" rel="noopener">Abrir app ↗</a>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#kuichiAppModal">Detalles</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section *ngIf="activeRecruiterTab === 'skills'" class="tab-fade-panel skills-panel" role="tabpanel">
+          <header class="section-heading">
+            <div>
+              <span class="section-index">02 / CAPABILITIES</span>
+              <h2>Stack con contexto.</h2>
+            </div>
+            <p>Herramientas organizadas por el valor que producen, no como una nube de keywords.</p>
+          </header>
+
+          <div class="capability-grid">
+            <article class="capability-card principal">
+              <span class="capability-number">A</span>
+              <p class="capability-label">CORE / BACKEND</p>
+              <h3>Servicios sólidos y mantenibles.</h3>
+              <p>Diseño de APIs, lógica de negocio, persistencia y seguridad dentro del ecosistema Java.</p>
+              <div class="skill-list"><span>Java</span><span>Spring Boot</span><span>Spring MVC</span><span>REST APIs</span><span>JPA / Hibernate</span><span>Spring Security</span></div>
+            </article>
+            <article class="capability-card">
+              <span class="capability-number">B</span>
+              <p class="capability-label">DATA / INTEGRATION</p>
+              <h3>Datos que conversan.</h3>
+              <p>Modelado relacional, validación, consultas y flujos de integración documentados.</p>
+              <div class="skill-list"><span>PostgreSQL</span><span>MySQL</span><span>SQL</span><span>H2</span><span>Supabase</span><span>MDM</span></div>
+            </article>
+            <article class="capability-card">
+              <span class="capability-number">C</span>
+              <p class="capability-label">PRODUCT / INTERFACE</p>
+              <h3>Interfaces útiles y adaptables.</h3>
+              <p>Productos web y móviles conectados al backend, con foco en claridad y responsive design.</p>
+              <div class="skill-list"><span>Angular</span><span>TypeScript</span><span>Ionic</span><span>JavaScript</span><span>HTML / CSS</span><span>Bootstrap</span></div>
+            </article>
+            <article class="capability-card dark">
+              <span class="capability-number">D</span>
+              <p class="capability-label">DELIVERY / TEAM</p>
+              <h3>Trabajo visible, repetible y colaborativo.</h3>
+              <p>Control de versiones, contenedores, documentación y entrega incremental bajo prácticas ágiles.</p>
+              <div class="skill-list"><span>Git</span><span>Docker</span><span>Linux</span><span>Maven</span><span>GitHub Actions</span><span>Scrum</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section *ngIf="activeRecruiterTab === 'timeline'" class="tab-fade-panel timeline-panel" role="tabpanel">
+          <header class="section-heading">
+            <div>
+              <span class="section-index">03 / JOURNEY</span>
+              <h2>Aprender, construir, iterar.</h2>
+            </div>
+            <p>Una trayectoria en progreso con base técnica, práctica aplicada y aprendizaje continuo.</p>
+          </header>
+
+          <div class="editorial-timeline">
+            <article class="timeline-entry current">
+              <div class="timeline-date"><span>Ahora</span><small>2026</small></div>
+              <div class="timeline-copy">
+                <div class="timeline-heading"><span>EXPERIENCIA</span><span class="live-badge">EN CURSO</span></div>
+                <h3>Práctica Profesional · FollowUP</h3>
+                <h4>Backend &amp; Data Integration</h4>
+                <p>Levantamiento de requerimientos, validación de datos operacionales, consultas SQL, automatizaciones y documentación técnica en un equipo Scrum.</p>
+                <div class="timeline-tags"><span>SQL</span><span>Integraciones</span><span>Scrum</span><span>Documentación</span></div>
+              </div>
+            </article>
+            <article class="timeline-entry">
+              <div class="timeline-date"><span>Next</span><small>En curso</small></div>
+              <div class="timeline-copy">
+                <div class="timeline-heading"><span>FORMACIÓN</span></div>
+                <h3>Ingeniería Civil Informática</h3>
+                <p>Profundización en ciencias de la computación, algoritmos, bases de datos y arquitectura de sistemas.</p>
+              </div>
+            </article>
+            <article class="timeline-entry">
+              <div class="timeline-date"><span>Base</span><small>Completado</small></div>
+              <div class="timeline-copy">
+                <div class="timeline-heading"><span>TÍTULO</span><span class="done-badge">TITULADA</span></div>
+                <h3>Técnico Analista de Sistemas</h3>
+                <p>Formación en ciclo de vida de software, POO con Java, bases de datos y desarrollo de aplicaciones.</p>
+              </div>
+            </article>
+            <article class="timeline-entry language">
+              <div class="timeline-date"><span>C1</span><small>Verificado</small></div>
+              <div class="timeline-copy">
+                <div class="timeline-heading"><span>IDIOMAS</span></div>
+                <h3>Inglés técnico avanzado</h3>
+                <p>Lectura de especificaciones, documentación y comunicación fluida en contextos tecnológicos.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <aside class="recruiter-sidebar">
+        <article class="assistant-card">
+          <div class="assistant-heading">
+            <div class="assistant-icon" aria-hidden="true">A✦</div>
+            <div>
+              <span>AEL_AI / PROFILE GUIDE</span>
+              <strong>¿Quieres ir al grano?</strong>
+            </div>
+            <i aria-hidden="true"></i>
+          </div>
+          <p class="assistant-intro">Pregunta por los puntos clave del perfil y obtén una respuesta breve.</p>
+
+          <div class="ai-chat-body" aria-live="polite">
+            <div *ngFor="let msg of aiMessages" class="chat-bubble-row" [ngClass]="msg.sender">
+              <span class="chat-who">{{msg.sender === 'bot' ? 'AEL_AI' : 'TÚ'}}</span>
+              <div class="chat-bubble"><p>{{msg.text}}</p></div>
+            </div>
+            <div *ngIf="aiTyping && aiMessages[aiMessages.length - 1]?.text === ''" class="chat-bubble-row bot">
+              <span class="chat-who">AEL_AI</span>
+              <div class="chat-bubble typing"><span></span><span></span><span></span></div>
             </div>
           </div>
 
-          <!-- TAB 2: TECHNICAL SKILLS (Point 5) -->
-          <div *ngIf="activeRecruiterTab === 'skills'" class="tab-fade-panel">
-            <article class="bento-card stack-matrix-bento anim-delay-1">
-              <div class="bento-card-header mb-3">
-                <h2>Competencias Técnicas</h2>
-              </div>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Desarrollo de servicios robustos y seguros">
-                    <h3>Backend &amp; Arquitectura</h3>
-                    <div class="skills-badge-group mt-2">
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Lenguaje de programación principal">Java</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework de servicios empresariales">Spring Boot</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Arquitectura web MVC de Spring">Spring MVC</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Protocolos RESTful seguros">REST APIs</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Control de accesos y seguridad">Spring Security</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Persistencia y mapeo ORM">JPA / Hibernate</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Runtime de JS del lado del servidor">Node.js</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework de Node.js para APIs">Express.js</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Scripting de servidor">PHP</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Interfaces interactivas y responsivas">
-                    <h3>Frontend Web &amp; Móvil</h3>
-                    <div class="skills-badge-group mt-2">
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Interactividad y lógica de cliente">JavaScript</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Tipado estático sobre JS">TypeScript</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework SPA reactivo">Angular</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Framework móvil híbrido nativo">Ionic</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Estructura semántica de páginas">HTML5</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Estilos y responsive design">CSS3</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Aplicaciones de página única">Single Page Apps</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Modelado y consistencia de datos relacionales">
-                    <h3>Datos &amp; Bases de Datos</h3>
-                    <div class="skills-badge-group mt-2">
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos relacional potente">PostgreSQL</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos relacional estándar">MySQL</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos SQL ligera en memoria">H2</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Plataforma backend as a service">Supabase</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Base de datos NoSQL en tiempo real">Firebase Firestore</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Gestión de datos maestros">Master Data Management</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="matrix-cell h-100" data-bs-toggle="tooltip" title="Prácticas modernas de infraestructura y gestión">
-                    <h3>DevOps &amp; Metodologías</h3>
-                    <div class="skills-badge-group mt-2">
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Control de versiones descentralizado">Git</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Automatización e integración CI/CD">GitHub Actions</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Contenedores aislados y portables">Docker</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Sistemas operativos Linux/Unix">Linux</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Gestor de dependencias Java">Maven</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Metodología de trabajo ágil">Scrum</span>
-                      <span class="badge skill-badge" data-bs-toggle="tooltip" title="Documentación de arquitectura e integraciones">Doc. Técnica</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
+          <div class="ai-prompt-chips">
+            <button (click)="askAiRecruiter('hire')" [disabled]="aiTyping"><span>01</span> ¿Por qué Sofía?</button>
+            <button (click)="askAiRecruiter('spring')" [disabled]="aiTyping"><span>02</span> Java &amp; Spring</button>
+            <button (click)="askAiRecruiter('education')" [disabled]="aiTyping"><span>03</span> Formación &amp; C1</button>
+            <button (click)="askAiRecruiter('projects')" [disabled]="aiTyping"><span>04</span> Productos publicados</button>
           </div>
+        </article>
 
-          <!-- TAB 3: TRAJECTORY & TIMELINE -->
-          <div *ngIf="activeRecruiterTab === 'timeline'" class="tab-fade-panel">
-            <article class="bento-card trajectory-bento anim-delay-1">
-              <div class="bento-card-header">
-                <h2>Trayectoria &amp; Formación</h2>
-              </div>
-              
-              <div class="accordion accordion-flush custom-accordion" id="trajectoryAccordion">
-                
-                <!-- Item 1: Práctica -->
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      <span class="time-badge me-2">2026 — PRESENTE</span>
-                      Práctica Profesional · FollowUP
-                    </button>
-                  </h3>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#trajectoryAccordion">
-                    <div class="accordion-body">
-                      <h5>Junior Backend &amp; Data Integration</h5>
-                      <p>Análisis y levantamiento de requerimientos técnicos junto al cliente, validación masiva y estructuración de datos operacionales, optimización de consultas SQL y automatizaciones. Desarrollo ágil bajo marco Scrum.</p>
-                      <div class="timeline-skills mt-2">
-                        <span class="bento-pill">Scrum</span>
-                        <span class="bento-pill">SQL</span>
-                        <span class="bento-pill">Documentación</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <article class="availability-card">
+          <span class="availability-label">NEXT STEP</span>
+          <h2>¿Construimos algo útil?</h2>
+          <p>Disponible para conversar sobre oportunidades backend, full-stack e integración de sistemas.</p>
+          <a href="mailto:sofia.gomez.orellana@gmail.com">Enviar un email <span aria-hidden="true">↗</span></a>
+          <div class="availability-footer"><i aria-hidden="true"></i> Respuesta directa de Sofía</div>
+        </article>
 
-                <!-- Item 2: Ingeniería -->
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <span class="degree-badge in-progress me-2">EN CURSO</span>
-                      Ingeniería Civil Informática
-                    </button>
-                  </h3>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#trajectoryAccordion">
-                    <div class="accordion-body">
-                      <p>Formación académica avanzada en ciencias de la computación, diseño de algoritmos complejos, bases de datos y arquitectura de sistemas distribuidos.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Item 3: Analista -->
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      <span class="degree-badge completed me-2">TITULADA</span>
-                      Técnico Analista de Sistemas
-                    </button>
-                  </h3>
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#trajectoryAccordion">
-                    <div class="accordion-body">
-                      <p>Formación técnica centrada en el ciclo de vida del software, programación orientada a objetos (Java), desarrollo de bases de datos relacionales y diseño de aplicaciones web/móviles.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Item 4: Inglés -->
-                <div class="accordion-item">
-                  <h3 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      <span class="degree-badge c1 me-2">VERIFICADO</span>
-                      Inglés C1 Avanzado
-                    </button>
-                  </h3>
-                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#trajectoryAccordion">
-                    <div class="accordion-body">
-                      <p>Dominio técnico avanzado para la lectura de especificaciones de hardware/software, redacción de documentación técnica y comunicación fluida en equipos de desarrollo internacionales.</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </article>
-          </div>
-
-        </div>
-      </div>
+        <blockquote class="philosophy-card">
+          <span aria-hidden="true">“</span>
+          <p>La tecnología funciona mejor cuando lo complejo se vuelve claro.</p>
+          <cite>— Principio de trabajo</cite>
+        </blockquote>
+      </aside>
     </div>
 
     <!-- Bootstrap Modals for Project Architecture Details (Point 9) -->

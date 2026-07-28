@@ -87,7 +87,7 @@
   </aside>
 
   <!-- FLOATING & DRAGGABLE BOT LAUNCHER BUTTON -->
-  <button class="floating-bot-launcher" 
+  <button *ngIf="!isRecruiterMode" class="floating-bot-launcher"
           (click)="onLauncherClick($event)" 
           (mousedown)="startLauncherDrag($event)"
           (touchstart)="startLauncherDrag($event)"
