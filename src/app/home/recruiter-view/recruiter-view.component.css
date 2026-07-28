@@ -458,7 +458,7 @@
   z-index: 1;
   display: flex;
   gap: 15px;
-  color: rgba(20, 85, 146, 0.62);
+  color: rgba(196, 240, 65, 0.977);
   font: 700 6px/1 var(--mono);
   writing-mode: vertical-rl;
 }
@@ -547,7 +547,7 @@
   align-items: flex-start;
   padding: 0 24px 24px;
   border: 0;
-  border-right: var(--line) solid rgba(7, 21, 47, .28);
+  border-right: var(--line) solid rgba(36, 195, 184, 0.845);
   border-radius: 0;
   background: transparent;
   color: var(--ink);
