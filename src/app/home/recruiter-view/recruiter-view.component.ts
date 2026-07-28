@@ -50,7 +50,7 @@ export class RecruiterViewComponent implements AfterViewInit, OnDestroy {
 
   readonly sections: Array<{ id: RecruiterSection; label: string; shortLabel: string }> = [
     { id: 'profile', label: 'Perfil', shortLabel: '01' },
-    { id: 'projects', label: 'Mapa de proyectos', shortLabel: '02' },
+    { id: 'projects', label: 'Proyectos', shortLabel: '02' },
     { id: 'stack', label: 'Tecnologías', shortLabel: '03' },
     { id: 'trajectory', label: 'Trayectoria', shortLabel: '04' },
     { id: 'contact', label: 'Contacto', shortLabel: '05' }
@@ -59,7 +59,6 @@ export class RecruiterViewComponent implements AfterViewInit, OnDestroy {
   readonly wheelStops: RecruiterWheelStop[] = [
     { targetId: 'recruiter-profile', section: 'profile' },
     { targetId: 'recruiter-projects', section: 'projects' },
-    { targetId: 'recruiter-projects-dossier', section: 'projects' },
     { targetId: 'recruiter-stack', section: 'stack' },
     { targetId: 'recruiter-stack-more', section: 'stack' },
     { targetId: 'recruiter-trajectory', section: 'trajectory' },
@@ -69,7 +68,7 @@ export class RecruiterViewComponent implements AfterViewInit, OnDestroy {
 
   readonly sectionPageCounts: Record<RecruiterSection, number> = {
     profile: 1,
-    projects: 2,
+    projects: 1,
     stack: 2,
     trajectory: 2,
     contact: 1
@@ -278,10 +277,18 @@ export class RecruiterViewComponent implements AfterViewInit, OnDestroy {
     this.currentWheelStopIndex = nextIndex;
     this.activeSection = destination.section;
     this.activeSectionPage = this.pageForWheelStop(nextIndex);
-    target?.scrollIntoView({
-      behavior: reducedMotion ? 'auto' : 'smooth',
-      block: 'start'
-    });
+    if (nextIndex === this.wheelStops.length - 1) {
+      const scrollRoot = this.host.nativeElement.querySelector<HTMLElement>('.future-recruiter');
+      scrollRoot?.scrollTo({
+        top: scrollRoot.scrollHeight,
+        behavior: reducedMotion ? 'auto' : 'smooth'
+      });
+    } else {
+      target?.scrollIntoView({
+        behavior: reducedMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    }
 
     this.wheelUnlockTimer = setTimeout(() => {
       this.wheelNavigationLocked = false;
@@ -292,8 +299,16 @@ export class RecruiterViewComponent implements AfterViewInit, OnDestroy {
 
   navigateTo(event: Event, section: RecruiterSection): void {
     event.preventDefault();
-    const target = this.host.nativeElement.querySelector<HTMLElement>(`#recruiter-${section}`);
-    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (section === 'contact') {
+      const scrollRoot = this.host.nativeElement.querySelector<HTMLElement>('.future-recruiter');
+      scrollRoot?.scrollTo({
+        top: scrollRoot.scrollHeight,
+        behavior: 'smooth'
+      });
+    } else {
+      const target = this.host.nativeElement.querySelector<HTMLElement>(`#recruiter-${section}`);
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     this.currentWheelStopIndex = this.firstWheelStopFor(section);
     this.activeSection = section;
     this.activeSectionPage = 1;
@@ -323,7 +338,7 @@ export class RecruiterViewComponent implements AfterViewInit, OnDestroy {
       hire: 'Aporta una base backend con Java, Spring Boot y SQL, experiencia de integración y datos, documentación técnica y habilidades transferibles desde el sector educativo.',
       spring: 'Su stack incluye Java, Spring Boot, Spring MVC, Spring Security, JPA/Hibernate y diseño de APIs REST conectadas a bases de datos relacionales.',
       education: 'Es Técnico Analista de Sistemas, estudia Ingeniería Civil Informática y cuenta con inglés avanzado C1.',
-      projects: 'Puedes revisar Kuichi Web, Patota y Kuichi App. Las tres demos están enlazadas en el mapa de proyectos.'
+      projects: 'Puedes revisar Kuichi Web, Patota y Kuichi App. Las tres demos están enlazadas en la sección de proyectos.'
     };
 
     this.aiMessages.push({ sender: 'user', text: questions[topic] });
