@@ -1,21 +1,6 @@
 <div id="page-container" [class.arcade-mode]="!isEditorialPage" [class.home-mode]="isEditorialPage" [class.recruiter-fullscreen]="isRecruiterMode">
   <a class="skip-link" href="#content-wrap">Saltar al contenido</a>
 
-  <!-- RECRUITER MODE GLASS HEADER DOCK -->
-  <header *ngIf="isRecruiterMode" class="recruiter-glass-dock" aria-label="Navegación Ejecutiva">
-    <div class="glass-dock-inner">
-      <a routerLink="/" class="dock-brand">
-        <span class="brand-spark">✦</span>
-        <strong class="brand-name">AEL</strong>
-        <span class="brand-sub">Software Developer &amp; Systems Analyst</span>
-      </a>
-
-      <button type="button" class="dock-switch-btn" (click)="toggleRecruiterMode()">
-        VISTA PERSONAL Y2K
-      </button>
-    </div>
-  </header>
-
   <!-- Y2K PERSONAL SITE HEADER -->
   <header *ngIf="!isRecruiterMode" class="site-header">
     <div class="header-strip"><span>★ AEL'S SECRET CORNER ★</span><span class="best-viewed">BEST VIEWED WITH CURIOSITY</span></div>

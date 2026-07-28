@@ -1,0 +1,318 @@
+<div class="future-recruiter">
+  <header class="future-topbar">
+    <a class="future-brand" href="#recruiter-profile" (click)="navigateTo($event, 'profile')" aria-label="AEL, volver al perfil">
+      <span class="brand-glyph" aria-hidden="true">A</span>
+      <span><strong>AEL</strong><small>FUTURE LIBRARY</small></span>
+    </a>
+
+    <nav class="future-primary-nav" aria-label="Navegación de Recruiter View">
+      <a *ngFor="let section of sections"
+         [href]="'#recruiter-' + section.id"
+         [attr.aria-current]="activeSection === section.id ? 'location' : null"
+         (click)="navigateTo($event, section.id)">
+        {{section.label}}
+      </a>
+    </nav>
+
+    <div class="future-top-actions">
+      <span class="availability-signal"><i aria-hidden="true"></i> Disponible</span>
+      <button type="button" (click)="showPersonalView()">Vista personal</button>
+    </div>
+  </header>
+
+  <div class="future-layout">
+    <aside class="future-index" aria-label="Índice de Recruiter View">
+      <p class="index-heading">ÍNDICE / 2026</p>
+      <nav>
+        <a *ngFor="let section of sections"
+           [href]="'#recruiter-' + section.id"
+           [attr.aria-current]="activeSection === section.id ? 'location' : null"
+           (click)="navigateTo($event, section.id)">
+          <span class="index-number">{{section.shortLabel}}</span>
+          <span class="index-label">{{section.label}}</span>
+          <span *ngIf="activeSection === section.id && sectionPageCounts[section.id] > 1"
+                class="index-progress"
+                aria-label="Página actual de la sección">
+            {{activeSectionPage}}/{{sectionPageCounts[section.id]}}
+          </span>
+        </a>
+      </nav>
+      <div class="index-foot">
+        <span>CHILE</span>
+        <span>ES / EN C1</span>
+        <span>REMOTE / ON-SITE</span>
+      </div>
+    </aside>
+
+    <main class="future-canvas">
+      <section #trackedSection
+               id="recruiter-profile"
+               class="future-hero"
+               data-section="profile"
+               aria-labelledby="future-hero-title">
+        <div class="hero-grid-marker" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="hero-edition">CANDIDATE FILE · EDICIÓN 2026</p>
+          <h1 id="future-hero-title">Sofía Gómez <em>O.</em></h1>
+          <p class="hero-role">Software Developer · Systems Analyst</p>
+          <p class="hero-statement">Construyo sistemas claros, conectados y pensados para resolver problemas reales.</p>
+          <p class="hero-summary">
+            Técnico Analista de Sistemas y estudiante de Ingeniería Civil Informática,
+            con foco en backend, integración y gestión de datos.
+          </p>
+          <div class="hero-actions">
+            <a href="#recruiter-projects" (click)="navigateTo($event, 'projects')">Ver proyectos <span aria-hidden="true">↓</span></a>
+            <a class="secondary" href="mailto:aelstgermain@gmail.com">Hablemos <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <aside class="hero-register" aria-label="Resumen del perfil">
+          <p>REGISTRO / AEL-001</p>
+          <dl>
+            <div><dt>Especialidad</dt><dd>Backend &amp; Data Integration</dd></div>
+            <div><dt>Core</dt><dd>Java · Spring Boot · SQL</dd></div>
+            <div><dt>Formación</dt><dd>Analista de Sistemas</dd></div>
+            <div><dt>Idioma</dt><dd>Inglés C1</dd></div>
+          </dl>
+        </aside>
+
+        <div class="hero-coordinate" aria-hidden="true">
+          <span>X 33.45° S</span><span>Y 70.66° W</span>
+        </div>
+      </section>
+
+      <section #trackedSection
+               id="recruiter-projects"
+               class="atlas-section"
+               data-section="projects"
+               aria-labelledby="atlas-title">
+        <header class="editorial-heading">
+          <div>
+            <p>02 / SELECTED WORK</p>
+            <h2 id="atlas-title">Mapa de proyectos</h2>
+          </div>
+          <p class="heading-note">Tres productos conectados por una misma práctica: comprender una necesidad, estructurarla y convertirla en software utilizable.</p>
+        </header>
+
+        <div class="project-atlas" aria-label="Selecciona un proyecto para consultar su dossier">
+          <button *ngFor="let project of projects; let index = index"
+                  type="button"
+                  class="atlas-entry"
+                  [class.selected]="selectedProject.id === project.id"
+                  [attr.aria-pressed]="selectedProject.id === project.id"
+                  [style.--atlas-index]="index"
+                  (click)="selectProject(project)">
+            <span class="atlas-node" aria-hidden="true">{{index + 1}}</span>
+            <span class="atlas-meta">{{project.chapter}} · {{project.category}}</span>
+            <strong>{{project.name}}</strong>
+            <span class="atlas-summary">{{project.summary}}</span>
+          </button>
+        </div>
+
+        <article id="recruiter-projects-dossier"
+                 class="project-dossier wheel-subsection"
+                 aria-live="polite"
+                 aria-labelledby="selected-project-title">
+          <div class="dossier-identity">
+            <p>DOSSIER ACTIVO</p>
+            <span>{{selectedProject.chapter}}</span>
+            <h3 id="selected-project-title">{{selectedProject.name}}</h3>
+            <small>{{selectedProject.category}}</small>
+          </div>
+
+          <div class="dossier-content">
+            <dl>
+              <div>
+                <dt>Problema</dt>
+                <dd>{{selectedProject.problem}}</dd>
+              </div>
+              <div>
+                <dt>Solución / aporte</dt>
+                <dd>{{selectedProject.contribution}}</dd>
+              </div>
+              <div>
+                <dt>Rol</dt>
+                <dd>{{selectedProject.role}}</dd>
+              </div>
+            </dl>
+
+            <div class="dossier-tech">
+              <span *ngFor="let tech of selectedProject.techs">{{tech}}</span>
+            </div>
+
+            <div class="dossier-actions">
+              <a [href]="selectedProject.demoUrl" target="_blank" rel="noopener">Abrir demo <span aria-hidden="true">↗</span></a>
+              <button type="button"
+                      data-bs-toggle="modal"
+                      [attr.data-bs-target]="selectedProject.architectureModal">
+                Ver arquitectura
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section #trackedSection
+               id="recruiter-stack"
+               class="stack-section"
+               data-section="stack"
+               aria-labelledby="stack-title">
+        <header class="editorial-heading inverse">
+          <div>
+            <p>03 / SYSTEM INDEX</p>
+            <h2 id="stack-title">Tecnologías con contexto</h2>
+          </div>
+          <p class="heading-note">El stack se organiza según el problema que permite resolver, no como una colección de palabras clave.</p>
+        </header>
+
+        <div class="stack-ledger">
+          <article *ngFor="let group of stackGroups; let index = index"
+                   [attr.id]="index === 2 ? 'recruiter-stack-more' : null"
+                   [class.wheel-subsection]="index === 2">
+            <div class="stack-code">
+              <span>{{group.code}}</span>
+              <b aria-hidden="true">{{index + 1}}</b>
+            </div>
+            <div>
+              <h3>{{group.title}}</h3>
+              <p>{{group.description}}</p>
+              <ul aria-label="Tecnologías">
+                <li *ngFor="let skill of group.skills">{{skill}}</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section #trackedSection
+               id="recruiter-trajectory"
+               class="trajectory-section"
+               data-section="trajectory"
+               aria-labelledby="trajectory-title">
+        <header class="editorial-heading">
+          <div>
+            <p>04 / LEARNING PATH</p>
+            <h2 id="trajectory-title">Trayectoria</h2>
+          </div>
+          <p class="heading-note">Formación técnica, experiencia aplicada y aprendizaje continuo dentro y fuera del software.</p>
+        </header>
+
+        <ol class="trajectory-ledger">
+          <li *ngFor="let item of timeline; let index = index; let last = last"
+              [attr.id]="index === 2 ? 'recruiter-trajectory-more' : null"
+              [class.wheel-subsection]="index === 2"
+              [class.last]="last">
+            <div class="trajectory-marker"><span>{{item.marker}}</span><i aria-hidden="true"></i></div>
+            <div class="trajectory-copy">
+              <p>{{item.meta}}</p>
+              <h3>{{item.title}}</h3>
+              <span>{{item.description}}</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section #trackedSection
+               id="recruiter-contact"
+               class="contact-section"
+               data-section="contact"
+               aria-labelledby="contact-title">
+        <div class="contact-copy">
+          <p>05 / NEXT CONNECTION</p>
+          <h2 id="contact-title">Construyamos algo <em>útil.</em></h2>
+          <span>Disponible para conversar sobre oportunidades backend, full-stack e integración de sistemas.</span>
+          <div class="contact-actions">
+            <a href="mailto:aelstgermain@gmail.com">Enviar un email <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/AelStGermain" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+            <a routerLink="/about">Perfil completo <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <aside class="recruiter-ai" aria-labelledby="recruiter-ai-title">
+          <header>
+            <div><span aria-hidden="true">A✦</span></div>
+            <p><small>AEL_AI / PROFILE GUIDE</small><strong id="recruiter-ai-title">Consulta rápida</strong></p>
+            <i aria-hidden="true"></i>
+          </header>
+
+          <div class="recruiter-ai-log" aria-live="polite">
+            <div *ngFor="let message of aiMessages" [class.user]="message.sender === 'user'">
+              <small>{{message.sender === 'bot' ? 'AEL_AI' : 'TÚ'}}</small>
+              <p>{{message.text}}</p>
+            </div>
+            <p *ngIf="aiTyping && aiMessages[aiMessages.length - 1]?.text === ''" class="ai-wait">Procesando<span>...</span></p>
+          </div>
+
+          <div class="recruiter-ai-prompts">
+            <button type="button" (click)="askRecruiterAi('hire')" [disabled]="aiTyping">Aporte al equipo</button>
+            <button type="button" (click)="askRecruiterAi('spring')" [disabled]="aiTyping">Java &amp; Spring</button>
+            <button type="button" (click)="askRecruiterAi('education')" [disabled]="aiTyping">Formación</button>
+            <button type="button" (click)="askRecruiterAi('projects')" [disabled]="aiTyping">Proyectos</button>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="future-footer">
+        <span>AEL FUTURE LIBRARY · RECRUITER EDITION</span>
+        <span>SOFTWARE / SYSTEMS / DATA</span>
+        <a href="#recruiter-profile" (click)="navigateTo($event, 'profile')">Volver arriba ↑</a>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Existing project architecture details remain available in Recruiter View. -->
+  <div class="modal fade future-modal" id="patotaModal" tabindex="-1" aria-labelledby="patotaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="patotaModalLabel">Patota · Arquitectura &amp; flujos</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Arquitectura del sistema</h3>
+          <p>Aplicación web modular construida con HTML5 semántico, CSS3 y lógica en JavaScript, enfocada en una experiencia ligera para actividades al aire libre.</p>
+          <h3>Flujo de datos</h3>
+          <p>La información de rutas y paseos se conserva mediante almacenamiento local para mantener disponibles los datos esenciales del grupo.</p>
+          <ul><li>Diseño mobile-first.</li><li>Interfaz ligera.</li><li>Organización de rutas y actividades.</li></ul>
+        </div>
+        <div class="modal-footer"><button type="button" data-bs-dismiss="modal">Cerrar dossier</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade future-modal" id="kuichiWebModal" tabindex="-1" aria-labelledby="kuichiWebModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="kuichiWebModalLabel">Kuichi Web · Ingeniería &amp; integración</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Arquitectura cliente-servidor</h3>
+          <p>Single Page Application construida con Angular y conectada a servicios REST desarrollados con Java y Spring Boot.</p>
+          <h3>Capas principales</h3>
+          <ul><li><strong>Presentación:</strong> Angular y TypeScript.</li><li><strong>Negocio:</strong> Java, Spring Boot y servicios REST.</li><li><strong>Datos:</strong> Persistencia relacional.</li></ul>
+        </div>
+        <div class="modal-footer"><button type="button" data-bs-dismiss="modal">Cerrar dossier</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade future-modal" id="kuichiAppModal" tabindex="-1" aria-labelledby="kuichiAppModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="kuichiAppModalLabel">Kuichi App · Arquitectura híbrida</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Estructura móvil</h3>
+          <p>Aplicación híbrida construida con Ionic y Angular para acercar los servicios principales de Kuichi al smartphone.</p>
+          <h3>Stack</h3>
+          <ul><li>Ionic Framework.</li><li>Angular y TypeScript.</li><li>Experiencia móvil multiplataforma.</li></ul>
+        </div>
+        <div class="modal-footer"><button type="button" data-bs-dismiss="modal">Cerrar dossier</button></div>
+      </div>
+    </div>
+  </div>
+</div>

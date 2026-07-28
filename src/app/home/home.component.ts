@@ -1,10 +1,9 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { BotService } from '../service/bot.service';
-
-declare var bootstrap: any;
+import { RecruiterViewComponent } from './recruiter-view/recruiter-view.component';
 
 export interface GitHubEventItem {
   repo: string;
@@ -16,11 +15,11 @@ export interface GitHubEventItem {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, RecruiterViewComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild('radioCanvas', { static: false }) radioCanvas?: ElementRef<HTMLCanvasElement>;
 
   // Radio & Web Audio State
@@ -58,79 +57,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.botService.toggleRecruiterMode();
     }
   }
-  activeRecruiterTab: 'projects' | 'skills' | 'timeline' = 'projects';
-
-  // AEL_AI Recruiter Assistant State
-  aiMessages: Array<{ sender: 'user' | 'bot'; text: string }> = [
-    { sender: 'bot', text: '¡Hola! Soy AEL_AI, el asistente virtual de Sofía. Selecciona alguna de las preguntas de abajo para conocer más sobre su perfil.' }
-  ];
-  aiResponse = '';
-  aiTyping = false;
-  private aiTypeTimer?: ReturnType<typeof setInterval>;
-
-  // Hero Typewriter State
-  heroDisplayName = '';
-  private heroFullName = 'SOFÍA GÓMEZ ORELLANA (AEL)';
-  private heroTypeTimer?: ReturnType<typeof setInterval>;
-
-  askAiRecruiter(topic: 'hire' | 'spring' | 'education' | 'projects'): void {
-    if (this.aiTyping) return;
-
-    const questions: Record<string, string> = {
-      hire: '¿Por qué contratar a Sofía?',
-      spring: 'Experiencia Java & Spring Boot',
-      education: 'Formación & Inglés C1',
-      projects: 'Proyectos en producción'
-    };
-
-    const responses: Record<string, string> = {
-      hire: 'Sofía combina un perfil técnico backend sólido (Java / Spring Boot / SQL) con visión de integración de sistemas, metodologías ágiles (Scrum) y comunicación fluida (Inglés C1). Entrega soluciones escalables y documentadas.',
-      spring: 'Competencias avanzadas en Java, Spring Boot, Spring MVC, Spring Security y JPA/Hibernate. Diseño y construcción de APIs REST estructuradas con bases de datos relacionales (PostgreSQL, MySQL).',
-      education: 'Titulada como Técnico Analista de Sistemas. Actualmente cursa Ingeniería Civil Informática. Inglés C1 Avanzado verificado.',
-      projects: 'Ha construido sistemas completos: KUICHI WEB (Java/Spring Boot + Angular), KUICHI APP (Ionic + TypeScript) y PATOTA (Web App). Todos con demos en vivo y código abierto en GitHub.'
-    };
-
-    const questionText = questions[topic] || 'Consulta sobre perfil';
-    const answerText = responses[topic] || responses['hire'];
-
-    this.aiMessages.push({ sender: 'user', text: questionText });
-    this.scrollChatToBottom();
-
-    this.aiTyping = true;
-    setTimeout(() => {
-      const botMsgIndex = this.aiMessages.push({ sender: 'bot', text: '' }) - 1;
-      this.typeAiResponse(answerText, botMsgIndex);
-    }, 400);
-  }
-
-  private typeAiResponse(text: string, msgIndex: number): void {
-    if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
-    let i = 0;
-    this.aiTypeTimer = setInterval(() => {
-      if (i < text.length) {
-        this.aiMessages[msgIndex].text += text.charAt(i);
-        i++;
-        this.scrollChatToBottom();
-      } else {
-        this.aiTyping = false;
-        if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
-      }
-    }, 12);
-  }
-
-  private scrollChatToBottom(): void {
-    setTimeout(() => {
-      const chatBody = document.querySelector('.ai-chat-body');
-      if (chatBody) {
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }
-    }, 50);
-  }
-
-  setRecruiterTab(tab: 'projects' | 'skills' | 'timeline'): void {
-    this.activeRecruiterTab = tab;
-  }
-
   constructor(
     private router: Router,
     public botService: BotService
@@ -138,25 +64,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.fetchGitHubActivity();
-    this.startHeroTypewriter();
-    this.botService.recruiterModeChanged.subscribe(isRecruiter => {
-      if (isRecruiter) {
-        this.startHeroTypewriter();
-      }
-    });
-  }
-
-  ngAfterViewInit(): void {
-    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
-      try {
-        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map((tooltipTriggerEl: any) => {
-          return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-      } catch (e) {
-        console.warn('Bootstrap tooltips not initialized', e);
-      }
-    }
   }
 
   toggleRecruiterMode(): void {
@@ -423,25 +330,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     this.stopRadio();
     this.audioContext?.close();
-    if (this.heroTypeTimer) { clearInterval(this.heroTypeTimer); }
-    if (this.aiTypeTimer) { clearInterval(this.aiTypeTimer); }
-  }
-
-  private startHeroTypewriter(): void {
-    if (!this.isRecruiterMode) {
-      this.heroDisplayName = this.heroFullName;
-      return;
-    }
-    this.heroDisplayName = '';
-    let i = 0;
-    this.heroTypeTimer = setInterval(() => {
-      if (i < this.heroFullName.length) {
-        this.heroDisplayName += this.heroFullName.charAt(i);
-        i++;
-      } else {
-        if (this.heroTypeTimer) { clearInterval(this.heroTypeTimer); }
-      }
-    }, 60);
   }
 
   openBot(): void {

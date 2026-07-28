@@ -194,7 +194,7 @@ body.use-custom-gif-cursor,body.use-custom-gif-cursor *{cursor:none!important}
 .profile-screen .ocean-gif{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;filter:saturate(.75) hue-rotate(28deg);pointer-events:none}
 
 /* Keep the dense portal inside common laptop viewports. */
-@media(max-height:820px) and (min-width:701px){app-home .portal{zoom:.86}.site-header .masthead{min-height:65px!important}.site-header .brand strong{font-size:26px!important}footer{padding-block:5px!important}}
+@media(max-height:820px) and (min-width:701px){app-home .portal:not(.recruiter-mode){zoom:.86}.site-header .masthead{min-height:65px!important}.site-header .brand strong{font-size:26px!important}footer{padding-block:5px!important}}
 @media(max-width:540px){.cursor-palette{right:4px;bottom:4px}.cursor-palette span{display:none}}
 @media(max-width:700px){.home-mode{height:auto;min-height:100dvh;overflow:visible}.home-mode main,.home-mode app-home{height:auto;overflow:visible}.floating-gif{display:none}.header-orb img{width:76px;height:31px}}
 
@@ -925,7 +925,6 @@ app-ctf .ctf-container {
   padding: 16px !important;
   overflow-y: auto !important;
 }
-
 
 
 

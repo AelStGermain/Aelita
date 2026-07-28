@@ -157,106 +157,12 @@
   to { opacity: 1; }
 }
 
-@keyframes gradientMesh {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 #page-container.recruiter-fullscreen {
-  background: #f4efe7;
+  background: #07152f;
   min-height: 100dvh;
 }
 
 #page-container.recruiter-fullscreen main {
   padding: 0;
   overflow-x: hidden;
-}
-
-.recruiter-glass-dock {
-  position: sticky;
-  top: 0;
-  z-index: 9000;
-  width: 100%;
-  background: rgba(248, 243, 232, .9);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid #1d1932;
-  box-shadow: 0 3px 0 rgba(29, 25, 50, .08);
-}
-
-.glass-dock-inner {
-  width: 100%;
-  max-width: 1380px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 11px 24px;
-  box-sizing: border-box;
-}
-
-.dock-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none !important;
-  flex-shrink: 0;
-}
-
-.brand-spark {
-  display: grid;
-  place-items: center;
-  width: 23px;
-  height: 23px;
-  border: 1px solid #1d1932;
-  background: #a8dfce;
-  color: #1d1932;
-  font-size: 14px;
-  box-shadow: 2px 2px 0 #1d1932;
-}
-
-.brand-name {
-  font: bold 12px 'Press Start 2P', monospace;
-  color: #1d1932;
-  letter-spacing: 0.5px;
-}
-
-.brand-sub {
-  font: 700 9px 'Inter', sans-serif;
-  color: #625a70;
-  border-left: 1px solid rgba(29, 25, 50, .3);
-  padding-left: 8px;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-}
-
-.dock-switch-btn {
-  padding: 8px 13px;
-  background: #fffaf0;
-  color: #1d1932 !important;
-  border: 1px solid #1d1932;
-  border-radius: 0;
-  font: 700 8px 'Press Start 2P', monospace;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-  box-shadow: 3px 3px 0 #7967e8;
-}
-
-.dock-switch-btn:hover {
-  background: #1d1932;
-  color: #ffffff !important;
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 #ef705d;
-}
-
-@media (max-width: 768px) {
-  .glass-dock-inner {
-    flex-direction: column;
-    gap: 6px;
-    padding: 8px 12px;
-  }
-  .brand-sub { display: none; }
-  .dock-nav { gap: 4px; }
-  .dock-nav a { font-size: 9px; padding: 4px 7px; }
 }
